@@ -1,5 +1,10 @@
 {
-    "rewrites": [
-        {"source": "/(.*)", "destination": "/"}
-    ]
+  "version": 2,
+  "public": "dist/client/browser",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
