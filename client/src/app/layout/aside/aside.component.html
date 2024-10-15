@@ -1,1 +1,65 @@
-<p>aside works!</p>
+<aside class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="aside-header" (click)="toggleSidebar()">
+      <h2 *ngIf="!isCollapsed" class="logo">Jagarv</h2>
+      <i id="icon" class="fa" [ngClass]="isCollapsed ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
+    </div>
+  
+    <nav class="aside-nav">
+      <ul>
+        <li>
+          <i class="fa fa-home"></i>
+          <span><a href="Home">Home</a></span>
+        </li>
+        <li>
+          <i class="fa fa-shopping-cart"></i>
+          <span><a href="Cart">My Cart</a></span>
+        </li>
+        <li>
+          <i class="fa fa-truck"></i>
+          <span><a href="My orders">My Orders</a></span>
+        </li>
+        <li>
+          <i class="fa fa-heart"></i>
+          <span><a href="My Wishlist">My Wishlist</a></span>
+        </li>
+        <li>
+          <i class="fa fa-user"></i>
+          <span><a href="My Account">My Account</a></span>
+        </li>
+        <li class="products-li" (click)="toggleSubmenu()">
+          <div class="flex-li">
+            <i class="fa fa-box"></i>
+            <span><a href="#" class="products-toggle">Products</a></span>
+            <i *ngIf="isSubmenuOpen" class="fa fa-chevron-down"></i>
+          </div>
+          <ul class="submenu" [class.open]="isSubmenuOpen">
+            <li>
+              <i class="fa fa-mobile"></i>
+              <span><a href="cellPhones">Smartphones</a></span>
+            </li>
+            <li>
+              <i class="fa fa-laptop"></i>
+              <span><a href="PCs">PCs</a></span>
+            </li>
+            <li>
+              <i class="fa fa-gamepad"></i>
+              <span><a href="Consoles">Consoles</a></span>
+            </li>
+            <li>
+              <i class="fa fa-tv"></i>
+              <span><a href="TV">TV</a></span>
+            </li>
+            <li>
+              <i class="fa fa-headset"></i>
+              <span><a href="Music">Music</a></span>
+            </li>
+          </ul>
+        </li>
+        <li class="admin-li">
+          <i class="fa fa-users-cog"></i>
+          <span><a href="Admin">Admin</a></span>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  
