@@ -21,6 +21,13 @@ main {
   
   
   /* RESPONSIVE CATEGORIES */
+@media(max-width: 700px) {
+  ..grid-categories {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
   @media(max-width: 600px) {
     .grid-categories {
       grid-template-columns: 1fr;
