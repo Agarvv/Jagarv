@@ -26,11 +26,11 @@
           <i class="fa fa-user"></i>
           <span><a href="My Account">My Account</a></span>
         </li>
-        <li class="products-li" (click)="toggleSubmenu()">
+        <li class="products-li">
           <div class="flex-li">
             <i class="fa fa-box"></i>
             <span><a href="#" class="products-toggle">Products</a></span>
-            <i *ngIf="isSubmenuOpen" class="fa fa-chevron-down"></i>
+            <i (click)="toggleSubmenu()" [ngClass]="isSubmenuOpen ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </div>
           <ul class="submenu" [class.open]="isSubmenuOpen">
             <li>
