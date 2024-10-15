@@ -89,8 +89,13 @@ body {
   padding-left: 20px; 
 }
 
-.products-li.open .submenu {
+/*.products-li.open .submenu {
   display: flex; 
+  flex-direction: column; 
+} */
+
+.products-li .submenu.open {
+  display: flex; /* Muestra el submenú cuando está abierto */
   flex-direction: column; 
 }
 

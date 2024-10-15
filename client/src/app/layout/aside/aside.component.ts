@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './aside.component.css'
 })
 export class AsideComponent {
-  isCollapsed = false;
+  isCollapsed = true;
   isSubmenuOpen = false;
 
   toggleSidebar() {
