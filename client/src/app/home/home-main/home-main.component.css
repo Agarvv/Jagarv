@@ -28,7 +28,7 @@ main {
   }
 }
 
-  @media(max-width: 600px) {
+  @media(max-width: 500px) {
     .grid-categories {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
