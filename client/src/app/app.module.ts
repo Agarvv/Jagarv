@@ -8,7 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { AsideComponent } from './layout/aside/aside.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FontAwesomeModule 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
