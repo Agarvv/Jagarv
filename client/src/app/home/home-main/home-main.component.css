@@ -1,0 +1,30 @@
+main {
+    background-color: white;
+    padding: 20px;
+  }
+
+  .main-header {
+    padding: 15px;
+  }
+  
+  .grid-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template: 1fr 1fr;
+  }
+  
+  .grid-categories div {
+    border: 1px solid black;
+    height: 250px;
+    width: 100%;
+  }
+  
+  
+  /* RESPONSIVE CATEGORIES */
+  @media(max-width: 600px) {
+    .grid-categories {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+  }
+  
