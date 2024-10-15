@@ -30,7 +30,7 @@
           <div class="flex-li">
             <i class="fa fa-box"></i>
             <span><a href="#" class="products-toggle">Products</a></span>
-            <i (click)="toggleSubmenu()" [ngClass]="isSubmenuOpen ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+            <i (click)="toggleSubmenu()" *ngIf="!isCollapsed" [ngClass]="isSubmenuOpen ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </div>
           <ul class="submenu" [class.open]="isSubmenuOpen">
             <li>

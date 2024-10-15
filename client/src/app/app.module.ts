@@ -8,6 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { AsideComponent } from './layout/aside/aside.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HomeMainComponent } from './home/home-main/home-main.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FooterComponent } from './layout/footer/footer.component';
     AdminComponent,
     HeaderComponent,
     AsideComponent,
-    FooterComponent
+    FooterComponent,
+    HomeMainComponent
   ],
   imports: [
     BrowserModule,

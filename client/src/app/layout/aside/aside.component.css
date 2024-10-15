@@ -95,7 +95,7 @@ body {
 } */
 
 .products-li .submenu.open {
-  display: flex; /* Muestra el submenú cuando está abierto */
+  display: flex; 
   flex-direction: column; 
 }
 
