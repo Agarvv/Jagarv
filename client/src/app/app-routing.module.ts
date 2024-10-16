@@ -12,14 +12,7 @@ const routes: Routes = [
   // THIS IS THE ROUTE FOR THE ADMIN PAGE.
   {
     path: 'admin',
-    component: AdminComponent,
-    
-    //ADMIN CHILDREN
-    children: [
-      {
-          // IM DOING THIS SOON 
-      }
-    ]
+    component: AdminComponent
   }
 ];
 

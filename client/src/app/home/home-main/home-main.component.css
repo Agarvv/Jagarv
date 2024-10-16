@@ -4,7 +4,7 @@ main {
 }
 
 .main-header {
-  text-align: center;
+
   padding: 15px;
 }
 
@@ -45,29 +45,29 @@ main {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* .smartphones {
-  background-image: url('assets/images/istockphoto-579156228-1024x1024.jpg');
+ .smartphones {
+  background-image: url('/assets/images/istockphoto-579156228-1024x1024.jpg');
 }
 
 .pc {
-  background-image: url('assets/images/istockphoto-579156228-1024x1024.jpg');
-}
+  background-image: url('/assets/images/istockphoto-1322837679-1024x1024.jpg');
+} 
 
 .console {
-  background-image: url('assets/images/istockphoto-530010099-1024x1024.jpg');
+  background-image: url('/assets/images/istockphoto-530010099-1024x1024.jpg');
 }
 
 .gaming {
-  background-image: url('assets/images/istockphoto-1314343964-1024x1024.jpg');
+  background-image: url('/assets/images/istockphoto-1314343964-1024x1024.jpg');
 }
 
 .tv {
-  background-image: url('assets/images/istockphoto-529662428-1024x1024.jpg');
+  background-image: url('/assets/images/istockphoto-529662428-1024x1024.jpg');
 }
 
 .accessories {
-  background-image: url('assets/images/istockphoto-860853774-1024x1024.jpg');
-} */
+  background-image: url('/assets/images/istockphoto-860853774-1024x1024.jpg');
+} 
 
 /* RESPONSIVE CATEGORIES */
 @media (max-width: 700px) {
