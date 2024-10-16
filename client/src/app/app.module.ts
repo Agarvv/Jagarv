@@ -9,6 +9,12 @@ import { HeaderComponent } from './layout/header/header.component';
 import { AsideComponent } from './layout/aside/aside.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeMainComponent } from './home/home-main/home-main.component';
+import { AdminAsideComponent } from './layout/admin-aside/admin-aside.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminSalesComponent } from './admin/admin-sales/admin-sales.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -19,7 +25,13 @@ import { HomeMainComponent } from './home/home-main/home-main.component';
     HeaderComponent,
     AsideComponent,
     FooterComponent,
-    HomeMainComponent
+    HomeMainComponent,
+    AdminAsideComponent,
+    AdminUsersComponent,
+    AdminSalesComponent,
+    AdminProductsComponent,
+    AdminOrdersComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

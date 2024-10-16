@@ -4,13 +4,22 @@ import { HomeComponent  } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
+  // THIS IS THE ROUTE FOR THE HOMEPAGE.
   {
     path: '',
     component: HomeComponent
   },
+  // THIS IS THE ROUTE FOR THE ADMIN PAGE.
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    
+    //ADMIN CHILDREN
+    children: [
+      {
+          // IM DOING THIS SOON 
+      }
+    ]
   }
 ];
 
