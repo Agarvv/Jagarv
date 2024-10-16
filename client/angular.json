@@ -25,7 +25,7 @@
           "options": {
             "outputPath": "dist/client",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main.ts", 
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -38,8 +38,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "browser": "src/main.ts"
+            "scripts": []
           },
           "configurations": {
             "production": {
