@@ -1,0 +1,31 @@
+main .users-table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+   
+  }
+  
+  
+  main .users-table th, td {
+    text-align: center;
+   
+    padding: 10px;
+  }
+  
+  
+  main .users-table td.actions button {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  main .users-table td.actions .actions-profile {
+    background: #DBDCE5;
+  }
+  
+  main .users-table td.actions .actions-ban {
+    background: #B41D1D;
+    color: white;
+  }
+  
+  

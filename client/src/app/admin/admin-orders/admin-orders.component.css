@@ -1,0 +1,40 @@
+main table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  
+  main table th, 
+  main table td {
+    padding: 5px;  
+  }
+  
+  
+  main table button {
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  main table .action-onWay {
+    background-color: #007bff; 
+    color: white;
+  }
+  
+  main table .action-onWay:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  main table .action-arrived {
+    background-color: #28a745; 
+    color: white;
+  }
+  
+  main table .action-arrived:hover {
+    background-color: #218838; 
+  }

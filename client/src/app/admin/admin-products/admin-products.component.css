@@ -1,0 +1,46 @@
+main table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  main table th, td {
+    padding: 0px;
+    text-align: center;
+  }
+  
+  main table th {
+    background-color: #f2f2f2;
+  }
+  
+  main table td button {
+   margin: 3px;
+  }
+  
+  main table button {
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  main table button:hover {
+    background-color: #45a049; 
+  }
+  
+  main table .actions-see {
+    background: #007bff;
+   
+  }
+  
+  main table .actions-feature {
+    background: #f0ad4e;
+  }
+  
+  main table .actions-delete {
+    background: #d9534f;
+  }
+  
+  main table .actions-edit {
+    background: #0CC21A;
+  }

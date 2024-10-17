@@ -1,0 +1,18 @@
+main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+main table th, td {
+   
+    padding: 8px;
+    text-align: center;
+}
+main table th {
+    background-color: #f2f2f2;
+}
+
+main table img {
+    width: 50px; 
+    height: 50px;
+}
