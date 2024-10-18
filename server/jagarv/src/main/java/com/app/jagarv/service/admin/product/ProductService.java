@@ -1,4 +1,4 @@
-package com.app.jagarv.service;
+package com.app.jagarv.service.admin.product;
 
 import com.app.jagarv.dto.product.ProductDTO;
 import com.app.jagarv.dto.product.CreateProductDTO; // Asegúrate de importar el DTO

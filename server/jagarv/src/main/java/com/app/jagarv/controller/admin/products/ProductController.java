@@ -1,9 +1,8 @@
-package com.app.jagarv.controller;
+package com.app.jagarv.controller.admin.products;
 
 import com.app.jagarv.dto.product.ProductDTO;
+import com.app.jagarv.service.admin.product.ProductService;
 import com.app.jagarv.dto.product.CreateProductDTO;
-import com.app.jagarv.entity.Product;
-import com.app.jagarv.service.ProductService;
 
 import jakarta.validation.Valid;
 
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/api/jagarv/products")
+@RequestMapping("/admin/products")
 public class ProductController {
     
     @Autowired 
