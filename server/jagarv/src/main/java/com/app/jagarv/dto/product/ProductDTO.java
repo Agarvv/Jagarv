@@ -1,4 +1,4 @@
-package com.app.jagarv.dto;
+package com.app.jagarv.dto.product;
 
 import java.math.BigDecimal;
 
