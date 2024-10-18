@@ -16,14 +16,15 @@ public class ProductService {
     private ProductRepository productRepository;  
     
     private ProductDTO convertToDTO(Product product) {
-        return new ProductDTO(
-            product.getId(),
-            product.getTitle(),
-            product.getDescription(),
-            product.getMain_picture(),  
-            product.getPrice()
+    return new ProductDTO(
+        product.getId(),
+        product.getTitle(),
+        product.getDescription(),
+        product.getCategory(),  
+        product.getMain_picture(),
+        product.getPrice()
         );  
-    }
+     }
     
     public List<ProductDTO> getProducts() {
         return productRepository.findAll()
