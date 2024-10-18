@@ -12,3 +12,4 @@ public class HealthController {
         return "UP";
     }
 }
+
