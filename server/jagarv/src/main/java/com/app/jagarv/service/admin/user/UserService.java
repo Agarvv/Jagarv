@@ -5,9 +5,8 @@ import com.app.jagarv.repository.UserRepository;
 import com.app.jagarv.mapper.user.UserMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
