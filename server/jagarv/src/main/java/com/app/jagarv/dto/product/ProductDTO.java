@@ -19,7 +19,7 @@ public class ProductDTO {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.category = category; // Asignando la categoría
+        this.category = category; 
         this.main_picture = main_picture;
         this.price = price;
     }
