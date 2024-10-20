@@ -17,9 +17,8 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminCreateProductComponent } from './admin/admin-create-product/admin-create-product.component';
 import { StoreModule } from '@ngrx/store';
-import { CreateProductButtonComponent } from './admin/admin-create-product/create-product-button/create-product-button.component';
-import { CreatePrproductImagesComponent } from './admin/admin-create-product/create-prproduct-images/create-prproduct-images.component';
 import { CreateProductImagesComponent } from './admin/admin-create-product/create-product-images/create-product-images.component';
+
 
 
 @NgModule({
@@ -38,8 +37,7 @@ import { CreateProductImagesComponent } from './admin/admin-create-product/creat
     AdminOrdersComponent,
     AdminDashboardComponent,
     AdminCreateProductComponent,
-    CreateProductButtonComponent,
-    CreatePrproductImagesComponent,
+    CreateProductImagesComponent,
     CreateProductImagesComponent
   ],
   imports: [
