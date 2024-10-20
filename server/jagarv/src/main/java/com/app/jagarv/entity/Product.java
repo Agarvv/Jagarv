@@ -28,9 +28,9 @@ public class Product {
     @NotBlank(message="Category cannot be blank")
     private String category;
 
-    // The URL Of the Product's main picture, Meaning the picture that the user will see on the Product card.
+    // The Prouct Pictures
     @URL(message = "The Main Picture Should Be a URL.")
-    private String main_picture;  // <- Aquí estaba el problema, faltaba el ;
+    private String[] pictures;
 
     // The price, Not negative like -1. of course
     @DecimalMin(value = "0.00", inclusive = false, message = "The Price Can't be Negative.")
@@ -70,12 +70,12 @@ public class Product {
         this.category = category;
     }
 
-    public String getMain_picture() {
-        return main_picture;
+    public String[] getPictures() {
+        return pictures;
     }
 
-    public void setMain_picture(String main_picture) {
-        this.main_picture = main_picture;
+    public void setPictures(String[] pictures) {
+        this.pictures = pictures;
     }
 
     public BigDecimal getPrice() {

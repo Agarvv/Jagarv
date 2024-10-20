@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'; 
 import { ProductsService } from '../../services/admin/products/products.service';
 import { CreateProductServiceStateService } from '../../state/product/create-product-service-state.service';
-import { FormsModule } from '@angular/forms';
+import { Decimal } from 'decimal.js';
 
 @Component({
   selector: 'app-admin-create-product',
@@ -11,11 +11,11 @@ import { FormsModule } from '@angular/forms';
 export class AdminCreateProductComponent {
    // The new Product Object that will be sendt to the server 
    newProduct = {
-       title: '',
-       description: '',
-       price: 0,
-       category: '', 
-       featured: false,
+       title: '' as String,
+       description: '' as String,
+       price: new Decimal(0),
+       category: '' as String, 
+       featured: false as Boolean,
        pictures: [] as any[] // im not sure of what type the images can be, so im gonna let it in 'any'
    };
 

@@ -22,13 +22,14 @@ public class CreateProductDTO {
 
     @NotNull(message = "Pictures cannot be null")
     @Size(min = 1, message = "At least one picture URL is required")
-    private String main_picture;
+    private String[] pictures;
 
     @NotNull(message = "Price is mandatory")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be positive")
     @Digits(integer = 10, fraction = 2, message = "Price has too many decimals")
     private BigDecimal price;
 
+    private Boolean featured;
     // Getters y setters
 
     public String getTitle() {
@@ -55,12 +56,12 @@ public class CreateProductDTO {
         this.category = category;
     }
 
-    public String getMain_picture() {
-        return main_picture;
+    public String[] getPictures() {
+        return pictures;
     }
 
-    public void setMain_picture(String picture) {
-        this.main_picture = picture;
+    public void setPictures(String[] pictures) {
+        this.pictures = pictures;
     }
 
     public BigDecimal getPrice() {

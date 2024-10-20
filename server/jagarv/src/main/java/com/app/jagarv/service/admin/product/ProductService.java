@@ -46,7 +46,7 @@ public class ProductService {
         product.setTitle(createProductDTO.getTitle());
         product.setDescription(createProductDTO.getDescription());
         product.setCategory(createProductDTO.getCategory());
-        product.setMain_picture(createProductDTO.getMain_picture());  
+        product.setPictures(createProductDTO.getPictures());  
         product.setPrice(createProductDTO.getPrice());
 
         Product savedProduct = productRepository.save(product);
