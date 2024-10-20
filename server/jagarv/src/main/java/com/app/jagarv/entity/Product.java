@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -30,7 +31,7 @@ public class Product {
 
     // The Prouct Pictures
     @URL(message = "The Main Picture Should Be a URL.")
-    private String[] pictures;
+    private List<String> pictures;
 
     // The price, Not negative like -1. of course
     @DecimalMin(value = "0.00", inclusive = false, message = "The Price Can't be Negative.")
@@ -70,11 +71,11 @@ public class Product {
         this.category = category;
     }
 
-    public String[] getPictures() {
+    public List<String> getPictures() {
         return pictures;
     }
 
-    public void setPictures(String[] pictures) {
+    public void setPictures(List<String> pictures) {
         this.pictures = pictures;
     }
 
