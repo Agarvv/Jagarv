@@ -1,5 +1,6 @@
 package com.app.jagarv.dto.product;
 
+import java.util.List;
 import java.math.BigDecimal;
 
 public class ProductDTO {
@@ -7,7 +8,7 @@ public class ProductDTO {
     private String title;
     private String description;
     private String category; 
-    private String main_picture;
+    private List<String> pictures;
     private BigDecimal price;
 
 
@@ -15,12 +16,12 @@ public class ProductDTO {
     }
 
 
-    public ProductDTO(Long id, String title, String description, String category, String main_picture, BigDecimal price) {
+    public ProductDTO(Long id, String title, String description, String category, List<String> pictures, BigDecimal price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.category = category; 
-        this.main_picture = main_picture;
+        this.pictures = pictures;
         this.price = price;
     }
 
@@ -57,12 +58,12 @@ public class ProductDTO {
         this.category = category;
     }
 
-    public String getMain_picture() {
-        return main_picture;
+    public List<String> getPictures() {
+        return pictures;
     }
 
-    public void setMain_picture(String main_picture) {
-        this.main_picture = main_picture;
+    public void setMain_picture(List<String> pictures) {
+        this.pictures = pictures;
     }
 
     public BigDecimal getPrice() {
