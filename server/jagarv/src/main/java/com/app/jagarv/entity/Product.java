@@ -30,7 +30,6 @@ public class Product {
     private String category;
 
     // The Prouct Pictures
-    @URL(message = "The Main Picture Should Be a URL.")
     private List<String> pictures;
 
     // The price, Not negative like -1. of course
