@@ -18,7 +18,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminCreateProductComponent } from './admin/admin-create-product/admin-create-product.component';
 import { StoreModule } from '@ngrx/store';
 import { CreateProductImagesComponent } from './admin/admin-create-product/create-product-images/create-product-images.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -44,6 +44,7 @@ import { CreateProductImagesComponent } from './admin/admin-create-product/creat
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     StoreModule.forRoot({}, {})
   ],
   providers: [],

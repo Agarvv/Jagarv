@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; 
 import { ProductsService } from '../../services/admin/products/products.service';
-import { CreateProductServiceStateService } from '../../services/state/create-product-service-state.service';  
+import { CreateProductServiceStateService } from '../../state/product/create-product-service-state.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-create-product',
   templateUrl: './admin-create-product.component.html',
-  styleUrl: ['./admin-create-product.component.css']
+  styleUrls: ['./admin-create-product.component.css'] // <- Aquí el cambio
 })
 export class AdminCreateProductComponent {
    // The new Product Object that will be sendt to the server 
@@ -14,7 +15,8 @@ export class AdminCreateProductComponent {
        description: '',
        price: 0,
        category: '', 
-       pictures: [] 
+       featured: false,
+       pictures: [] as any[] // im not sure of what type the images can be, so im gonna let it in 'any'
    };
 
    constructor(
@@ -32,5 +34,4 @@ export class AdminCreateProductComponent {
            console.error("Server not created product", error);
        });
    }
-}
 }
