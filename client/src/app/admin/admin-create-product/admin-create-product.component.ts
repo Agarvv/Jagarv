@@ -16,7 +16,7 @@ export class AdminCreateProductComponent {
        price: new Decimal(0),
        category: '' as String, 
        featured: false as Boolean,
-       pictures: [] as any[] // im not sure of what type the images can be, so im gonna let it in 'any'
+       pictures: [] as string[] // im not sure of what type the images can be, so im gonna let it in 'any'
    };
 
    constructor(

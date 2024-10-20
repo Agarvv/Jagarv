@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-
+import java.util.List;
 import java.math.BigDecimal;
 
 public class CreateProductDTO {
@@ -20,9 +20,11 @@ public class CreateProductDTO {
     @NotBlank(message = "Category is mandatory")
     private String category;
 
-    @NotNull(message = "Pictures cannot be null")
-    @Size(min = 1, message = "At least one picture URL is required")
-    private String[] pictures;
+    
+    @NotNull(message = "Pictures cannot be null") 
+    @Size(min = 1, message = "At least one picture URL is required") 
+    private List<String> pictures;  
+
 
     @NotNull(message = "Price is mandatory")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be positive")
@@ -56,11 +58,11 @@ public class CreateProductDTO {
         this.category = category;
     }
 
-    public String[] getPictures() {
+    public List<String> getPictures() {
         return pictures;
     }
 
-    public void setPictures(String[] pictures) {
+    public void setPictures(List<String> pictures) {
         this.pictures = pictures;
     }
 
