@@ -39,10 +39,6 @@ public class ProductService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Product already exists.");
         }
         
-        
-        
-
-    
         Product product = new Product();
         product.setTitle(createProductDTO.getTitle());
         product.setDescription(createProductDTO.getDescription());
