@@ -1,0 +1,14 @@
+<label for="Images">Images</label>
+<div class="images-wrapper">
+  <div class="images">
+    <!-- Loop through the images array and display each image -->
+    <div class="image" *ngFor="let image of images; let i = index">
+      <img [src]="image" alt="Product Image">  <!-- Display the image -->
+    </div>
+  </div>
+  <div class="add-image">
+    <!-- File input to allow the user to select an image -->
+    <input type="file" (change)="onFileSelected($event)">
+    <i class="fa fa-plus"></i> Add Image  <!-- Icon/button for adding images -->
+  </div>
+</div>

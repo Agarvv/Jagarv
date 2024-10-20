@@ -38,6 +38,8 @@ public class ProductService {
         if (productRepository.existsByTitle(createProductDTO.getTitle())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Product already exists.");
         }
+        
+        
 
     
         Product product = new Product();

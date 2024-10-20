@@ -7,6 +7,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component'
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component'
 import { AdminSalesComponent } from './admin/admin-sales/admin-sales.component'
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component'
+import { AdminCreateProductComponent } from './admin/admin-create-product.component'
 
 const routes: Routes = [
 
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'products',
         component: AdminProductsComponent
+      },
+      {
+          path: 'createProduct',
+          component: AdminCreateProductComponent
       }
     ]
   }

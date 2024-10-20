@@ -1,0 +1,40 @@
+<main>
+  <div class="mh">
+    <h2>Create Product</h2>
+  </div>
+
+  <div class="wrapper">
+    <div class="create-product-form">
+      <form>
+        <div class="inp">
+          <label for="Title">Title</label>
+          <input type="text" [(ngModel)]="newProduct.title" placeholder="Title">
+        </div>
+        <div class="inp">
+          <label for="Description">Description</label>
+          <input type="text" [(ngModel)]="newProduct.description" placeholder="Description">
+        </div>
+        <div class="inp-images">
+      <!-- Here The admins can chose the images for the product. -->
+      <!-- I created this in a component because i think that would be a cleaner code. -->
+          <app-create-product-images></app-create-product-images>
+        </div>
+        <div class="inp">
+          <label for="Category">Category</label>
+          <input type="text" [(ngModel)]="newProduct.category" placeholder="Category">
+        </div>
+        <div class="inp">
+          <label for="Price">Price</label>
+          <input type="number" [(ngModel)]="newProduct.price" placeholder="Price USD">
+        </div>
+        <div class="inp-featured">
+          <input type="checkbox" [(ngModel)]="newProduct.featured">
+          <label for="Featured">Featured</label>
+        </div>
+        <div class="publish-btn">
+          <button (click)="createProduct">Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
