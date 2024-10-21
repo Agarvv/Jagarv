@@ -83,6 +83,13 @@
             <scope>provided</scope>
         </dependency>
         
+     <!-- Apache Commons -->
+        <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>3.12.0</version> 
+      </dependency>
+        
         
         <!-- Cloudinary Older -->
         <dependency>
