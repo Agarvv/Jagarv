@@ -41,8 +41,10 @@ public class ProductService {
             .map(productMapper::productToDTO)
             .collect(Collectors.toList());
     }
-    
-     public ProductDTO createProduct(CreateProductDTO createProductDTO, MultipartFile[] pictures) {
+ 
+ 
+    // creates a new product
+    public ProductDTO createProduct(CreateProductDTO createProductDTO, MultipartFile[] pictures) {
 
     if (productRepository.existsByTitle(createProductDTO.getTitle())) {
         throw new ResponseStatusException(HttpStatus.CONFLICT, "Product already exists.");
@@ -55,12 +57,14 @@ public class ProductService {
     product.setPrice(createProductDTO.getPrice());
 
 
+    
     List<String> imageUrls = new ArrayList<>();
     for (MultipartFile picture : pictures) {
-        Map uploadResult = cloudinary.uploader().upload(picture.getBytes(), ObjectUtils.emptyMap());
-        imageUrls.add(uploadResult.get("url").toString());
-    }
+    Map<String, Object> uploadResult = cloudinary.uploadImage(picture.getFile(), "images");
 
+    imageUrls.add(uploadResult.get("url").toString());
+    }
+    
     product.setPictures(imageUrls); 
 
     Product savedProduct = productRepository.save(product);
