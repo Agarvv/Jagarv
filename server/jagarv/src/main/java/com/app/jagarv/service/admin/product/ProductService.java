@@ -59,6 +59,9 @@ public class ProductService {
         List<String> imageUrls = new ArrayList<>();
         for (MultipartFile picture : pictures) {
             try {
+                if (pictures == null || pictures.length == 0) {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "At least one image is required.");
+                }                
                 Map<String, Object> uploadResult = cloudinary.uploadImage(picture, "nombre_del_folder");
     
                 if (uploadResult.get("url") != null) {
