@@ -16,7 +16,7 @@ export class AdminCreateProductComponent {
        price: new Decimal(0),
        category: '' as String, 
        featured: false as Boolean,
-       pictures: [] as string[] // im not sure of what type the images can be, so im gonna let it in 'any'
+       pictures: [] as any[] 
    };
 
    constructor(
@@ -26,12 +26,33 @@ export class AdminCreateProductComponent {
        this.newProduct.pictures = this.createProductStateService.getImages();
    }
    
-   // This is the method that sends the request to the server
-   createProduct(): void {
-       this.productsService.createProduct(this.newProduct).subscribe((data) => {
-           console.log("Server Created Product", this.newProduct);
-       }, (error) => {
-           console.error("Server not created product", error);
-       });
-   }
+  // We must use formData to handle images
+  createProduct(): void {
+  const formData = new FormData();
+
+ 
+  formData.append('title', this.newProduct.title);
+  
+  formData.append('description', this.newProduct.description);
+  
+  formData.append('price', this.newProduct.price.toString());
+  
+  formData.append('category', this.newProduct.category);
+  
+  formData.append('featured', String(this.newProduct.featured));
+
+  
+  this.newProduct.pictures.forEach((image) => {
+    formData.append('pictures', image.file); 
+  });
+
+ 
+  this.productsService.createProduct(formData).subscribe((data) => {
+    console.log("Server Created Product", this.newProduct);
+  }, (error) => {
+    console.error("Server not created product", error);
+  });
+} 
+
+
 }

@@ -1,3 +1,5 @@
+package com.app.jagarv.service.cloudinary;
+
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,8 +1,10 @@
 package com.app.jagarv.controller.admin.products;
 
+
 import com.app.jagarv.dto.product.ProductDTO;
 import com.app.jagarv.service.admin.product.ProductService;
 import com.app.jagarv.dto.product.CreateProductDTO;
+
 
 import jakarta.validation.Valid;
 
@@ -31,11 +33,14 @@ public class ProductController {
        return productService.getProducts();
     }
     
-    // CREATES A NEW PRODUCT 
-    @PostMapping("/create")
-    public ResponseEntity<String> createProduct(@Valid @RequestBody CreateProductDTO createProductDTO) {
-       productService.createProduct(createProductDTO);
-       return ResponseEntity.ok("Product created successfully.");
-    }
+    // CREATES A NEW PRODUCT USING FORM DATA FOR THE FILES
+    @PostMapping(value = "/create", consumes = { "multipart/form-data" })
+    public ResponseEntity<String> createProduct(
+    @RequestPart("product") CreateProductDTO createProductDTO, 
+    @RequestPart("pictures") MultipartFile[] pictures) {
+
+    productService.createProduct(createProductDTO, pictures);
+    return ResponseEntity.ok("Product created successfully.");
+}
   
 }

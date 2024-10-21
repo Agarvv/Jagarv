@@ -4,7 +4,11 @@ import com.app.jagarv.dto.product.ProductDTO;
 import com.app.jagarv.dto.product.CreateProductDTO;
 import com.app.jagarv.entity.Product;
 import com.app.jagarv.repository.ProductRepository;
-import com.app.jagarv.mapper.product.ProductMapper; 
+import com.app.jagarv.mapper.product.ProductMapper;
+import com.app.jagarv.service.cloudinary.CloudinaryService;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -32,24 +36,30 @@ public class ProductService {
             .collect(Collectors.toList());
     }
     
-    // CREATES A NEW PRODUCT
-    public ProductDTO createProduct(CreateProductDTO createProductDTO) {
-    
-        if (productRepository.existsByTitle(createProductDTO.getTitle())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Product already exists.");
-        }
-        
-        Product product = new Product();
-        product.setTitle(createProductDTO.getTitle());
-        product.setDescription(createProductDTO.getDescription());
-        product.setCategory(createProductDTO.getCategory());
-        product.setPictures(createProductDTO.getPictures());  
-        product.setPrice(createProductDTO.getPrice());
+     public ProductDTO createProduct(CreateProductDTO createProductDTO, MultipartFile[] pictures) {
 
-        Product savedProduct = productRepository.save(product);
-
-        return productMapper.productToDTO(savedProduct);
+    if (productRepository.existsByTitle(createProductDTO.getTitle())) {
+        throw new ResponseStatusException(HttpStatus.CONFLICT, "Product already exists.");
     }
-    
+
+    Product product = new Product();
+    product.setTitle(createProductDTO.getTitle());
+    product.setDescription(createProductDTO.getDescription());
+    product.setCategory(createProductDTO.getCategory());
+    product.setPrice(createProductDTO.getPrice());
+
+
+    List<String> imageUrls = new ArrayList<>();
+    for (MultipartFile picture : pictures) {
+        Map uploadResult = cloudinary.uploader().upload(picture.getBytes(), ObjectUtils.emptyMap());
+        imageUrls.add(uploadResult.get("url").toString());
+    }
+
+    product.setPictures(imageUrls); 
+
+    Product savedProduct = productRepository.save(product);
+
+    return productMapper.productToDTO(savedProduct);
+}
     
 }
