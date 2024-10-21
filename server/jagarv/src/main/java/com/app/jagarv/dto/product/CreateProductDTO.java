@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.util.List;
 import java.math.BigDecimal;
+import org.springframework.web.multipart.MultipartFile;
 
 public class CreateProductDTO {
 
@@ -20,11 +20,9 @@ public class CreateProductDTO {
     @NotBlank(message = "Category is mandatory")
     private String category;
 
-    
     @NotNull(message = "Pictures cannot be null") 
-    @Size(min = 1, message = "At least one picture URL is required") 
-    private List<String> pictures;  
-
+    @Size(min = 1, message = "At least one picture is required") 
+    private MultipartFile[] pictures;   // Cambiado a MultipartFile[]
 
     @NotNull(message = "Price is mandatory")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be positive")
@@ -32,7 +30,8 @@ public class CreateProductDTO {
     private BigDecimal price;
 
     private Boolean featured;
-    // Getters y setters
+
+    // Getters y Setters
 
     public String getTitle() {
         return title;
@@ -58,11 +57,11 @@ public class CreateProductDTO {
         this.category = category;
     }
 
-    public List<String> getPictures() {
+    public MultipartFile[] getPictures() { // Cambiado a MultipartFile[]
         return pictures;
     }
 
-    public void setPictures(List<String> pictures) {
+    public void setPictures(MultipartFile[] pictures) { // Cambiado a MultipartFile[]
         this.pictures = pictures;
     }
 
