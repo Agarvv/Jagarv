@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import org.springframework.web.multipart.MultipartFile;
 
 // Manages the API's image upload to the cloud
 @Service
