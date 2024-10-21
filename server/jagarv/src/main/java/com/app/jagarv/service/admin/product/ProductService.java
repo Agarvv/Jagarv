@@ -58,12 +58,16 @@ public class ProductService {
 
 
     
-    List<String> imageUrls = new ArrayList<>();
-    for (MultipartFile picture : pictures) {
-    Map<String, Object> uploadResult = cloudinary.uploadImage(picture.getFile(), "images");
-
-    imageUrls.add(uploadResult.get("url").toString());
+   List<String> imageUrls = new ArrayList<>();
+   for (MultipartFile picture : pictures) {
+       try {
+        Map<String, Object> uploadResult = cloudinary.uploadImage(picture, "nombre_del_folder");
+        imageUrls.add(uploadResult.get("url").toString());
+    } catch (IOException e) {
+        //here we will manage the error
+        e.printStackTrace(); 
     }
+}
     
     product.setPictures(imageUrls); 
 
