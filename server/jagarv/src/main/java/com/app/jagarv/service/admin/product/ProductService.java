@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.io.IOException;
 
 @Service 
 public class ProductService {
@@ -64,7 +65,7 @@ public class ProductService {
         Map<String, Object> uploadResult = cloudinary.uploadImage(picture, "nombre_del_folder");
         imageUrls.add(uploadResult.get("url").toString());
     } catch (IOException e) {
-        //here we will manage the error
+        //here we will handle the error
         e.printStackTrace(); 
     }
 }
