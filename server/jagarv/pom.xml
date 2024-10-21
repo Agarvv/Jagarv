@@ -82,6 +82,14 @@
             <version>1.5.3.Final</version>
             <scope>provided</scope>
         </dependency>
+        
+        
+        <!-- Cloudinary -->
+        <dependency>
+          <groupId>com.cloudinary</groupId>
+          <artifactId>cloudinary-http44</artifactId>
+          <version>1.31.0</version>
+      </dependency>
 
     </dependencies>
 
