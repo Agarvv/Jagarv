@@ -9,7 +9,7 @@
         <div class="inp">
           <label for="Title">Title</label>
           <input type="text" formControlName="title" placeholder="Title">
-          <div *ngIf="productForm.get('title').invalid && (productForm.get('title').touched)">
+          <div *ngIf="productForm.get('title')?.invalid && (productForm.get('title').touched)">
             <small *ngIf="productForm.get('title').errors?.required">Title is required.</small>
           </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="inp">
           <label for="Description">Description</label>
           <input type="text" formControlName="description" placeholder="Description">
-          <div *ngIf="productForm.get('description').invalid && (productForm.get('description').touched)">
+          <div *ngIf="productForm.get('description')?.invalid && (productForm.get('description').touched)">
             <small *ngIf="productForm.get('description').errors?.required">Description is required.</small>
           </div>
         </div>
@@ -30,17 +30,17 @@
         <div class="inp">
           <label for="Category">Category</label>
           <input type="text" formControlName="category" placeholder="Category">
-          <div *ngIf="productForm.get('category').invalid && (productForm.get('category').touched)">
+          <div *ngIf="productForm.get('category')?.invalid && (productForm.get('category').touched)">
             <small *ngIf="productForm.get('category').errors?.required">Category is required.</small>
           </div>
         </div>
         
         <div class="inp">
           <label for="Price">Price</label>
-          <input type="text" formControlName="price" placeholder="Price USD"> <!-- Using type="text" for pattern validation -->
-          <div *ngIf="productForm.get('price').invalid && (productForm.get('price').touched)">
-            <small *ngIf="productForm.get('price').errors?.required">Price is required.</small>
-            <small *ngIf="productForm.get('price').errors?.pattern">Price must be a valid number.</small>
+          <input type="text" formControlName="price" placeholder="Price USD">
+          <div *ngIf="productForm.get('price')">
+            <small *ngIf="productForm.get('price').errors && productForm.get('price').errors['required']">Price is required.</small>
+            <small *ngIf="productForm.get('price').errors && productForm.get('price').errors['pattern']">Price must be a valid number.</small>
           </div>
         </div>
 
