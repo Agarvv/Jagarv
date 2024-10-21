@@ -58,12 +58,13 @@ main form .inp, .inp-images, .inp-featured, .publish-btn {
   margin-bottom: 15px;
 }
 
+ 
 main form .inp input {
   width: 100%;
   height: 40px; 
   padding: 10px;
   font-size: 16px; 
-  border: 1px solid #ccc;
+  border: 1px solid var(--inp-border-color);
   border-radius: 5px; 
 }
 

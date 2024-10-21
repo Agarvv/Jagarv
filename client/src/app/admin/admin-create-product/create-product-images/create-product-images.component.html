@@ -3,12 +3,13 @@
   <div class="images">
     <!-- Loop through the images array and display each image -->
     <div class="image" *ngFor="let image of images; let i = index">
-      <img [src]="image" alt="Product Image">  <!-- Display the image -->
+      <img [src]="image.fileSrc" alt="Product Image">  <!-- Display the image -->
+      <button (click)="removeImage(i)">Remove</button> <!-- Opción para eliminar la imagen -->
     </div>
   </div>
-  <div class="add-image">
+  <div class="add-image" (click)="triggerFileInput()">
     <!-- File input to allow the user to select an image -->
-    <input type="file" (change)="onFileSelected($event)">
+    <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
     <i class="fa fa-plus"></i> Add Image  <!-- Icon/button for adding images -->
   </div>
 </div>

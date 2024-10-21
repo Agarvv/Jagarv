@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
     --logo-color: #4682B4;
+    /* Color that can be used for inputs borders */
+    --inp-border-color: #1DA1F2;
 }
 
 *{
@@ -9,3 +11,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* Red color for validation errors */
+.val-error {
+    color: red;
+}
