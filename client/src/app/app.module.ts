@@ -19,7 +19,7 @@ import { AdminCreateProductComponent } from './admin/admin-create-product/admin-
 import { StoreModule } from '@ngrx/store';
 import { CreateProductImagesComponent } from './admin/admin-create-product/create-product-images/create-product-images.component';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -45,6 +45,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({}, {})
   ],
   providers: [],

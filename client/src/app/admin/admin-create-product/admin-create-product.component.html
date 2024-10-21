@@ -5,34 +5,52 @@
 
   <div class="wrapper">
     <div class="create-product-form">
-      <form>
+      <form [formGroup]="productForm" (ngSubmit)="createProduct()">
         <div class="inp">
           <label for="Title">Title</label>
-          <input type="text" [(ngModel)]="newProduct.title" placeholder="Title">
+          <input type="text" formControlName="title" placeholder="Title">
+          <div *ngIf="productForm.get('title').invalid && (productForm.get('title').touched)">
+            <small *ngIf="productForm.get('title').errors?.required">Title is required.</small>
+          </div>
         </div>
+        
         <div class="inp">
           <label for="Description">Description</label>
-          <input type="text" [(ngModel)]="newProduct.description" placeholder="Description">
+          <input type="text" formControlName="description" placeholder="Description">
+          <div *ngIf="productForm.get('description').invalid && (productForm.get('description').touched)">
+            <small *ngIf="productForm.get('description').errors?.required">Description is required.</small>
+          </div>
         </div>
+        
         <div class="inp-images">
-      <!-- Here The admins can chose the images for the product. -->
-      <!-- I created this in a component because i think that would be a cleaner code. -->
+          <!-- Here the admins can choose the images for the product -->
           <app-create-product-images></app-create-product-images>
         </div>
+
         <div class="inp">
           <label for="Category">Category</label>
-          <input type="text" [(ngModel)]="newProduct.category" placeholder="Category">
+          <input type="text" formControlName="category" placeholder="Category">
+          <div *ngIf="productForm.get('category').invalid && (productForm.get('category').touched)">
+            <small *ngIf="productForm.get('category').errors?.required">Category is required.</small>
+          </div>
         </div>
+        
         <div class="inp">
           <label for="Price">Price</label>
-          <input type="number" [(ngModel)]="newProduct.price" placeholder="Price USD">
+          <input type="text" formControlName="price" placeholder="Price USD"> <!-- Using type="text" for pattern validation -->
+          <div *ngIf="productForm.get('price').invalid && (productForm.get('price').touched)">
+            <small *ngIf="productForm.get('price').errors?.required">Price is required.</small>
+            <small *ngIf="productForm.get('price').errors?.pattern">Price must be a valid number.</small>
+          </div>
         </div>
+
         <div class="inp-featured">
-          <input type="checkbox" [(ngModel)]="newProduct.featured">
+          <input type="checkbox" formControlName="featured">
           <label for="Featured">Featured</label>
         </div>
+
         <div class="publish-btn">
-          <button (click)="createProduct()">Publish</button>
+          <button type="submit" [disabled]="productForm.invalid">Publish</button> <!-- Disable button if form is invalid -->
         </div>
       </form>
     </div>

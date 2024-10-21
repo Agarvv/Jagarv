@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/admin/products/products.service';
 import { CreateProductServiceStateService } from '../../state/product/create-product-service-state.service';
 import { Decimal } from 'decimal.js';
@@ -6,53 +7,57 @@ import { Decimal } from 'decimal.js';
 @Component({
   selector: 'app-admin-create-product',
   templateUrl: './admin-create-product.component.html',
-  styleUrls: ['./admin-create-product.component.css'] // <- Aquí el cambio
+  styleUrls: ['./admin-create-product.component.css'] 
 })
-export class AdminCreateProductComponent {
-   // The new Product Object that will be sendt to the server 
-   newProduct = {
-       title: '' as String,
-       description: '' as String,
-       price: new Decimal(0),
-       category: '' as String, 
-       featured: false as Boolean,
-       pictures: [] as any[] 
-   };
+export class AdminCreateProductComponent implements OnInit {
 
-   constructor(
-       private productsService: ProductsService,
-       private createProductStateService: CreateProductServiceStateService 
-   ) {
-       this.newProduct.pictures = this.createProductStateService.getImages();
-   }
-   
-  // We must use formData to handle images
+  productForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,  
+    private productsService: ProductsService, //that will handle the product creation
+    
+    private createProductStateService: CreateProductServiceStateService  // Inject the state service for images
+  ) {
+    // Initialize the product form 
+    this.productForm = this.fb.group({
+      title: ['', Validators.required],  
+      description: ['', Validators.required], 
+      price: [0, [Validators.required, Validators.min(0)]],  
+      category: ['', Validators.required],
+      featured: [false],  
+      pictures: [[]]  
+    });
+  }
+
+  ngOnInit(): void {
+    // Set the value of the 'pictures' control from the state service when the component initializes
+    this.productForm.get('pictures')?.setValue(this.createProductStateService.getImages());
+  }
+
   createProduct(): void {
-  const formData = new FormData();
+    
+    if (this.productForm.invalid) {
+      return;  // just exits if the form is'nt valid
+    }
 
- 
-  formData.append('title', this.newProduct.title);
-  
-  formData.append('description', this.newProduct.description);
-  
-  formData.append('price', this.newProduct.price.toString());
-  
-  formData.append('category', this.newProduct.category);
-  
-  formData.append('featured', String(this.newProduct.featured));
+    const formData = new FormData();  
+    Object.keys(this.productForm.value).forEach(key => {
+      if (key === 'pictures') {
+        this.productForm.value.pictures.forEach((image: any) => {
+          formData.append('pictures', image.file); 
+        });
+      } else {
+        formData.append(key, this.productForm.value[key]);
+      }
+    });
 
-  
-  this.newProduct.pictures.forEach((image) => {
-    formData.append('pictures', image.file); 
-  });
-
- 
-  this.productsService.createProduct(formData).subscribe((data) => {
-    console.log("Server Created Product", this.newProduct);
-  }, (error) => {
-    console.error("Server not created product", error);
-  });
-} 
-
-
+    // Call the product service to create the product on the server
+    this.productsService.createProduct(formData).subscribe((data) => {
+      console.log("Server Created Product", this.productForm.value);
+    }, (error) => {
+     
+      console.error("Server not created product", error);
+    });
+  }
 }
