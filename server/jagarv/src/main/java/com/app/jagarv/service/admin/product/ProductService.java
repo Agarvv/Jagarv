@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.io.IOException;
+import java.util.Arrays;
 
 @Service 
 public class ProductService {
