@@ -3,8 +3,8 @@
   <div class="images">
     <!-- Loop through the images array and display each image -->
     <div class="image" *ngFor="let image of images; let i = index">
-      <img [src]="image.fileSrc" alt="Product Image">  <!-- Display the image -->
-      <button (click)="removeImage(i)">Remove</button> <!-- Opción para eliminar la imagen -->
+      <img [src]="image" alt="Product Image">  <!-- Display the image -->
+      <button (click)="removeImage(i)">Remove</button> 
     </div>
   </div>
   <div class="add-image" (click)="triggerFileInput()">

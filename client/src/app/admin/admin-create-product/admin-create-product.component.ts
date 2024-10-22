@@ -29,7 +29,7 @@ export class AdminCreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productForm.get('pictures')?.setValue(this.createProductStateService.getImages().map(img => img.url));
+    this.productForm.get('pictures')?.setValue(this.createProductStateService.getImages().map(img => img));
   }
 
   createProduct(): void {
