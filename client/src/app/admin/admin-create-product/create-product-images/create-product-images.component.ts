@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CreateProductServiceStateService } from '../../../state/product/create-product-service-state.service';
-import { MediaServiceService } from '../../../services/media/MediaServiceService'
+import { MediaServiceService } from '../../../services/media/media-service-service'
 
 @Component({
   selector: 'app-create-product-images',
@@ -22,7 +22,7 @@ export class CreateProductImagesComponent {
     const file = event.target.files[0];  
     if (file) {
       
-      String finalImageUrl = mediaService.uploadProductImage(file).subscribe((data) => {
+      string finalImageUrl = mediaService.uploadProductImage(file).subscribe((data) => {
           console.log("Cloudinary just uploaded image !", data)
       }, (error) => {
           console.error("Cloudinary not uploaded image...", error);
