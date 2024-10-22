@@ -32,13 +32,11 @@ public class ProductController {
     }
     
     // CREATES A NEW PRODUCT USING FORM DATA FOR THE FILES
-    @PostMapping(value = "/create", consumes = { "multipart/form-data" })
-    public ResponseEntity<String> createProduct(
-    @RequestPart("product") CreateProductDTO createProductDTO, 
-    @RequestPart("pictures") MultipartFile[] pictures) {
-
-    productService.createProduct(createProductDTO, pictures);
-    return ResponseEntity.ok("Product created successfully.");
+    @PostMapping("/create")
+       public ResponseEntity<String> createProduct(@RequestBody CreateProductDTO createProductDTO) {
+        productService.createProduct(createProductDTO);  
+        return ResponseEntity.ok("Product created successfully.");
 }
   
+ 
 }

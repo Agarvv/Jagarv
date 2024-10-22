@@ -45,41 +45,25 @@ public class ProductService {
  
  
     // creates a new product
-    public ProductDTO createProduct(CreateProductDTO createProductDTO, MultipartFile[] pictures) {
-        if (productRepository.existsByTitle(createProductDTO.getTitle())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Product already exists.");
-        }
-    
-        Product product = new Product();
-        product.setTitle(createProductDTO.getTitle());
-        product.setDescription(createProductDTO.getDescription());
-        product.setCategory(createProductDTO.getCategory());
-        product.setPrice(createProductDTO.getPrice());
-    
-        List<String> imageUrls = new ArrayList<>();
-        for (MultipartFile picture : pictures) {
-            try {
-                if (pictures == null || pictures.length == 0) {
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "At least one image is required.");
-                }                
-                Map<String, Object> uploadResult = cloudinary.uploadImage(picture, "nombre_del_folder");
-    
-                if (uploadResult.get("url") != null) {
-                    imageUrls.add(uploadResult.get("url").toString());
-                } else {
-                    throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Image upload failed: URL is null.");
-                }
-            } catch (IOException e) {
-          
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error uploading image: " + e.getMessage(), e);
-            }
-        }
-    
-        product.setPictures(imageUrls); 
-    
-        Product savedProduct = productRepository.save(product);
-        return productMapper.productToDTO(savedProduct);
+    public ProductDTO createProduct(CreateProductDTO createProductDTO) {
+    if (productRepository.existsByTitle(createProductDTO.getTitle())) {
+        throw new ResponseStatusException(HttpStatus.CONFLICT, "Product already exists.");
     }
+
+    Product product = new Product();
+    product.setTitle(createProductDTO.getTitle());
+    product.setDescription(createProductDTO.getDescription());
+    product.setCategory(createProductDTO.getCategory());
+    product.setPrice(createProductDTO.getPrice());
+    
+
+    product.setPictures(Arrays.asList(createProductDTO.getPictures()));
+
+    Product savedProduct = productRepository.save(product);
+    return productMapper.productToDTO(savedProduct);
+}
+    
+    
     
     
 }

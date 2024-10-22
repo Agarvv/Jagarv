@@ -22,7 +22,7 @@ public class CreateProductDTO {
 
     @NotNull(message = "Pictures cannot be null") 
     @Size(min = 1, message = "At least one picture is required") 
-    private MultipartFile[] pictures;   // Cambiado a MultipartFile[]
+    private String[] pictures;  
 
     @NotNull(message = "Price is mandatory")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be positive")
@@ -57,11 +57,11 @@ public class CreateProductDTO {
         this.category = category;
     }
 
-    public MultipartFile[] getPictures() { // Cambiado a MultipartFile[]
+    public String[] getPictures() {
         return pictures;
     }
 
-    public void setPictures(MultipartFile[] pictures) { // Cambiado a MultipartFile[]
+    public void setPictures(String[] pictures) { 
         this.pictures = pictures;
     }
 
