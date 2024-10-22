@@ -2,3 +2,45 @@
 input[type="file"] {
     display: none;
 }
+
+.images-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .add-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 25px;
+  }
+
+  img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .image {
+   position: relative;
+  }
+
+  .images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+
+  .close-image {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-size: 20px;
+  }

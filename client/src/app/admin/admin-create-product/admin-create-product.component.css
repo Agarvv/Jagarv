@@ -16,7 +16,7 @@ main .create-product-form {
 }
 
 
-main form .inp-images img{
+/* main form .inp-images img{
   width: 60px;
   height: 60px;
   object-fit: cover;
@@ -39,7 +39,7 @@ main form .inp-images .add-image {
   height: 60px;
   border-radius: 5px;
   font-size: 25px;
-}
+} */
 
 
 main form .inp label, .inp input {
