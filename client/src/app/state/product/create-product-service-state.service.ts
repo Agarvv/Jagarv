@@ -5,20 +5,12 @@ import { Injectable } from '@angular/core';
 })
 
 export class CreateProductServiceStateService {
-  private images: any[] = [];
-  // Images array should look like:
-  //   [
-  //     {
-  //       fileSrc: (the file's source to showcase      the image on HTML),
-  //       file: (the entire file to send to server)
-  //     }
-  //   ]
-  //
-  //
+  private images: string[] = [];
+
   constructor() { }
   
-  addImage(image: Object) {
-      //Just for check the image structure.
+  addImage(image: string) {
+      //Just for check the image.
       console.log("Pushing image", image)
       this.images.push(image);
   }
@@ -27,7 +19,7 @@ export class CreateProductServiceStateService {
       this.images.splice(index, 1);
   }
   
-  getImages(): any[] {
+  getImages(): string[] {
       return this.images;
   }
 }
