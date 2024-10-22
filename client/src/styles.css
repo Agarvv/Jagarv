@@ -3,6 +3,9 @@
     --logo-color: #4682B4;
     /* Color that can be used for inputs borders */
     --inp-border-color: #1DA1F2;
+    --loading: #e0f7fa;
+    --error: #ffebee; 
+    --success: #e8f5e9; 
 }
 
 *{

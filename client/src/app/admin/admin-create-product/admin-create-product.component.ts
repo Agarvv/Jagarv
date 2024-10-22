@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/admin/products/products.service';
 import { CreateProductServiceStateService } from '../../state/product/create-product-service-state.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-create-product',
@@ -10,6 +11,10 @@ import { CreateProductServiceStateService } from '../../state/product/create-pro
 })
 export class AdminCreateProductComponent implements OnInit {
 
+  isLoading = false;   
+  successMessage: string | null = null;   
+  errorMessage: string | null = null;     
+
   productForm: FormGroup;
 
   constructor(
@@ -17,7 +22,6 @@ export class AdminCreateProductComponent implements OnInit {
     private productsService: ProductsService, 
     private createProductStateService: CreateProductServiceStateService  
   ) {
-    
     this.productForm = this.fb.group({
       title: ['', Validators.required],  
       description: ['', Validators.required], 
@@ -37,16 +41,23 @@ export class AdminCreateProductComponent implements OnInit {
       return;
     }
 
-
     const productData = this.productForm.value;  
-    
-    
-    this.productsService.createProduct(productData).subscribe(
+    this.successMessage = null;
+    this.errorMessage = null;
+    this.isLoading = true;  
+
+    this.productsService.createProduct(productData).pipe(
+      finalize(() => this.isLoading = false)  
+    ).subscribe(
       (data) => {
-        console.log("Producto creado en el servidor:", data);
+        this.successMessage = "Product Created Successfully!";
+        this.errorMessage = null; 
       },
       (error) => {
-        console.error("Error al crear el producto en el servidor:", error);
+        this.errorMessage = "Something Went Wrong, Please Try Later...";
+        // Debug
+        console.error(error);
+        this.successMessage = null;  
       }
     );
   }

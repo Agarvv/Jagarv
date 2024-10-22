@@ -1,4 +1,12 @@
 <main>
+   <!-- Success, Error And Loading -->
+
+  <app-loading-component *ngIf="isLoading" [message]="Creating Product, Please Wait..."></app-loading-component>
+
+  <app-success-component *ngIf="successMessage" [message]="successMessage"></app-success-component>
+
+  <app-error-component *ngIf="errorMessage" [message]="errorMessage"></app-error-component>
+
   <div class="mh">
     <h2>Create Product</h2>
   </div>
@@ -50,7 +58,7 @@
         </div>
 
         <div class="publish-btn">
-          <button type="submit" [disabled]="productForm.invalid">Publish</button> <!-- disabled if form is not valid -->
+          <button type="submit" [disabled]="productForm.invalid || isLoading">Publish</button> <!-- disabled if form is not valid -->
         </div>
       </form>
     </div>

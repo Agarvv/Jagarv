@@ -19,7 +19,10 @@ import { AdminCreateProductComponent } from './admin/admin-create-product/admin-
 import { StoreModule } from '@ngrx/store';
 import { CreateProductImagesComponent } from './admin/admin-create-product/create-product-images/create-product-images.component';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponentComponent } from './layout/error-component/error-component.component';
+import { SuccessComponentComponent } from './layout/success-component/success-component.component';
+import { LoadingComponentComponent } from './layout/loading-component/loading-component.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { ReactiveFormsModule } from '@angular/forms'
     AdminDashboardComponent,
     AdminCreateProductComponent,
     CreateProductImagesComponent,
-    CreateProductImagesComponent
+    CreateProductImagesComponent,
+    ErrorComponentComponent,
+    SuccessComponentComponent,
+    LoadingComponentComponent
   ],
   imports: [
     BrowserModule,
