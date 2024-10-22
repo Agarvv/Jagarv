@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.util.HashMap;
 import java.util.List;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import java.util.Map;
+
 import org.springframework.web.multipart.MultipartFile;
 
 // ADMIN PRODUCTS CONTROLLER 
@@ -33,10 +33,16 @@ public class ProductController {
     
     // CREATES A NEW PRODUCT USING FORM DATA FOR THE FILES
     @PostMapping("/create")
-       public ResponseEntity<String> createProduct(@RequestBody CreateProductDTO createProductDTO) {
-        productService.createProduct(createProductDTO);  
-        return ResponseEntity.ok("Product created successfully.");
+    public ResponseEntity<Map<String, String>> createProduct(@RequestBody CreateProductDTO createProductDTO) {
+    productService.createProduct(createProductDTO);
+    
+    // Java, java java... 
+    Map<String, String> response = new HashMap<>();
+    response.put("message", "Product created successfully.");
+    
+    return ResponseEntity.ok(response);
 }
-  
+
+
  
 }
