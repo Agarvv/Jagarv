@@ -14,6 +14,7 @@ export class ProductsService {
   
   // Sends a Request to the server to create a new Product
   createProduct(product: any): Observable<any> {
+    console.log('creating product from service', product)
       return this.http.post<any>(`${this.apiUrl}/create`, product);
   }
   
