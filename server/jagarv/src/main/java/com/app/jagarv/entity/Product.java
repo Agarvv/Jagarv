@@ -32,7 +32,7 @@ public class Product {
 
     // The Product Pictures (stored as a simple list of strings)
     @Column(name = "pictures")
-    private String pictures; // Guardar como un String que representa una lista
+    private List<String> pictures; 
 
     // The price, Not negative like -1. of course
     @DecimalMin(value = "0.00", inclusive = false, message = "The Price Can't be Negative.")
