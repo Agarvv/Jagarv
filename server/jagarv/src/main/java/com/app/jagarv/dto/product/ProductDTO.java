@@ -1,44 +1,31 @@
-package com.app.jagarv.entity;
+package com.app.jagarv.dto.product;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
-
-import java.math.BigDecimal;
 import java.util.List;
+import java.math.BigDecimal;
 
-@Entity
-@Table(name = "products")
-public class Product {
-
-    // The ID Of the product
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDTO {
     private Long id;
-
-    // The title of the product, like: 'Unicorn Socks.'
-    @NotBlank(message = "The Title Can't be Blank.")
     private String title;
-
-    // The description of the product, like: 'Feel free with our Unicorn Socks!' :p
-    @NotBlank(message = "The Description Can't Be Blank.")
     private String description;
-
-    // The category of the Product, like 'phones', 'pc', 'gaming' or whatever
-    @NotBlank(message = "Category cannot be blank")
-    private String category;
-
-    // The Product Pictures (now correctly stored as a List of Strings)
-    @ElementCollection
-    private List<String> pictures; 
-
-    // The price, Not negative like -1. of course
-    @DecimalMin(value = "0.00", inclusive = false, message = "The Price Can't be Negative.")
-    @Digits(integer = 10, fraction = 2, message = "The Price Has Too Many Decimals.")
+    private String category; 
+    private List<String> pictures;
     private BigDecimal price;
 
-    // Getters and Setters
+
+    public ProductDTO() {
+    }
+
+
+    public ProductDTO(Long id, String title, String description, String category, List<String> pictures, BigDecimal price) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.category = category; 
+        this.pictures = pictures;
+        this.price = price;
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -75,7 +62,7 @@ public class Product {
         return pictures;
     }
 
-    public void setPictures(List<String> pictures) {
+    public void setMain_picture(List<String> pictures) {
         this.pictures = pictures;
     }
 

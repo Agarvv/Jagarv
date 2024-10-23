@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -30,8 +29,8 @@ public class Product {
     @NotBlank(message = "Category cannot be blank")
     private String category;
 
-    // The Product Pictures (stored as a simple list of strings)
-    @Column(name = "pictures")
+    // The Product Pictures (now correctly stored as a List of Strings)
+    @ElementCollection
     private List<String> pictures; 
 
     // The price, Not negative like -1. of course
@@ -73,11 +72,11 @@ public class Product {
     }
 
     public List<String> getPictures() {
-        return pictures != null ? Arrays.asList(pictures.split(",")) : null;
+        return pictures;
     }
 
     public void setPictures(List<String> pictures) {
-        this.pictures = pictures != null ? String.join(",", pictures) : null;
+        this.pictures = pictures;
     }
 
     public BigDecimal getPrice() {
