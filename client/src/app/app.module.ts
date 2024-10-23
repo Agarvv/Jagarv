@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponentComponent } from './layout/error-component/error-component.component';
 import { SuccessComponentComponent } from './layout/success-component/success-component.component';
 import { LoadingComponentComponent } from './layout/loading-component/loading-component.component'
+import { adminReducer } from './store/admin/admin.reducer';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LoadingComponentComponent } from './layout/loading-component/loading-co
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({ admin: adminReducer}),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

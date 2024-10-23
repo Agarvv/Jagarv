@@ -1,24 +1,22 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdminStateManagerService } from '../../state/admin/admin-state-manager.service';
 import { ProductsService } from '../../services/admin/products/products.service';
-import { finalize } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { setLoading, setSuccess, setError, clearMessages } from '../../store/admin/admin.actions';
+import { finalize } from 'rxjs/operators';  // Importar finalize
 
 @Component({
   selector: 'app-admin-create-product',
   templateUrl: './admin-create-product.component.html',
   styleUrls: ['./admin-create-product.component.css'],
-  providers: [AdminStateManagerService] // Local provider 
 })
 export class AdminCreateProductComponent implements OnInit {
-  @Output() statusUpdate = new EventEmitter<{ isLoading: boolean, errorMessage: string | null, successMessage: string | null }>();
-
   productForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private productsService: ProductsService,
-    private adminStateManager: AdminStateManagerService 
+    private store: Store
   ) {
     this.productForm = this.fb.group({
       title: ['', Validators.required],
@@ -39,19 +37,22 @@ export class AdminCreateProductComponent implements OnInit {
 
     const productData = this.productForm.value;
 
-    this.adminStateManager.setLoading(true);
-    this.adminStateManager.clearMessages();
+    // Dispatch loading state
+    this.store.dispatch(setLoading({ isLoading: true }));
+    this.store.dispatch(clearMessages());
 
     this.productsService.createProduct(productData).pipe(
       finalize(() => {
-        this.adminStateManager.setLoading(false);
+        this.store.dispatch(setLoading({ isLoading: false }));  // Stops the charging state when all is finished
       })
     ).subscribe(
       (data) => {
-        this.adminStateManager.setSuccess('Product created successfully!');
+        // Dispatch success message
+        this.store.dispatch(setSuccess({ successMessage: 'Product Created Sucesfully' }));
       },
       (error) => {
-        this.adminStateManager.setError('Something went wrong, please try again later.');
+        // Dispatch error message
+        this.store.dispatch(setError({ errorMessage: 'Ooops, Something Went Wrong, Please Try Again later... :/' }));
         console.error(error);
       }
     );

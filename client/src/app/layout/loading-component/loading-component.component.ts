@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './loading-component.component.css'
 })
 export class LoadingComponentComponent {
-  @Input() message: string = 'Operación exitosa!';
+  @Input() message: string = 'Please Wait...';
 }

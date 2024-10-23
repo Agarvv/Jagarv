@@ -18,6 +18,7 @@ export class AdminStateManagerService {
 
   setLoading(loading: boolean) {
     this.isLoadingSubject.next(loading);
+    console.log("dlm", loading)
   }
 
   setSuccess(message: string) {
