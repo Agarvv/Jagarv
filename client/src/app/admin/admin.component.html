@@ -7,7 +7,19 @@
      <app-admin-aside></app-admin-aside>
   </div>
   <div class="main">
-      <router-outlet></router-outlet>
+    <app-loading-component *ngIf="adminStateManager.isLoading$ | async" class="loading-spinner">
+      Cargando...
+    </app-loading-component>
+    
+    <app-error-component *ngIf="adminStateManager.errorMessage$ | async as errorMessage" class="error-message">
+      {{ errorMessage }}
+    </app-error-component>
+    
+    <app-success-component  *ngIf="adminStateManager.successMessage$ | async as successMessage" class="success-message">
+      {{ successMessage }}
+    </app-success-component>
+    
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
   </div>
   <div class="footer">
       
