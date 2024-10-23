@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdminStateManagerService } from '../../services/admin-state-manager.service';
-import { ProductsService } from '../../services/products.service';
+import { AdminStateManagerService } from '../../state/admin/admin-state-manager.service';
+import { ProductsService } from '../../services/admin/products/products.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({

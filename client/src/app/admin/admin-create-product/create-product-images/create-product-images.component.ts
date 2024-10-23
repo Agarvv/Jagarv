@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { CreateProductServiceStateService } from '../../../state/product/create-product-service-state.service';
+import { CreateProductServiceStateService } from '../../../state/admin/product/create-product-service-state.service';
 import { MediaServiceService } from '../../../services/media/media-service.service';
 
 @Component({

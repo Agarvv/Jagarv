@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminStateManagerService } from '../services/admin-state-manager.service';
+import { AdminStateManagerService } from '../state/admin/admin-state-manager.service';
 
 @Component({
   selector: 'app-admin',
