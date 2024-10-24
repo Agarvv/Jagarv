@@ -41,7 +41,8 @@
           <label for="Price">Price</label>
           <input type="text" formControlName="price" placeholder="Price USD">
           <div *ngIf="productForm.get('price')?.errors">
-            <small *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
+            <small class="val-error" *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
+            <br>
             <small class="val-error" *ngIf="productForm.get('price')?.errors?.['invalidPrice']">Price must be a valid number greater than 0.</small>
           </div>
         </div>

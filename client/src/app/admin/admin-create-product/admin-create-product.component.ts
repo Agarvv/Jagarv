@@ -34,6 +34,7 @@ export class AdminCreateProductComponent implements OnInit {
 
   createProduct(): void {
     if (this.productForm.invalid) {
+      this.productForm.markAllAsTouched();  // Mark all fields as touched to show error messages
       return;
     }
 
