@@ -1,4 +1,4 @@
-package com.app.jagarv.exception.exceptions.product;
+package com.app.jagarv.exception.exceptions.products;
 
 public class ProductAlreadyExistsException extends RuntimeException {
     public ProductAlreadyExistsException(String error) {

@@ -5,21 +5,13 @@ import com.app.jagarv.dto.product.CreateProductDTO;
 import com.app.jagarv.entity.Product;
 import com.app.jagarv.repository.ProductRepository;
 import com.app.jagarv.mapper.product.ProductMapper;
-import com.app.jagarv.service.cloudinary.CloudinaryService;
-import com.app.jagarv.exception.exceptions.product.ProductAlreadyExistsException;
+import com.app.jagarv.exception.exceptions.products.ProductAlreadyExistsException;
 
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.io.IOException;
 import java.util.Arrays;
 
 @Service 
@@ -31,11 +23,7 @@ public class ProductService {
     
     @Autowired
     private ProductMapper productMapper; 
-    
-    @Autowired
-    private CloudinaryService cloudinary;
-    
-    
+
     // RETURNS ALL THE PRODUCTS FROM THE DB TO THE CONTROLLER
     public List<ProductDTO> getProducts() {
         return productRepository.findAll()
