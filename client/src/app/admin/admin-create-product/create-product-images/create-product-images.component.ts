@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { CreateProductServiceStateService } from '../../../state/admin/product/create-product-service-state.service';
 import { MediaServiceService } from '../../../services/media/media-service.service';
 
@@ -11,6 +11,9 @@ export class CreateProductImagesComponent {
   images: string[] = [];  // Array to store image URLs
   @ViewChild('fileInput') fileInput!: ElementRef; 
 
+  // Output event to notify the parent component about the image array changes
+  @Output() picturesChange = new EventEmitter<string[]>();
+
   constructor(
     private productStateService: CreateProductServiceStateService,
     private mediaService: MediaServiceService
@@ -22,11 +25,13 @@ export class CreateProductImagesComponent {
     const file = event.target.files[0];  
     if (file && file.type.startsWith('image/')) {
       this.mediaService.uploadProductImage(file).subscribe((data) => {
-          console.log("Cloudinary just uploaded image!", data);
           const finalImageUrl = data.url; 
           this.productStateService.addImage(finalImageUrl);
           this.images = this.productStateService.getImages();
-          console.log("Image Uploaded, here is the new image array!", this.images);
+
+          // Emit the updated array to the father component.
+          // This is like: 'Hey dad, my pictures array has changed. check if it is still valid to send to the server.'
+          this.picturesChange.emit(this.images);
       }, (error) => {
           console.error("Cloudinary not uploaded image...", error);
       });
@@ -41,6 +46,10 @@ export class CreateProductImagesComponent {
 
   removeImage(index: number) {
     this.productStateService.removeImage(index);  // Remove the image from state service
-    this.images = this.productStateService.getImages();  // Update the images array
+    this.images = this.productStateService.getImages();
+
+    // Emit the updated array to the father component.
+    // This is like: 'Hey dad, my pictures array has changed. check if it is still valid to send to the server.'
+    this.picturesChange.emit(this.images);
   }
 }

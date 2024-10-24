@@ -61,4 +61,12 @@ export class AdminCreateProductComponent implements OnInit {
       }
     );
   }
+
+    // When the product images of the child component change, this function will verify
+    // if the images array is still valid
+  
+    onPicturesChange(pictures: string[]): void {
+      this.productForm.get('pictures')?.setValue(pictures);
+      this.productForm.get('pictures')?.updateValueAndValidity(); 
+    }
 }

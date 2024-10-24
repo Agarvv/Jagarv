@@ -23,7 +23,8 @@
         </div>
         
         <div class="inp-images">
-          <app-create-product-images></app-create-product-images>
+          <!-- Listens to the pictures array when they change and verifies if the pictures array is still valid -->
+          <app-create-product-images (picturesChange)="onPicturesChange($event)" formControlName="pictures"></app-create-product-images>
           <div *ngIf="productForm.get('pictures')?.invalid && productForm.get('pictures')?.touched">
             <small class="val-error" *ngIf="productForm.get('pictures')?.errors?.['emptyArray']">At least one image is required.</small>
           </div>
