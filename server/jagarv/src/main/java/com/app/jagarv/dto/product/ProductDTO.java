@@ -15,7 +15,6 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-
     public ProductDTO(Long id, String title, String description, String category, List<String> pictures, BigDecimal price) {
         this.id = id;
         this.title = title;
