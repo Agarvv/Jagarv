@@ -49,7 +49,7 @@ public class ProductService {
     public ProductDTO createProduct(CreateProductDTO createProductDTO) {
     // Products title should be unique.
     if (productRepository.existsByTitle(createProductDTO.getTitle())) {
-        throw new ProductAlreadyExistsException("The Product Already Exists, Try with another Title.")
+        throw new ProductAlreadyExistsException("The Product Already Exists, Try with another Title.");
     }
 
     Product product = new Product();
