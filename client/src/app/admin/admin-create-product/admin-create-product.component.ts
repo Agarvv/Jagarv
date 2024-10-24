@@ -44,6 +44,7 @@ export class AdminCreateProductComponent implements OnInit {
     this.productsService.createProduct(productData).pipe(
       finalize(() => {
         this.store.dispatch(setLoading({ isLoading: false }));  // Stops the charging state when all is finished
+        this.productForm.reset() // Resets the form, avoiding server-abuses.
       })
     ).subscribe(
       (data) => {
