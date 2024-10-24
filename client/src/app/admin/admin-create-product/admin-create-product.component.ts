@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/admin/products/products.service';
 import { Store } from '@ngrx/store';
 import { setLoading, setSuccess, setError, clearMessages } from '../../store/admin/admin.actions';
-import { finalize } from 'rxjs/operators';  // Importar finalize
+import { finalize } from 'rxjs/operators';  3
+import { PriceValidator } from '../../validators/price.validator';
+import { NonEmptyArrayValidator } from '../../validators/non-empty-array.validator';
 
 @Component({
   selector: 'app-admin-create-product',
@@ -19,12 +21,12 @@ export class AdminCreateProductComponent implements OnInit {
     private store: Store
   ) {
     this.productForm = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(0)]],
-      category: ['', Validators.required],
+      title: ['', Validators.required],  // required
+      description: ['', Validators.required],  // required
+      price: [0, [Validators.required, PriceValidator.isValidPrice]],  // price should be greater than 0
+      category: ['', Validators.required],  // required
       featured: [false],
-      pictures: [[]]
+      pictures: [[], [NonEmptyArrayValidator.nonEmptyArray]]  // the pictures array should have at least one element
     });
   }
 

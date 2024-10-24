@@ -6,6 +6,8 @@
   <div class="wrapper">
     <div class="create-product-form">
       <form [formGroup]="productForm" (ngSubmit)="createProduct()">
+        
+        <!-- Title input -->
         <div class="inp">
           <label for="Title">Title</label>
           <input type="text" formControlName="title" placeholder="Title">
@@ -14,6 +16,7 @@
           </div>
         </div>
         
+        <!-- Description input -->
         <div class="inp">
           <label for="Description">Description</label>
           <input type="text" formControlName="description" placeholder="Description">
@@ -22,10 +25,15 @@
           </div>
         </div>
         
+        <!-- Images input -->
         <div class="inp-images">
-          <app-create-product-images></app-create-product-images>
+          <app-create-product-images formControlName="pictures"></app-create-product-images>
+          <div *ngIf="productForm.get('pictures')?.invalid && productForm.get('pictures')?.touched">
+            <small class="val-error" *ngIf="productForm.get('pictures')?.errors?.['emptyArray']">At least one image is required.</small>
+          </div>
         </div>
 
+        <!-- Category input -->
         <div class="inp">
           <label for="Category">Category</label>
           <input type="text" formControlName="category" placeholder="Category">
@@ -34,23 +42,27 @@
           </div>
         </div>
         
+        <!-- Price input -->
         <div class="inp">
           <label for="Price">Price</label>
-          <input type="text" formControlName="price" placeholder="Price USD">
-          <div *ngIf="productForm.get('price')?.errors">
+          <input type="number" formControlName="price" placeholder="Price USD">
+          <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
             <small *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
-            <small class="val-error" *ngIf="productForm.get('price')?.errors?.['pattern']">Price must be a valid number.</small>
+            <small class="val-error" *ngIf="productForm.get('price')?.errors?.['invalidPrice']">Price must be a valid number greater than 0.</small>
           </div>
         </div>
 
+        <!-- Featured checkbox -->
         <div class="inp-featured">
           <input type="checkbox" formControlName="featured">
           <label for="Featured">Featured</label>
         </div>
 
+        <!-- Submit button -->
         <div class="publish-btn">
-          <button type="submit" [disabled]="productForm.invalid">Publish</button> <!-- disabled if form is not valid -->
+          <button type="submit" [disabled]="productForm.invalid">Publish</button>
         </div>
+
       </form>
     </div>
   </div>
