@@ -11,10 +11,10 @@
     <app-loading-component *ngIf="loading$ | async" class="loading-spinner">
    </app-loading-component>
 
-   <app-error-component *ngIf="error$ | async as errorMessage" [errorMessage]="errorMessage" class="error-message">
+   <app-error-component *ngIf="error$ | async as errorMessage" [message]="errorMessage" class="error-message">
    </app-error-component>
 
-    <app-success-component *ngIf="success$ | async as successMessage" [successMessage]="successMessage" class="success-message">
+    <app-success-component *ngIf="success$ | async as successMessage" [message]="successMessage" class="success-message">
     </app-success-component>
 
     <router-outlet (activate)="onActivate($event)"></router-outlet>
