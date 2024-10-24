@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../services/admin/products/products-service';
+import { ProductsService } from '../../services/admin/products/products.service';
 import { finalize } from 'rxjs/operators';
 import { Product } from '../../models/Product'
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
-  styleUrl: ['./admin-products.component.css'] 
+  styleUrls: ['./admin-products.component.css'] 
 })
 export class AdminProductsComponent implements OnInit {
   products: Product[] = []; 
@@ -21,7 +21,7 @@ export class AdminProductsComponent implements OnInit {
     
     this.productsService.getProducts()
       .pipe(
-        finalize(() => ) 
+        finalize(() => console.log("finalized") )  // i will handle it later, when all the models and error handling stuff is fixed
       )
       .subscribe(
         (data) => {
