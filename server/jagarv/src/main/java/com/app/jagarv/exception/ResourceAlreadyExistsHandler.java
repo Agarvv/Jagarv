@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.app.jagarv.exception.exceptions.product.ProductAlreadyExistsException;
+
 // This class handles exceptions related to resources that already exist in the application.
 // It centralizes error management for resources such as products, users, etc.
 @ControllerAdvice
