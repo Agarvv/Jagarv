@@ -11,7 +11,6 @@ public class ProductDTO {
     private List<String> pictures;
     private BigDecimal price;
 
-
     public ProductDTO() {
     }
 
@@ -24,7 +23,6 @@ public class ProductDTO {
         this.price = price;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -61,7 +59,7 @@ public class ProductDTO {
         return pictures;
     }
 
-    public void setMain_picture(List<String> pictures) {
+    public void setPictures(List<String> pictures) { 
         this.pictures = pictures;
     }
 
