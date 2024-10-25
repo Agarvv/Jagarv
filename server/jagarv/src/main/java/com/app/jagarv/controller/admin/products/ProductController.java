@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartFile;
 
 // ADMIN PRODUCTS CONTROLLER 
 @RestController
@@ -43,6 +42,18 @@ public class ProductController {
     return ResponseEntity.ok(response);
 }
 
+    // Delete a product by product id
+    @DeleteMapping("/delete/{productId}") 
+    public ResponseEntity<Map<String, String>> deleteProduct(@PathVariable Long productId) {
 
+        productService.deleteProduct(productId);
+
+        Map<String, String> response = new HashMap<>();
+
+        response.put("message", "Product deleted successfully");
+
+        return ResponseEntity.ok(response);
+
+    }
  
 }

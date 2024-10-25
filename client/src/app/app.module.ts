@@ -24,6 +24,10 @@ import { ErrorComponentComponent } from './layout/error-component/error-componen
 import { SuccessComponentComponent } from './layout/success-component/success-component.component';
 import { LoadingComponentComponent } from './layout/loading-component/loading-component.component'
 import { adminReducer } from './store/admin/admin.reducer';
+import { ViewProductButtonComponent } from './admin/admin-products/view-product-button/view-product-button.component';
+import { EditProductButtonComponent } from './admin/admin-products/edit-product-button/edit-product-button.component';
+import { FeatureProductButtonComponent } from './admin/admin-products/feature-product-button/feature-product-button.component';
+import { DeleteProductButtonComponent } from './admin/admin-products/delete-product-button/delete-product-button.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { adminReducer } from './store/admin/admin.reducer';
     CreateProductImagesComponent,
     ErrorComponentComponent,
     SuccessComponentComponent,
-    LoadingComponentComponent
+    LoadingComponentComponent,
+    ViewProductButtonComponent,
+    EditProductButtonComponent,
+    FeatureProductButtonComponent,
+    DeleteProductButtonComponent
   ],
   imports: [
     BrowserModule,
