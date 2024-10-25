@@ -56,8 +56,12 @@ export class AdminCreateProductComponent implements OnInit {
       },
       (error) => {
         // Dispatch error message
-        this.store.dispatch(setError({ errorMessage: 'Ooops, Something Went Wrong, Please Try Again later... :/' }));
-        console.error(error);
+        this.store.dispatch(setError({ errorMessage: error}));
+        console.error(error); // Our backend handles errors already,
+        // if the error status is 500 our backend will show:
+        // 'Something went wrong..'
+        // if the product already exists, 
+        // will show something like 'The product already exists, try with another title.'
       }
     );
   }
