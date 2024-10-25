@@ -8,23 +8,23 @@
       <ul>
         <li>
           <i class="fa fa-home"></i>
-          <span><a href="Home">Home</a></span>
+          <span><a routerLink="/">Home</a></span>
         </li>
         <li>
           <i class="fa fa-shopping-cart"></i>
-          <span><a href="Cart">My Cart</a></span>
+          <span><a routerLink="/cart">My Cart</a></span>
         </li>
         <li>
           <i class="fa fa-truck"></i>
-          <span><a href="My orders">My Orders</a></span>
+          <span><a routerLink="/orders">My Orders</a></span>
         </li>
         <li>
           <i class="fa fa-heart"></i>
-          <span><a href="My Wishlist">My Wishlist</a></span>
+          <span><a routerLink="/wishlist">My Wishlist</a></span>
         </li>
         <li>
           <i class="fa fa-user"></i>
-          <span><a href="My Account">My Account</a></span>
+          <span><a routerLink="/account">My Account</a></span>
         </li>
         <li class="products-li">
           <div class="flex-li">
@@ -35,29 +35,29 @@
           <ul class="submenu" [class.open]="isSubmenuOpen">
             <li>
               <i class="fa fa-mobile"></i>
-              <span><a href="cellPhones">Smartphones</a></span>
+              <span><a routerLink="/products/phones">Smartphones</a></span>
             </li>
             <li>
               <i class="fa fa-laptop"></i>
-              <span><a href="PCs">PCs</a></span>
+              <span><a routerLink="/products/pc">PCs</a></span>
             </li>
             <li>
               <i class="fa fa-gamepad"></i>
-              <span><a href="Consoles">Consoles</a></span>
+              <span><a routerLink="/products/consoles">Consoles</a></span>
             </li>
             <li>
               <i class="fa fa-tv"></i>
-              <span><a href="TV">TV</a></span>
+              <span><a routerLink="/products/tv">TV</a></span>
             </li>
             <li>
               <i class="fa fa-headset"></i>
-              <span><a href="Music">Music</a></span>
+              <span><a routerLink="/products/music">Music</a></span>
             </li>
           </ul>
         </li>
         <li class="admin-li">
           <i class="fa fa-users-cog"></i>
-          <span><a href="Admin">Admin</a></span>
+          <span><a routerLink="/admin" href="Admin">Admin</a></span>
         </li>
       </ul>
     </nav>
