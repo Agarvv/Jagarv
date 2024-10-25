@@ -8,6 +8,7 @@ public class ProductDTO {
     private String title;
     private String description;
     private String category; 
+    private Boolean featured;
     private List<String> pictures;
     private BigDecimal price;
 

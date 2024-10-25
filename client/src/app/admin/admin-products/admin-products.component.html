@@ -1,8 +1,5 @@
 <main>
-    
-    <div style="overflow-x: auto;">
-      
-      
+  <div style="overflow-x: auto;">
     <table border="1">
       <thead>
         <tr>
@@ -19,18 +16,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>78</td>
-          <td><img 
-          style="width: 30px; height: 30px; object-fit: cover;"
-          src="Screenshot_20240928-011835.png" alt=""></td>
-          <td>Something</td>
-          <td>Description here</td>
-          <td>Phones</td>
-          <td>180$</td>
-          <td>5</td>
-          <td>online</td>
-          <td>10/7/2024</td>
+        <tr *ngFor="let product of products">
+          <td>{{ product.id }}</td>
+          
+          <td>
+            <img
+              *ngIf="product.pictures && product.pictures.length > 0"
+              [src]="product.pictures[0]"
+              alt="{{ product.title }}"
+              style="width: 30px; height: 30px; object-fit: cover;"
+            />
+          </td>
+
+          <td>{{ product.title }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price | currency:'USD' }}</td> 
+
+          <td>{{ product.stock || 'N/A' }}</td>
+          <td>{{ product.status || 'offline' }}</td>
+          <td>{{ product.creationDate | date:'shortDate' || 'N/A' }}</td>
+          
           <td>
             <button class="actions-see">
               <i class="fa fa-eye"></i>
@@ -45,8 +51,8 @@
               <i class="fa fa-trash"></i>
             </button>
           </td>
-    
         </tr>
-        
       </tbody>
     </table>
+  </div>
+</main>
