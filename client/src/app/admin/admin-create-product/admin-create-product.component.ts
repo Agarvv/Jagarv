@@ -52,11 +52,11 @@ export class AdminCreateProductComponent implements OnInit {
     ).subscribe(
       (data) => {
         // Dispatch success message
-        this.store.dispatch(setSuccess({ successMessage: 'Product Created Sucesfully' }));
+        this.store.dispatch(setSuccess({ successMessage: 'Product Created Succesfully' }));
       },
       (error) => {
         // Dispatch error message
-        this.store.dispatch(setError({ errorMessage: error}));
+        this.store.dispatch(setError({ errorMessage: error.error}));
         console.error(error); // Our backend handles errors already,
         // if the error status is 500 our backend will show:
         // 'Something went wrong..'
