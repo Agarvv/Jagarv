@@ -5,7 +5,7 @@
 
   <div class="wrapper">
     <div class="create-product-form">
-      <form [formGroup]="productForm" (ngSubmit)="createProduct()">
+      <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
         <div class="inp">
           <label for="Title">Title</label>
           <input type="text" formControlName="title" placeholder="Title">

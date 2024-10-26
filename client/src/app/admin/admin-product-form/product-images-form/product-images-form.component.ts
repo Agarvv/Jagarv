@@ -3,7 +3,7 @@ import { CreateProductServiceStateService } from '../../../state/admin/product/c
 import { MediaServiceService } from '../../../services/media/media-service.service';
 
 @Component({
-  selector: 'app-create-product-images',
+  selector: 'app-product-images-form',
   templateUrl: './product-images-form.component.html',
   styleUrls: ['./product-images-form.component.css']
 })
