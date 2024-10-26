@@ -28,6 +28,15 @@ public class Product {
     // The category of the Product, like 'phones', 'pc', 'gaming' or whatever
     @NotBlank(message = "Category cannot be blank")
     private String category;
+    
+    // Featured state, can be true or false.
+    private Boolean featured; 
+    
+    // The stock of the product, like 70, 198, or 3.
+    private Long stock;
+    
+    // The creation date, Like '1/12/1765' :p
+    private String date;
 
     // The Product Pictures (now correctly stored as a List of Strings)
     @ElementCollection
@@ -69,6 +78,30 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+    
+    public Boolean getFeatured() {
+        return featured;
+    }
+    
+    public void setFeatured(Boolean featured) {
+        this.featured = featured;
+    }
+    
+    public Long getStock() {
+        return stock;
+    }
+    
+    public void setStock(Long stock) {
+        this.stock = stock;
+    }
+    
+    public String getDate() {
+        return date;
+    }
+     
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public List<String> getPictures() {

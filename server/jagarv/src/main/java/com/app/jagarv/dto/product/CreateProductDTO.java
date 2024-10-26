@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
-import org.springframework.web.multipart.MultipartFile;
 
 public class CreateProductDTO {
 
@@ -29,9 +28,11 @@ public class CreateProductDTO {
     @Digits(integer = 10, fraction = 2, message = "Price has too many decimals")
     private BigDecimal price;
 
-    private Boolean featured;
+    private Boolean featured;  
 
-    // Getters y Setters
+    private Long stock;  
+    
+    private String date;  
 
     public String getTitle() {
         return title;
@@ -71,5 +72,29 @@ public class CreateProductDTO {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Boolean getFeatured() {  
+        return featured;
+    }
+
+    public void setFeatured(Boolean featured) {  // Agregado
+        this.featured = featured;
+    }
+
+    public Long getStock() {  
+        return stock;
+    }
+
+    public void setStock(Long stock) {  
+        this.stock = stock;
+    }
+    
+    public String getDate() {  
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

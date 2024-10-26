@@ -25,5 +25,12 @@ export class ProductsService {
  // deletes a post by his id
   deleteProduct(productId: number): Observable<number> {
   return this.http.delete<number>(`${this.apiUrl}/delete/${productId}`);
-}
+  }
+  
+  // features a product 
+  featureProduct(productId: number): Observable<number> {
+      return this.http.post<number>(`${this.apiUrl}/feature`, productId);
+  }
+
+
 }

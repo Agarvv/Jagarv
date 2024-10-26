@@ -9,17 +9,22 @@ public class ProductDTO {
     private String description;
     private String category; 
     private Boolean featured;
+    private Long stock;  
+    private String date; 
     private List<String> pictures;
     private BigDecimal price;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String title, String description, String category, List<String> pictures, BigDecimal price) {
+    public ProductDTO(Long id, String title, String description, String category, Boolean featured, Long stock, String date, List<String> pictures, BigDecimal price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.category = category; 
+        this.featured = featured;  
+        this.stock = stock;  
+        this.date = date; 
         this.pictures = pictures;
         this.price = price;
     }
@@ -54,6 +59,30 @@ public class ProductDTO {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Boolean getFeatured() {  
+        return featured;
+    }
+
+    public void setFeatured(Boolean featured) {  // Agregado
+        this.featured = featured;
+    }
+
+    public Long getStock() {  
+        return stock;
+    }
+
+    public void setStock(Long stock) { 
+        this.stock = stock;
+    }
+
+    public String getDate() {  
+        return date;
+    }
+
+    public void setDate(String date) { 
+        this.date = date;
     }
 
     public List<String> getPictures() {

@@ -34,22 +34,30 @@
           <td>{{ product.price | currency:'USD' }}</td> 
 
           <td>Stock</td>
-          <td>Status</td>
+          <td>Featured</td>
           <td>Date</td>
           
           <td>
             <!-- View Product button -->
-            <app-view-product-button [productId]="product.id"></app-view-product-button>
+            <app-view-product-button [productId]="product.id">
+                
+            </app-view-product-button>
+            
             <!-- Edit product button-->
             <button class="actions-edit">
               <i class="fa fa-edit"></i>
             </button>
+            
             <!-- Feature Product Button -->
-            <button class="actions-feature">
-              <i class="fa fa-star"></i>
-            </button>
+            <app-feature-product-button [productId]="product.id">
+                
+            </app-feature-product-button>
+            
             <!-- Delete Product Button -->
-            <app-delete-product-button [productId]="product.id"></app-delete-product-button>
+            <app-delete-product-button [productId]="product.id">
+                
+            </app-delete-product-button>
+            
           </td>
         </tr>
       </tbody>

@@ -28,6 +28,7 @@ import { ViewProductButtonComponent } from './admin/admin-products/view-product-
 import { EditProductButtonComponent } from './admin/admin-products/edit-product-button/edit-product-button.component';
 import { FeatureProductButtonComponent } from './admin/admin-products/feature-product-button/feature-product-button.component';
 import { DeleteProductButtonComponent } from './admin/admin-products/delete-product-button/delete-product-button.component';
+import { SpinnerComponentComponent } from './layout/spinner-component/spinner-component.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DeleteProductButtonComponent } from './admin/admin-products/delete-prod
     ViewProductButtonComponent,
     EditProductButtonComponent,
     FeatureProductButtonComponent,
-    DeleteProductButtonComponent
+    DeleteProductButtonComponent,
+    SpinnerComponentComponent
   ],
   imports: [
     BrowserModule,
