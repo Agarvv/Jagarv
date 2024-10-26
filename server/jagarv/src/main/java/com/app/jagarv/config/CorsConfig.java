@@ -12,7 +12,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") 
                 .allowedOrigins("https://jagarv.vercel.app/") 
-                .allowedMethods("GET", "POST") 
+                .allowedMethods("GET", "POST", "PUT", "DELETE") 
                 .allowedHeaders("*") 
                 .allowCredentials(true); 
     }
