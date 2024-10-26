@@ -4,14 +4,16 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
-  styleUrl: './edit-product.component.css'
+  styleUrls: ['./edit-product.component.css']
 })
-export class EditProductComponent {
+export class EditProductComponent implements OnInit {
+  productId!: number;  
+
   constructor(private route: ActivatedRoute) {}
-  
+
   ngOnInit(): void {
-  this.route.params.subscribe(params => {
-    const productId = params['productId']; 
-  });
-}
+    this.route.params.subscribe(params => {
+      this.productId = +params['productId']; 
+    });
+  }
 }

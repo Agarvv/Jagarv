@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './edit-product-button.component.css'
 })
 export class EditProductButtonComponent {
-
+  
 }

@@ -8,6 +8,9 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { AdminSalesComponent } from './admin/admin-sales/admin-sales.component'
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component'
 import { AdminProductFormComponent } from './admin/admin-product-form/admin-product-form.component'; 
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { CreateProductComponent } from './admin/create-product/create-product.component';
+
 
 const routes: Routes = [
 
@@ -42,7 +45,11 @@ const routes: Routes = [
       },
       {
           path: 'createProduct',
-          component: AdminProductFormComponent
+          component: CreateProductComponent
+      },
+      {
+        path: 'editProduct/:productId',
+        component: EditProductComponent
       }
     ]
   }
