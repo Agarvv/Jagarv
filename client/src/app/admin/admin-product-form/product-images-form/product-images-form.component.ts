@@ -4,8 +4,8 @@ import { MediaServiceService } from '../../../services/media/media-service.servi
 
 @Component({
   selector: 'app-create-product-images',
-  templateUrl: './create-product-images.component.html',
-  styleUrls: ['./create-product-images.component.css']
+  templateUrl: './product-images-form.component.html',
+  styleUrls: ['./product-images-form.component.css']
 })
 export class ProductImagesFormComponent {
   images: string[] = [];  // Array to store image URLs

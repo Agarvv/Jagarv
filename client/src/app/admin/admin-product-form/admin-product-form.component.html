@@ -24,7 +24,7 @@
         
         <div class="inp-images">
           <!-- Listens to the pictures array when they change and verifies if the pictures array is still valid -->
-          <app-create-product-images (picturesChange)="onPicturesChange($event)" formControlName="pictures"></app-create-product-images>
+          <app-product-images-form (picturesChange)="onPicturesChange($event)" formControlName="pictures"></app-product-images-form>
           <div *ngIf="productForm.get('pictures')?.invalid && productForm.get('pictures')?.touched">
             <small class="val-error" *ngIf="productForm.get('pictures')?.errors?.['emptyArray']">At least one image is required.</small>
           </div>
