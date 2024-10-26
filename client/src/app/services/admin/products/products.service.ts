@@ -21,9 +21,9 @@ export class ProductsService {
     console.log('creating product from service', product);
     return this.http.post<Product>(`${this.apiUrl}/create`, product);
   }
-
+ 
+ // deletes a post by his id
   deleteProduct(productId: number): Observable<number> {
-    // I dont wanna use so much 'DELETE' methods so... im gonna just let in in 'POST' method.
-    return this.http.post<number>(`${this.apiUrl}/delete`, productId);
-  }
+  return this.http.delete<number>(`${this.apiUrl}/delete/${productId}`);
+}
 }
