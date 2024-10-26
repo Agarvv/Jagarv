@@ -1,12 +1,16 @@
-ñimport { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// The 'ProductsService' handles all CRUD admin logic.
 import { ProductsService } from '../../services/admin/products/products.service';
 import { Store } from '@ngrx/store';
 import { setLoading, setSuccess, setError, clearMessages } from '../../store/admin/admin.actions';
 import { finalize } from 'rxjs/operators';  
 import { PriceValidator } from '../../validators/price.validator';
 import { NonEmptyArrayValidator } from '../../validators/non-empty-array.validator';
-import { Product } from '../../models/product.model'; 
+import { Product } from '../../models/Product'; 
+// And the 'PublicProductsService' handles all the accesible products in the app logic,
+// like display products by category, and other 'non-admin' things.
+import { PublicProductsService } from '../../services/products/products.service'; 
 
 @Component({
   selector: 'app-admin-product-form',
@@ -21,6 +25,7 @@ export class AdminProductFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productsService: ProductsService,
+    private publicProductsService: PublicProductsService,
     private store: Store
   ) {
     this.productForm = this.fb.group({
@@ -41,7 +46,7 @@ export class AdminProductFormComponent implements OnInit {
   }
 
   loadProductData(id: number): void {
-    this.productsService.getProductById(id).subscribe(product => {
+    this.publicProductsService.getProductById(id).subscribe(product => {
       this.productForm.patchValue(product);
     });
   }
@@ -68,6 +73,7 @@ export class AdminProductFormComponent implements OnInit {
       })
     ).subscribe(
       (data) => {
+        console.log('Product updated!', data)
         this.store.dispatch(setSuccess({ successMessage: this.isEditing ? 'Product Updated Successfully' : 'Product Created Successfully' }));
       },
       (error) => {

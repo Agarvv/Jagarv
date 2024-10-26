@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @Service 
-public class ProductService {
+public class AdminProductService {
 
     // INJECTIONS
     @Autowired 
@@ -79,5 +79,24 @@ public class ProductService {
         productRepository.save(product);
 
         return wasFeatured ? "Product has been unfeatured." : "Product has been featured.";
+    }
+
+    public void updateProduct(Long productId, CreateProductDTO updateProductDTO) {
+        // if not exist, throw 'ProductNotFoundException' Exception
+        Product product = productRepository.findById(productId)
+        .orElseThrow(() -> 
+        new ProductNotFoundException("The product that you want to edit does not exist..."));
+        
+        // sets data
+        product.setTitle(updateProductDTO.getTitle());
+        product.setDescription(updateProductDTO.getDescription());
+        product.setCategory(updateProductDTO.getCategory());
+        product.setPrice(updateProductDTO.getPrice());
+        product.setPictures(Arrays.asList(updateProductDTO.getPictures()));
+        product.setFeatured(updateProductDTO.getFeatured());
+        product.setStock(updateProductDTO.getStock());
+        
+        // saves the updated product to the database
+        productRepository.save(product);
     }
 }

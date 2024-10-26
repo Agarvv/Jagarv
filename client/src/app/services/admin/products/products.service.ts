@@ -22,9 +22,14 @@ export class ProductsService {
     return this.http.post<Product>(`${this.apiUrl}/create`, product);
   }
  
- // deletes a post by his id
+ // deletes a product by his id
   deleteProduct(productId: number): Observable<number> {
   return this.http.delete<number>(`${this.apiUrl}/delete/${productId}`);
+  }
+  
+  // updates a product
+  updateProduct(productId: number, productData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update/${productId}`, productData);
   }
   
   // features a product 

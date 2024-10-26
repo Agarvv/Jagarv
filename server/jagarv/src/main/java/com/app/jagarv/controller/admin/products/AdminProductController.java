@@ -1,7 +1,7 @@
 package com.app.jagarv.controller.admin.products;
 
 import com.app.jagarv.dto.product.ProductDTO;
-import com.app.jagarv.service.admin.product.ProductService;
+import com.app.jagarv.service.admin.product.AdminProductService;
 import com.app.jagarv.dto.product.CreateProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +14,11 @@ import java.util.Map;
 // ADMIN PRODUCTS CONTROLLER 
 @RestController
 @RequestMapping("/admin/products")
-public class ProductController {
+public class AdminProductController {
 
     // INJECTIONS
     @Autowired 
-    private ProductService productService;
+    private AdminProductService productService;
 
     // GETS ALL THE PRODUCTS FROM THE DB
     @GetMapping
@@ -60,6 +60,20 @@ public class ProductController {
     
     return ResponseEntity.ok(response);
     
+    }
+    
+    // update a prouct
+    @PutMapping("/update/{productId}")
+    public ResponseEntity<Map<String, String>> updateProduct(
+        @RequestBody CreateProductDTO updateProductDTO,
+        @PathVariable Long productId
+    ) {
+      // yes, im using the same dto that we use in the create endpoint. i need the same validations, that's why
+      productService.updateProduct(productId, updateProductDTO);
+
+      Map<String, String> response = new HashMap<>();
+      response.put("message", "Product updated!");
+      return ResponseEntity.ok(response);
     }
     
     

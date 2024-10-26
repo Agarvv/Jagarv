@@ -1,7 +1,7 @@
 package com.app.jagarv.controller.admin.orders;
 
 import com.app.jagarv.dto.order.OrdersDTO; 
-import com.app.jagarv.service.admin.order.OrdersService;
+import com.app.jagarv.service.admin.order.AdminOrdersService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +13,11 @@ import java.util.List;
 // THE APP'S ORDERS CONTROLLERS
 @RestController
 @RequestMapping("/admin/orders")
-public class OrderController {
+public class AdminOrderController {
     
     // Injections
     @Autowired
-    private OrdersService ordersService; 
+    private AdminOrdersService ordersService; 
     
     // Returns all the orders of the app
     @GetMapping 

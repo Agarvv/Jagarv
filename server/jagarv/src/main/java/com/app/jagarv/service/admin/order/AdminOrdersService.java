@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 // Our App's Orders Service.
 @Service
-public class OrdersService {
+public class AdminOrdersService {
     // Injections
     @Autowired
     private OrderRepository orderRepository; 

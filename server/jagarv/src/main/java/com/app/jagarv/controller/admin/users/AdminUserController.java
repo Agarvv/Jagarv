@@ -1,7 +1,7 @@
 package com.app.jagarv.controller.admin.users;
 
 import com.app.jagarv.dto.user.UserDTO;
-import com.app.jagarv.service.admin.user.UserService;
+import com.app.jagarv.service.admin.user.AdminUserService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController 
 @RequestMapping("/admin/users")
-public class UserController {
+public class AdminUserController {
    
    @Autowired 
-   private UserService userService; 
+   private AdminUserService userService; 
    
    @GetMapping
    public List<UserDTO> getUsers() {

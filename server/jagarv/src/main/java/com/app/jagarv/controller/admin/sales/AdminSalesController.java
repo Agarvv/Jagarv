@@ -1,6 +1,6 @@
 package com.app.jagarv.controller.admin.sales;
 
-import com.app.jagarv.service.admin.sales.SalesService;
+import com.app.jagarv.service.admin.sales.AdminSalesService;
 import com.app.jagarv.dto.sales.SalesDTO;
 
 
@@ -17,10 +17,10 @@ import java.util.List;
 // The App's Sales Controller
 @RestController 
 @RequestMapping("/admin/sales")
-public class SalesController {
+public class AdminSalesController {
     // Injections
     @Autowired 
-    private SalesService salesService; 
+    private AdminSalesService salesService; 
     
     // Returns all the app's sales
     @GetMapping
