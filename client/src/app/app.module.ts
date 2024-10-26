@@ -15,9 +15,9 @@ import { AdminSalesComponent } from './admin/admin-sales/admin-sales.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { AdminCreateProductComponent } from './admin/admin-create-product/admin-create-product.component';
+import { AdminProductFormComponent } from './admin/admin-product-form/admin-product-form.component'; 
 import { StoreModule } from '@ngrx/store';
-import { CreateProductImagesComponent } from './admin/admin-create-product/create-product-images/create-product-images.component';
+import { ProductImagesFormComponent } from './admin/admin-product-form/product-images-form/product-images-form.component'; 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponentComponent } from './layout/error-component/error-component.component';
@@ -47,9 +47,8 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
     AdminProductsComponent,
     AdminOrdersComponent,
     AdminDashboardComponent,
-    AdminCreateProductComponent,
-    CreateProductImagesComponent,
-    CreateProductImagesComponent,
+    AdminProductFormComponent,
+    ProductImagesFormComponent,
     ErrorComponentComponent,
     SuccessComponentComponent,
     LoadingComponentComponent,
