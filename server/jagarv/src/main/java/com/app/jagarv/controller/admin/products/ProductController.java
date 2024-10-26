@@ -46,10 +46,21 @@ public class ProductController {
 
     // FEATURE A PRODUCT
     @PostMapping("/feature")
-    public ResponseEntity<Map<String, String>> featureProduct(@RequestBody Long productId) {
-        String message = productService.featureProduct(productId);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", message);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Map<String, String>>
+    featureProduct(@RequestBody Map<String, Long> request) {
+        
+    Long productId = request.get("productId");
+    
+    // message can be "Product featured" or "Product unfeatured", i use this for informing the frontend and making changes in the UI.
+    String message = productService.featureProduct(productId);
+    
+    Map<String, String> response = new HashMap<>();
+    
+    response.put("message", message);
+    
+    return ResponseEntity.ok(response);
+    
     }
+    
+    
 }
