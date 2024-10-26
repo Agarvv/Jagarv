@@ -3,6 +3,9 @@ export interface Product {
     title: string,
     description: string,
     category: string,
+    featured: boolean,
+    stock: number,
+    date: string
     pictures: string[],
-    price: number // I know in my API Java DTO i have BigDecimal. 
+    price: number 
 }

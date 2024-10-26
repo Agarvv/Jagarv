@@ -7,7 +7,7 @@ import { MediaServiceService } from '../../../services/media/media-service.servi
   templateUrl: './create-product-images.component.html',
   styleUrls: ['./create-product-images.component.css']
 })
-export class CreateProductImagesComponent {
+export class ProductImagesFormComponent {
   images: string[] = [];  // Array to store image URLs
   @ViewChild('fileInput') fileInput!: ElementRef; 
 
