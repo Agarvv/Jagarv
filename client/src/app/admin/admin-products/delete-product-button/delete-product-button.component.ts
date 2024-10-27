@@ -7,6 +7,7 @@ import { ProductsService } from '../../../services/admin/products/products.servi
   templateUrl: './delete-product-button.component.html',
   styleUrl: './delete-product-button.component.css'
 })
+// this component just deletes a product by his id
 export class DeleteProductButtonComponent {
   @Input() productId!: number; 
   constructor(private productsService: ProductsService) {}

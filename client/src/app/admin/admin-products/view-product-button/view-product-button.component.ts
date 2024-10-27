@@ -5,7 +5,9 @@ import { Component, Input } from '@angular/core';
   templateUrl: './view-product-button.component.html',
   styleUrl: './view-product-button.component.css'
 })
+// this component, 
+// takes a prop that will be used to
+// navigate to the '/product/productId' page with a routerLink in the html
 export class ViewProductButtonComponent {
-   // this prop will be used to navigate to the '/product/productId' page with a routerLink in the html
   @Input() productId!: number; 
 }

@@ -8,4 +8,4 @@ export interface Product {
     date: string
     pictures: string[],
     price: number 
-}
+} 

@@ -6,6 +6,9 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css']
 })
+// this component uses our 'admin-product-form' to edit a product,
+// taking the productId of the route params, and sending it to our 'admin-product-form' as a prop.
+// check the component's HTML for better understanding.
 export class EditProductComponent implements OnInit {
   productId!: number;  
 

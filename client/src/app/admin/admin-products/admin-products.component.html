@@ -44,10 +44,10 @@
             </app-view-product-button>
             
             <!-- Edit product button-->
-            <button class="actions-edit">
-              <i class="fa fa-edit"></i>
-            </button>
-            
+            <app-edit-product-button [productId]="product.id">
+
+            </app-edit-product-button>
+      
             <!-- Feature Product Button -->
             <app-feature-product-button [productId]="product.id">
                 

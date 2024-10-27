@@ -7,6 +7,7 @@ import { Product } from '../../../models/Product';
 @Injectable({
   providedIn: 'root'
 })
+// this service will handle CRUD admin logic.
 export class ProductsService {
   private apiUrl = `${environment.apiUrl}/admin/products`;
 
@@ -28,14 +29,13 @@ export class ProductsService {
   }
   
   // updates a product
-  updateProduct(productId: number, productData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update/${productId}`, productData);
+  updateProduct(productId: number, productData: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/update/${productId}`, productData);
   }
   
   // features a product 
   featureProduct(productId: number): Observable<number> {
       return this.http.post<number>(`${this.apiUrl}/feature`, productId);
   }
-
 
 }

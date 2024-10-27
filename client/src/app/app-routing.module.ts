@@ -13,43 +13,45 @@ import { CreateProductComponent } from './admin/create-product/create-product.co
 
 
 const routes: Routes = [
-
+  
+  // the homepage 
   {
     path: '',
     component: HomeComponent
   },
-
+  
+  // the admin page
   {
     path: 'admin',
     component: AdminComponent,
     children: [
       {
         path: '',
-        component: AdminDashboardComponent
+        component: AdminDashboardComponent // the dashboard for the admins
       },
       {
         path: 'users',
-        component: AdminUsersComponent
+        component: AdminUsersComponent // the users page for the admins
       },
       {
         path: 'orders',
-        component: AdminOrdersComponent
+        component: AdminOrdersComponent // the orders page for the admins
       },
       {
         path: 'sales',
-        component: AdminSalesComponent
+        component: AdminSalesComponent // the sales page for the admins
       },
       {
         path: 'products',
-        component: AdminProductsComponent
+        component: AdminProductsComponent // the products page for the admins
       },
       {
           path: 'createProduct',
-          component: CreateProductComponent
+          component: CreateProductComponent // the create product page for the admins
       },
       {
         path: 'editProduct/:productId',
-        component: EditProductComponent
+        component: EditProductComponent // the edit product page for the admins
       }
     ]
   }

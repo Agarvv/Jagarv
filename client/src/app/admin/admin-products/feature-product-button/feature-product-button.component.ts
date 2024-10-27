@@ -7,6 +7,7 @@ import { ProductsService } from '../../../services/admin/products/products.servi
   templateUrl: './feature-product-button.component.html',
   styleUrl: './feature-product-button.component.css'
 })
+// this component just features, or unfeatures a product by his ID.
 export class FeatureProductButtonComponent {
  @Input() productId!: number; 
  constructor(private productsService: ProductsService) {}
