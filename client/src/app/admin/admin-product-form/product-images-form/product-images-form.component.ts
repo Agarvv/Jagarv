@@ -52,4 +52,8 @@ export class ProductImagesFormComponent {
     // This is like: 'Hey dad, my pictures array has changed. check if it is still valid to send to the server.'
     this.picturesChange.emit(this.images);
   }
+  
+  ngOnInit(): void {
+  this.picturesChange.emit(this.images);
+}
 }

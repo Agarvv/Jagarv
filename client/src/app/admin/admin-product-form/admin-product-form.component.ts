@@ -46,10 +46,14 @@ export class AdminProductFormComponent implements OnInit {
   }
 
   loadProductData(id: number): void {
-    this.publicProductsService.getProductById(id).subscribe(product => {
-      this.productForm.patchValue(product);
-    });
-  }
+  this.publicProductsService.getProductById(id).subscribe(product => {
+    this.productForm.patchValue(product);
+    if (product.pictures) {
+      this.productStateService.resetImages(); 
+      product.pictures.forEach((image: string) => this.productStateService.addImage(image));  
+    }
+  });
+}
 
   submitProduct(): void {
     if (this.productForm.invalid) {
@@ -69,10 +73,9 @@ export class AdminProductFormComponent implements OnInit {
     productRequest.pipe(
       finalize(() => {
         this.store.dispatch(setLoading({ isLoading: false }));
-        // if the form creates a product, resets the form.
-        //but if the form is editing, does not reset.
-        if(!this.isEditing) {
-        this.productForm.reset();
+        if (!this.isEditing) {
+          this.productForm.reset();
+          this.productStateService.resetImages();
         }
       })
     ).subscribe(
@@ -86,7 +89,8 @@ export class AdminProductFormComponent implements OnInit {
       }
     );
   }
-
+  
+  
   onPicturesChange(pictures: string[]): void {
     this.productForm.get('pictures')?.setValue(pictures);
     this.productForm.get('pictures')?.updateValueAndValidity(); 

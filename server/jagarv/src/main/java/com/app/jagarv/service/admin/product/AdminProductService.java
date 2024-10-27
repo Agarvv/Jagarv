@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.ArrayList;
 
 @Service 
 public class AdminProductService {
@@ -92,7 +93,7 @@ public class AdminProductService {
         product.setDescription(updateProductDTO.getDescription());
         product.setCategory(updateProductDTO.getCategory());
         product.setPrice(updateProductDTO.getPrice());
-        product.setPictures(Arrays.asList(updateProductDTO.getPictures()));
+        product.setPictures(new ArrayList<>(Arrays.asList(updateProductDTO.getPictures())));
         product.setFeatured(updateProductDTO.getFeatured());
         product.setStock(updateProductDTO.getStock());
         

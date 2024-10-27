@@ -22,4 +22,8 @@ export class CreateProductServiceStateService {
   getImages(): string[] {
       return this.images;
   }
+  
+  resetImages(): void {
+     this.images = [];
+  }
 }
