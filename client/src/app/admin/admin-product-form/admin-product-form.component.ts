@@ -10,7 +10,8 @@ import { NonEmptyArrayValidator } from '../../validators/non-empty-array.validat
 import { Product } from '../../models/Product'; 
 // And the 'PublicProductsService' handles all the accesible products in the app logic,
 // like display products by category, and other 'non-admin' things.
-import { PublicProductsService } from '../../services/products/products.service'; 
+import { PublicProductsService } from '../../services/products/products.service';
+import { CreateProductServiceStateService } from '../../state/admin/product/create-product-state-service'
 
 @Component({
   selector: 'app-admin-product-form',
@@ -26,6 +27,7 @@ export class AdminProductFormComponent implements OnInit {
     private fb: FormBuilder,
     private productsService: ProductsService,
     private publicProductsService: PublicProductsService,
+    private productStateService: CreateProductServiceStateService,
     private store: Store
   ) {
     this.productForm = this.fb.group({
