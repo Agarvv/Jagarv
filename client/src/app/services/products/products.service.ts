@@ -10,7 +10,7 @@ import { Product } from '../../models/Product';
 // this service will handle all the public products logic, no admin products logic here.
 export class PublicProductsService {
    
-  private apiUrl = `${environment.apiUrl}/products`;
+  private apiUrl = `${environment.apiUrl}/api/jagarv/products`;
   constructor(private http: HttpClient) { }
   
   getProductById(productId: number): Observable<Product> {
