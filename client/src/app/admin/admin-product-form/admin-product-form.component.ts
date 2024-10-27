@@ -69,7 +69,11 @@ export class AdminProductFormComponent implements OnInit {
     productRequest.pipe(
       finalize(() => {
         this.store.dispatch(setLoading({ isLoading: false }));
+        // if the form creates a product, resets the form.
+        //but if the form is editing, does not reset.
+        if(!this.isEditing) {
         this.productForm.reset();
+        }
       })
     ).subscribe(
       (data) => {

@@ -1,6 +1,6 @@
 <main>
   <div class="mh">
-    <h2>Create Product</h2>
+    <h2>{{ isEditing ? 'Edit Product' : 'Create Product' }}</h2>
   </div>
 
   <div class="wrapper">
@@ -54,7 +54,7 @@
         </div>
 
         <div class="publish-btn">
-          <button type="submit">Publish</button> <!-- disabled if form is not valid -->
+           <button type="submit">{{ isEditing ? 'Update' : 'Publish' }}</button>
         </div>
       </form>
     </div>
