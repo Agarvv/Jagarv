@@ -1,36 +1,71 @@
+
 main table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+main table th,
+main table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+main table th {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+main table td button {
+  margin: 3px;
+}
+
+main table button {
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+main table button:hover {
+  background-color: #45a049;
+}
+
+main table .p-actions {
+  margin: 3px;
+}
+
+
+@media (max-width: 600px) {
+  main table,
+  main table th,
+  main table td {
+    padding: 8px 5px; 
+    font-size: 0.9rem; 
   }
-  
-  main table th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+
+  main table th,
+  main table td {
+    text-align: center; 
   }
-  
-  main table th {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
-  }
-  
+
   main table td button {
-   margin: 3px;
+    margin: 5px 0;
+    width: 100%; 
+    padding: 6px;
   }
-  
-  main table button {
-    cursor: pointer;
-    padding: 5px;
-    border: none;
-    color: white;
-    border-radius: 5px;
+
+  main table img {
+    width: 20px;
+    height: 20px;
   }
-  
-  main table button:hover {
-    background-color: #45a049; 
+
+  main table th:nth-child(3),
+  main table td:nth-child(3),
+  main table th:nth-child(4),
+  main table td:nth-child(4) {
+    display: none;
   }
-  
-  main table .p-actions {
-    margin: 3px;
-  }
+}

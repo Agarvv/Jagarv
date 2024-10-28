@@ -10,7 +10,7 @@
           <th>Category</th>
           <th>Price</th>
           <th>Stock</th>
-          <th>Status</th>
+          <th>Featured</th>
           <th>Creation Date</th>
           <th>Actions</th>
         </tr>
@@ -37,7 +37,7 @@
           <td>{{product.featured ? 'Yes' : 'No'}}</td>
           <td>{{product.date}}</td>
           
-          <td>
+          <td class="p-actions">
             <!-- View Product button -->
             <app-view-product-button [productId]="product.id">
                 
