@@ -3,6 +3,7 @@ import { AdminStateManagerService } from '../state/admin/admin-state-manager.ser
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AdminState } from '../store/admin/admin.state';
+import { clearMessages } from '../store/admin/admin.actions'; 
 
 @Component({
   selector: 'app-admin',
@@ -25,6 +26,6 @@ export class AdminComponent {
   }
 
   onActivate(component: any) {
-  
+    this.store.dispatch(clearMessages());
   }
 }
