@@ -51,7 +51,7 @@ public class AdminProductService {
         // Set featured and stock if necessary
         product.setFeatured(createProductDTO.getFeatured());
         product.setStock(createProductDTO.getStock());
-        product.setDate(LocalDate.now());
+        product.setDate(LocalDate.now().toString()); // the date field should be a String
 
         Product savedProduct = productRepository.save(product);
         return productMapper.productToDTO(savedProduct);
