@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 @Service 
 public class AdminProductService {
@@ -50,6 +51,7 @@ public class AdminProductService {
         // Set featured and stock if necessary
         product.setFeatured(createProductDTO.getFeatured());
         product.setStock(createProductDTO.getStock());
+        product.setDate(LocalDate.now());
 
         Product savedProduct = productRepository.save(product);
         return productMapper.productToDTO(savedProduct);
