@@ -33,9 +33,9 @@
           <td>{{ product.category }}</td>
           <td>{{ product.price | currency:'USD' }}</td> 
 
-          <td>Stock</td>
-          <td>Featured</td>
-          <td>Date</td>
+          <td>{{product.stock}}</td>
+          <td>{{product.featured ? 'Yes' : 'No'}}</td>
+          <td>{{product.date}}</td>
           
           <td>
             <!-- View Product button -->

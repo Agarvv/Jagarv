@@ -31,19 +31,6 @@ main table {
     background-color: #45a049; 
   }
   
-  /* main table .actions-see {
-    background: #007bff;
-   
+  main table .p-actions {
+    margin: 3px;
   }
-  
-  main table .actions-feature {
-    background: #f0ad4e;
-  }
-  
-  main table .actions-delete {
-    background: #d9534f;
-  }
-  
-  main table .actions-edit {
-    background: #0CC21A;
-  } */ 
