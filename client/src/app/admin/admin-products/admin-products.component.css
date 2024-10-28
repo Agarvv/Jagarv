@@ -34,11 +34,12 @@ main table button:hover {
 }
 
 main table .p-actions {
-  margin: 3px;
+  display: flex; 
+  gap: 5px; 
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 600px) { 
   main table,
   main table th,
   main table td {
