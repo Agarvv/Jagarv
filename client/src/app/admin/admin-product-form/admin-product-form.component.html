@@ -48,6 +48,16 @@
           </div>
         </div>
 
+        <div class="inp">
+          <label for="Stock">Stock</label>
+          <input type="number" formControlName="stock" placeholder="Stock">
+          <div *ngIf="productForm.get('stock')?.invalid && productForm.get('stock')?.touched">
+            <small class="val-error" *ngIf="productForm.get('stock')?.errors?.['required']">Stock is required.</small>
+            <br>
+            <small class="val-error" *ngIf="productForm.get('stock')?.errors?.['min']">Stock must be a non-negative number.</small>
+          </div>
+        </div>
+
         <div class="inp-featured">
           <input type="checkbox" formControlName="featured">
           <label for="Featured">Featured</label>

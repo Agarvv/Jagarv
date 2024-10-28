@@ -40,6 +40,7 @@ export class AdminProductFormComponent implements OnInit {
       description: ['', Validators.required], // description is required
       price: [0, [Validators.required, PriceValidator.isValidPrice]], // price is required and should be bigger than 0.
       category: ['', Validators.required], // the category is required
+      stock: [0, [Validators.required, Validators.min(0)]], // stock should be a non-negative number
       featured: [false], // the featured is not required
       pictures: [[], [NonEmptyArrayValidator.nonEmptyArray]] // the pictures [] should have at least one url.
     });
@@ -54,16 +55,16 @@ export class AdminProductFormComponent implements OnInit {
   
   // calls our public (not for admins, public.) product service to find a product by his id
   loadProductData(id: number): void {
-  this.publicProductsService.getProductById(id).subscribe(product => {
-    this.productForm.patchValue(product);
-    if (product.pictures) {
-      // if the product has pictures, adds the image to our service state.
-      // and our product-form-images component takes them, and shows them.
-      this.productStateService.resetImages(); 
-      product.pictures.forEach((image: string) => this.productStateService.addImage(image));  
-    }
-  });
-}
+    this.publicProductsService.getProductById(id).subscribe(product => {
+      this.productForm.patchValue(product);
+      if (product.pictures) {
+        // if the product has pictures, adds the image to our service state.
+        // and our product-form-images component takes them, and shows them.
+        this.productStateService.resetImages(); 
+        product.pictures.forEach((image: string) => this.productStateService.addImage(image));  
+      }
+    });
+  }
 
   submitProduct(): void {
     // checks if the form is valid. If not, marks all fields as touched and returns
