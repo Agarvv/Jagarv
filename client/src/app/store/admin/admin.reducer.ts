@@ -7,5 +7,5 @@ export const adminReducer = createReducer(
   on(setLoading, (state, { isLoading }) => ({ ...state, loading: isLoading })),
   on(setSuccess, (state, { successMessage }) => ({ ...state, success: successMessage, loading: false })),
   on(setError, (state, { errorMessage }) => ({ ...state, error: errorMessage, loading: false })),
-  on(clearMessages, (state) => ({ ...state, error: null, success: null, loading: false }))
+  on(clearMessages, (state) => ({ ...state, error: null, success: null,}))
 );
