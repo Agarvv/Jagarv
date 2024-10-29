@@ -1,6 +1,7 @@
-package com.app.jagarv.controller.Auth;
+package com.app.jagarv.controller.auth;
 
 import com.app.jagarv.dto.user.RegisterUserDTO;
+import com.app.jagarv.service.auth.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/jagarv/auth")
 public class AuthController {
+    // injections
+    @Autowired
+    private AuthService authService;
+
     @GetMapping("/register") 
-    public ResponseEntity<String> registerUser() {
-        
+    public ResponseEntity<String> registerUser(@RequestBody RegisterUserDTO user) {
+        authService.registerUser(user);
+        return ResponseEntity.ok("User registered successfully.");
     }
 }
 
