@@ -5,7 +5,7 @@ export interface AdminState {
 }
 
 export const initialState: AdminState = {
-    loading: false,
+    loading: true,
     error: null,
     success: null,
   };
