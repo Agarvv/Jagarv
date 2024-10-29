@@ -12,11 +12,12 @@ export class AdminUsersComponent {
    error: String = "";
 
    constructor(private usersService: UsersService) { }
-
+   
+   // gets the users from the server
    ngOnInit(): void {
      this.loadUsers();
    }
-
+   
    loadUsers(): void {
      this.usersService.getUsers().subscribe((data) => {
        console.log('Our server returned', data)

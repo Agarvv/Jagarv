@@ -31,6 +31,8 @@ import { DeleteProductButtonComponent } from './admin/admin-products/delete-prod
 import { SpinnerComponentComponent } from './layout/spinner-component/spinner-component.component';
 import { CreateProductComponent } from './admin/create-product/create-product.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
     DeleteProductButtonComponent,
     SpinnerComponentComponent,
     CreateProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
