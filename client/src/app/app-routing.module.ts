@@ -10,14 +10,28 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminProductFormComponent } from './admin/admin-product-form/admin-product-form.component'; 
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { CreateProductComponent } from './admin/create-product/create-product.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 const routes: Routes = [
+
+  // login page 
+  {
+    path: 'login',
+    component: LoginComponent // the login page for the users
+  },
   
   // the homepage 
   {
     path: '',
     component: HomeComponent
+  },
+ 
+  // registration page 
+  {
+    path: 'register',
+    component: RegisterComponent 
   },
   
   // the admin page
