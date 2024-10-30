@@ -29,10 +29,10 @@ public class AuthController {
     // Login endpoint 
     @PostMapping("/login") 
     public ResponseEntity<String> loginUser(@RequestBody LoginUserDTO loginUserDTO) {
-        try {
+
             String response = authService.loginUser(loginUserDTO);
             return ResponseEntity.ok(response);
-        }
+     
     }
 }
 
