@@ -7,6 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.app.jagarv.entity.User;
 import com.app.jagarv.dto.user.RegisterUserDTO;
 import com.app.jagarv.repository.UserRepository;
+import com.app.jagarv.exception.exceptions.users.EmailAlreadyExistsException;
+import com.app.jagarv.exception.exceptions.users.UsernameAlreadyExistsException;
 
 // this service will handle all the login, register, password resets logic.
 // the auth with google wil be implemented on another file of the auth package.
@@ -21,12 +23,14 @@ public class AuthService {
   
   // registers a user to the system
   public void registerUser(RegisterUserDTO newUser) {
+      // usernames should be unique for each user.
       if(userRepository.existsByUsername(newUser.getUsername())) {
-        // here will go UsernameAlreadyExistsException
+        throw new UsernameAlreadyExistsException("That Username Already Exists, Try With Another.");
       }
-
+      
+      // emails should be also unique for each user.
       if(userRepository.existsByEmail(newUser.getEmail())) {
-        // here will go EmailAlreadyExistsException
+        throw new EmailAlreadyExistsException("That Email Already Exists, Try With Another.");
       }
 
       User user = new User();
