@@ -34,6 +34,7 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SubmitRegisterButtonComponent } from './auth/register/submit-register-button/submit-register-button.component';
+import { LoginSubmitButtonComponent } from './auth/login/login-submit-button/login-submit-button.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SubmitRegisterButtonComponent } from './auth/register/submit-register-b
     EditProductComponent,
     LoginComponent,
     RegisterComponent,
-    SubmitRegisterButtonComponent
+    SubmitRegisterButtonComponent,
+    LoginSubmitButtonComponent
   ],
   imports: [
     BrowserModule,
