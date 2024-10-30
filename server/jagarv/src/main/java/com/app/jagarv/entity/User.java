@@ -25,18 +25,14 @@ public class User {
     @Size(min = 6, message = "Password must be min 6 chars")
     private String password;
 
-    private String profilePicture;
-
-    
     public User() {
     }
 
-    public User(Long id, String username, String email, String password, String profilePicture) {
+    public User(Long id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.profilePicture = profilePicture;
     }
 
     public Long getId() {
@@ -71,11 +67,4 @@ public class User {
         this.password = password;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
-    }
 }
