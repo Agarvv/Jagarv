@@ -7,23 +7,44 @@
   </div>
 
   <div class="form">
-    <form>
-       <div class="inps">
-          <div class="inp">
-            <input type="email" placeholder="Your Email" required>
+    <form [formGroup]="loginForm">
+      <div class="inps">
+        <!-- Campo Email -->
+        <div class="inp">
+          <input
+            type="email"
+            placeholder="Your Email"
+            formControlName="email"
+          />
+          <div *ngIf="loginForm?.get('email')?.invalid && (loginForm?.get('email')?.dirty || loginForm?.get('email')?.touched)">
+            <small class="val-error" *ngIf="loginForm?.get('email')?.errors?.['required']">Email Is Required</small>
+            <small class="val-error" *ngIf="loginForm?.get('email')?.errors?.['email']">Email is not valid</small>
           </div>
-          <div class="inp">
-             <input type="password" placeholder="Your Password" required>
+        </div>
+
+        <!-- Campo Password -->
+        <div class="inp">
+          <input
+            type="password"
+            placeholder="Your Password"
+            formControlName="password"
+          />
+          <div *ngIf="loginForm?.get('password')?.invalid && (loginForm?.get('password')?.dirty || loginForm?.get('password')?.touched)">
+            <small class="val-error" *ngIf="loginForm?.get('password')?.errors?.['required']">Password is required</small>
           </div>
-          <div class="remember-me">
-            <input type="checkbox" id="keep-logged" name="keep-logged">
-            <label for="keep-logged">Keep me logged in</label>
-          </div>
-          <div class="btn">
-            <button type="submit">Continue</button>
-          </div>
-       </div>
+        </div>
+
+        <!-- Recordarme y Botón de Envío -->
+        <div class="remember-me">
+          <input type="checkbox" id="keep-logged" name="keep-logged" />
+          <label for="keep-logged">Keep me logged in</label>
+        </div>
+        <div class="btn">
+          <button [disabled]="loginForm?.invalid">Login</button>
+        </div>
+      </div>
     </form>
+
     <div class="links">
       <a href="#" class="forgot-password">I Forgot Password</a>
       <a href="#" class="create-account">Create Account</a>
@@ -36,7 +57,7 @@
         <button>Continue With Google</button>
       </div>
       <div class="social-login-twitter">
-         <button>Continue With Twitter</button>
+        <button>Continue With Twitter</button>
       </div>
       <div class="social-login-github">
         <button>Continue With GitHub</button>
