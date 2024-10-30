@@ -1,31 +1,22 @@
-
-import { Component, Input } from '@angular/core';
-import { AuthService } from '@services/auth/auth.service';
-import { FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PasswordValidator } from '../../validators/passwordValidator';
 
 @Component({
-  selector: 'app-submit-register-button',
-  templateUrl: './submit-register-button.component.html',
-  styleUrl: ['./submit-register-button.component.css'] 
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class SubmitRegisterButtonComponent {
-  @Input() form!: FormGroup;
+export class RegisterComponent {
+  registerForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
-
-  submitForm() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.authService.registerUser(this.form.value).subscribe(
-      (data) => {
-        console.log("All Ok", data);
-      },
-      (error) => {
-        console.error("ERR REGISTER", error);
-      }
-    );
+  constructor(
+    private fb: FormBuilder
+  ) {
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]], 
+      password: ['', [Validators.required, Validators.minLength(8), PasswordValidator.isValidPassword]]
+    });
   }
 }

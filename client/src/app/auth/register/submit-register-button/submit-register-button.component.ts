@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AuthService } from '@services/auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service'; 
 import { FormGroup} from '@angular/forms';
 
 
@@ -9,7 +9,7 @@ import { FormGroup} from '@angular/forms';
   styleUrl: './submit-register-button.component.css'
 })
 export class SubmitRegisterButtonComponent {
-   @Input form!: FormGroup;
+   @Input() form!: FormGroup;
     
    constructor(private authService: AuthService) {
        
@@ -21,7 +21,7 @@ export class SubmitRegisterButtonComponent {
            return 
        }
        
-       authService.registerUser(this.form.value).subscribe((data) => {
+       this.authService.registerUser(this.form.value).subscribe((data) => {
            console.log("All Ok", data)
        }, (error) => {
            console.error("ERR REGISTER", error)
