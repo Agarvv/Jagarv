@@ -7,22 +7,45 @@
   </div>
 
   <div class="form">
-    <form>
-       <div class="inps">
-         <div class="inp">
-           <input type="text" placeholder="Your Name">
-         </div>
-          <div class="inp">
-            <input type="email" placeholder="Your Email" required>
+    <form [formGroup]="registerForm">
+      <div class="inps">
+        <!-- Username Input -->
+        <div class="inp">
+          <input type="text" formControlName="username" placeholder="Your Name">
+          <div *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
+            <small *ngIf="registerForm.get('username').errors?.required">Password Is Required</small>
           </div>
-          <div class="inp">
-             <input type="password" placeholder="Your Password" required>
+        </div>
+
+        <!-- Email Input -->
+        <div class="inp">
+          <input type="email" formControlName="email" placeholder="Your Email" required>
+          <div *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+            <small *ngIf="registerForm.get('email').errors?.required">Email Is Required.</small>
+            <small *ngIf="registerForm.get('email').errors?.email">The Email Is Not Valid.</small>
           </div>
-          <div class="btn">
-            <button type="submit">Continue</button>
+        </div>
+
+        <!-- Password Input -->
+        <div class="inp">
+          <input type="password" formControlName="password" placeholder="Your Password" required>
+          <div *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">
+            <small *ngIf="registerForm.get('password').errors?.required">Password Is Required.</small>
+            <small *ngIf="registerForm.get('password').errors?.minlength">Password should have 8 chars at least.</small>
+            <small *ngIf="registerForm.get('password').errors?.weakPassword">Password Should Have At Least One Letter And Number.</small>
           </div>
-       </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="btn">
+           <app-submit-register-button 
+           [form]="registerForm">
+           </app-submit-register-button>
+        </div>
+      </div>
     </form>
+
+    <!-- Additional Links and Social Logins -->
     <div class="links">
       <a href="#" class="have-account">I Already Have A Account</a>
     </div>
@@ -34,7 +57,7 @@
         <button>Continue With Google</button>
       </div>
       <div class="social-login-twitter">
-         <button>Continue With Twitter</button>
+        <button>Continue With Twitter</button>
       </div>
       <div class="social-login-github">
         <button>Continue With GitHub</button>

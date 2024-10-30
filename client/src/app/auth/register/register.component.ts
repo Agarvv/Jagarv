@@ -1,10 +1,31 @@
-import { Component } from '@angular/core';
+
+import { Component, Input } from '@angular/core';
+import { AuthService } from '@services/auth/auth.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  selector: 'app-submit-register-button',
+  templateUrl: './submit-register-button.component.html',
+  styleUrl: ['./submit-register-button.component.css'] 
 })
-export class RegisterComponent {
+export class SubmitRegisterButtonComponent {
+  @Input() form!: FormGroup;
 
+  constructor(private authService: AuthService) {}
+
+  submitForm() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.authService.registerUser(this.form.value).subscribe(
+      (data) => {
+        console.log("All Ok", data);
+      },
+      (error) => {
+        console.error("ERR REGISTER", error);
+      }
+    );
+  }
 }
