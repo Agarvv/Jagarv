@@ -21,12 +21,12 @@
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
     
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@models/*": ["src/app/models/*"],
-      "@services/*": ["src/app/services/*"],
-      "@env/*": ["src/app/environments/*"],
-      "@validators/*": ["src/app/validators/*"]
+      "@models/*": ["app/models/*"],
+      "@services/*": ["app/services/*"],
+      "@env/*": ["app/environments/*"],
+      "@validators/*": ["app/validators/*"]
     }
   },
   "angularCompilerOptions": {
