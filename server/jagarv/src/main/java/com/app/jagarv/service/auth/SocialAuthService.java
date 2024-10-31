@@ -17,7 +17,7 @@ public class SocialAuthService {
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
     private final GoogleIdTokenVerifier verifier;
 
-    public SocialAuthService(@Value("${googleClientId}") String googleClientId) {
+    public SocialAuthService(@Value("${google.clientId}") String googleClientId) {
         this.verifier = new GoogleIdTokenVerifier.Builder(
             new NetHttpTransport(), JSON_FACTORY)
                 .setAudience(Collections.singletonList(googleClientId))
