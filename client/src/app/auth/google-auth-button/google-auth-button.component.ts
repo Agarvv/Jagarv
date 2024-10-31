@@ -10,10 +10,10 @@ export class GoogleAuthButtonComponent {
    constructor(private googleAuthService: SocialAuthService) {}  
    
    loginWithGoogle(): void {
-       this.googleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((user) => {
+       this.googleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((user: any) => {
            console.log("Google Auth Success", user.idToken);
            
-       }).catch((error) => {
+       }).catch((error: any) => {
            console.log('Google Auth Failure', error);
        });
    }

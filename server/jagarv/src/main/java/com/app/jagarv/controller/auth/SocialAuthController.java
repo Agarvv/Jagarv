@@ -15,7 +15,7 @@ public class SocialAuthController {
 
     @PostMapping("/google")
     public ResponseEntity<String> handleLoginGoogle(@RequestBody String googleAuthToken) {
-        String responseMessage = socialAuthService.google(googleAuthToken);
+        String responseMessage = socialAuthService.verifyToken(googleAuthToken);
         
         // im gonna handle responses and errors when all the auth system is finished, for now im gonna just let it like this just for debugging.
         if (responseMessage.contains("success")) {
