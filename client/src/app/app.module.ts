@@ -18,8 +18,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminProductFormComponent } from './admin/admin-product-form/admin-product-form.component'; 
 import { StoreModule } from '@ngrx/store';
 import { ProductImagesFormComponent } from './admin/admin-product-form/product-images-form/product-images-form.component'; 
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponentComponent } from './layout/error-component/error-component.component';
 import { SuccessComponentComponent } from './layout/success-component/success-component.component';
 import { LoadingComponentComponent } from './layout/loading-component/loading-component.component'
@@ -38,6 +37,9 @@ import { LoginSubmitButtonComponent } from './auth/login/login-submit-button/log
 import { GoogleAuthButtonComponent } from './auth/google-auth-button/google-auth-button.component';
 import { GithubAuthButtonComponent } from './auth/github-auth-button/github-auth-button.component';
 import { TwitterAuthButtonComponent } from './auth/twitter-auth-button/twitter-auth-button.component';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -81,9 +83,25 @@ import { TwitterAuthButtonComponent } from './auth/twitter-auth-button/twitter-a
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({ admin: adminReducer}),
-
+    
+    SocialLoginModule 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              'GOOGLE_CLIENT_ID'  
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
