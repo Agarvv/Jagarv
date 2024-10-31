@@ -35,6 +35,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SubmitRegisterButtonComponent } from './auth/register/submit-register-button/submit-register-button.component';
 import { LoginSubmitButtonComponent } from './auth/login/login-submit-button/login-submit-button.component';
+import { GoogleAuthButtonComponent } from './auth/google-auth-button/google-auth-button.component';
+import { GithubAuthButtonComponent } from './auth/github-auth-button/github-auth-button.component';
+import { TwitterAuthButtonComponent } from './auth/twitter-auth-button/twitter-auth-button.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { LoginSubmitButtonComponent } from './auth/login/login-submit-button/log
     LoginComponent,
     RegisterComponent,
     SubmitRegisterButtonComponent,
-    LoginSubmitButtonComponent
+    LoginSubmitButtonComponent,
+    GoogleAuthButtonComponent,
+    GithubAuthButtonComponent,
+    TwitterAuthButtonComponent
   ],
   imports: [
     BrowserModule,
