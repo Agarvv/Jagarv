@@ -40,6 +40,7 @@ import { TwitterAuthButtonComponent } from './auth/twitter-auth-button/twitter-a
 
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from './environments/environment'; 
 
 @NgModule({
   declarations: [
@@ -95,7 +96,7 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              'GOOGLE_CLIENT_ID'  
+              environment.googleClientId
             )
           }
         ]

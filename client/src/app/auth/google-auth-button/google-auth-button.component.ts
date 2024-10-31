@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-google-auth-button',
