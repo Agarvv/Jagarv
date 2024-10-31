@@ -40,7 +40,8 @@ import { TwitterAuthButtonComponent } from './auth/twitter-auth-button/twitter-a
 
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { environment } from './environments/environment'; 
+import { environment } from './environments/environment';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component'; 
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { environment } from './environments/environment';
     LoginSubmitButtonComponent,
     GoogleAuthButtonComponent,
     GithubAuthButtonComponent,
-    TwitterAuthButtonComponent
+    TwitterAuthButtonComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
