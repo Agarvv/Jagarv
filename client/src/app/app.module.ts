@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';  
 import { AppRoutingModule } from './app-routing.module';
@@ -84,7 +84,6 @@ import { environment } from './environments/environment';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({ admin: adminReducer}),
-    
     SocialLoginModule 
   ],
   providers: [
@@ -103,6 +102,7 @@ import { environment } from './environments/environment';
       } as SocialAuthServiceConfig,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] 
 })
 export class AppModule { }
