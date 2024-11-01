@@ -1,21 +1,29 @@
-import { Component } from '@angular/core';
-import { SocialAuthService, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+
+declare const google: any;
 
 @Component({
   selector: 'app-google-auth-button',
   templateUrl: './google-auth-button.component.html',
-  styleUrls: ['./google-auth-button.component.css' ]  
+  styleUrls: ['./google-auth-button.component.css']
 })
-export class GoogleAuthButtonComponent {
-   constructor(private googleAuthService: SocialAuthService) {}  
-   
-   loginWithGoogle(): void {
-       this.googleAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((user: any) => {
-           console.log("Google Auth Success", user.idToken);
-           
-       }).catch((error: any) => {
-           console.log('Google Auth Failure', error);
-       });
-   }
+export class GoogleAuthButtonComponent implements OnInit {
+
+  ngOnInit(): void {
+    google.accounts.id.initialize({
+      client_id: environment.GOOGLE_CLIENT_ID,
+      callback: (response: any) => this.handleCredentialResponse(response)
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }
+    );
+  }
+
+  handleCredentialResponse(response: any) {
+    console.log("Google Auth Success", response.credential);
+    // here we will send it to the server 
+  }
 }
