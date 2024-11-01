@@ -25,5 +25,14 @@ export class AuthService {
   loginUser(user: LoginUser): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, user);
   }
+
+  // sends reset password url with instructions to reset password
+  sendResetPassword(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/sendResetPassword`, data);
+  }
   
+  // resets password 
+  resetPassword(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/resetPassword`, data);
+  }
 }

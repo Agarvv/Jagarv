@@ -42,7 +42,8 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { environment } from './environments/environment';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component'; 
+import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component';
+import { ResetPasswordButtonComponent } from './auth/reset-password/reset-password-button/reset-password-button.component'; 
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { SendResetPasswordComponent } from './auth/send-reset-password/send-rese
     GithubAuthButtonComponent,
     TwitterAuthButtonComponent,
     ResetPasswordComponent,
-    SendResetPasswordComponent
+    SendResetPasswordComponent,
+    ResetPasswordButtonComponent
   ],
   imports: [
     BrowserModule,

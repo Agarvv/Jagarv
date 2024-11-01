@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
@@ -9,10 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ResetPasswordComponent {
   resetPasswordForm: FormGroup | null = null;
   
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+  ) {
       this.resetPasswordForm = this.fb.group({
-          password: ['', [validators.required]],
-          resetPassword: ['', [validators.required]]
+          password: ['', [Validators.required]],
+          resetPassword: ['', [Validators.required]]
       })
   }
 }

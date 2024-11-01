@@ -10,11 +10,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SendResetPasswordComponent {
   sendResetPasswordForm: FormGroup | null = null;
   
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
       this.sendResetPasswordForm = this.fb.group({
           email: ['', 
           [Validators.required, 
-          validators.email]
+          Validators.email]
           ]
       })
   }
