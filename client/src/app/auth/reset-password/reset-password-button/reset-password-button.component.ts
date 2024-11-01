@@ -12,16 +12,24 @@ export class ResetPasswordButtonComponent {
 
  constructor(private authService: AuthService) {}
 
- sendResetPassword() {
-   if(this.form.invalid) {
+ sendResetPassword() { 
+  if(!this.form) {
+    return;  // Form not provided, do nothing and return early.
+  }
+  
+   if (this.form && this.form.invalid) {
      this.form.markAllAsTouched();
-     return
+     return;
    }
+
    this.authService.sendResetPassword(this.form.value).subscribe((data) => {
-     console.log("Reset Password sent successfully", data)
+     console.log("Reset Password sent successfully", data
+      
+     )
    }, (error) => {
     console.log("error while sending rset password", error)
    });
  }
+
 
 }

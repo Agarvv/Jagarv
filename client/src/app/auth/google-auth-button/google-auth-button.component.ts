@@ -12,7 +12,7 @@ export class GoogleAuthButtonComponent implements OnInit {
 
   ngOnInit(): void {
     google.accounts.id.initialize({
-      client_id: environment.GOOGLE_CLIENT_ID,
+      client_id: environment.googleClientId,
       callback: (response: any) => this.handleCredentialResponse(response)
     });
 
