@@ -38,10 +38,12 @@ public class AuthController {
     }
     
     @PostMapping("/send_reset_code")
-    public ResponseEntity<String> sendResetCode(@RequestBody String email) {
+    public ResponseEntity<String> sendResetCode(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
         String response = authService.sendResetCode(email);
         return ResponseEntity.ok(response);
     }
+    
 
 }
 
