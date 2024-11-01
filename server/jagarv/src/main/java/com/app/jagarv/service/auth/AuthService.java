@@ -103,4 +103,24 @@ public class AuthService {
         return "ok"; // when all its finished, error and success handling will improve
 
     }
+    
+    public String resetPassword(String newPassword, String userEmail, String resetToken) {
+    User user = userRepository.findByEmail(userEmail)
+        .orElseThrow(() -> new RuntimeException("User not found"));
+
+    ResetPasswordToken token = resetPasswordTokenRepository
+        .findByUserEmailAndToken(userEmail, resetToken)
+        .orElseThrow(() -> new RuntimeException("Invalid reset token or email"));
+
+    if (token.getExpireDate().before(new Date())) {
+        throw new RuntimeException("Reset token has expired.");
+    }
+
+    user.setPassword(passwordEncoder.encode(newPassword));  
+    userRepository.save(user);
+    resetPasswordTokenRepository.delete(token);
+
+    return "Password reset successfully!";
+}
+    
 }
