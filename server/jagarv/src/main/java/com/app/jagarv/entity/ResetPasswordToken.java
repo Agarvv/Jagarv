@@ -12,8 +12,8 @@ public class ResetPasswordToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "User Id cannot be null")
-    private Long userId; 
+    @NotNull(message = "User email cannot be null")
+    private String userEmail; 
 
     @NotNull(message = "Token cannot be null")
     private String token;
@@ -29,12 +29,12 @@ public class ResetPasswordToken {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getToken() {

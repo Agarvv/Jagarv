@@ -85,7 +85,7 @@ public class AuthService {
        
         String resetToken = GenerateResetPasswordToken.generate();
         ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
-        resetPasswordToken.setUserId(user.getId());
+        resetPasswordToken.setUserEmail(user.getEmail());
         resetPasswordToken.setToken(resetToken);
         Date expireDate = new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1));
         resetPasswordToken.setExpireDate(expireDate);
