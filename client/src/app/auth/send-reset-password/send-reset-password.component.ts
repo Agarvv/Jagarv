@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-send-reset-password',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './send-reset-password.component.css'
 })
 export class SendResetPasswordComponent {
-
+  sendResetPasswordForm: FormGroup | null = null;
+  
+  constructor(private fb: FormBuilder) {
+      this.sendResetPasswordForm = this.fb.group({
+          email: ['', 
+          [Validators.required, 
+          validators.email]
+          ]
+      })
+  }
+  
 }
