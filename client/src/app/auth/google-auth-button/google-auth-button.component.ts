@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { AuthGoogleService } from '../../services/auth/social-auth/google/auth-google.service';
 
 declare const google: any;
 
@@ -9,6 +10,8 @@ declare const google: any;
   styleUrls: ['./google-auth-button.component.css']
 })
 export class GoogleAuthButtonComponent implements OnInit {
+
+  constructor(private authGoogleService: AuthGoogleService) {}
 
   ngOnInit(): void {
     google.accounts.id.initialize({
@@ -24,6 +27,10 @@ export class GoogleAuthButtonComponent implements OnInit {
 
   handleCredentialResponse(response: any) {
     console.log("Google Auth Success", response.credential);
-    // here we will send it to the server 
+    this.authGoogleService.sendGoogleTokenToServer(response.credential).subscribe((data) => {
+      console.log("Google Auth Success", data);
+    }, (error) => {
+      console.error("Google Auth Failure", error);
+    })
   }
 }
