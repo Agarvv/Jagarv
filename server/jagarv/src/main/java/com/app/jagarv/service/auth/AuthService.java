@@ -13,6 +13,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
+import com.google.api.client.auth.openidconnect.IdToken.Payload;
+
 import com.app.jagarv.entity.User;
 import com.app.jagarv.dto.user.RegisterUserDTO;
 import com.app.jagarv.dto.user.LoginUserDTO; 
@@ -23,6 +26,8 @@ import com.app.jagarv.entity.ResetPasswordToken;
 import com.app.jagarv.outil.GenerateResetPasswordToken;
 import com.app.jagarv.repository.ResetPasswordTokenRepository;
 import com.app.jagarv.outil.SendMail;
+import com.app.jagarv.outil.JwtOutil;
+
 
 @Service
 public class AuthService {
@@ -40,6 +45,9 @@ public class AuthService {
     
     @Autowired 
     private SendMail sendMail;
+
+    @Autowired
+    private JwtOutil jwtOutil;
 
     // Registers a user in the system
     public void registerUser(RegisterUserDTO newUser) {
@@ -74,7 +82,10 @@ public class AuthService {
             // Authenticate the user
             Authentication authentication = authenticationManager.authenticate(authToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return "Welcome back"; // Return a success message or a token as needed
+
+          //  User user = (User) authentication.getPrincipal(); 
+
+            return "OK";
             
         } catch (BadCredentialsException e) {
             throw new RuntimeException("Invalid credentials"); // this will be in the future a "CredentialsNotValidException" that will have a message like:
@@ -127,6 +138,10 @@ public class AuthService {
     resetPasswordTokenRepository.delete(token);
 
     return "Password reset successfully!";
+}
+ 
+public String loginWithSocialMedia(Payload payload) {
+  return "soon";
 }
 
     
