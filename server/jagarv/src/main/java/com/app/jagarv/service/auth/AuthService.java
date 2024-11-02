@@ -80,29 +80,32 @@ public class AuthService {
     }
 
     public String sendResetCode(String email) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> 
-        new RuntimeException("email not exists")); // just for debug, when all is finished im gonna create a real exception
-       
-        String resetToken = GenerateResetPasswordToken.generate();
-        ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
-        resetPasswordToken.setUserEmail(user.getEmail());
-        resetPasswordToken.setToken(resetToken);
-        Date expireDate = new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1));
-        resetPasswordToken.setExpireDate(expireDate);
-        resetPasswordTokenRepository.save(resetPasswordToken);
-        SendMail sendMail = new SendMail();
-        sendMail.sendMail(email, 
+    User user = userRepository.findByEmail(email).orElseThrow(() -> 
+        new RuntimeException("Email not exists")); // Solo para debug, eventualmente crearé una excepción real
+
+    String resetToken = GenerateResetPasswordToken.generate();
+    ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
+    resetPasswordToken.setUserEmail(user.getEmail());
+    resetPasswordToken.setToken(resetToken);
+    Date expireDate = new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1));
+    resetPasswordToken.setExpireDate(expireDate);
+    resetPasswordTokenRepository.save(resetPasswordToken);
+
+    // Cambia la URL a la nueva estructura
+    String resetLink = String.format("https://jagarv.vercel.app/reset-password/%s/%s", user.getEmail(), resetToken);
+    
+    sendMail.sendMail(email, 
         "PASSWORD RESET AT JAGARV", 
+        "To reset your password, please click on the following link:\n" + 
+        resetLink + "\n" + 
+        "This link will expire in 1 hour.\n" + 
+        "Thank you!"
+    );
 
-         "To reset your password, please click on the following link:\n" + 
-         "https://jagarv.vercel.app/reset-password/" + resetToken + "\n" + 
-         "This link will expire in 1 hour.\n" + 
-         "Thank you!"
-        );
-
-        return "ok"; // when all its finished, error and success handling will improve
-
+    return "ok";
+    
     }
+    
     
     public String resetPassword(String newPassword, String userEmail, String resetToken) {
     User user = userRepository.findByEmail(userEmail)

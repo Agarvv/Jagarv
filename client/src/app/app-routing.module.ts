@@ -12,6 +12,8 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
 import { CreateProductComponent } from './admin/create-product/create-product.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password-component'
+import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component'
 
 
 const routes: Routes = [
@@ -33,6 +35,16 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent 
   },
+  
+  // reset password receive mail page
+  {
+      path: 'send-reset-password'
+  },
+  
+  // reset password page 
+  {
+      path: 'reset-password/:email/:token'
+  }
   
   // the admin page
   {
