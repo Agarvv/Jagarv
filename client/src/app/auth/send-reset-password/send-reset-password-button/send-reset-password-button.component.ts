@@ -16,16 +16,20 @@ export class SendResetPasswordButtonComponent {
  }
  
  sendResetPasswordEmail() {
-     if(this.form.invalid) {
-         this.form.markAllAsTouched();
-         return 
-     }
-     
-     this.authService.sesendResetPassword(this.form.value).subscribe((data) => {
-         console.log("Check email", data)
-     }, (error) => {
-         console.log("error while sending email", data)
-     })
- }
+    if (!this.form || this.form.invalid) { 
+        this.form?.markAllAsTouched(); 
+        return;
+    }
+    
+    this.authService.sendResetPassword(this.form.value).subscribe(
+        (data) => {
+            console.log("Check email", data);
+        },
+        (error) => {
+            console.log("error while sending email", error);
+        }
+    );
+}
+
  
 }
