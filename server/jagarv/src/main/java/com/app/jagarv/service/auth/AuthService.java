@@ -37,6 +37,9 @@ public class AuthService {
 
     @Autowired
     private ResetPasswordTokenRepository resetPasswordTokenRepository;
+    
+    @Autowired 
+    private SendMail sendMail;
 
     // Registers a user in the system
     public void registerUser(RegisterUserDTO newUser) {
