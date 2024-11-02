@@ -52,7 +52,7 @@ public class AuthController {
         String token = request.get("token");
         String newPassword = request.get("password");
         
-        String res = authService.resetPassword(newPassword, email, token)
+        String res = authService.resetPassword(newPassword, email, token);
         
         return ResponseEntity.ok(res);
     }
