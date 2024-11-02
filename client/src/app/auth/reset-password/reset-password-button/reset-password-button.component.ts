@@ -8,7 +8,8 @@ import { AuthService } from '../../../services/auth/auth.service';
   styleUrl: './reset-password-button.component.css'
 })
 export class ResetPasswordButtonComponent {
- @Input() form?: FormGroup
+  @Input() form: FormGroup | null = null;
+
 
  constructor(private authService: AuthService) {}
 

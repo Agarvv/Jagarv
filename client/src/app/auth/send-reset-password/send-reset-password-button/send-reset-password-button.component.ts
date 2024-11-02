@@ -9,7 +9,8 @@ import { FormGroup } from '@angular/forms'
   styleUrl: './send-reset-password-button.component.css'
 })
 export class SendResetPasswordButtonComponent {
- @Input() form?: FormGroup
+ @Input() form: FormGroup | null = null;
+
  
  constructor(private authService: AuthService) {
      
