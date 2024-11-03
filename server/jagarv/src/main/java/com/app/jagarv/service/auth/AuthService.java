@@ -3,6 +3,7 @@ package com.app.jagarv.service.auth;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,8 +146,25 @@ public class AuthService {
 }
  
 public String loginWithSocialMedia(Payload payload) {
-  return "soon";
+    String email = (String) payload.get("email");
+
+    // Busca al usuario por email
+    User user = userRepository.findByEmail(email).orElse(null);
+    
+    if (user == null) {
+        user = new User();
+        user.setEmail(email);
+        user.setUsername((String) payload.get("name"));
+        user.setPassword(passwordEncoder.encode(UUID.randomUUID().toString())); // "placeholder" for social media users
+        
+        userRepository.save(user);
+    }
+    
+    String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
+    return jwtToken; 
 }
+
+
 
     
 }
