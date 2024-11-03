@@ -74,26 +74,29 @@ public class AuthService {
     // Handles user login
     public String loginUser(LoginUserDTO loginUserDTO) {
         try {
-            // Create authentication token with provided credentials
+            
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 loginUserDTO.getEmail(), loginUserDTO.getPassword()
             );
-
-            // Authenticate the user
+    
+            
             Authentication authentication = authenticationManager.authenticate(authToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            User user = (User) authentication.getPrincipal(); 
+    
             
-           String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
-
+            CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = customUserDetails.getUser(); 
+    
+            
+            String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
+    
             return jwtToken;
-            
+    
         } catch (BadCredentialsException e) {
-            throw new RuntimeException("Invalid credentials"); // this will be in the future a "CredentialsNotValidException" that will have a message like:
-            // "Your Credentials are wrong."
+            throw new RuntimeException("Invalid credentials");
         }
     }
+    
 
     public String sendResetCode(String email) {
     User user = userRepository.findByEmail(email).orElseThrow(() -> 
