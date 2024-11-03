@@ -18,10 +18,6 @@ public class SocialAuthController {
         String responseMessage = socialAuthService.verifyToken(googleAuthToken);
         
         // im gonna handle responses and errors when all the auth system is finished, for now im gonna just let it like this just for debugging.
-        if (responseMessage.contains("success")) {
-            return ResponseEntity.ok(responseMessage);
-        } else {
-            return ResponseEntity.badRequest().body(responseMessage);
-        }
+        return ResponseEntity.ok(responseMessage);
     }
 }
