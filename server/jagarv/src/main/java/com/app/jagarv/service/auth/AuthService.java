@@ -83,9 +83,11 @@ public class AuthService {
             Authentication authentication = authenticationManager.authenticate(authToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-          //  User user = (User) authentication.getPrincipal(); 
+            User user = (User) authentication.getPrincipal(); 
+            
+           String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
 
-            return "OK";
+            return jwtToken;
             
         } catch (BadCredentialsException e) {
             throw new RuntimeException("Invalid credentials"); // this will be in the future a "CredentialsNotValidException" that will have a message like:

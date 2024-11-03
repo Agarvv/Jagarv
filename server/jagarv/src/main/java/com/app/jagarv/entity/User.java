@@ -1,5 +1,6 @@
 package com.app.jagarv.entity;
 
+import com.app.jagarv.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,15 +18,19 @@ public class User {
     private String username;
 
     @NotBlank(message = "Email cannot be null")
-    @Email(message = "Email must be a email")
+    @Email(message = "Email must be a valid email")
     @Column(nullable = false, unique = true)
     private String email;
 
     @NotBlank(message = "Password must not be null")
     @Size(min = 6, message = "Password must be min 6 chars")
     private String password;
+    
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User() {
+        this.role = Role.USER; 
     }
 
     public User(Long id, String username, String email, String password) {
@@ -33,6 +38,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = Role.USER; 
     }
 
     public Long getId() {
@@ -66,5 +72,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public Role getRole() {
+        return role;
+    }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
