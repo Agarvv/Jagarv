@@ -97,7 +97,7 @@ public class AuthService {
 
     public String sendResetCode(String email) {
     User user = userRepository.findByEmail(email).orElseThrow(() -> 
-        new RuntimeException("Email not exists")); // Solo para debug, eventualmente crearé una excepción real
+        new RuntimeException("Email not exists"));
 
     String resetToken = GenerateResetPasswordToken.generate();
     ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
@@ -107,7 +107,6 @@ public class AuthService {
     resetPasswordToken.setExpireDate(expireDate);
     resetPasswordTokenRepository.save(resetPasswordToken);
 
-    // Cambia la URL a la nueva estructura
     String resetLink = String.format("https://jagarv.vercel.app/reset-password/%s/%s", user.getEmail(), resetToken);
     
     sendMail.sendMail(email, 
