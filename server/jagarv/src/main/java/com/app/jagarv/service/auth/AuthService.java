@@ -23,6 +23,9 @@ import com.app.jagarv.dto.user.LoginUserDTO;
 import com.app.jagarv.repository.UserRepository;
 import com.app.jagarv.exception.exceptions.users.EmailAlreadyExistsException;
 import com.app.jagarv.exception.exceptions.users.UsernameAlreadyExistsException;
+import com.app.jagarv.exception.exceptions.users.EmailNotFoundException;
+import com.app.jagarv.exception.exceptions.users.InvalidCredentialsException;
+import com.app.jagarv.exception.exceptions.users.InvalidResetTokenOrEmail;
 import com.app.jagarv.entity.ResetPasswordToken;
 import com.app.jagarv.outil.GenerateResetPasswordToken;
 import com.app.jagarv.repository.ResetPasswordTokenRepository;
@@ -79,6 +82,12 @@ public class AuthService {
     // Handles user login
     public String loginUser(LoginUserDTO loginUserDTO, HttpServletResponse response) {
     try {
+        Boolean userExists = userRepository.existsByEmail(loginUserDTO.getEmail()); 
+        if(!userExists) {
+            throw new EmailNotFoundException("Your Account Does not Exist...")
+        }
+        
+        
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
             loginUserDTO.getEmail(), loginUserDTO.getPassword()
         );
@@ -97,13 +106,14 @@ public class AuthService {
         return jwtToken;
 
     } catch (BadCredentialsException e) {
-        throw new RuntimeException("Invalid credentials");
+        throw new InvalidCredentialsException("Password Does Not Match...")
     }
 }
 
+
     public String sendResetCode(String email) {
     User user = userRepository.findByEmail(email).orElseThrow(() -> 
-        new RuntimeException("Email not exists"));
+        new EmailNotFoundException("Email not exists"));
 
     String resetToken = GenerateResetPasswordToken.generate();
     ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
@@ -130,14 +140,14 @@ public class AuthService {
     
     public String resetPassword(String newPassword, String userEmail, String resetToken) {
     User user = userRepository.findByEmail(userEmail)
-        .orElseThrow(() -> new RuntimeException("User not found"));
+        .orElseThrow(() -> new EmailNotFoundException("User not found"));
 
     ResetPasswordToken token = resetPasswordTokenRepository
         .findByUserEmailAndToken(userEmail, resetToken)
         .orElseThrow(() -> new RuntimeException("Invalid reset token or email"));
 
     if (token.getExpireDate().before(new Date())) {
-        throw new RuntimeException("Reset token has expired.");
+        throw new InvalidResetTokenOrEmail("Reset token has expired.");
     }
 
     user.setPassword(passwordEncoder.encode(newPassword));  
