@@ -46,7 +46,7 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component';
 import { ResetPasswordButtonComponent } from './auth/reset-password/reset-password-button/reset-password-button.component';
 import { SendResetPasswordButtonComponent } from './auth/send-reset-password/send-reset-password-button/send-reset-password-button.component';
-import { withCredentialsInterceptor } from "./interceptors/with-credentials-interceptor"; 
+import { withCredentialsInterceptor } from './interceptors/with-credentials.interceptor'; 
 
 @NgModule({
   declarations: [

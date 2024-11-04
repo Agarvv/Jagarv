@@ -58,9 +58,6 @@ public class AuthService {
     @Autowired
     private JwtOutil jwtOutil;
 
-    @Autowired 
-    private HttpServletResponse response;
-
     // Registers a user in the system
     public void registerUser(RegisterUserDTO newUser) {
         // Check if the username is unique
