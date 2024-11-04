@@ -28,6 +28,10 @@ import com.app.jagarv.outil.GenerateResetPasswordToken;
 import com.app.jagarv.repository.ResetPasswordTokenRepository;
 import com.app.jagarv.outil.SendMail;
 import com.app.jagarv.outil.JwtOutil;
+import com.app.jagarv.outil.CookieOutil;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Service
@@ -73,31 +77,29 @@ public class AuthService {
     }
 
     // Handles user login
-    public String loginUser(LoginUserDTO loginUserDTO) {
-        try {
-            
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                loginUserDTO.getEmail(), loginUserDTO.getPassword()
-            );
-    
-            
-            Authentication authentication = authenticationManager.authenticate(authToken);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-    
-            
-            CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-            User user = customUserDetails.getUser(); 
-    
-            
-            String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
-    
-            return jwtToken;
-    
-        } catch (BadCredentialsException e) {
-            throw new RuntimeException("Invalid credentials");
-        }
+    public String loginUser(LoginUserDTO loginUserDTO, HttpServletResponse response) {
+    try {
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+            loginUserDTO.getEmail(), loginUserDTO.getPassword()
+        );
+
+        Authentication authentication = authenticationManager.authenticate(authToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        User user = customUserDetails.getUser();
+
+        String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
+
+        Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
+        response.addCookie(jwtCookie);
+
+        return jwtToken;
+
+    } catch (BadCredentialsException e) {
+        throw new RuntimeException("Invalid credentials");
     }
-    
+}
 
     public String sendResetCode(String email) {
     User user = userRepository.findByEmail(email).orElseThrow(() -> 
@@ -145,10 +147,10 @@ public class AuthService {
     return "Password reset successfully!";
 }
  
-public String loginWithSocialMedia(Payload payload) {
+public String loginWithSocialMedia(Payload payload, HttpServletResponse response) {
     String email = (String) payload.get("email");
 
-    // Busca al usuario por email
+
     User user = userRepository.findByEmail(email).orElse(null);
     
     if (user == null) {
@@ -161,6 +163,10 @@ public String loginWithSocialMedia(Payload payload) {
     }
     
     String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
+    
+    Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
+        response.addCookie(jwtCookie);
+    
     return jwtToken; 
 }
 
