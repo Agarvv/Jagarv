@@ -2,11 +2,14 @@ package com.app.jagarv.controller.auth;
 
 import com.app.jagarv.dto.user.RegisterUserDTO;
 import com.app.jagarv.service.auth.AuthService;
+import com.app.jagarv.dto.ApiResponse;
+
+import jakarta.validation.Valid;
+
 import com.app.jagarv.dto.user.LoginUserDTO;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
@@ -19,52 +22,50 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/api/jagarv/auth")
 public class AuthController {
     
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     // Endpoint for user registration
-    @PostMapping("/register") 
-    public ResponseEntity<String> registerUser(@RequestBody RegisterUserDTO user) {
+    @PostMapping("/register")
+    public ResponseEntity<ApiResponse<Void>> registerUser(@Valid @RequestBody RegisterUserDTO user)  {
 
-        authService.registerUser(user);
-        return ResponseEntity.ok("User registered successfully.");
-        
+    authService.registerUser(user);
+    return ResponseEntity.ok(new ApiResponse<>("Welcome To Jagarv!", null));
+
     }
-    
-    // Login endpoint 
-    @PostMapping("/login") 
-    public ResponseEntity<String> loginUser(@RequestBody LoginUserDTO loginUserDTO, HttpServletResponse response) {
 
-            String res = authService.loginUser(loginUserDTO, response);
-            return ResponseEntity.ok(res);
-     
+    // Login endpoint 
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<String>> loginUser(@Valid @RequestBody LoginUserDTO loginUserDTO, HttpServletResponse response) {
+    String res = authService.loginUser(loginUserDTO, response);
+    return ResponseEntity.ok(new ApiResponse<>("Welcome Back!", res));
     }
     
     @PostMapping("/send_reset_code")
-    public ResponseEntity<String> sendResetCode(@RequestBody Map<String, String> request) {
+    public ResponseEntity<ApiResponse<Void>> sendResetCode(@RequestBody Map<String, String> request) {
         String email = request.get("email");
-        String response = authService.sendResetCode(email);
-        return ResponseEntity.ok(response);
+        authService.sendResetCode(email);
+        return ResponseEntity.ok(new ApiResponse<Void>("Check Your Email!", null));
     }
     
     @PostMapping("/reset_password")
-    public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> request) {
+    public ResponseEntity<ApiResponse<Void>> resetPassword(@RequestBody Map<String, String> request) {
         String email = request.get("email");
         String token = request.get("token");
         String newPassword = request.get("password");
         
-        String res = authService.resetPassword(newPassword, email, token);
+        authService.resetPassword(newPassword, email, token);
         
-        return ResponseEntity.ok(res);
+        return ResponseEntity.ok(new ApiResponse<Void>("Your Password Has Been Reset!", null));
     }
     
     @GetMapping("/check")
-    public ResponseEntity<String> checkUserAuthenticated(@CookieValue(value="jwt", required = false) String jwtToken) {
-        
+    public ResponseEntity<ApiResponse<Void>> checkUserAuthenticated(@CookieValue(value="jwt", required = false) String jwtToken) {
         authService.checkIfAuthenticated(jwtToken);
-        
-        return ResponseEntity.ok("You are authenticated");
-        
+        return ResponseEntity.ok(new ApiResponse<Void>("AUTHENTICATED", null)); 
+        // that message will be not displayed on frontend
     }
 }
-

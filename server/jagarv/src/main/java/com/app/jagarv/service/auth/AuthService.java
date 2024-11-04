@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,23 +39,27 @@ import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class AuthService {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager; 
+    private final ResetPasswordTokenRepository resetPasswordTokenRepository;
+    private final SendMail sendMail;
+    private final JwtOutil jwtOutil;
 
-    @Autowired 
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AuthenticationManager authenticationManager; 
-
-    @Autowired
-    private ResetPasswordTokenRepository resetPasswordTokenRepository;
-    
-    @Autowired 
-    private SendMail sendMail;
-
-    @Autowired
-    private JwtOutil jwtOutil;
+    public AuthService(
+         UserRepository userRepository,
+         PasswordEncoder passwordEncoder, 
+         AuthenticationManager authenticationManager,
+         ResetPasswordTokenRepository resetPasswordTokenRepository,
+         SendMail sendMail, JwtOutil jwtOutil
+    ) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.resetPasswordTokenRepository = resetPasswordTokenRepository;
+        this.sendMail = sendMail;
+        this.jwtOutil = jwtOutil;
+ }
 
     // Registers a user in the system
     public void registerUser(RegisterUserDTO newUser) {
