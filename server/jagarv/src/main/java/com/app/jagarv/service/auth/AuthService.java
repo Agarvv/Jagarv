@@ -84,7 +84,7 @@ public class AuthService {
     }
 
     // Handles user login
-    public String loginUser(LoginUserDTO loginUserDTO, HttpServletResponse response) {
+    public Cookie loginUser(LoginUserDTO loginUserDTO) {
     try {
         Boolean userExists = userRepository.existsByEmail(loginUserDTO.getEmail()); 
         if(!userExists) {
@@ -105,9 +105,8 @@ public class AuthService {
         String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
 
         Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
-        response.addCookie(jwtCookie);
-
-        return jwtToken;
+        
+        return jwtCookie;
 
     } catch (BadCredentialsException e) {
         throw new InvalidCredentialsException("Password Does Not Match...");

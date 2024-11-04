@@ -13,6 +13,7 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 
 // This controller handles all the auth logic,
 // like Login, register, or reset password.
@@ -40,8 +41,10 @@ public class AuthController {
     // Login endpoint 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<String>> loginUser(@Valid @RequestBody LoginUserDTO loginUserDTO, HttpServletResponse response) {
-    String res = authService.loginUser(loginUserDTO, response);
-    return ResponseEntity.ok(new ApiResponse<>("Welcome Back!", res));
+    Cookie jwtCookie = authService.loginUser(loginUserDTO);
+    response.addCookie(jwtCookie); 
+    
+    return ResponseEntity.ok(new ApiResponse<>("Welcome Back!", jwtCookie.getValue()));
     }
     
     @PostMapping("/send_reset_code")
