@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletResponse;
 
 // This controller handles all the auth logic,
 // like Login, register, or reset password.
@@ -32,10 +33,10 @@ public class AuthController {
     
     // Login endpoint 
     @PostMapping("/login") 
-    public ResponseEntity<String> loginUser(@RequestBody LoginUserDTO loginUserDTO) {
+    public ResponseEntity<String> loginUser(@RequestBody LoginUserDTO loginUserDTO, HttpServletResponse response) {
 
-            String response = authService.loginUser(loginUserDTO);
-            return ResponseEntity.ok(response);
+            String res = authService.loginUser(loginUserDTO, response);
+            return ResponseEntity.ok(res);
      
     }
     
@@ -62,7 +63,7 @@ public class AuthController {
         
         authService.checkIfAuthenticated(jwtToken);
         
-        return ResponseEntity.ok("You are authenticated")
+        return ResponseEntity.ok("You are authenticated");
         
     }
 }

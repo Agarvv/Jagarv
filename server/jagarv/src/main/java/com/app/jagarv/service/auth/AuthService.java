@@ -58,6 +58,9 @@ public class AuthService {
     @Autowired
     private JwtOutil jwtOutil;
 
+    @Autowired 
+    private HttpServletResponse response;
+
     // Registers a user in the system
     public void registerUser(RegisterUserDTO newUser) {
         // Check if the username is unique
@@ -85,7 +88,7 @@ public class AuthService {
     try {
         Boolean userExists = userRepository.existsByEmail(loginUserDTO.getEmail()); 
         if(!userExists) {
-            throw new EmailNotFoundException("Your Account Does not Exist...")
+            throw new EmailNotFoundException("Your Account Does not Exist...");
         }
         
         
@@ -107,7 +110,7 @@ public class AuthService {
         return jwtToken;
 
     } catch (BadCredentialsException e) {
-        throw new InvalidCredentialsException("Password Does Not Match...")
+        throw new InvalidCredentialsException("Password Does Not Match...");
     }
 }
 
@@ -176,20 +179,20 @@ public String loginWithSocialMedia(Payload payload, HttpServletResponse response
     String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
     
     Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
-        response.addCookie(jwtCookie);
+    response.addCookie(jwtCookie);
     
     return jwtToken; 
 }
 
 public void checkIfAuthenticated(String jwtToken) {
     if(jwtToken == null) {
-        throw new UserSessionNotValidException("Please Log In.")
+        throw new UserSessionNotValidException("Please Log In.");
     }
     
-    boolean isTokenValid = jwtOutil.validateToken(jwtToken)
+    boolean isTokenValid = jwtOutil.validateToken(jwtToken);
     
     if(!isTokenValid) {
-        throw new UserSessionNotValidException("Your Session Is Not Valid Or Has Expired, Please Log In.")
+        throw new UserSessionNotValidException("Your Session Is Not Valid Or Has Expired, Please Log In.");
     }
     
     

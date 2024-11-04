@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import com.app.jagarv.service.auth.AuthService;
+import javax.servlet.http.HttpServletResponse;
 
 
 
@@ -33,12 +34,12 @@ public class SocialAuthService {
                 .build();
     }
 
-    public String verifyToken(String idTokenString) {
+    public String verifyToken(String idTokenString, HttpServletResponse response) {
         try {
             GoogleIdToken idToken = verifier.verify(idTokenString);
             if (idToken != null) {
                 Payload payload = idToken.getPayload();
-                jagarvAuthService.loginWithSocialMedia(payload);
+                jagarvAuthService.loginWithSocialMedia(payload, response);
                 return "success";
             } else { 
                 return null;
