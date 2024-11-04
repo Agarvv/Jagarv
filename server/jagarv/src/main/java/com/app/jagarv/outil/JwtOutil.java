@@ -30,6 +30,19 @@ public class JwtOutil {
                 .signWith(SignatureAlgorithm.HS256, JWT_SECRET)
                 .compact();
     }
+    
+    public boolean validateToken(String token) {
+    try {
+        Claims claims = extractAllClaims(token);
+        return !isTokenExpired(claims);
+    } catch (Exception e) {
+        return false; 
+    }
+}
+
+    private boolean isTokenExpired(Claims claims) {
+        return claims.getExpiration().before(new Date());
+    }
 
     
     public String extractRole(String token) {

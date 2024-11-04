@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { RegisterUser } from '../../models/User/RegisterUser';
 import { LoginUser } from '../../models/User/LoginUser';
 import { environment } from '../../environments/environment'; 
-
+import { map, catchError } from "rxjs/operators"
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +34,15 @@ export class AuthService {
   // resets password 
   resetPassword(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/resetPassword`, data);
+  }
+  
+  // check if the user is authenticated
+  isAuthenticated(): Observable<boolean> {
+      return this.http.get(`${this.apiUrl}/check`)
+      .pipe(
+     map(() => true),
+     catchError(() => of(false))
+     
+     )
   }
 }

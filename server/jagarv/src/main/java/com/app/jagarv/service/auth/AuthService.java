@@ -26,6 +26,7 @@ import com.app.jagarv.exception.exceptions.users.UsernameAlreadyExistsException;
 import com.app.jagarv.exception.exceptions.users.EmailNotFoundException;
 import com.app.jagarv.exception.exceptions.users.InvalidCredentialsException;
 import com.app.jagarv.exception.exceptions.users.InvalidResetTokenOrEmail;
+import com.app.jagarv.exception.exceptions.users.UserSessionNotValidException;
 import com.app.jagarv.entity.ResetPasswordToken;
 import com.app.jagarv.outil.GenerateResetPasswordToken;
 import com.app.jagarv.repository.ResetPasswordTokenRepository;
@@ -180,7 +181,19 @@ public String loginWithSocialMedia(Payload payload, HttpServletResponse response
     return jwtToken; 
 }
 
-
+public void checkIfAuthenticated(String jwtToken) {
+    if(jwtToken == null) {
+        throw new UserSessionNotValidException("Please Log In.")
+    }
+    
+    boolean isTokenValid = jwtOutil.validateToken(jwtToken)
+    
+    if(!isTokenValid) {
+        throw new UserSessionNotValidException("Your Session Is Not Valid Or Has Expired, Please Log In.")
+    }
+    
+    
+}
 
     
 }

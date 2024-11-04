@@ -6,4 +6,4 @@ public class EmailNotFoundException extends RuntimeException {
     }
 }
 
-// will be used on auth service, if the user email is not found.
+// will be used on auth service, if the user email is not found.ñ

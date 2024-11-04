@@ -1,6 +1,7 @@
+
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';  
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -44,7 +45,8 @@ import { environment } from './environments/environment';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component';
 import { ResetPasswordButtonComponent } from './auth/reset-password/reset-password-button/reset-password-button.component';
-import { SendResetPasswordButtonComponent } from './auth/send-reset-password/send-reset-password-button/send-reset-password-button.component'; 
+import { SendResetPasswordButtonComponent } from './auth/send-reset-password/send-reset-password-button/send-reset-password-button.component';
+import { withCredentialsInterceptor } from "./interceptors/with-credentials-interceptor"; 
 
 @NgModule({
   declarations: [
@@ -108,6 +110,11 @@ import { SendResetPasswordButtonComponent } from './auth/send-reset-password/sen
           }
         ]
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: withCredentialsInterceptor, 
+      multi: true
     }
   ],
   bootstrap: [AppComponent],

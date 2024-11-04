@@ -56,5 +56,14 @@ public class AuthController {
         
         return ResponseEntity.ok(res);
     }
+    
+    @GetMapping("/check")
+    public ResponseEntity<String> checkUserAuthenticated(@CookieValue(value="jwt", required = false) String jwtToken) {
+        
+        authService.checkIfAuthenticated(jwtToken);
+        
+        return ResponseEntity.ok("You are authenticated")
+        
+    }
 }
 
