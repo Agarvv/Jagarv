@@ -145,7 +145,7 @@ public class AuthService {
 
     ResetPasswordToken token = resetPasswordTokenRepository
         .findByUserEmailAndToken(userEmail, resetToken)
-        .orElseThrow(() -> new RuntimeException("Invalid reset token or email"));
+        .orElseThrow(() -> new InvalidResetTokenOrEmail("Invalid reset token or email"));
 
     if (token.getExpireDate().before(new Date())) {
         throw new InvalidResetTokenOrEmail("Reset token has expired.");

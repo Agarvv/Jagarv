@@ -21,5 +21,4 @@ public class GlobalExceptionHandler {
       return new ResponseEntity<>(stackTrace, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   
-  
 }

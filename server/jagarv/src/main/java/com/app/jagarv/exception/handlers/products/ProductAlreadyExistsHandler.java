@@ -1,4 +1,4 @@
-package com.app.jagarv.exception;
+package com.app.jagarv.exception.handlers.products;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import com.app.jagarv.exception.exceptions.products.ProductAlreadyExistsExceptio
 // This class handles exceptions related to resources that already exist in the application.
 // It centralizes error management for resources such as products, users, etc.
 @ControllerAdvice
-public class ResourceAlreadyExistsHandler {
+public class ProductAlreadyExistsHandler {
 
     // Handles the exception when an attempt is made to create a product that already exists.
     @ExceptionHandler(ProductAlreadyExistsException.class)
