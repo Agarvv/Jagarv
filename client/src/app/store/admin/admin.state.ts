@@ -1,6 +1,6 @@
 export interface AdminState {
     loading: boolean;
-    error: string;
+    error: string | null;
     success: string | null;
 }
 
