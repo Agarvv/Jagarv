@@ -13,7 +13,7 @@
         <div class="inp">
           <input type="text" formControlName="username" placeholder="Your Name">
           <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-            <small *ngIf="registerForm.get('username')?.errors?.required">Password Is Required</small>
+            <small class="val-error" *ngIf="registerForm.get('username')?.errors?.required">Password Is Required</small>
           </div>
         </div>
 
@@ -21,8 +21,8 @@
         <div class="inp">
           <input type="email" formControlName="email" placeholder="Your Email" required>
           <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-            <small *ngIf="registerForm.get('email')?.errors?.required">Email Is Required.</small>
-            <small *ngIf="registerForm.get('email')?.errors?.email">The Email Is Not Valid.</small>
+            <small class="val-error" *ngIf="registerForm.get('email')?.errors?.required">Email Is Required.</small>
+            <small class="val-error" *ngIf="registerForm.get('email')?.errors?.email">The Email Is Not Valid.</small>
           </div>
         </div>
 
@@ -30,9 +30,9 @@
         <div class="inp">
           <input type="password" formControlName="password" placeholder="Your Password" required>
           <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-            <small *ngIf="registerForm.get('password')?.errors?.required">Password Is Required.</small>
-            <small *ngIf="registerForm.get('password')?.errors?.minlength">Password should have 8 chars at least.</small>
-            <small *ngIf="registerForm.get('password')?.errors?.weakPassword">Password Should Have At Least One Letter And Number.</small>
+            <small class="val-error" *ngIf="registerForm.get('password')?.errors?.required">Password Is Required.</small>
+            <small class="val-error" *ngIf="registerForm.get('password')?.errors?.minlength">Password should have 8 chars at least.</small>
+            <small class="val-error" *ngIf="registerForm.get('password')?.errors?.weakPassword">Password Should Have At Least One Letter And Number.</small>
           </div>
         </div>
 

@@ -33,14 +33,11 @@
             <small class="val-error" *ngIf="loginForm?.get('password')?.errors?.['required']">Password is required</small>
           </div>
         </div>
-
-        <!-- Recordarme y Botón de Envío -->
-        <div class="remember-me">
-          <input type="checkbox" id="keep-logged" name="keep-logged" />
-          <label for="keep-logged">Keep me logged in</label>
-        </div>
+        
         <div class="btn">
-          <button [disabled]="loginForm?.invalid">Login</button>
+          <app-login-submit-button [form]="loginForm">
+
+          </app-login-submit-button>
         </div>
       </div>
     </form>
