@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service'; 
+import { Store } from '@ngrx/store';
+import { setLoading, setError, setSuccess, clearMessages } from '../../store/admin/admin.actions'
 
 
 @Component({
