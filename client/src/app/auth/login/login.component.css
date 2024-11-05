@@ -54,34 +54,6 @@ h2 {
   outline: none;
 }
 
-.remember-me {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.remember-me input[type="checkbox"] {
-  accent-color: #04CDD4;
-}
-
-.btn button {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #04CDD4;
-  color: #ffffff;
-  font-weight: bold;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn button:hover {
-  background-color: #03a6aa;
-}
-
 .links {
   display: flex;
   justify-content: space-between;
