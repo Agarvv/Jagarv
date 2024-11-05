@@ -73,7 +73,7 @@
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version> 
+            <version>6.0.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -84,8 +84,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.el</artifactId>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
             <version>3.0.0</version>
         </dependency>
 
@@ -126,6 +126,17 @@
             <version>3.0.0</version>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>jakarta-repo</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
