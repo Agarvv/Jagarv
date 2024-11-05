@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import com.app.jagarv.service.auth.AuthService;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse; 
 
 
 @Service

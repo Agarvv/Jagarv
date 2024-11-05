@@ -3,17 +3,15 @@ package com.app.jagarv.controller.auth;
 import com.app.jagarv.dto.user.RegisterUserDTO;
 import com.app.jagarv.service.auth.AuthService;
 import com.app.jagarv.dto.ApiResponse;
-
 import jakarta.validation.Valid;
-
 import com.app.jagarv.dto.user.LoginUserDTO;
 
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Cookie;
 
 // This controller handles all the auth logic,
 // like Login, register, or reset password.
@@ -31,20 +29,18 @@ public class AuthController {
 
     // Endpoint for user registration
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse<Void>> registerUser(@Valid @RequestBody RegisterUserDTO user)  {
-
-    authService.registerUser(user);
-    return ResponseEntity.ok(new ApiResponse<>("Welcome To Jagarv!", null));
-
+    public ResponseEntity<ApiResponse<Void>> registerUser(@Valid @RequestBody RegisterUserDTO user) {
+        authService.registerUser(user);
+        return ResponseEntity.ok(new ApiResponse<>("Welcome To Jagarv!", null));
     }
 
     // Login endpoint 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<String>> loginUser(@Valid @RequestBody LoginUserDTO loginUserDTO, HttpServletResponse response) {
-    Cookie jwtCookie = authService.loginUser(loginUserDTO);
-    response.addCookie(jwtCookie); 
-    
-    return ResponseEntity.ok(new ApiResponse<>("Welcome Back!", jwtCookie.getValue()));
+        Cookie jwtCookie = authService.loginUser(loginUserDTO);
+        response.addCookie(jwtCookie); 
+        
+        return ResponseEntity.ok(new ApiResponse<>("Welcome Back!", jwtCookie.getValue()));
     }
     
     @PostMapping("/send_reset_code")

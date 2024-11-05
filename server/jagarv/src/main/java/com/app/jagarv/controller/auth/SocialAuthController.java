@@ -3,10 +3,9 @@ package com.app.jagarv.controller.auth;
 import com.app.jagarv.service.auth.SocialAuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse; 
+
 
 @RestController
 @RequestMapping("/api/jagarv/auth")
