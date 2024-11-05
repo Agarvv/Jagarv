@@ -7,7 +7,7 @@
   </div>
   <div class="main">
 
-  <!-- I dont have to use this components on al the admin's pages, we are using ngrx to handle it all on the admin-page.component.ts -->
+  <!-- I dont have to use this components on al the admin's pages, we are using ngrx to handle it all on the admin-page.component.ts
     <app-loading-component *ngIf="loading$ | async" class="loading-spinner">
    </app-loading-component>
 
@@ -15,7 +15,7 @@
    </app-error-component>
 
     <app-success-component *ngIf="success$ | async as successMessage" [message]="successMessage" class="success-message">
-    </app-success-component>
+    </app-success-component> -->
 
     <router-outlet (activate)="onActivate($event)"></router-outlet>
   </div>

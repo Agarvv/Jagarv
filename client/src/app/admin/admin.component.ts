@@ -15,17 +15,17 @@ export class AdminComponent {
   // This will handle our error, success and loading state in a cleaner manner,
   // we dont have to handle it on our 500 admin's components.
 
-  loading$: Observable<boolean>;
-  success$: Observable<string | null>;
-  error$: Observable<string | null>;
+  //loading$: Observable<boolean>;
+  //success$: Observable<string | null>;
+  //error$: Observable<string | null>;
   
-  constructor(private store: Store<{ admin: AdminState }>) {
-    this.loading$ = this.store.select(state => state.admin.loading);
-    this.success$ = this.store.select(state => state.admin.success);
-    this.error$ = this.store.select(state => state.admin.error);
-  }
+ // constructor(private store: Store<{ admin: AdminState }>) {
+  //  this.loading$ = this.store.select(state => state.admin.loading);
+  //  this.success$ = this.store.select(state => state.admin.success);
+  //  this.error$ = this.store.select(state => state.admin.error);
+  //}
 
-  onActivate(component: any) {
-    this.store.dispatch(clearMessages());
-  }
+  //onActivate(component: any) {
+   // this.store.dispatch(clearMessages());
+ // }
 }
