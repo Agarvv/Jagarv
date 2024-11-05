@@ -6,6 +6,6 @@ export interface AdminState {
 
 export const initialState: AdminState = {
     loading: false,
-    error: "Testing",
+    error: null,
     success: null,
   };
