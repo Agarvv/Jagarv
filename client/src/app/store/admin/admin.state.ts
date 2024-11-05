@@ -1,11 +1,11 @@
 export interface AdminState {
     loading: boolean;
-    error: string | null;
+    error: string;
     success: string | null;
 }
 
 export const initialState: AdminState = {
     loading: false,
-    error: null,
+    error: "Testing",
     success: null,
   };
