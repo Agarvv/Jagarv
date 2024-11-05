@@ -38,12 +38,14 @@ const routes: Routes = [
   
   // reset password receive mail page
   {
-      path: 'send-reset-password'
+      path: 'send-reset-password',
+      component: SendResetPasswordComponent
   },
   
   // reset password page 
   {
-      path: 'reset-password/:email/:token'
+      path: 'reset-password/:email/:token',
+      component: ResetPasswordComponent 
   },
   
   // the admin page
