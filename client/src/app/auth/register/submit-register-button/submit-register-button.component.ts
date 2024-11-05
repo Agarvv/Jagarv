@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { setLoading, setSuccess, setError, clearMessages } from "../../../store/admin/admin.actions"
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-submit-register-button',
@@ -13,7 +14,7 @@ import { finalize } from 'rxjs/operators';
 export class SubmitRegisterButtonComponent {
    @Input() form!: FormGroup;
     
-   constructor(private authService: AuthService, private store: Store) {}
+   constructor(private authService: AuthService, private store: Store, private router: Router) {}
    
    submitForm() {
      this.store.dispatch(clearMessages());
@@ -30,7 +31,7 @@ export class SubmitRegisterButtonComponent {
          })
        ).subscribe(
          (data) => {
-           this.store.dispatch(setSuccess({ successMessage: "Welcome To Jagarv! Please Wait While We Redirect You..."}));
+            this.router.navigate(["/login"])
          },
          (error) => {
            this.store.dispatch(setError({ errorMessage: error.error}));
