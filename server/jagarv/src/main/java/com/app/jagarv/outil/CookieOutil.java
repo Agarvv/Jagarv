@@ -1,6 +1,6 @@
 package com.app.jagarv.outil;
 
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.Cookie;
 
 public class CookieOutil {
     public static Cookie generateJwtCookie(String jwtToken) {
