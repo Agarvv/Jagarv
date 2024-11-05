@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AdminState } from './store/admin/admin.state'; 
 import { clearMessages } from './store/admin/admin.actions'; 
+import { selectLoading, selectError, selectSuccess } from './store/admin/admin.selectors';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,9 @@ export class AppComponent implements OnInit {
   error$: Observable<string | null>;
 
   constructor(private store: Store<AdminState>) {
-    this.loading$ = this.store.pipe(select('loading'));
-    this.success$ = this.store.pipe(select('success'));
-    this.error$ = this.store.pipe(select('error'));
+    this.loading$ = this.store.pipe(select(selectLoading));
+    this.success$ = this.store.pipe(select(selectSuccess));
+    this.error$ = this.store.pipe(select(selectError));
   }
 
   ngOnInit(): void {
