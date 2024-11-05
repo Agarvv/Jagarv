@@ -160,7 +160,7 @@ public class AuthService {
     return "Password reset successfully!";
 }
  
-public String loginWithSocialMedia(Payload payload, HttpServletResponse response) {
+public Cookie loginWithSocialMedia(Payload payload) {
     String email = (String) payload.get("email");
 
 
@@ -178,9 +178,9 @@ public String loginWithSocialMedia(Payload payload, HttpServletResponse response
     String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
     
     Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
-    response.addCookie(jwtCookie);
     
-    return jwtToken; 
+    
+    return jwtCookie; 
 }
 
 public void checkIfAuthenticated(String jwtToken) {
