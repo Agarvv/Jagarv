@@ -33,7 +33,6 @@ import com.app.jagarv.outil.JwtOutil;
 import com.app.jagarv.outil.CookieOutil;
 
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse; 
 
 @Service
 public class AuthService {
