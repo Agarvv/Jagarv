@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from './store'; 
+import { AdminState } from './store/admin/admin.state'; 
 import { clearMessages } from './store/admin/admin.actions'; 
 
 @Component({
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   success$: Observable<string | null>;
   error$: Observable<string | null>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AdminState>) {
     this.loading$ = this.store.pipe(select('loading'));
     this.success$ = this.store.pipe(select('success'));
     this.error$ = this.store.pipe(select('error'));

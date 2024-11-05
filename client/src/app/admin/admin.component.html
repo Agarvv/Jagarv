@@ -17,7 +17,8 @@
     <app-success-component *ngIf="success$ | async as successMessage" [message]="successMessage" class="success-message">
     </app-success-component> -->
 
-    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <router-outlet></router-outlet>
+    <!-- (activate)="onActivate($event) -->
   </div>
   <div class="footer">
     <!-- I will make the footer Component, but not now -->
