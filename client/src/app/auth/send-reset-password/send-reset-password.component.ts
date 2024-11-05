@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service'; 
-import { Store } from '@ngrx/store';
-import { setLoading, setError, setSuccess, clearMessages } from '../../store/admin/admin.actions'
+
+
 
 
 @Component({
@@ -11,7 +11,7 @@ import { setLoading, setError, setSuccess, clearMessages } from '../../store/adm
   styleUrl: './send-reset-password.component.css'
 })
 export class SendResetPasswordComponent {
-  sendResetPasswordForm: FormGroup | null = null;
+  sendResetPasswordForm: FormGroup;
   
   constructor(
     private fb: FormBuilder,
