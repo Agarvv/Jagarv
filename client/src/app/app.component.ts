@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('APP OK');
+    console.log(this.error$);
   }
 
   clearMessages(): void {
