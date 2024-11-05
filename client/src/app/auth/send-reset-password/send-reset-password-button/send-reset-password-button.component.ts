@@ -18,6 +18,7 @@ export class SendResetPasswordButtonComponent {
  
  sendResetPasswordEmail() {
     if (!this.form || this.form.invalid) { 
+        console.log("form not valid") // debug
         this.form?.markAllAsTouched(); 
         return;
     }
