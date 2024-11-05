@@ -28,12 +28,12 @@ export class AuthService {
 
   // sends reset password url with instructions to reset password
   sendResetPassword(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/sendResetPassword`, data);
+    return this.http.post(`${this.apiUrl}/send_reset_code`, data);
   }
   
   // resets password 
   resetPassword(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/resetPassword`, data);
+    return this.http.post(`${this.apiUrl}/reset_password`, data);
   }
   
   // check if the user is authenticated
