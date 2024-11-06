@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './guards/auth/auth.guard';  
 import { HomeComponent  } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component'
@@ -27,7 +28,8 @@ const routes: Routes = [
   // the homepage 
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [authGuard]
   },
  
   // registration page 
