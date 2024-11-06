@@ -38,7 +38,9 @@ export class AuthService {
   
   // check if the user is authenticated
   isAuthenticated(): Observable<boolean> {
-      return this.http.get(`${this.apiUrl}/check`)
+      return this.http.get(`${this.apiUrl}/check`, {
+          withCredentials: true 
+      })
       .pipe(
      map(() => true),
      catchError(() => of(false))
