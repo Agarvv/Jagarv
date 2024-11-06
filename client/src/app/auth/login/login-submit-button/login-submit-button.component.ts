@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup} from '@angular/forms';
-import { AuthService } from '@services/auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { Store } from '@ngrx/store';
 import { setLoading, setError, clearMessages } from './../../../store/admin/admin.actions'
 import { finalize } from 'rxjs';
@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
   templateUrl: './login-submit-button.component.html',
   styleUrl: './login-submit-button.component.css'
 })
-
 export class LoginSubmitButtonComponent {
   @Input() form!: FormGroup;
   
