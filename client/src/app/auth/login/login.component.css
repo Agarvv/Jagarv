@@ -85,6 +85,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 100%;
 }
 
 .social-logins div button {
@@ -105,7 +106,7 @@ h2 {
   background-color: #c13a30;
 }
 
-.social-login-twitter button {
+/* .social-login-twitter button {
   background-color: #1da1f2;
   color: #fff;
 }
@@ -122,3 +123,4 @@ h2 {
 .social-login-github button:hover {
   background-color: #242424;
 }
+ */
