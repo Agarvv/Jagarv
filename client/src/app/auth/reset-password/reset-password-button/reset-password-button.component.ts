@@ -14,7 +14,7 @@ export class ResetPasswordButtonComponent {
   @Input() form: FormGroup | null = null;
 
 
- constructor(private authService: AuthService private store: Store) {}
+ constructor(private authService: AuthService, private store: Store) {}
 
  sendResetPassword() { 
      this.store.dispatch(clearMessages());
