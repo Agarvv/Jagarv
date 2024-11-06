@@ -1,3 +1,12 @@
 #buttonDiv {
-    width: 100%;
+  width: 100%;  
+  display: flex; 
+  justify-content: center;  
+  align-items: center;  
+  border: 1px solid red;
 }
+
+#buttonDiv > div {
+  width: 100%;  
+}
+
