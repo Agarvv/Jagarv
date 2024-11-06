@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup} from '@angular/forms';
-import { AuthService } from '../../../services/auth/auth.service';
+import { AuthService } from '@services/auth/auth.service';
 import { Store } from '@ngrx/store';
 import { setLoading, setError, clearMessages } from './../../../store/admin/admin.actions'
 import { finalize } from 'rxjs';
