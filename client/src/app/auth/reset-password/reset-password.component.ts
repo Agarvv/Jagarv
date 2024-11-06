@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './reset-password.component.css'
 })
 export class ResetPasswordComponent {
-  resetPasswordForm: FormGroup | null = null;
+  resetPasswordForm: FormGroup;
   
   constructor(
     private fb: FormBuilder,
