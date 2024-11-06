@@ -7,6 +7,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse; 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import com.app.jagarv.dto.ApiResponse;
 
 
 @RestController
@@ -17,11 +18,11 @@ public class SocialAuthController {
     private SocialAuthService socialAuthService;
 
     @PostMapping("/google")
-    public ResponseEntity<String> handleLoginGoogle(@RequestBody String googleAuthToken, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<Void>> handleLoginGoogle(@RequestBody String googleAuthToken, HttpServletResponse response) {
         Cookie jwtCookie = socialAuthService.verifyToken(googleAuthToken);
         response.addCookie(jwtCookie);
         
         // im gonna handle responses and errors when all the auth system is finished, for now im gonna just let it like this just for debugging.
-        return ResponseEntity.ok("Ok");
+        return ResponseEntity.ok(new ApiResponse<>("SUCCESS", null));
     }
 }
