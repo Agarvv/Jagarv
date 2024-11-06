@@ -52,4 +52,8 @@ public class ResetPasswordToken {
     public void setExpireDate(Date expireDate) {
         this.expireDate = expireDate;
     }
+
+    public Boolean hasExpired() {
+       return this.expireDate.before(new Date());
+    }
 }

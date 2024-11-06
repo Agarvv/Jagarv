@@ -1,12 +1,14 @@
 package com.app.jagarv.controller.auth;
 
 import com.app.jagarv.dto.user.RegisterUserDTO;
+import com.app.jagarv.dto.user.ResetPasswordDTO;
 import com.app.jagarv.service.auth.AuthService;
 import com.app.jagarv.dto.ApiResponse;
 import jakarta.validation.Valid;
 import com.app.jagarv.dto.user.LoginUserDTO;
+import com.app.jagarv.dto.user.SendResetCodeDTO;
 
-import java.util.Map;
+
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,20 +46,14 @@ public class AuthController {
     }
     
     @PostMapping("/send_reset_code")
-    public ResponseEntity<ApiResponse<Void>> sendResetCode(@RequestBody Map<String, String> request) {
-        String email = request.get("email");
-        authService.sendResetCode(email);
+    public ResponseEntity<ApiResponse<Void>> sendResetCode(@Valid @RequestBody SendResetCodeDTO sendCodeDTO) {
+        authService.sendResetCode(sendCodeDTO);
         return ResponseEntity.ok(new ApiResponse<Void>("Check Your Email!", null));
     }
     
     @PostMapping("/reset_password")
-    public ResponseEntity<ApiResponse<Void>> resetPassword(@RequestBody Map<String, String> request) {
-        String email = request.get("email");
-        String token = request.get("token");
-        String newPassword = request.get("password");
-        
-        authService.resetPassword(newPassword, email, token);
-        
+    public ResponseEntity<ApiResponse<Void>> resetPassword(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO) {
+        authService.resetPassword(resetPasswordDTO);
         return ResponseEntity.ok(new ApiResponse<Void>("Your Password Has Been Reset!", null));
     }
     

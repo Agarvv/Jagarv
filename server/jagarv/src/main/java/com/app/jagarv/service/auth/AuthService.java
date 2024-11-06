@@ -31,8 +31,10 @@ import com.app.jagarv.repository.ResetPasswordTokenRepository;
 import com.app.jagarv.outil.SendMail;
 import com.app.jagarv.outil.JwtOutil;
 import com.app.jagarv.outil.CookieOutil;
-
 import jakarta.servlet.http.Cookie;
+
+import com.app.jagarv.dto.user.SendResetCodeDTO;
+import com.app.jagarv.dto.user.ResetPasswordDTO;
 
 @Service
 public class AuthService {
@@ -109,8 +111,8 @@ public class AuthService {
         }
     }
 
-    public String sendResetCode(String email) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> 
+    public void sendResetCode(SendResetCodeDTO sendResetCodeDTO) {
+        User user = userRepository.findByEmail(sendResetCodeDTO.getEmail()).orElseThrow(() -> 
             new EmailNotFoundException("Email not exists"));
 
         String resetToken = GenerateResetPasswordToken.generate();
@@ -123,34 +125,30 @@ public class AuthService {
 
         String resetLink = String.format("https://jagarv.vercel.app/reset-password/%s/%s", user.getEmail(), resetToken);
         
-        sendMail.sendMail(email, 
+        sendMail.sendMail(sendResetCodeDTO.getEmail(), 
             "PASSWORD RESET AT JAGARV", 
             "To reset your password, please click on the following link:\n" + 
             resetLink + "\n" + 
             "This link will expire in 1 hour.\n" + 
             "Thank you!"
         );
-
-        return "ok";
     }
     
-    public String resetPassword(String newPassword, String userEmail, String resetToken) {
-        User user = userRepository.findByEmail(userEmail)
+    public void resetPassword(ResetPasswordDTO resetPasswordDTO) {
+        User user = userRepository.findByEmail(resetPasswordDTO.getEmail())
             .orElseThrow(() -> new EmailNotFoundException("User not found"));
 
         ResetPasswordToken token = resetPasswordTokenRepository
-            .findByUserEmailAndToken(userEmail, resetToken)
+            .findByUserEmailAndToken(resetPasswordDTO.getEmail(), resetPasswordDTO.getToken())
             .orElseThrow(() -> new InvalidResetTokenOrEmail("Invalid reset token or email"));
 
-        if (token.getExpireDate().before(new Date())) {
-            throw new InvalidResetTokenOrEmail("Reset token has expired.");
+        if (token.hasExpired()) {
+            throw new InvalidResetTokenOrEmail("Reset token has expired."); // token expired
         }
 
-        user.setPassword(passwordEncoder.encode(newPassword));  
+        user.setPassword(passwordEncoder.encode(resetPasswordDTO.getPassword()));  
         userRepository.save(user);
         resetPasswordTokenRepository.delete(token);
-
-        return "Password reset successfully!";
     }
  
     public Cookie loginWithSocialMedia(Payload payload) {

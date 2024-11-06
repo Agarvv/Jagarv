@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import com.app.jagarv.dto.ApiResponse;
+import com.app.jagarv.dto.user.GoogleAuthDTO;
 
 
 @RestController
@@ -18,10 +19,9 @@ public class SocialAuthController {
     private SocialAuthService socialAuthService;
 
     @PostMapping("/google")
-    public ResponseEntity<ApiResponse<Void>> handleLoginGoogle(@RequestBody String googleAuthToken, HttpServletResponse response) {
-        Cookie jwtCookie = socialAuthService.verifyToken(googleAuthToken);
+    public ResponseEntity<ApiResponse<Void>> handleLoginGoogle(@RequestBody GoogleAuthDTO googleAuthDTO, HttpServletResponse response) {
+        Cookie jwtCookie = socialAuthService.verifyToken(googleAuthDTO.getGoogleAuthToken());
         response.addCookie(jwtCookie);
-        
         // im gonna handle responses and errors when all the auth system is finished, for now im gonna just let it like this just for debugging.
         return ResponseEntity.ok(new ApiResponse<>("SUCCESS", null));
     }
