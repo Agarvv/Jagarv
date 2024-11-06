@@ -31,8 +31,6 @@
   },
   "baseUrl": "./src",
   "paths": {
-     "@app/*": ["app/*"],
-     "@components/*": ["app/components/*"],
      "@services/*": ["app/services/*"],
      "@models/*": ["app/models/*"],
   }
