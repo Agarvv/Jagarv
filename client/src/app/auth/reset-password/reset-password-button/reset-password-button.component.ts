@@ -11,7 +11,7 @@ import { finalize } from 'rxjs';
   styleUrl: './reset-password-button.component.css'
 })
 export class ResetPasswordButtonComponent {
-  @Input() form: FormGroup | null = null;
+  @Input() form: FormGroup;
 
 
  constructor(private authService: AuthService, private store: Store) {}
