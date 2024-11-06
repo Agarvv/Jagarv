@@ -7,6 +7,7 @@ public class CookieOutil {
         Cookie cookie = new Cookie("jwt", jwtToken);  
         cookie.setHttpOnly(true); 
         cookie.setSecure(true); 
+        cookie.setSameSite("none");
         cookie.setPath("/"); 
         cookie.setMaxAge(3600); 
         cookie.setDomain("jagarv.vercel.app");
