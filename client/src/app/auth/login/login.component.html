@@ -9,7 +9,6 @@
   <div class="form">
     <form [formGroup]="loginForm">
       <div class="inps">
-        <!-- Campo Email -->
         <div class="inp">
           <input
             type="email"
@@ -22,7 +21,6 @@
           </div>
         </div>
 
-        <!-- Campo Password -->
         <div class="inp">
           <input
             type="password"
@@ -34,9 +32,9 @@
           </div>
         </div>
         
+        <!-- submit button -->
         <div class="btn">
           <app-login-submit-button [form]="loginForm">
-
           </app-login-submit-button>
         </div>
       </div>
@@ -52,12 +50,6 @@
     <div class="social-logins">
       <div class="social-login-google">
         <button>Continue With Google</button>
-      </div>
-      <div class="social-login-twitter">
-        <button>Continue With Twitter</button>
-      </div>
-      <div class="social-login-github">
-        <button>Continue With GitHub</button>
       </div>
     </div>
   </div>

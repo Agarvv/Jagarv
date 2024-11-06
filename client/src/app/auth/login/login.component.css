@@ -4,6 +4,10 @@ body {
     margin: 0;
 }
 
+*{
+    box-sizing: border-box;
+}
+
 .login-form {
   display: flex;
   align-items: center;
@@ -33,6 +37,7 @@ h2 {
 
 .form {
   width: 100%;
+  border: 1px solid red;
 }
 
 .inps {
