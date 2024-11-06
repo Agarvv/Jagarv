@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
-export class FooterComponent {
 
+export class FooterComponent {
+  @Input() showSearch: boolean = true; // true as initial state, this probably will be false on the admin page.
 }
