@@ -19,11 +19,11 @@ export class ResetPasswordButtonComponent {
   constructor(
     private authService: AuthService,
     private store: Store,
-    private route: ActivatedRoute  
+    private route: ActivatedRoute
   ) {
-    
-    this.email = this.route.snapshot.queryParamMap.get('email');
-    this.token = this.route.snapshot.queryParamMap.get('token');
+
+    this.email = this.route.snapshot.paramMap.get('email');
+    this.token = this.route.snapshot.paramMap.get('token');
   }
 
   sendResetPassword() { 
@@ -37,7 +37,7 @@ export class ResetPasswordButtonComponent {
       this.form.markAllAsTouched();
       return;
     }
-    
+
     if (!this.email || !this.token) {
       console.error('Email or token is missing from the route parameters');
       return;
