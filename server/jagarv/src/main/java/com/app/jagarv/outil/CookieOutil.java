@@ -9,6 +9,7 @@ public class CookieOutil {
         cookie.setSecure(true); 
         cookie.setPath("/"); 
         cookie.setMaxAge(3600); 
+        cookie.setDomain("jagarv.vercel.app");
         
         return cookie;
     }
