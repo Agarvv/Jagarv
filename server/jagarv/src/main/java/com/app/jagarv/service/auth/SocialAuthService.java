@@ -13,9 +13,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
-import com.app.jagarv.service.auth.AuthService;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse; 
+
 
 
 @Service
