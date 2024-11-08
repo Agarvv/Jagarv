@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.app.jagarv.entity.product.AttributeOption;
 
 @Repository
-public interface AttributeOptionRepository extends JpaRepository<Long, AttributeOption> {
+public interface AttributeOptionRepository extends JpaRepository<AttributeOption, Long> {
     
 }

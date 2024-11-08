@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.app.jagarv.entity.product.ProductVariant;
 
 @Repository
-public interface ProductVariantRepository extends JpaRepository<Long, ProductVariant> {
+public interface ProductVariantRepository extends JpaRepository<ProductVariant, Long> {
     
 }
