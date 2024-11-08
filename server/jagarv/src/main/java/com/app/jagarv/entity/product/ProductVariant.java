@@ -30,8 +30,14 @@ public class ProductVariant {
     private Product product;
     
     // attribute options associated with this variant
-   // @OneToMany(mappedBy = "variant", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+        name = "variant_attribute_option",
+        joinColumns = @JoinColumn(name = "variant_id"),
+        inverseJoinColumns = @JoinColumn(name = "attribute_option_id")
+    )
     private List<AttributeOption> attributeOptions;
+    
 
     private List<String> images; // new images stored as url links in strings 
 
