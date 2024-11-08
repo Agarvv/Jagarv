@@ -46,7 +46,10 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component';
 import { ResetPasswordButtonComponent } from './auth/reset-password/reset-password-button/reset-password-button.component';
 import { SendResetPasswordButtonComponent } from './auth/send-reset-password/send-reset-password-button/send-reset-password-button.component';
-import { withCredentialsInterceptor } from './interceptors/with-credentials.interceptor'; 
+import { withCredentialsInterceptor } from './interceptors/with-credentials.interceptor';
+import { AdminDashboardChartComponent } from './admin/admin-dashboard/admin-dashboard-chart/admin-dashboard-chart.component';
+import { AdminDashboardInsightsComponent } from './admin/admin-dashboard/admin-dashboard-insights/admin-dashboard-insights.component';
+import { AdminDashboardTopProductsComponent } from './admin/admin-dashboard/admin-dashboard-top-products/admin-dashboard-top-products.component'; 
 
 @NgModule({
   declarations: [
@@ -85,7 +88,10 @@ import { withCredentialsInterceptor } from './interceptors/with-credentials.inte
     ResetPasswordComponent,
     SendResetPasswordComponent,
     ResetPasswordButtonComponent,
-    SendResetPasswordButtonComponent
+    SendResetPasswordButtonComponent,
+    AdminDashboardChartComponent,
+    AdminDashboardInsightsComponent,
+    AdminDashboardTopProductsComponent
   ],
   imports: [
     BrowserModule,
