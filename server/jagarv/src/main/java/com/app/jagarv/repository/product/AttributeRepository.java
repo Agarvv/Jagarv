@@ -7,5 +7,5 @@ import com.app.jagarv.entity.product.Attribute;
 
 @Repository
 public interface AttributeRepository extends JpaRepository<Attribute, Long> {
-    
+    boolean existsByName(String name);
 }

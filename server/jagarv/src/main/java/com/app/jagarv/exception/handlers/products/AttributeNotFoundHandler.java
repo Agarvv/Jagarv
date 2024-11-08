@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.app.jagarv.exception.exceptions.products.AttributeNotFoundException;
 
 @ControllerAdvice 
-public class AttributeNotFoundException {
+public class AttributeNotFoundHandler {
     @ExceptionHandler(AttributeNotFoundException.class)
     public ResponseEntity<String> 
     handleAttributeNotFoundException(AttributeNotFoundException e) {
-        return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 }

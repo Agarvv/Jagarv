@@ -7,5 +7,5 @@ import com.app.jagarv.entity.product.ProductCategory;
 
 @Repository
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
-    
+    boolean existsByName(String name);
 }

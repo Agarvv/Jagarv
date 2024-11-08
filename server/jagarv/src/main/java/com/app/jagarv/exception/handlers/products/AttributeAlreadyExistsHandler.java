@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.app.jagarv.exception.exceptions.products.AttributeAlreadyExistsException;
 
 @ControllerAdvice 
-public class  {
+public class AttributeAlreadyExistsHandler {
     @ExceptionHandler(AttributeAlreadyExistsException.class) 
     public ResponseEntity<String> handleAttributeAlreadyExistsException(AttributeAlreadyExistsException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());

@@ -30,8 +30,11 @@ public class ProductVariant {
     private Product product;
     
     // attribute options associated with this variant
-    @OneToMany(mappedBy = "variant", cascade = CascadeType.ALL)
-    private List<VariantAttributeOption> attributeOptions;
+   // @OneToMany(mappedBy = "variant", cascade = CascadeType.ALL)
+    private List<AttributeOption> attributeOptions;
+
+    private List<String> images; // new images stored as url links in strings 
+
 
     // Getters  and Setters
     public Long getId() {
@@ -66,11 +69,19 @@ public class ProductVariant {
         this.product = product;
     }
 
-    public List<VariantAttributeOption> getAttributeOptions() {
+    public List<AttributeOption> getAttributeOptions() {
         return attributeOptions;
     }
 
-    public void setAttributeOptions(List<VariantAttributeOption> attributeOptions) {
+    public void setAttributeOptions(List<AttributeOption> attributeOptions) {
         this.attributeOptions = attributeOptions;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

@@ -30,7 +30,7 @@ public class AttributeService {
     }
     
     public void createAttribute(CreateAttributeDTO newAttribute) {
-        boolean attributeExists = attributeRepository.findByName(newAttribute.getName());
+        boolean attributeExists = attributeRepository.existsByName(newAttribute.getName());
         
         if(attributeExists) {
             throw new AttributeAlreadyExistsException("That attribute already exists, Try with another.");

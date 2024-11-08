@@ -1,12 +1,13 @@
 package com.app.jagarv.controller.products;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.jagarv.dto.product.CreateAttributeDTO;
 import com.app.jagarv.dto.ApiResponse;
-import com.app.jagarv.service.products.AttributeService; 
+import com.app.jagarv.service.products.AttributeService;
+
+import jakarta.validation.Valid; 
 
 
 
@@ -28,6 +29,6 @@ public class AttributeController {
         
         attributeService.createAttribute(attribute);
         
-        return ResponseEntity.ok(new ApiResponse<>("Attribute Created"));
+        return ResponseEntity.ok(new ApiResponse<>("Attribute Created", null));
     }
 }
