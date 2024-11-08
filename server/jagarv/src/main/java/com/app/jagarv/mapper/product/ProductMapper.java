@@ -2,7 +2,7 @@ package com.app.jagarv.mapper.product;
 
 import org.mapstruct.Mapper;
 import com.app.jagarv.dto.product.ProductDTO;
-import com.app.jagarv.entity.Product;
+import com.app.jagarv.entity.product.Product;
 
 @Mapper(componentModel = "spring") 
 public interface ProductMapper { 

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import com.app.jagarv.entity.product.ProductCategory;
 
 import java.math.BigDecimal;
 
@@ -17,7 +18,7 @@ public class CreateProductDTO {
     private String description;
 
     @NotBlank(message = "Category is mandatory")
-    private String category;
+    private ProductCategory category;
 
     @NotNull(message = "Pictures cannot be null") 
     @Size(min = 1, message = "At least one picture is required") 
@@ -50,11 +51,11 @@ public class CreateProductDTO {
         this.description = description;
     }
 
-    public String getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
 

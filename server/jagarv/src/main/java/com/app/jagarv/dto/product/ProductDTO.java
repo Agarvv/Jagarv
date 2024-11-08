@@ -1,4 +1,5 @@
 package com.app.jagarv.dto.product;
+import com.app.jagarv.entity.product.ProductCategory;
 
 import java.util.List;
 import java.math.BigDecimal;
@@ -7,7 +8,7 @@ public class ProductDTO {
     private Long id;
     private String title;
     private String description;
-    private String category; 
+    private ProductCategory  category; 
     private Boolean featured;
     private Long stock;  
     private String date; 
@@ -17,7 +18,7 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String title, String description, String category, Boolean featured, Long stock, String date, List<String> pictures, BigDecimal price) {
+    public ProductDTO(Long id, String title, String description, ProductCategory category, Boolean featured, Long stock, String date, List<String> pictures, BigDecimal price) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -53,11 +54,11 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public String getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
 

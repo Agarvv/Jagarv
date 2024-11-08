@@ -1,9 +1,10 @@
-package com.app.jagarv.entity;
+package com.app.jagarv.entity.product;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @Table(name = "products")
 public class Product {
 
-    // The ID Of the product
+    // The ID of the product
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,16 +26,12 @@ public class Product {
     @NotBlank(message = "The Description Can't Be Blank.")
     private String description;
 
-    // The category of the Product, like 'phones', 'pc', 'gaming' or whatever
-    @NotBlank(message = "Category cannot be blank")
-    private String category;
-    
-    // Featured state, can be true or false.
+    // Featured state, can be true or false
     private Boolean featured; 
-    
+
     // The stock of the product, like 70, 198, or 3.
     private Long stock;
-    
+
     // The creation date, Like '1/12/1765' :p
     private String date;
 
@@ -42,10 +39,20 @@ public class Product {
     @ElementCollection
     private List<String> pictures; 
 
-    // The price, Not negative like -1. of course
+    // The price, not negative like -1. of course
     @DecimalMin(value = "0.00", inclusive = false, message = "The Price Can't be Negative.")
     @Digits(integer = 10, fraction = 2, message = "The Price Has Too Many Decimals.")
+    @NotNull
     private BigDecimal price;
+
+    // Category of the product, like 'Smartphones', 'Gaming', whatever
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private ProductCategory category;
+
+    // Variants of the product, each with specific attribute combinations like color, size, etc.
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductVariant> variants;
 
     // Getters and Setters
     public Long getId() {
@@ -72,34 +79,34 @@ public class Product {
         this.description = description;
     }
 
-    public String getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
-    
+
     public Boolean getFeatured() {
         return featured;
     }
-    
+
     public void setFeatured(Boolean featured) {
         this.featured = featured;
     }
-    
+
     public Long getStock() {
         return stock;
     }
-    
+
     public void setStock(Long stock) {
         this.stock = stock;
     }
-    
+
     public String getDate() {
         return date;
     }
-     
+
     public void setDate(String date) {
         this.date = date;
     }
@@ -118,5 +125,14 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    // Getter and Setter for Variants
+    public List<ProductVariant> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(List<ProductVariant> variants) {
+        this.variants = variants;
     }
 }
