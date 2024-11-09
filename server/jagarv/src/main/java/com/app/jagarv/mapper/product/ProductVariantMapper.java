@@ -1,6 +1,7 @@
 package com.app.jagarv.mapper.product;
 
 import com.app.jagarv.dto.product.ProductVariantDTO;
+import com.app.jagarv.dto.product.AttributeOptionDTO;
 import com.app.jagarv.entity.product.ProductVariant;
 import com.app.jagarv.entity.product.AttributeOption;
 import org.mapstruct.Mapper;
@@ -23,21 +24,36 @@ public interface ProductVariantMapper {
     @Mapping(source = "images", target = "images")
     ProductVariant toEntity(ProductVariantDTO variantDTO);
 
-   
-    default List<String> mapAttributeOptionsToDTO(List<AttributeOption> attributeOptions) {
+    default List<AttributeOptionDTO> mapAttributeOptionsToDTO(List<AttributeOption> attributeOptions) {
         return attributeOptions.stream()
-                .map(AttributeOption::getValue)  
+                .map(option -> new AttributeOptionDTO(option.getId(), option.getValue())) 
                 .collect(Collectors.toList());
     }
 
-   
-    default List<AttributeOption> mapAttributeOptionsToEntity(List<String> attributeOptions) {
-        return attributeOptions.stream()
-                .map(name -> {
+    default List<AttributeOption> mapAttributeOptionsToEntity(List<AttributeOptionDTO> attributeOptionsDTO) {
+        return attributeOptionsDTO.stream()
+                .map(dto -> {
                     AttributeOption option = new AttributeOption();
-                    option.setValue(name);
+                    option.setId(dto.getId());  
+                    option.setValue(dto.getValue());  
                     return option;
                 })
+                .collect(Collectors.toList());
+    }
+
+    default List<AttributeOption> mapStringToAttributeOption(List<String> attributeOptions) {
+        return attributeOptions.stream()
+                .map(value -> {
+                    AttributeOption option = new AttributeOption();
+                    option.setValue(value);
+                    return option;
+                })
+                .collect(Collectors.toList());
+    }
+
+    default List<String> mapAttributeOptionToString(List<AttributeOption> attributeOptions) {
+        return attributeOptions.stream()
+                .map(AttributeOption::getValue)  
                 .collect(Collectors.toList());
     }
 }

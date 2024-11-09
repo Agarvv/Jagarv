@@ -9,19 +9,10 @@ public class ProductVariantDTO {
     private BigDecimal price;
     private Long stock;
     private List<String> images;
-    private List<String> attributeOptions;
+    private List<String> attributeOptions; 
+    private List<AttributeDTO> attributes; 
 
-    public ProductVariantDTO() {
-    }
-
-    public ProductVariantDTO(Long id, BigDecimal price, Long stock, List<String> attributeOptions, List<String> images) {
-        this.id = id;
-        this.price = price;
-        this.stock = stock;
-        this.attributeOptions = attributeOptions;
-        this.images = images;
-    }
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -46,6 +37,14 @@ public class ProductVariantDTO {
         this.stock = stock;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
     public List<String> getAttributeOptions() {
         return attributeOptions;
     }
@@ -54,12 +53,11 @@ public class ProductVariantDTO {
         this.attributeOptions = attributeOptions;
     }
 
-    public List<String> getImages() {
-        return images;
+    public List<AttributeDTO> getAttributes() {
+        return attributes;
     }
 
-    public void setImages(List<String> images) {
-        this.images = images;
+    public void setAttributes(List<AttributeDTO> attributes) {
+        this.attributes = attributes;
     }
 }
- 
