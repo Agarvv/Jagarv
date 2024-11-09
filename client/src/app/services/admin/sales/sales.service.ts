@@ -12,6 +12,7 @@ export class SalesService {
   constructor(private http: HttpClient) { }
 
   getSales(): Observable<Sales[]> {
+    console.log(this.apiUrl); // debug
     return this.http.get<Sales[]>(`${environment.apiUrl}`);
   }
 

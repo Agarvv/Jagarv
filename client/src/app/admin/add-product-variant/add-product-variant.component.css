@@ -1,0 +1,90 @@
+main .mh {
+  padding: 15px;
+}
+
+main .mh h2 {
+  color: #444;
+  font-size: 24px;
+}
+
+main .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+main .create-product-form {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.attributes select {
+  width: 100%;
+  height: 40px; 
+  padding: 10px;
+  font-size: 16px; 
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus,
+.attributes select:focus {
+  border-color: #15bf4e;
+  outline: none;
+}
+
+.attributes .attribute {
+  margin-bottom: 15px;
+}
+
+.attributes .attribute label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+}
+
+.publish-btn {
+  text-align: center;
+}
+
+.publish-btn button {
+  background-color: #15bf4e;
+  font-weight: bold;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.publish-btn button:hover {
+  background-color: #13a645;
+}
+
+@media(max-width: 600px) {
+  main .create-product-form {
+    width: 100%;
+    padding: 15px;
+  }
+}

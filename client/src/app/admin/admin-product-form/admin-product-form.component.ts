@@ -11,7 +11,7 @@ import { Product } from '../../models/Product';
 // And the 'PublicProductsService' handles all the accesible products in the app logic,
 // like display products by category, and other 'non-admin' things.
 import { PublicProductsService } from '../../services/products/products.service';
-import { CreateProductServiceStateService } from '../../state/admin/product/create-product-service-state.service'; 
+import { CreateProductServiceStateService } from '../../state/admin/product/create-product-service-state.service';
 
 // This component is used to create or edit a product, two in one.
 @Component({

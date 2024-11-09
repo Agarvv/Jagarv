@@ -49,7 +49,9 @@ import { SendResetPasswordButtonComponent } from './auth/send-reset-password/sen
 import { withCredentialsInterceptor } from './interceptors/with-credentials.interceptor';
 import { AdminDashboardChartComponent } from './admin/admin-dashboard/admin-dashboard-chart/admin-dashboard-chart.component';
 import { AdminDashboardInsightsComponent } from './admin/admin-dashboard/admin-dashboard-insights/admin-dashboard-insights.component';
-import { AdminDashboardTopProductsComponent } from './admin/admin-dashboard/admin-dashboard-top-products/admin-dashboard-top-products.component'; 
+import { AdminDashboardTopProductsComponent } from './admin/admin-dashboard/admin-dashboard-top-products/admin-dashboard-top-products.component';
+import { AddProductVariantComponent } from './admin/add-product-variant/add-product-variant.component';
+import { ProductVariantSubmitButtonComponent } from './admin/add-product-variant/product-variant-submit-button/product-variant-submit-button.component'; 
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { AdminDashboardTopProductsComponent } from './admin/admin-dashboard/admi
     SendResetPasswordButtonComponent,
     AdminDashboardChartComponent,
     AdminDashboardInsightsComponent,
-    AdminDashboardTopProductsComponent
+    AdminDashboardTopProductsComponent,
+    AddProductVariantComponent,
+    ProductVariantSubmitButtonComponent
   ],
   imports: [
     BrowserModule,

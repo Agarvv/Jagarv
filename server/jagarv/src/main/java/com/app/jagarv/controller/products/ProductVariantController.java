@@ -22,7 +22,7 @@ public class ProductVariantController {
     
     @PostMapping("/create") 
     public ResponseEntity<ApiResponse<Void>> 
-    createProductVariant(@Valid CreateProductVariantDTO variant) {
+    createProductVariant(@Valid @RequestBody CreateProductVariantDTO variant) {
         productVariantService.createProductVariant(variant);
         return ResponseEntity.ok(new ApiResponse<>("Variant Created Succesfully", null));
     }
