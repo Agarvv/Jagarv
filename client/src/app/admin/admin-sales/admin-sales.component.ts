@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SalesService } from '@services/admin/sales/sales.service';
 import { Sales } from '@models/Sales/Sales';
 import { Store } from '@ngrx/store';
@@ -10,10 +10,15 @@ import { setError, clearMessages } from '@store/admin/admin.actions';
   templateUrl: './admin-sales.component.html',
   styleUrl: './admin-sales.component.css'
 })
-export class AdminSalesComponent {
+export class AdminSalesComponent implements OnInit {
   sales: Sales[] = [];
    constructor(private salesService: SalesService, private store: Store) {
       
+   }
+   
+   ngOnInit(): void {
+       this.loadSales(); 
+       
    }
 
    loadSales(): void {
@@ -28,4 +33,6 @@ export class AdminSalesComponent {
        this.store.dispatch(setError({ errorMessage: "Something went wrong..." }));
      })
    }
+   
+   
 }
