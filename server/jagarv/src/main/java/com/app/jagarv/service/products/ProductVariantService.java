@@ -30,7 +30,7 @@ public class ProductVariantService {
 
     public void createProductVariant(CreateProductVariantDTO variant) {
         Product product = productRepository.findById(variant.getProductId())
-            .orElseThrow(() -> new ProductNotFoundException("El producto con el ID especificado no existe. Por favor, verifica el ID e intenta nuevamente"));
+            .orElseThrow(() -> new ProductNotFoundException("Product not exists, please try with another"));
 
         List<AttributeOption> options = attributeOptionRepository.findAllById(variant.getOptionIds());
 
