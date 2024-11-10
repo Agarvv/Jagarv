@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.app.jagarv.dto.ApiResponse;
+
+
 // ADMIN PRODUCTS CONTROLLER 
 @RestController
 @RequestMapping("/admin/products")
@@ -28,11 +31,10 @@ public class AdminProductController {
 
     // CREATE A NEW PRODUCT
     @PostMapping("/create")
-    public ResponseEntity<Map<String, String>> createProduct(@RequestBody CreateProductDTO createProductDTO) {
+    public ResponseEntity<ApiResponse<Void>> createProduct(@RequestBody CreateProductDTO createProductDTO) {
         ProductDTO createdProduct = productService.createProduct(createProductDTO); // Get the created product DTO
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Product created successfully with ID: " + createdProduct.getId());
-        return ResponseEntity.ok(response);
+        
+        return ResponseEntity.ok(new ApiResponse("Product created!", createdProduct.getId());
     }
 
     // DELETE A PRODUCT BY PRODUCT ID

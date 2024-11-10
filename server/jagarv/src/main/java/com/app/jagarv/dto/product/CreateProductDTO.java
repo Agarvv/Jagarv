@@ -17,8 +17,8 @@ public class CreateProductDTO {
     @NotBlank(message = "Description is mandatory")
     private String description;
 
-    @NotBlank(message = "Category is mandatory")
-    private ProductCategory category;
+    @NotNull(message = "Category is mandatory")
+    private Long category;
 
     @NotNull(message = "Pictures cannot be null") 
     @Size(min = 1, message = "At least one picture is required") 
@@ -51,11 +51,11 @@ public class CreateProductDTO {
         this.description = description;
     }
 
-    public ProductCategory getCategory() {
+    public Long getCategory() {
         return category;
     }
 
-    public void setCategory(ProductCategory category) {
+    public void setCategory(Long category) {
         this.category = category;
     }
 

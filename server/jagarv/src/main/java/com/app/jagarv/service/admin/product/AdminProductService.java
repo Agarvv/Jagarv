@@ -3,12 +3,17 @@ package com.app.jagarv.service.admin.product;
 import com.app.jagarv.dto.product.ProductDTO;
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.dto.product.CreateProductDTO;
+import com.app.jagarv.entity.product.ProductCategory;
+
 import com.app.jagarv.mapper.product.ProductMapper;
 import com.app.jagarv.repository.product.ProductRepository;
 import com.app.jagarv.exception.exceptions.products.ProductAlreadyExistsException;
 import com.app.jagarv.exception.exceptions.products.ProductNotFoundException;
+import com.app.jagarv.repository.product.ProductCategoryRepository; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.app.jagarv.exception.exceptions.products.CategoryNotFoundException;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +31,9 @@ public class AdminProductService {
 
     @Autowired
     private ProductMapper productMapper;
+    
+    @Autowired 
+    private ProductCategoryRepository categoryRepository; 
 
     // RETURNS ALL THE PRODUCTS FROM THE DB TO THE CONTROLLER
     public List<ProductDTO> getProducts() {
@@ -41,20 +49,36 @@ public class AdminProductService {
         if (productRepository.existsByTitle(createProductDTO.getTitle())) {
             throw new ProductAlreadyExistsException("The Product Already Exists, Try with another Title.");
         }
-
+        
+        
+        
         Product product = new Product();
+        
         product.setTitle(createProductDTO.getTitle());
+        
         product.setDescription(createProductDTO.getDescription());
-        product.setCategory(createProductDTO.getCategory());
+        
+        ProductCategory category = categoryRepository.findById(createProductDTO.getCategory())
+        .orElseThrow(() -> new CategoryNotFoundException("Please try with another category."));
+        
+        product.setCategory(category);
+        
         product.setPrice(createProductDTO.getPrice());
+        
         product.setPictures(Arrays.asList(createProductDTO.getPictures()));
+        
         // Set featured and stock if necessary
+        
         product.setFeatured(createProductDTO.getFeatured());
+        
         product.setStock(createProductDTO.getStock());
+        
         product.setDate(LocalDate.now().toString()); // the date field should be a String
 
         Product savedProduct = productRepository.save(product);
+        
         return productMapper.productToDTO(savedProduct);
+        
     }
 
     // DELETE A PRODUCT
@@ -93,7 +117,10 @@ public class AdminProductService {
         // sets data
         product.setTitle(updateProductDTO.getTitle());
         product.setDescription(updateProductDTO.getDescription());
-        product.setCategory(updateProductDTO.getCategory());
+        ProductCategory category = categoryRepository.findById(updateProductDTO.getCategory())
+        .orElseThrow(() -> new CategoryNotFoundException("Please try with another category."));
+        
+        product.setCategory(category);
         product.setPrice(updateProductDTO.getPrice());
         product.setPictures(new ArrayList<>(Arrays.asList(updateProductDTO.getPictures())));
         product.setFeatured(updateProductDTO.getFeatured());
