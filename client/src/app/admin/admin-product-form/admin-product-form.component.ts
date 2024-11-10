@@ -10,8 +10,8 @@ import { NonEmptyArrayValidator } from '../../validators/non-empty-array.validat
 import { Product } from '../../models/Product'; 
 // And the 'PublicProductsService' handles all the accesible products in the app logic,
 // like display products by category, and other 'non-admin' things.
-import { PublicProductsService } from '../../services/products/products.service';
-import { CreateProductServiceStateService } from '../../state/admin/product/create-product-service-state.service';
+import { PublicProductsService } from '../../services/products/products.service'; // handles http logic of public producyt service
+import { CreateProductServiceStateService } from '../../state/admin/product/create-product-service-state.service'; // handles product images states
 
 // This component is used to create or edit a product, two in one.
 @Component({
@@ -109,4 +109,5 @@ export class AdminProductFormComponent implements OnInit {
     this.productForm.get('pictures')?.setValue(pictures);
     this.productForm.get('pictures')?.updateValueAndValidity(); 
   }
+  
 }

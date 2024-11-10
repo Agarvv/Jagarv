@@ -17,6 +17,14 @@
           <label for="Stock">Variant Stock</label>
           <input type="number" formControlName="stock" placeholder="Variant Stock">
         </div>
+        
+        <!-- variant images selection -->
+        <div class="inp-images">
+          <app-product-images-form (picturesChange)="onPicturesChange($event)" formControlName="pictures"></app-product-images-form>
+          <div *ngIf="variantForm.get('pictures')?.invalid && variantForm.get('pictures')?.touched">
+            <small class="val-error" *ngIf="variantForm.get('pictures')?.errors?.['emptyArray']">At least one image is required.</small>
+          </div>
+        </div>
 
         <div class="attributes">
           <div *ngFor="let attribute of product?.category?.attributes">
