@@ -1,4 +1,4 @@
-import { ProductVariants } from './ProductVariants'
+import { ProductVariant } from './ProductVariant'
 
 export interface Product {
     id: number,
@@ -10,5 +10,5 @@ export interface Product {
     date: string
     pictures: string[],
     price: number,
-    variants: ProductVariants[]
+    variants: ProductVariant[]
 } 
