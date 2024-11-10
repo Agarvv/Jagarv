@@ -1,6 +1,6 @@
 import { Attribute } from './Attribute'
 
-export interface ProductVariants {
+export interface ProductVariant {
     id: number,
     price: number,
     stock: number,
