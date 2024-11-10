@@ -41,7 +41,7 @@ public interface ProductVariantMapper {
                 .map(entry -> {
                     AttributeDTO attributeDTO = new AttributeDTO();
                     attributeDTO.setName(entry.getKey());
-                    attributeDTO.setAttributeOptions(entry.getValue());
+                    attributeDTO.setOptions(entry.getValue());
                     return attributeDTO;
                 })
                 .collect(Collectors.toList());
@@ -49,24 +49,22 @@ public interface ProductVariantMapper {
     
     
     default List<AttributeOption> mapAttributesToAttributeOptions(List<AttributeDTO> attributes) {
-        return attributes.stream()
-                .flatMap(attributeDTO -> attributeDTO.getAttributeOptions()
-                      .stream()
-                        .map(optionDTO -> 
-                        {
-                            AttributeOption option = new AttributeOption();
-                            
-                            option.setId(optionDTO.getId());
-                            
-                            option.setValue(optionDTO.getValue());
-                            
-                            Attribute attribute = new Attribute(); 
-                            attribute.setName(attributeDTO.getName());
-                            
-                            option.setAttribute(attribute);
-                            return option;
-                        })
-                )
-                .collect(Collectors.toList());
-    }
+    return attributes.stream()
+            .flatMap(attributeDTO -> attributeDTO.getOptions().stream()
+                    .map(optionDTO -> {
+    
+                        AttributeOption option = new AttributeOption();
+                        option.setId(optionDTO.getId());
+                        option.setValue(optionDTO.getValue());
+
+                        Attribute attribute = new Attribute();
+                        attribute.setName(attributeDTO.getName());
+                        option.setAttribute(attribute);
+
+                        return option;
+                    })
+            )
+            .collect(Collectors.toList());
+}
+
 }
