@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { ProductsService } from '@services/products/products.service';
+import { PublicProductsService } from '@services/products/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '@models/Product';
 
@@ -15,7 +15,7 @@ export class AddProductVariantComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productsService: ProductsService,
+    private productsService: PublicProductsService,
     private route: ActivatedRoute
   ) {
     this.variantForm = this.fb.group({
@@ -33,7 +33,7 @@ export class AddProductVariantComponent implements OnInit {
     const productId = this.route.snapshot.paramMap.get('productId');
     this.productsService.getProductById(productId).subscribe((data: Product) => {
       this.product = data;
-      this.initializeForm();
+      console.log("server returned", data) // debug
     }, (error) => {
       console.error("Oops, something went wrong...", error);
     });

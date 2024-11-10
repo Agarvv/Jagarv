@@ -60,7 +60,7 @@ public interface ProductVariantMapper {
                             
                             option.setValue(optionDTO.getValue());
                             
-                            Attribute attribute = new Attribute(); /
+                            Attribute attribute = new Attribute(); 
                             attribute.setName(attributeDTO.getName());
                             
                             option.setAttribute(attribute);
