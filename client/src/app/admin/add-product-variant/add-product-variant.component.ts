@@ -30,13 +30,21 @@ export class AddProductVariantComponent implements OnInit {
   }
 
   getProduct(): void {
-    const productId = this.route.snapshot.paramMap.get('productId');
-    this.productsService.getProductById(productId).subscribe((data: Product) => {
+  const productId = this.route.snapshot.paramMap.get('productId');
+  if (productId) {  
+      
+    this.productsService.getProductById(Number(productId)).subscribe((data: Product) => {
       this.product = data;
-      console.log("server returned", data) // debug
+      console.log("server returned", data); // debug
+      
     }, (error) => {
       console.error("Oops, something went wrong...", error);
     });
+    
+  } else {
+    console.error("No product ID found in route parameters!");
   }
+  
+}
 
 }

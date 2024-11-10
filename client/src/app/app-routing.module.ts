@@ -15,6 +15,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component'; 
 import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component'
+import { AddProductVariantComponent } from './admin/add-product-variant/add-product-variant.component'
 
 
 const routes: Routes = [
@@ -82,6 +83,10 @@ const routes: Routes = [
       {
         path: 'editProduct/:productId',
         component: EditProductComponent // the edit product page for the admins
+      },
+      {
+          path: 'addVariant/:productId',
+          component: AddProductVariantComponent // the add product variant for the admins
       }
     ]
   }
