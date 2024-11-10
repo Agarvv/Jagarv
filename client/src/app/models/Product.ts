@@ -1,3 +1,5 @@
+import { ProductVariants } from './ProductVariants'
+
 export interface Product {
     id: number,
     title: string,
@@ -7,5 +9,6 @@ export interface Product {
     stock: number,
     date: string
     pictures: string[],
-    price: number 
+    price: number,
+    variants: ProductVariants[]
 } 
