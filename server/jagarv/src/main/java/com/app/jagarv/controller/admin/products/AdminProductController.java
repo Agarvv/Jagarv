@@ -34,7 +34,7 @@ public class AdminProductController {
     public ResponseEntity<ApiResponse<Void>> createProduct(@RequestBody CreateProductDTO createProductDTO) {
         ProductDTO createdProduct = productService.createProduct(createProductDTO); // Get the created product DTO
         
-        return ResponseEntity.ok(new ApiResponse("Product created!", createdProduct.getId());
+        return ResponseEntity.ok(new ApiResponse("Product created!", createdProduct.getId()));
     }
 
     // DELETE A PRODUCT BY PRODUCT ID
