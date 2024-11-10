@@ -74,7 +74,7 @@ public class AdminProductService {
         product.setStock(createProductDTO.getStock());
         
         product.setDate(LocalDate.now().toString()); // the date field should be a String
-        product.setCategoryId(category.getCategoryId());
+        
 
         Product savedProduct = productRepository.save(product);
         
