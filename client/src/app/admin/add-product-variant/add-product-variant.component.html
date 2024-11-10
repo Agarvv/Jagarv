@@ -18,15 +18,17 @@
           <input type="number" formControlName="stock" placeholder="Variant Stock">
         </div>
 
-        <!-- Dynamic Attributes Section -->
         <div class="attributes">
-          <div class="attribute">
-            <label>plsceholder</label>
-            <select formControlName="options">
-              <option>option</option>
+          <div *ngFor="let attribute of product?.attributes">
+            <label>{{ attribute.name }}</label>
+            <select>
+              <option *ngFor="let option of attribute.options" [value]="option.id">
+                {{ option.value }}
+              </option>
             </select>
           </div>
         </div>
+        
         
         <div class="publish-btn">
 
