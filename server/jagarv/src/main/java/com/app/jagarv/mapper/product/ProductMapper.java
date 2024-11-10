@@ -11,12 +11,10 @@ public interface ProductMapper {
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    // Mapeo de entidad a DTO
     @Mapping(source = "category", target = "category")
     @Mapping(source = "variants", target = "variants")
     ProductDTO productToDTO(Product product);
 
-    // Mapeo de DTO a entidad
     @Mapping(source = "category", target = "category")
     @Mapping(source = "variants", target = "variants")
     Product dtoToProduct(ProductDTO productDTO);
