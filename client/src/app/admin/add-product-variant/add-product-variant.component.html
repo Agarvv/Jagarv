@@ -5,7 +5,7 @@
 
   <div class="wrapper">
     <div class="create-product-form">
-      <form [formGroup]="variantForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="variantForm">
         <!-- Price Input -->
         <div class="input-group">
           <label for="Price">New Price</label>
@@ -19,11 +19,11 @@
         </div>
 
         <!-- Dynamic Attributes Section -->
-        <div class="attributes" *ngFor="">
+        <div class="attributes">
           <div class="attribute">
-            <label>{{  }}</label>
+            <label>plsceholder</label>
             <select formControlName="options">
-              <option *ngFor="" [value]="option.id">{{ option.value }}</option>
+              <option>option</option>
             </select>
           </div>
         </div>
