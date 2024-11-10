@@ -1,4 +1,5 @@
 import { ProductVariant } from './ProductVariant'
+import { Attribute } from './Attribute' 
 
 export interface Product {
     id: number,
@@ -10,5 +11,6 @@ export interface Product {
     date: string
     pictures: string[],
     price: number,
-    variants: ProductVariant[]
+    variants: ProductVariant[],
+    attributes: Attribute[]
 } 
