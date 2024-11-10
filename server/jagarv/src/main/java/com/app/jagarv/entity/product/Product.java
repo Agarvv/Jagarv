@@ -49,6 +49,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ProductCategory category;
+    
+    // the category id the product belongs to
+    private Long category_id; 
 
     // Variants of the product, each with specific attribute combinations like color, size, etc.
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
@@ -134,5 +137,13 @@ public class Product {
 
     public void setVariants(List<ProductVariant> variants) {
         this.variants = variants;
+    }
+    
+    public Long getCategoryId() {
+        return category_id;
+    }
+    
+    public void setCategoryId(Long cId) {
+        this.category_id = cId;
     }
 }
