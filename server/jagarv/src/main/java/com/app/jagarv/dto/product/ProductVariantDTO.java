@@ -4,15 +4,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductVariantDTO {
-
     private Long id;
     private BigDecimal price;
     private Long stock;
     private List<String> images;
-    private List<String> attributeOptions; 
     private List<AttributeDTO> attributes; 
 
-    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -43,14 +40,6 @@ public class ProductVariantDTO {
 
     public void setImages(List<String> images) {
         this.images = images;
-    }
-
-    public List<String> getAttributeOptions() {
-        return attributeOptions;
-    }
-
-    public void setAttributeOptions(List<String> attributeOptions) {
-        this.attributeOptions = attributeOptions;
     }
 
     public List<AttributeDTO> getAttributes() {
