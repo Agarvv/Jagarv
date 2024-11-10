@@ -4,6 +4,7 @@ import { PublicProductsService } from '@services/products/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '@models/Product';
 import { NonEmptyArrayValidator } from '@validators/non-empty-array.validator';
+import { CreateProductServiceStateService } from 'app/state/admin/product/create-product-service-state.service';
 
 @Component({
   selector: 'app-add-product-variant',
@@ -17,7 +18,8 @@ export class AddProductVariantComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productsService: PublicProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private productStateService: CreateProductServiceStateService 
   ) {
     this.variantForm = this.fb.group({
       price: ['', [Validators.required]],
@@ -37,6 +39,11 @@ export class AddProductVariantComponent implements OnInit {
       
     this.productsService.getProductById(Number(productId)).subscribe((data: Product) => {
       this.product = data;
+      if(this.product.pictures) {
+        this.productStateService.resetImages(); // resets the images 
+        this.product.pictures.forEach((image: string) =>
+           this.productStateService.addImage(image));  // if the product has pictures, adds them to the form
+      }
       console.log("server returned", data); // debug
       
     }, (error) => {
