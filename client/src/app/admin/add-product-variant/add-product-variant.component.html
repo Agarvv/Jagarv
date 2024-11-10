@@ -19,7 +19,7 @@
         </div>
 
         <div class="attributes">
-          <div *ngFor="let attribute of product?.attributes">
+          <div *ngFor="let attribute of product?.category.attributes">
             <label>{{ attribute.name }}</label>
             <select>
               <option *ngFor="let option of attribute.options" [value]="option.id">
