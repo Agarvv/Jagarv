@@ -13,8 +13,12 @@ import com.app.jagarv.entity.product.Product;
 public interface ProductRepository extends JpaRepository<Product, Long> {
    boolean existsByTitle(String title);
 
+   //@EntityGraph(attributePaths = 
+  // {"category", "variants", "variants.attributeOptions", "category.attributes"})
+  
+  
    @EntityGraph(attributePaths = 
-   {"category", "variants", "variants.attributeOptions", "category.attributes"})
+   {"category", "variants", "variants.attributeOptions"})
    Optional<Product> findById(Long id);
    
 }
