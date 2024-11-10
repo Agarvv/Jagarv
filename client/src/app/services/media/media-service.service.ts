@@ -18,8 +18,6 @@ export class MediaServiceService {
     formData.append('file', image);
     formData.append('upload_preset', environment.cloudinary.upload_preset);
 
-    return this.http.post(this.cloudinaryUrl, formData, {
-      withCredentials: true 
-    });
+    return this.http.post(this.cloudinaryUrl, formData);
   }
 }
