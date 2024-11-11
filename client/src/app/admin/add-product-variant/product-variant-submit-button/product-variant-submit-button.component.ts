@@ -20,7 +20,7 @@ export class ProductVariantSubmitButtonComponent {
   
   addProductVariant(): void {
     if (this.form && this.form.valid) {
-        console.log("form received", this.form);
+        console.log("form received", this.form.value);
         this.store.dispatch(setLoading({ isLoading: true }));
         
         this.productsService.addProductVariant(this.form.value).pipe(
