@@ -26,16 +26,16 @@
           </div>
         </div>
 
-        <div class="attributes">
-          <div *ngFor="let attribute of product?.category?.attributes">
-            <label>{{ attribute.name }}</label>
-            <select>
-              <option *ngFor="let option of attribute.options" [value]="option.id">
-                {{ option.value }}
-              </option>
-            </select>
+         <div class="attributes" formArrayName="attributes">
+             <div *ngFor="let attribute of product?.category?.attributes; let i = index">
+             <label>{{ attribute.name }}</label>
+           <select [formControlName]="i">
+               <option *ngFor="let option of attribute.options" [value]="option.id">
+                 {{ option.value }}
+          </option>
+           </select>
           </div>
-        </div>
+         </div>
         
         
         <div class="publish-btn">
