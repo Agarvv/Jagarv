@@ -13,27 +13,33 @@ import { setLoading, setSuccess, setError, clearMessages } from '@store/admin/ad
 })
 export class ProductVariantSubmitButtonComponent {
   @Input() form: FormGroup | null = null;
-  constructor(private productsService: ProductsService, store: Store) {
+  constructor(private productsService: ProductsService, private store: Store) {
      
   }
-
+  
+  
   addProductVariant(): void {
     if (this.form && this.form.valid) {
         console.log("form received", this.form);
-      this.store.dispatch(setLoading({ isLoading: true }))
-      this.productsService.addProductVariant(this.form.value).pipe(
-        finalize(() => {
-            this.store.dispatch(setLoading({ isLoading: false }))
-            this.form.reset;
-        })
-       ).subscribe((data) => {
-           this.store.dispatch({ setSuccess({ successMessage: "Variant added sucesfully "})});
-       }, (error) => {
-           this.store.dispatch(setError({ errorMessage: error.error }))
-       })
-      });
+        this.store.dispatch(setLoading({ isLoading: true }));
+        
+        this.productsService.addProductVariant(this.form.value).pipe(
+            finalize(() => {
+                this.store.dispatch(setLoading({ isLoading: false }));
+                this.form?.reset();
+            })
+        ).subscribe({
+            next: (data) => {
+                this.store.dispatch(setSuccess({ successMessage: "Variant added successfully" }));
+            },
+            error: (error) => {
+                this.store.dispatch(setError({ errorMessage: error.error }));
+            }
+        });
     } else {
-      this.form?.markAllAsTouched();
+        this.form?.markAllAsTouched();
     }
-  }
+}
+
+  
 }
