@@ -5,7 +5,10 @@
 
   <div class="wrapper">
     <div class="create-product-form">
-<form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+
+
+          <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+  <!-- Title input field -->
   <div>
     <label for="title">Title</label>
     <input id="title" formControlName="title" type="text" placeholder="Enter product title" />
@@ -14,6 +17,7 @@
     </div>
   </div>
 
+  <!-- Description input field -->
   <div>
     <label for="description">Description</label>
     <textarea id="description" formControlName="description" placeholder="Enter product description"></textarea>
@@ -22,6 +26,7 @@
     </div>
   </div>
 
+  <!-- Price input field -->
   <div>
     <label for="price">Price</label>
     <input id="price" formControlName="price" type="number" placeholder="Enter product price" />
@@ -31,11 +36,16 @@
     </div>
   </div>
 
+  <!-- Category select field (with fixed options) -->
   <div>
     <label for="category">Category</label>
     <select id="category" formControlName="category">
-      <option value="" disabled>Select a category</option>
-      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      <option value="1">Smartphones</option>
+      <option value="2">PC</option>
+      <option value="3">Consoles</option>
+      <option value="4">Gaming</option>
+      <option value=5>Music</option>
+      <option value=6>Accesories</option>
     </select>
     <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
       <small *ngIf="productForm.get('category')?.errors?.['required']">Category is required.</small>
@@ -70,6 +80,7 @@
     </button>
   </div>
 </form>
+
     </div>
   </div>
 </main>
