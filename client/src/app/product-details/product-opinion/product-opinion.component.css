@@ -1,0 +1,31 @@
+.opinion {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+  }
+  
+  .o-user {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  .o-user img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .o-user .username {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .b-verify {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    color: green;
+  }

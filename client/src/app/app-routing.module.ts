@@ -16,7 +16,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component'; 
 import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component'
 import { AddProductVariantComponent } from './admin/add-product-variant/add-product-variant.component'
-
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const routes: Routes = [
 
@@ -49,6 +49,11 @@ const routes: Routes = [
   {
       path: 'reset-password/:email/:token',
       component: ResetPasswordComponent 
+  },
+   // product details page
+  {
+     path: 'product/:productId',
+     component: ProductDetailsComponent // the product details page for the users
   },
   
   // the admin page

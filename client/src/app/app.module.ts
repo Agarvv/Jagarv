@@ -51,7 +51,14 @@ import { AdminDashboardChartComponent } from './admin/admin-dashboard/admin-dash
 import { AdminDashboardInsightsComponent } from './admin/admin-dashboard/admin-dashboard-insights/admin-dashboard-insights.component';
 import { AdminDashboardTopProductsComponent } from './admin/admin-dashboard/admin-dashboard-top-products/admin-dashboard-top-products.component';
 import { AddProductVariantComponent } from './admin/add-product-variant/add-product-variant.component';
-import { ProductVariantSubmitButtonComponent } from './admin/add-product-variant/product-variant-submit-button/product-variant-submit-button.component'; 
+import { ProductVariantSubmitButtonComponent } from './admin/add-product-variant/product-variant-submit-button/product-variant-submit-button.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductDetailsImagesComponent } from './product-details/product-details-images/product-details-images.component';
+import { ProductDetailsDataComponent } from './product-details/product-details-data/product-details-data.component';
+import { AddToCartButtonComponent } from './product-details/add-to-cart-button/add-to-cart-button.component';
+import { BuyNowButtonComponent } from './product-details/buy-now-button/buy-now-button.component';
+import { ProductOpinionComponent } from './product-details/product-opinion/product-opinion.component';
+import { CreateProductOpinionComponent } from './product-details/create-product-opinion/create-product-opinion.component'; 
 
 @NgModule({
   declarations: [
@@ -95,7 +102,14 @@ import { ProductVariantSubmitButtonComponent } from './admin/add-product-variant
     AdminDashboardInsightsComponent,
     AdminDashboardTopProductsComponent,
     AddProductVariantComponent,
-    ProductVariantSubmitButtonComponent
+    ProductVariantSubmitButtonComponent,
+    ProductDetailsComponent,
+    ProductDetailsImagesComponent,
+    ProductDetailsDataComponent,
+    AddToCartButtonComponent,
+    BuyNowButtonComponent,
+    ProductOpinionComponent,
+    CreateProductOpinionComponent
   ],
   imports: [
     BrowserModule,

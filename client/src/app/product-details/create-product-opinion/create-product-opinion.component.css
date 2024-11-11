@@ -1,0 +1,33 @@
+.add-opinion {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    gap: 10px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .add-opinion img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .add-opinion .add-opinion-inp input {
+    width: 100%;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+  
+  .add-opinion-submit button {
+    padding: 8px;
+    background: #0077ff;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
