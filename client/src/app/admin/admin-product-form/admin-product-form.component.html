@@ -38,15 +38,32 @@
           </div>
         </div>
         
-        <div class="inp">
-          <label for="Price">Price</label>
-          <input type="text" formControlName="price" placeholder="Price USD">
-          <div *ngIf="productForm.get('price')?.errors">
-            <small class="val-error" *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
-            <br>
-            <small class="val-error" *ngIf="productForm.get('price')?.errors?.['invalidPrice']">Price must be a valid number greater than 0.</small>
-          </div>
-        </div>
+         <div class="inp">
+            <label for="Category">Category</label>
+            <select formControlName="category">
+                <option [value]=1>
+                    Smartphones
+                </option>
+                <option [value]=2>
+                    PC
+                </option>
+                <option [value]=3>
+                    Consoles
+                </option>
+                <option [value]=4>
+                    Gaming
+                </option>
+                <option [value]=5>
+                    Music
+                </option>
+                <option [value]=6>
+                    Accesories
+                </option>
+            </select>
+             <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
+              <small class="val-error" *ngIf="productForm.get('category')?.errors?.['required']">Category is required.</small>
+              </div>
+         </div>
 
         <div class="inp">
           <label for="Stock">Stock</label>
