@@ -9,13 +9,13 @@
         <!-- Price Input -->
         <div class="input-group">
           <label for="Price">New Price</label>
-          <input type="text" formControlName="price" placeholder="New Price">
+          <input [(ngModel)]="product?.price" type="number" formControlName="price" placeholder="New Price">
         </div>
 
         <!-- Stock Input -->
         <div class="input-group">
           <label for="Stock">Variant Stock</label>
-          <input type="number" formControlName="stock" placeholder="Variant Stock">
+          <input [(ngModel)]="product?.stock" type="number" formControlName="stock" placeholder="Variant Stock">
         </div>
         
         <!-- variant images selection -->

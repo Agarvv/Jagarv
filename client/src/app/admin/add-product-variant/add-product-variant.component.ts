@@ -11,6 +11,7 @@ import { CreateProductServiceStateService } from 'app/state/admin/product/create
   templateUrl: './add-product-variant.component.html',
   styleUrls: ['./add-product-variant.component.css']
 })
+// add product variant form 
 export class AddProductVariantComponent implements OnInit {
   product: Product | undefined;
   variantForm: FormGroup;
@@ -22,7 +23,7 @@ export class AddProductVariantComponent implements OnInit {
     private productStateService: CreateProductServiceStateService 
   ) {
     this.variantForm = this.fb.group({
-      price: ['', [Validators.required]],
+      price: ['', [Validators.required]], 
       stock: ['', [Validators.required]],
       attributes: this.fb.array([]),
       pictures: [[], [NonEmptyArrayValidator.nonEmptyArray]]
@@ -30,29 +31,37 @@ export class AddProductVariantComponent implements OnInit {
   }
 
 ngOnInit(): void {
-  this.getProduct();
+  this.getProduct(); 
 }
 
 getProduct(): void {
+  // takes product id of the route param 
   const productId = this.route.snapshot.paramMap.get('productId');
+  
+  // if product id is in the route param, 
   if (productId) {  
+    // calls the service to get the product.
     this.productsService.getProductById(Number(productId)).subscribe((data: Product) => {
       this.product = data;
       
+      // inits attribute array form control 
       const attributesArray = this.variantForm.get('attributes') as FormArray;
       this.product?.category?.attributes.forEach(() => {
         attributesArray.push(this.fb.control(''));
       });
     }, (error) => {
+      // if something wrong, debug for developers.
       console.error("Error", error);
     });
   } else {
+    // if product not exists, logs on the console.
+    // probably i will add error message on the ui 
     console.error("Product not found");
   }
 }
   
-// when the pictures of our images component change,
-// sets them to the form and checks if all is valid
+// when pictures of the component change,
+// checks their valability on the form.
 onPicturesChange(pictures: string[]): void {
   this.variantForm.get('pictures')?.setValue(pictures);
   console.log("new pictures", this.variantForm.get('pictures')); // debug
