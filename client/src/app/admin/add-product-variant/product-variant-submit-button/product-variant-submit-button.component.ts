@@ -50,17 +50,17 @@ export class ProductVariantSubmitButtonComponent {
     }
   }
 
-  clearAttributesArray(): void {
-      if(this.form.get('attributes')) {
-                
-    // cleans the empty strings of the array, converts to numbers and removes zeros
-    this.form.get('attributes')?.setValue(
-      this.form.get('attributes')?.value
-        .map((element: string) => Number(element)) 
-        .filter((element: number) => element !== 0) 
+  
+  clearAttributesArray(): void { 
+  // cleans the empty strings of the array, converts to numbers and removes zeros
+  if (this.form?.get('attributes')) {
+    const attributes = this.form.get('attributes')!;
+    attributes.setValue(
+      attributes.value
+        .map((element: string) => Number(element))
+        .filter((element: number) => element !== 0)
     );
-    
-    console.log("Attributes cleaned", this.form.get('attributes')?.value);
-      }
+    console.log("Attributes cleaned", attributes.value);
   }
+}
 }
