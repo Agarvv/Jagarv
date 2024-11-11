@@ -36,8 +36,20 @@
                 <option 
                 [value]=1>Smartphones
                 </option>
-                <option>
-                    
+                <option [value]=2>
+                    PC
+                </option>
+                <option [value]=3>
+                    Consoles
+                </option>
+                <option [value]=4>
+                    Gaming
+                </option>
+                <option [value]=5>
+                    Music
+                </option>
+                <option [value]=6>
+                    Accesories
                 </option>
             </select>
              <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
