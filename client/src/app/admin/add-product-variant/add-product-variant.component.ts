@@ -29,33 +29,28 @@ export class AddProductVariantComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.getProduct();
-  }
-
-  getProduct(): void {
-  const productId = this.route.snapshot.paramMap.get('productId');
-  if (productId) {  
-      
-    this.productsService.getProductById(Number(productId)).subscribe((data: Product) => {
-      this.product = data;
-      if(this.product.pictures) {
-        this.productStateService.resetImages(); // resets the images 
-        this.product.pictures.forEach((image: string) =>
-           this.productStateService.addImage(image));  // if the product has pictures, adds them to the form
-      }
-      console.log("server returned", data); // debug
-      
-    }, (error) => {
-      console.error("Oops, something went wrong...", error);
-    });
-    
-  } else {
-    console.error("No product ID found in route parameters!");
-  }
-  
+ngOnInit(): void {
+  this.getProduct();
 }
 
+getProduct(): void {
+  const productId = this.route.snapshot.paramMap.get('productId');
+  if (productId) {  
+    this.productsService.getProductById(Number(productId)).subscribe((data: Product) => {
+      this.product = data;
+      
+      const attributesArray = this.variantForm.get('attributes') as FormArray;
+      this.product?.category?.attributes.forEach(() => {
+        attributesArray.push(this.fb.control(''));
+      });
+    }, (error) => {
+      console.error("Error", error);
+    });
+  } else {
+    console.error("Product not found");
+  }
+}
+  
 // when the pictures of our images component change,
 // sets them to the form and checks if all is valid
 onPicturesChange(pictures: string[]): void {
