@@ -4,6 +4,7 @@ import { Product } from "@models/Product"
 import { ActivatedRoute } from '@angular/router'; 
 import { Store } from '@ngrx/store';
 import { setError, clearMessages } from "@store/admin/admin.actions"
+import { setProduct } from '@store/cart/product-details.actions';
 
 @Component({
   selector: 'app-product-details',
@@ -26,11 +27,18 @@ export class ProductDetailsComponent implements OnInit {
    
     // gets the product and sets it
    getProduct(): void {
+
     this.store.dispatch(clearMessages());
+
     const productId = this.route.snapshot.paramMap.get('productId')
+
      this.productsService.getProductById(Number(productId)).subscribe((product: Product) => {
+
        this.product = product;
+       this.store.dispatch(setProduct({ product: product })); 
+
        console.log('product received', product) // debug
+       
      }, (error) => {
       console.error('error', error) // debug for developers
         this.store.dispatch(setError({ errorMessage: "Something went wrong. Please Try again later" }));

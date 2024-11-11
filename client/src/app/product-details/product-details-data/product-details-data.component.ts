@@ -1,11 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from '@models/Product';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ProductDetailsState } from '@store/cart/product-details.state';
 
 @Component({
   selector: 'app-product-details-data',
   templateUrl: './product-details-data.component.html',
-  styleUrl: './product-details-data.component.css'
+  styleUrls: ['./product-details-data.component.css'] 
 })
 export class ProductDetailsDataComponent {
- @Input() product: Product | undefined;
+  product$: Observable<Product | null>;
+
+  constructor(private store: Store<ProductDetailsState>) {
+    this.product$ = this.store.pipe(select(state => state.product));
+  }
 }
