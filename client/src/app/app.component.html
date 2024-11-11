@@ -1,5 +1,13 @@
 <div class="app-container">
-  <!-- Estos componentes ahora están a nivel global -->
+
+  <div class="header">
+    <app-header></app-header>
+ </div>
+ <div class="aside">
+    <app-admin-aside></app-admin-aside>
+ </div>
+
+
   <app-loading-component *ngIf="loading$ | async" class="loading-spinner">
   </app-loading-component>
   
@@ -13,6 +21,8 @@
           class="success-message" 
   ></app-success-component>
 
- 
+ <div class="main">
   <router-outlet (activate)="onActivate($event)"></router-outlet>
+ </div>
+ 
 </div>

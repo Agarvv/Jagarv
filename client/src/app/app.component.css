@@ -1,8 +1,26 @@
-.working {
-    width: 100%;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: red;
-}
+.app-container {
+    display: grid; 
+    grid-template-areas: 
+      "header header header"
+      "aside main main"
+      "footer footer footer"; 
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr 120px; 
+    min-height: 100vh; 
+  } 
+  
+  .header {
+    grid-area: header;
+  }
+
+  .aside {
+    grid-area: aside
+  }
+
+  .main {
+    grid-area: main;
+  } 
+  
+  .footer {
+      grid-area: footer
+  }
