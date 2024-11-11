@@ -1,8 +1,7 @@
-<p class="p-title">{{ product$?.title || 'Not Provided' }}</p>
+<p class="p-title">{{ (product$ | async)?.title || 'Not Provided' }}</p>
+
 <div class="p-description">
-  <p>
-    {{ product$?.description || 'Not Provided' }}
-  </p>
+  <p>{{ (product$ | async)?.description || 'Not Provided' }}</p>
 </div>
 <div class="p-buy">
   <div class="p-buy-options">
@@ -12,29 +11,27 @@
           <option value="Color">Color</option>
         </select>
       </div>
-  </div>
-      <div class="p-buy-option">
+    </div>
+    <div class="p-buy-option">
       <div>
         <select>
           <option value="RAM">RAM</option>
         </select>
       </div>
     </div>
-</div>
-
-
-<div class="p-buy-buttons">
-  <div class="p-buy-now">
-    <button>
-      Buy Now
-    </button>
   </div>
-  <div class="p-add-to-cart">
-    <button>
-      Add To Cart
-      <i class="fa fa-cart-plus"></i>
-    </button>
-  </div>
-</div>
 
+  <div class="p-buy-buttons">
+    <div class="p-buy-now">
+      <button>
+        Buy Now
+      </button>
+    </div>
+    <div class="p-add-to-cart">
+      <button>
+        Add To Cart
+        <i class="fa fa-cart-plus"></i>
+      </button>
+    </div>
+  </div>
 </div>
