@@ -51,6 +51,8 @@ export class ProductVariantSubmitButtonComponent {
   }
 
   clearAttributesArray(): void {
+      if(this.form.get('attributes')) {
+                
     // cleans the empty strings of the array, converts to numbers and removes zeros
     this.form.get('attributes')?.setValue(
       this.form.get('attributes')?.value
@@ -59,5 +61,6 @@ export class ProductVariantSubmitButtonComponent {
     );
     
     console.log("Attributes cleaned", this.form.get('attributes')?.value);
+      }
   }
 }
