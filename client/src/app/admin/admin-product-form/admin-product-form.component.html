@@ -29,35 +29,15 @@
             <small class="val-error" *ngIf="productForm.get('pictures')?.errors?.['emptyArray']">At least one image is required.</small>
           </div>
         </div>
-
-        <div class="inp">
-          <label for="Category">Category</label>
-          <input type="text" formControlName="category" placeholder="Category">
-          <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
-            <small class="val-error" *ngIf="productForm.get('category')?.errors?.['required']">Category is required.</small>
-          </div>
-        </div>
         
          <div class="inp">
             <label for="Category">Category</label>
             <select formControlName="category">
-                <option [value]=1>
-                    Smartphones
+                <option 
+                [value]=1>Smartphones
                 </option>
-                <option [value]=2>
-                    PC
-                </option>
-                <option [value]=3>
-                    Consoles
-                </option>
-                <option [value]=4>
-                    Gaming
-                </option>
-                <option [value]=5>
-                    Music
-                </option>
-                <option [value]=6>
-                    Accesories
+                <option>
+                    
                 </option>
             </select>
              <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
