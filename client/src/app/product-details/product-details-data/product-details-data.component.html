@@ -1,7 +1,7 @@
-<p class="p-title">{{ product.title }}</p>
+<p class="p-title">{{ product.title || 'Not Provided' }}</p>
 <div class="p-description">
   <p>
-    {{ product.description }}
+    {{ product.description || 'Not Provided' }}
   </p>
 </div>
 <div class="p-buy">
