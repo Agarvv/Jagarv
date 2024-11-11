@@ -6,19 +6,28 @@
   <div class="wrapper">
     <div class="create-product-form">
       <form [formGroup]="variantForm">
+        
         <!-- Price Input -->
         <div class="input-group">
           <label for="Price">New Price</label>
           <input type="number" formControlName="price" placeholder="New Price">
+          <!-- Error message for price -->
+          <div *ngIf="variantForm.get('price')?.invalid && variantForm.get('price')?.touched">
+            <small class="val-error" *ngIf="variantForm.get('price')?.errors?.['required']">Price is required.</small>
+          </div>
         </div>
 
         <!-- Stock Input -->
         <div class="input-group">
           <label for="Stock">Variant Stock</label>
           <input type="number" formControlName="stock" placeholder="Variant Stock">
+          <!-- Error message for stock -->
+          <div *ngIf="variantForm.get('stock')?.invalid && variantForm.get('stock')?.touched">
+            <small class="val-error" *ngIf="variantForm.get('stock')?.errors?.['required']">Stock is required.</small>
+          </div>
         </div>
         
-        <!-- variant images selection -->
+        <!-- Variant images selection -->
         <div class="inp-images">
           <app-product-images-form (picturesChange)="onPicturesChange($event)" formControlName="pictures"></app-product-images-form>
           <div *ngIf="variantForm.get('pictures')?.invalid && variantForm.get('pictures')?.touched">
@@ -26,25 +35,25 @@
           </div>
         </div>
 
-         <div class="attributes" formArrayName="attributes">
-             <div *ngFor="let attribute of product?.category?.attributes; let i = index">
-             <label>{{ attribute.name }}</label>
-           <select [formControlName]="i">
-               <option *ngFor="let option of attribute.options" [value]="option.id">
-                 {{ option.value }}
-          </option>
-           </select>
+        <!-- Attributes -->
+        <div class="attributes" formArrayName="attributes">
+          <div *ngFor="let attribute of product?.category?.attributes; let i = index">
+            <label>{{ attribute.name }}</label>
+            <select [formControlName]="i">
+              <option *ngFor="let option of attribute.options" [value]="option.id">
+                {{ option.value }}
+              </option>
+            </select>
+            <!-- Error message for attributes -->
+            <div *ngIf="variantForm.get('attributes').at(i).invalid && variantForm.get('attributes').at(i).touched">
+              <small class="val-error" *ngIf="variantForm.get('attributes').at(i).errors?.['required']">This field is required.</small>
+            </div>
           </div>
-         </div>
-        
-        
+        </div>
+
         <div class="publish-btn">
-            <!-- Submit Button -->
-          <app-product-variant-submit-button
-          [form]="variantForm"
-          >
-              
-          </app-product-variant-submit-button>
+          <!-- Submit Button -->
+          <app-product-variant-submit-button [form]="variantForm"></app-product-variant-submit-button>
         </div>
       </form>
     </div>
