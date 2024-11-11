@@ -36,21 +36,21 @@
         </div>
 
         <!-- Attributes -->
-        <div class="attributes" formArrayName="attributes">
-          <div *ngFor="let attribute of product?.category?.attributes; let i = index">
-            <label>{{ attribute.name }}</label>
-            <select [formControlName]="i">
-              <option *ngFor="let option of attribute.options" [value]="option.id">
-                {{ option.value }}
-              </option>
-            </select>
-            <!-- Error message for attributes -->
-            <div *ngIf="variantForm.get('attributes').at(i).invalid && variantForm.get('attributes').at(i).touched">
-              <small class="val-error" *ngIf="variantForm.get('attributes').at(i).errors?.['required']">This field is required.</small>
-            </div>
-          </div>
-        </div>
-
+         <div class="attributes" formArrayName="attributes">
+             <div *ngFor="let attribute of product?.category?.attributes; let i = index">
+               <label>{{ attribute.name }}</label>
+              <select [formControlName]="i">
+                <option *ngFor="let option of attribute.options" [value]="option.id">
+                  {{ option.value }}
+                   </option>
+               </select>
+             </div>
+         </div>
+         
+         
+         
+         
+         
         <div class="publish-btn">
           <!-- Submit Button -->
           <app-product-variant-submit-button [form]="variantForm"></app-product-variant-submit-button>
