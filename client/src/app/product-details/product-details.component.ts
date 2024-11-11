@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PublicProductsService } from '@services/products/products.service';
 import { Product } from "@models/Product"
 import { ActivatedRoute } from '@angular/router'; 
@@ -11,7 +11,7 @@ import { setError, clearMessages } from "@store/admin/admin.actions"
   styleUrl: './product-details.component.css'
 })
 // this component gets the product wanted
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
    product: Product | undefined; // this will hold the product details
 
    constructor(
@@ -19,6 +19,10 @@ export class ProductDetailsComponent {
     private route: ActivatedRoute,
     private store: Store
     ) {}
+
+    ngOnInit() {
+      this.getProduct(); // when the component is initialized, it gets the product details
+    }
    
     // gets the product and sets it
    getProduct(): void {
