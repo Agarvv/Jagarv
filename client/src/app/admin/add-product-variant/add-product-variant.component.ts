@@ -30,43 +30,47 @@ export class AddProductVariantComponent implements OnInit {
     });
   }
 
-ngOnInit(): void {
-  this.getProduct(); 
-}
-
-getProduct(): void {
-  // takes product id of the route param 
-  const productId = this.route.snapshot.paramMap.get('productId');
-  
-  // if product id is in the route param, 
-  if (productId) {  
-    // calls the service to get the product.
-    this.productsService.getProductById(Number(productId)).subscribe((data: Product) => {
-      this.product = data;
-      
-      // inits attribute array form control 
-      const attributesArray = this.variantForm.get('attributes') as FormArray;
-      this.product?.category?.attributes.forEach(() => {
-        attributesArray.push(this.fb.control(''));
-      });
-    }, (error) => {
-      // if something wrong, debug for developers.
-      console.error("Error", error);
-    });
-  } else {
-    // if product not exists, logs on the console.
-    // probably i will add error message on the ui 
-    console.error("Product not found");
+  ngOnInit(): void {
+    this.getProduct(); 
   }
-}
+
+  getProduct(): void {
+    // takes product id of the route param 
+    const productId = this.route.snapshot.paramMap.get('productId');
+    
+    // if product id is in the route param, 
+    if (productId) {  
+      // calls the service to get the product.
+      this.productsService.getProductById(Number(productId)).subscribe((data: Product) => {
+        this.product = data;
+        
+        // inits attribute array form control 
+        const attributesArray = this.variantForm.get('attributes') as FormArray;
+        this.product?.category?.attributes.forEach(() => {
+          attributesArray.push(this.fb.control(''));
+        });
+
+        // patches value of the product to the inputs
+        this.variantForm.patchValue({
+          price: this.product?.price || '', // Valor por defecto si price es undefined
+          stock: this.product?.stock || ''  // Valor por defecto si stock es undefined
+        });
+      }, (error) => {
+        // if something wrong, debug for developers.
+        console.error("Error", error);
+      });
+    } else {
+      // if product not exists, logs on the console.
+      // probably i will add error message on the ui 
+      console.error("Product not found");
+    }
+  }
   
-// when pictures of the component change,
-// checks their valability on the form.
-onPicturesChange(pictures: string[]): void {
-  this.variantForm.get('pictures')?.setValue(pictures);
-  console.log("new pictures", this.variantForm.get('pictures')); // debug
-  this.variantForm.get('pictures')?.updateValueAndValidity(); 
-}
-
-
+  // when pictures of the component change,
+  // checks their valability on the form.
+  onPicturesChange(pictures: string[]): void {
+    this.variantForm.get('pictures')?.setValue(pictures);
+    console.log("new pictures", this.variantForm.get('pictures')); // debug
+    this.variantForm.get('pictures')?.updateValueAndValidity(); 
+  }
 }
