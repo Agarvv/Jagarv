@@ -15,7 +15,11 @@ export class ProductDetailsDataAttributesComponent {
     constructor(private store: Store<ProductDetailsState>) {
         // just for now
         this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
-      }
+    }
 
+
+    onOptionChange(event: any) {
+        console.log('changed',event.target.value);
+    }
 
 }
