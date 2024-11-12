@@ -5,82 +5,82 @@
 
   <div class="wrapper">
     <div class="create-product-form">
+      <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
+        <!-- Title Field -->
+        <div class="inp">
+          <label for="Title">Title</label>
+          <input type="text" formControlName="title" placeholder="Title">
+          <div *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.touched">
+            <small class="val-error" *ngIf="productForm.get('title')?.errors?.['required']">Title is required.</small>
+          </div>
+        </div>
+        
+        <!-- Description Field -->
+        <div class="inp">
+          <label for="Description">Description</label>
+          <input type="text" formControlName="description" placeholder="Description">
+          <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+            <small class="val-error" *ngIf="productForm.get('description')?.errors?.['required']">Description is required.</small>
+          </div>
+        </div>
+        
+        <!-- Pictures Field -->
+        <div class="inp-images">
+          <app-product-images-form (picturesChange)="onPicturesChange($event)" formControlName="pictures"></app-product-images-form>
+          <div *ngIf="productForm.get('pictures')?.invalid && productForm.get('pictures')?.touched">
+            <small class="val-error" *ngIf="productForm.get('pictures')?.errors?.['emptyArray']">At least one image is required.</small>
+          </div>
+        </div>
+        
+        <!-- Category Field -->
+        <div class="inp">
+          <label for="Category">Category</label>
+          <select formControlName="category">
+            <option [value]="1">Smartphones</option>
+            <option [value]="2">PC</option>
+            <option [value]="3">Consoles</option>
+            <option [value]="4">Gaming</option>
+            <option [value]="5">Music</option>
+            <option [value]="6">Accesories</option>
+          </select>
+          <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
+            <small class="val-error" *ngIf="productForm.get('category')?.errors?.['required']">Category is required.</small>
+          </div>
+        </div>
+
+        <!-- Stock Field -->
+        <div class="inp">
+          <label for="Stock">Stock</label>
+          <input type="number" formControlName="stock" placeholder="Stock">
+          <div *ngIf="productForm.get('stock')?.invalid && productForm.get('stock')?.touched">
+            <small class="val-error" *ngIf="productForm.get('stock')?.errors?.['required']">Stock is required.</small>
+            <br>
+            <small class="val-error" *ngIf="productForm.get('stock')?.errors?.['min']">Stock must be a non-negative number.</small>
+          </div>
+        </div>
+        
+        <div class="inp">
+          <label for="Price">Price</label>
+          <input type="text" formControlName="price" placeholder="Price USD">
+          <div *ngIf="productForm.get('price')?.errors">
+            <small class="val-error" *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
+            <br>
+            <small class="val-error" *ngIf="productForm.get('price')?.errors?.['invalidPrice']">Price must be a valid number greater than 0.</small>
+          </div>
+        </div>
 
 
-          <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
-  <!-- Title input field -->
-  <div>
-    <label for="title">Title</label>
-    <input id="title" formControlName="title" type="text" placeholder="Enter product title" />
-    <div *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.touched">
-      <small *ngIf="productForm.get('title')?.errors?.['required']">Title is required.</small>
-    </div>
-  </div>
+        <!-- Featured Checkbox -->
+        <div class="inp-featured">
+          <input type="checkbox" formControlName="featured">
+          <label for="Featured">Featured</label>
+        </div>
 
-  <!-- Description input field -->
-  <div>
-    <label for="description">Description</label>
-    <textarea id="description" formControlName="description" placeholder="Enter product description"></textarea>
-    <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
-      <small *ngIf="productForm.get('description')?.errors?.['required']">Description is required.</small>
-    </div>
-  </div>
-
-  <!-- Price input field -->
-  <div>
-    <label for="price">Price</label>
-    <input id="price" formControlName="price" type="number" placeholder="Enter product price" />
-    <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
-      <small *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
-      <small *ngIf="productForm.get('price')?.errors?.['invalidPrice']">Price must be greater than 0.</small>
-    </div>
-  </div>
-
-  <!-- Category select field (with fixed options) -->
-  <div>
-    <label for="category">Category</label>
-    <select id="category" formControlName="category">
-      <option value="1">Smartphones</option>
-      <option value="2">PC</option>
-      <option value="3">Consoles</option>
-      <option value="4">Gaming</option>
-      <option value=5>Music</option>
-      <option value=6>Accesories</option>
-    </select>
-    <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
-      <small *ngIf="productForm.get('category')?.errors?.['required']">Category is required.</small>
-    </div>
-  </div>
-
-  <div>
-    <label for="stock">Stock</label>
-    <input id="stock" formControlName="stock" type="number" placeholder="Enter product stock" />
-    <div *ngIf="productForm.get('stock')?.invalid && productForm.get('stock')?.touched">
-      <small *ngIf="productForm.get('stock')?.errors?.['required']">Stock is required.</small>
-      <small *ngIf="productForm.get('stock')?.errors?.['min']">Stock must be a positive number.</small>
-    </div>
-  </div>
-
-  <div>
-    <label for="featured">Featured</label>
-    <input id="featured" formControlName="featured" type="checkbox" />
-  </div>
-
-  <div>
-    <label for="pictures">Pictures</label>
-    <input type="file" (change)="onPicturesChange($event)" />
-    <div *ngIf="productForm.get('pictures')?.invalid && productForm.get('pictures')?.touched">
-      <small *ngIf="productForm.get('pictures')?.errors?.['nonEmptyArray']">At least one picture is required.</small>
-    </div>
-  </div>
-
-  <div>
-    <button type="submit" [disabled]="productForm.invalid">
-      {{ isEditing ? 'Update Product' : 'Create Product' }}
-    </button>
-  </div>
-</form>
-
+        <!-- Submit Button -->
+        <div class="publish-btn">
+          <button type="submit">{{ isEditing ? 'Update' : 'Publish' }}</button>
+        </div>
+      </form>
     </div>
   </div>
 </main>
