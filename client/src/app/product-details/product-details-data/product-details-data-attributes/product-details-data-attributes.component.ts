@@ -12,27 +12,17 @@ import { addOrUpdateAttribute } from '@store/cart/product-details.actions'
 })
 export class ProductDetailsDataAttributesComponent {
     product$: Observable<Product | null>;
-    attributes$: Observable<{ attributeName: string; attributeOptionId: number }[]>; // debug
 
     constructor(private store: Store<ProductDetailsState>) {
         this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
-        this.attributes$ = this.store.pipe(select((state: any) => state.productDetails.attributes));
-    
-        // debug
-        this.attributes$.subscribe(attributes => {
-          console.log('attribute', attributes);
-        });
     }
     
     onOptionChange(event: any, attributeName: string) {
-        console.log(event.target.value)
-        console.log('changed', attributeName);
         const finalAttributeObject = 
         {
            attributeName: attributeName,
            attributeOptionId: Number(event.target.value)
         }
-        console.log('final attribute object', finalAttributeObject)
         this.store.dispatch(addOrUpdateAttribute({ attribute: finalAttributeObject }));
 }
 
