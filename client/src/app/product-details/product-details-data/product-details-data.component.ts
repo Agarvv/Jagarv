@@ -13,12 +13,12 @@ export class ProductDetailsDataComponent implements OnInit {
   product$: Observable<Product | null>;
 
   constructor(private store: Store<ProductDetailsState>) {
-    this.product$ = this.store.pipe(select(state => state.product));
+    this.product$ = this.store.pipe(select(state => state.productDetails.product));
   }
   
   ngOnInit() {
-  this.store.subscribe((store) => {
-    console.log('store subsckrbed:', store);
+  this.product$.subscribe((product) => {
+    console.log('product subsckrbed:', product);
   });
 }
 
