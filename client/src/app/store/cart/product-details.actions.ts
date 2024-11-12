@@ -5,3 +5,8 @@ export const setProduct = createAction(
   '[Global] Set Product',
   props<{ product: Product | null }>() 
 );
+
+export const addOrUpdateAttribute = createAction(
+  '[Product Details] Add or Update Attribute',
+  props<{ attribute: { attributeName: string; attributeOptionId: number } }>()
+);
