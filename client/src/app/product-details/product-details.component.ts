@@ -4,7 +4,7 @@ import { Product } from "@models/Product"
 import { ActivatedRoute } from '@angular/router'; 
 import { Store } from '@ngrx/store';
 import { setError, clearMessages } from "@store/admin/admin.actions"
-import { setProduct } from '@store/cart/product-details.actions';
+import { setProduct } from '@store/cart/product-details.actions'; //
 
 @Component({
   selector: 'app-product-details',
