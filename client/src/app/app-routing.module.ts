@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth/auth.guard';  
-import { LayoutComponent } from './layout-component/layout-component.component';
+import { LayoutComponentComponent } from './layout-component/layout-component.component'; // i had some serious issues with the component name :P 
+
 import { HomeComponent  } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component'
@@ -50,7 +51,7 @@ const routes: Routes = [
   
   {   // the main layout
       path: '',
-      component: LayoutComponent,
+      component: LayoutComponentComponent,
       children: [
          {
              // homepage
