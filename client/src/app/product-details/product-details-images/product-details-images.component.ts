@@ -16,30 +16,28 @@ export class ProductDetailsImagesComponent {
 
    constructor(private store: Store<ProductDetailsState>) {
      this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
-     
      this.product$.subscribe(product => {
-       this.product = product; 
+       this.product = product;
      });
    }
 
    changeImage(index: number): void {
-       console.log('Image new index', index);
        this.imageIndex = index; 
    }
-   
+
    decrementImage(): void {
-       if (this.product && this.product.pictures && this.imageIndex > 0) {
+       if (this.product?.pictures && this.imageIndex > 0) {
            this.imageIndex--;
-       } else if (this.product && this.product.pictures) {
-           this.imageIndex = this.product.pictures.length - 1; 
+       } else if (this.product?.pictures) {
+           this.imageIndex = this.product.pictures.length - 1;
        }
    }
-   
+
    incrementImage(): void {
-       if (this.product && this.product.pictures && this.imageIndex < this.product.pictures.length - 1) {
+       if (this.product?.pictures && this.imageIndex < this.product.pictures.length - 1) {
            this.imageIndex++;
-       } else if (this.product && this.product.pictures) {
-           this.imageIndex =  0;
+       } else if (this.product?.pictures) {
+           this.imageIndex = 0;
        }
    }
 }
