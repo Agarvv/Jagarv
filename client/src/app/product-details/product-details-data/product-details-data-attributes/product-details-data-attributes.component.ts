@@ -17,6 +17,6 @@ export class ProductDetailsDataAttributesComponent {
         this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
     }
     onOptionChange(event: any, attributeName: string) {
-        console.dir('changed', attributeName);
+        console.log('changed', attributeName);
     }
 }
