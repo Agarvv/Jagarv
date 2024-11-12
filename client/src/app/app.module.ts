@@ -58,7 +58,8 @@ import { ProductDetailsDataComponent } from './product-details/product-details-d
 import { AddToCartButtonComponent } from './product-details/add-to-cart-button/add-to-cart-button.component';
 import { BuyNowButtonComponent } from './product-details/buy-now-button/buy-now-button.component';
 import { ProductOpinionComponent } from './product-details/product-opinion/product-opinion.component';
-import { CreateProductOpinionComponent } from './product-details/create-product-opinion/create-product-opinion.component'; 
+import { CreateProductOpinionComponent } from './product-details/create-product-opinion/create-product-opinion.component';
+import { LayoutComponentComponent } from './layout-component/layout-component.component'; 
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { CreateProductOpinionComponent } from './product-details/create-product-
     AddToCartButtonComponent,
     BuyNowButtonComponent,
     ProductOpinionComponent,
-    CreateProductOpinionComponent
+    CreateProductOpinionComponent,
+    LayoutComponentComponent
   ],
   imports: [
     BrowserModule,

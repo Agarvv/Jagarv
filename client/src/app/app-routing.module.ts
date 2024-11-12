@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth/auth.guard';  
+import { LayoutComponent } from './layout-component/layout-component.component';
 import { HomeComponent  } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component'
@@ -18,6 +19,8 @@ import { SendResetPasswordComponent } from './auth/send-reset-password/send-rese
 import { AddProductVariantComponent } from './admin/add-product-variant/add-product-variant.component'
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
+// LayoutComponent 
+
 const routes: Routes = [
 
   // login page 
@@ -26,37 +29,44 @@ const routes: Routes = [
     component: LoginComponent // the login page for the users
   },
   
-  // the homepage 
-  {
-    path: '',
-    component: HomeComponent,
-    canActivate: [authGuard]
-  },
- 
-  // registration page 
+    // registration page 
   {
     path: 'register',
     component: RegisterComponent 
   },
   
-  // reset password receive mail page
+    // reset password receive mail page
   {
       path: 'send-reset-password',
       component: SendResetPasswordComponent
   },
+  
   
   // reset password page 
   {
       path: 'reset-password/:email/:token',
       component: ResetPasswordComponent 
   },
-   // product details page
-  {
-     path: 'product/:productId',
-     component: ProductDetailsComponent // the product details page for the users
+  
+  {   // the main layout
+      path: '',
+      component: LayoutComponent,
+      children: [
+         {
+             // homepage
+             path: '',
+             component: HomeComponent,
+             canActivate: [authGuard]
+         },
+         {
+             // product details page
+             path: 'product/:productId',
+             component: ProductDetailsComponent
+         }
+      ]
   },
   
-  // the admin page
+  // the admin page with his own layout
   {
     path: 'admin',
     component: AdminComponent,
@@ -95,6 +105,7 @@ const routes: Routes = [
       }
     ]
   }
+  
 ];
 
 @NgModule({
