@@ -35,9 +35,9 @@ export class ProductDetailsComponent implements OnInit {
      this.productsService.getProductById(Number(productId)).subscribe((product: Product) => {
 
        this.product = product;
+       console.log('product debug', product) // debug
        this.store.dispatch(setProduct({ product: product })); 
 
-       console.log('product received', product) // debug
        
      }, (error) => {
       console.error('error', error) // debug for developers

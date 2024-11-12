@@ -60,6 +60,7 @@ import { BuyNowButtonComponent } from './product-details/buy-now-button/buy-now-
 import { ProductOpinionComponent } from './product-details/product-opinion/product-opinion.component';
 import { CreateProductOpinionComponent } from './product-details/create-product-opinion/create-product-opinion.component';
 import { LayoutComponentComponent } from './layout-component/layout-component.component'; 
+import { productDetailsReducer } from '@store/cart/product-details.reducer';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,10 @@ import { LayoutComponentComponent } from './layout-component/layout-component.co
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ admin: adminReducer}),
+    StoreModule.forRoot({ 
+        admin: adminReducer,
+        productDetails: productDetailsReducer
+    }),
     SocialLoginModule 
   ],
   providers: [
