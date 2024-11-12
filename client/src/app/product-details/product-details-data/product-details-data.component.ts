@@ -17,8 +17,8 @@ export class ProductDetailsDataComponent implements OnInit {
   }
   
   ngOnInit() {
-  this.product$.subscribe((product) => {
-    console.log('Producto subsckrbed:', product);
+  this.store.subscribe((store) => {
+    console.log('store subsckrbed:', store);
   });
 }
 
