@@ -9,9 +9,9 @@ import { ProductDetailsState } from '@store/cart/product-details.state';
   templateUrl: './product-details-data-attributes.component.html',
   styleUrls: ['./product-details-data-attributes.component.css'] 
 })
-export class ProductDetailsDataAttributes {
+export class ProductDetailsDataAttributesComponent {
     product$: Observable<Product | null>;
-    
+
     constructor(private store: Store<ProductDetailsState>) {
         // just for now
         this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
