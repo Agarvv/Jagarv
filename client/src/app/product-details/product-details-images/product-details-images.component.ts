@@ -36,7 +36,7 @@ export class ProductDetailsImagesComponent {
    }
    
    incrementImage(): void {
-       if (this.product && this.product.pictures && this.imageIndex < this.product.images.length - 1) {
+       if (this.product && this.product.pictures && this.imageIndex < this.product.pictures.length - 1) {
            this.imageIndex++;
        } else if (this.product && this.product.pictures) {
            this.imageIndex =  0;
