@@ -17,8 +17,10 @@ export class ProductDetailsDataComponent implements OnInit {
   }
   
   ngOnInit() {
-      console.log('Debug, Java >>> C#')
-  }
+  this.product$.subscribe((product) => {
+    console.log('Producto subsckrbed:', product);
+  });
+}
 
 
 
