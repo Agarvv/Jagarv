@@ -19,7 +19,7 @@ export class ProductDetailsDataAttributesComponent {
 
 
     onOptionChange(event: any) {
-        console.log('changed',event.target.value);
+        console.log('changed', JSON.stringify(event.target.value));
     }
 
 }
