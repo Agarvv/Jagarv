@@ -17,13 +17,12 @@ export class ProductDetailsDataAttributesComponent {
         this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
     }
     onOptionChange(event: any, attributeName: string) {
-        console.dir(event.target.value)
+        console.log(event.target.value)
         console.log('changed', attributeName);
         const finalAttributeObject = 
         {
            attributeName: attributeName,
-           attributeOption: event.target.value.value, // option.value
-           attributeOptionId: event.target.value.id
+           attributeOptionId: event.target.value
         }
         console.log('final attribute object', finalAttributeObject)
 }
