@@ -2,7 +2,7 @@
   <div class="p-buy-options">
     <div *ngFor="let attribute of product.category.attributes" class="p-buy-option">
       <label>{{ attribute.name }}</label>
-      <select (change)="onOptionChange($event)">
+      <select (change)="onOptionChange($event, attribute.name)">
         <option *ngFor="let option of attribute.options" [value]="option">
           {{ option.value }}
         </option>
