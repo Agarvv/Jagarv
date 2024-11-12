@@ -4,22 +4,10 @@
   <p>{{ (product$ | async)?.description || 'Not Provided' }}</p>
 </div>
 <div class="p-buy">
-  <div class="p-buy-options">
-    <div class="p-buy-option">
-      <div>
-        <select>
-          <option value="Color">Color</option>
-        </select>
-      </div>
-    </div>
-    <div class="p-buy-option">
-      <div>
-        <select>
-          <option value="RAM">RAM</option>
-        </select>
-      </div>
-    </div>
-  </div>
+    <!-- the product's attributes, Color, Size, RAM, GB, etc.. -->
+  <app-product-details-data-attributes>
+      
+  </app-product-details-data-attributes>
 
   <div class="p-buy-buttons">
     <div class="p-buy-now">

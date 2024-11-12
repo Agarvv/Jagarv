@@ -1,0 +1,12 @@
+<div *ngIf="product$ | async as product">
+  <div class="p-buy-options">
+    <div *ngFor="let attribute of product.category.attributes" class="p-buy-option">
+      <label>{{ attribute.name }}</label>
+      <select (change)="onOptionChange($event)">
+        <option *ngFor="let option of attribute.options" [value]="option">
+          {{ option.value }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

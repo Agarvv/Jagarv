@@ -1,28 +1,19 @@
 <div class="main-slider">
     <div class="parent-image">
-      <div class="slider-action-left">
-        <i class="fa fa-arrow-left"></i>
-      </div>
-      <img src="/assets/images/istockphoto-579156228-1024x1024.jpg">
-       <div class="slider-action-right">
-        <i class="fa fa-arrow-right"></i>
-      </div>
+        <div (click)="decrementImage()" class="slider-action-left">
+            <i class="fa fa-arrow-left"></i>
+        </div>
+        <img [src]="(product$ | async)?.images[imageIndex] || '/assets/images/istockphoto-579156228-1024x1024.jpg'">
+        <div (click)="incrementImage()" class="slider-action-right">
+            <i class="fa fa-arrow-right"></i>
+        </div>
     </div> 
     <div class="children-images">
-       <div class="image">
-        <img src="/assets/images/istockphoto-579156228-1024x1024.jpg">
-       </div>
-       <div class="image">
-        <img src="/assets/images/istockphoto-579156228-1024x1024.jpg">
-       </div>
-       <div class="image">
-        <img src="/assets/images/istockphoto-579156228-1024x1024.jpg">
-       </div>
-       <div class="image">
-        <img src="/assets/images/istockphoto-579156228-1024x1024.jpg">
-       </div>
-       <div class="image">
-        <img src="/assets/images/istockphoto-579156228-1024x1024.jpg">
-       </div>
+        <div 
+        *ngFor="let image of (product$ | async)?.images; let i = index;" 
+        class="image"
+        (click)="changeImage(i)">
+            <img [src]="image || '/assets/images/istockphoto-579156228-1024x1024.jpg'">
+        </div>
     </div>
-</div> 
+</div>

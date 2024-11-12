@@ -5,10 +5,14 @@ import { ProductDetailsState, initialState } from './product-details.state';
 export const productDetailsReducer = createReducer(
   initialState,
   on(setProduct, (state, { product }) => {
-    console.log('Product set in reducer:', product); // debug
     return {
       ...state,
       product,
     };
-  })
+  }),
+
+  
+  
+  
+  
 );

@@ -1,10 +1,10 @@
 import { Product } from "@models/Product"
 
 export interface ProductDetailsState {
-    product: Product | null; 
+    product: Product | null;
 }
 
 export const initialState: ProductDetailsState = {
-    product: null, 
+    product: null
     // i will add more soon
 }
