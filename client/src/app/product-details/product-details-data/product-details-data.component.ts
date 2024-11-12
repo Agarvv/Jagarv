@@ -17,9 +17,10 @@ export class ProductDetailsDataComponent implements OnInit {
   }
 
   // debug
-  ngOnInit(): void {
-    this.product$.subscribe(product => {
-      console.log('Product received updated', product);
-    });
-  }
+  ngOnInit() {
+  this.store.pipe(select(state => state.productDetails.product)).subscribe(product => {
+    console.log('Store producg:', product);
+  });
+}
+
 }
