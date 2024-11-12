@@ -13,7 +13,8 @@ export class ProductDetailsDataComponent implements OnInit {
   product$: Observable<Product | null>;
 
   constructor(private store: Store<ProductDetailsState>) {
-    this.product$ = this.store.pipe(select(state => state.productDetails.product));
+    // just for now
+    this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
   }
   
   ngOnInit() {
