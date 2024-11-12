@@ -10,7 +10,7 @@
   }
   
   .parent-image img {
-    width: 700p;
+    width: 700px;
     height: 300px;
     object-fit: cover;
   }
