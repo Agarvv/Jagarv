@@ -1,17 +1,18 @@
-package com.app.jagarv.controller.products;
+package com.app.jagarv.controller.admin.products;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import com.app.jagarv.dto.ApiResponse;
+import com.app.jagarv.dto.product.create.CreateProductVariantDTO;
 import com.app.jagarv.service.products.ProductVariantService;
-import com.app.jagarv.dto.product.CreateProductVariantDTO;
+
 import jakarta.validation.Valid;
 
 
 @RestController 
-@RequestMapping("/api/jagarv/admin/products/variants")
+@RequestMapping("/admin/products/variants")
 public class ProductVariantController {
     
     private final ProductVariantService productVariantService; 

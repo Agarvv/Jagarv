@@ -2,7 +2,7 @@ package com.app.jagarv.service.products;
 
 import org.springframework.stereotype.Service;
 
-import com.app.jagarv.dto.product.CreateCategoryDTO;
+import com.app.jagarv.dto.product.create.CreateCategoryDTO;
 import com.app.jagarv.entity.product.ProductCategory;
 import com.app.jagarv.repository.product.ProductCategoryRepository; 
 

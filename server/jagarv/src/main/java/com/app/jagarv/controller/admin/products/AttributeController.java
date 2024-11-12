@@ -1,10 +1,10 @@
-package com.app.jagarv.controller.products;
+package com.app.jagarv.controller.admin.products;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.app.jagarv.dto.product.CreateAttributeDTO;
 import com.app.jagarv.dto.ApiResponse;
+import com.app.jagarv.dto.product.create.CreateAttributeDTO;
 import com.app.jagarv.service.products.AttributeService;
 
 import jakarta.validation.Valid; 
@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 // handles all product's attribute logic.
 // this is important for good product variants system
 @RestController 
-@RequestMapping("/api/jagarv/admin/products/attributes")
+@RequestMapping("/admin/products/attributes")
 public class AttributeController {
     
     private final AttributeService attributeService;

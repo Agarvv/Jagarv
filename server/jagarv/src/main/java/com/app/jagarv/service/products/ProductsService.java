@@ -1,6 +1,6 @@
 package com.app.jagarv.service.products;
 
-import com.app.jagarv.dto.product.ProductDTO;
+import com.app.jagarv.dto.product.read.ProductDTO;
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.mapper.product.ProductMapper;
 import com.app.jagarv.repository.product.ProductRepository;

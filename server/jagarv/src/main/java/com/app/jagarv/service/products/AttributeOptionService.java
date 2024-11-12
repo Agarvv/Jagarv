@@ -1,6 +1,6 @@
 package com.app.jagarv.service.products;
 
-import com.app.jagarv.dto.product.CreateAttributeOptionDTO;
+import com.app.jagarv.dto.product.create.CreateAttributeOptionDTO;
 import com.app.jagarv.entity.product.Attribute;
 import com.app.jagarv.entity.product.AttributeOption;
 import com.app.jagarv.repository.product.AttributeOptionRepository;

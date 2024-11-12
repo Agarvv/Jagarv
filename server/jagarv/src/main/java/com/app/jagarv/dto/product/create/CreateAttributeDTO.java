@@ -1,4 +1,4 @@
-package com.app.jagarv.dto.product;
+package com.app.jagarv.dto.product.create;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,8 +1,8 @@
 package com.app.jagarv.mapper.product;
 
-import com.app.jagarv.dto.product.ProductVariantDTO;
-import com.app.jagarv.dto.product.AttributeDTO;
-import com.app.jagarv.dto.product.AttributeOptionDTO;
+import com.app.jagarv.dto.product.read.AttributeDTO;
+import com.app.jagarv.dto.product.read.AttributeOptionDTO;
+import com.app.jagarv.dto.product.read.ProductVariantDTO;
 import com.app.jagarv.entity.product.ProductVariant;
 import com.app.jagarv.entity.product.AttributeOption;
 import com.app.jagarv.entity.product.Attribute;

@@ -1,17 +1,17 @@
-package com.app.jagarv.controller.products;
+package com.app.jagarv.controller.admin.products;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.jagarv.dto.ApiResponse;
-import com.app.jagarv.dto.product.CreateCategoryDTO;
+import com.app.jagarv.dto.product.create.CreateCategoryDTO;
 import com.app.jagarv.service.products.CategoryService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/jagarv/admin/products/category")
+@RequestMapping("/admin/products/category")
 @Validated
 public class CategoryController {
 

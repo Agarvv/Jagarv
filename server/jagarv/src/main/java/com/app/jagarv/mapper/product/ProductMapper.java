@@ -1,6 +1,6 @@
 package com.app.jagarv.mapper.product;
 
-import com.app.jagarv.dto.product.ProductDTO;
+import com.app.jagarv.dto.product.read.ProductDTO;
 import com.app.jagarv.entity.product.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

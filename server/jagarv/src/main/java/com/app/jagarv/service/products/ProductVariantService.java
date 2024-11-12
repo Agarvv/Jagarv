@@ -1,11 +1,12 @@
 package com.app.jagarv.service.products;
 
 import org.springframework.stereotype.Service;
-import com.app.jagarv.dto.product.CreateProductVariantDTO;
+
 import com.app.jagarv.repository.product.ProductRepository;
 import com.app.jagarv.repository.product.ProductVariantRepository;
 import com.app.jagarv.repository.product.AttributeOptionRepository;
 import com.app.jagarv.exception.exceptions.products.ProductNotFoundException;
+import com.app.jagarv.dto.product.create.CreateProductVariantDTO;
 import com.app.jagarv.entity.product.AttributeOption;
 import com.app.jagarv.entity.product.ProductVariant;
 import com.app.jagarv.entity.product.Product;

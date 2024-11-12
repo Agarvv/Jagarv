@@ -1,4 +1,4 @@
-package com.app.jagarv.dto.product;
+package com.app.jagarv.dto.product.read;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

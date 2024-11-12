@@ -1,7 +1,7 @@
 package com.app.jagarv.controller.products;
 
+import com.app.jagarv.dto.product.read.ProductDTO;
 import com.app.jagarv.service.products.ProductsService;
-import com.app.jagarv.dto.product.ProductDTO;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

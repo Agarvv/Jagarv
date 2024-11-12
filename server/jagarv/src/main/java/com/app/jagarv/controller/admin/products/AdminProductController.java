@@ -1,8 +1,9 @@
 package com.app.jagarv.controller.admin.products;
 
-import com.app.jagarv.dto.product.ProductDTO;
+import com.app.jagarv.dto.product.create.CreateProductDTO;
+import com.app.jagarv.dto.product.read.ProductDTO;
 import com.app.jagarv.service.admin.product.AdminProductService;
-import com.app.jagarv.dto.product.CreateProductDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

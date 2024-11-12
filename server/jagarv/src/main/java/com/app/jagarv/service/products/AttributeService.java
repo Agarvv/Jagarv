@@ -2,8 +2,7 @@ package com.app.jagarv.service.products;
 
 import org.springframework.stereotype.Service;
 
-import com.app.jagarv.dto.product.CreateAttributeDTO;
-
+import com.app.jagarv.dto.product.create.CreateAttributeDTO;
 import com.app.jagarv.entity.product.Attribute;
 
 import com.app.jagarv.repository.product.AttributeRepository; 
