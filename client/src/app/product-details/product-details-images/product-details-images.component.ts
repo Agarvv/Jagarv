@@ -28,17 +28,17 @@ export class ProductDetailsImagesComponent {
    }
    
    decrementImage(): void {
-       if (this.product && this.product.images && this.imageIndex > 0) {
+       if (this.product && this.product.pictures && this.imageIndex > 0) {
            this.imageIndex--;
-       } else if (this.product && this.product.images) {
-           this.imageIndex = this.product.images.length - 1; 
+       } else if (this.product && this.product.pictures) {
+           this.imageIndex = this.product.pictures.length - 1; 
        }
    }
    
    incrementImage(): void {
-       if (this.product && this.product.images && this.imageIndex < this.product.images.length - 1) {
+       if (this.product && this.product.pictures && this.imageIndex < this.product.images.length - 1) {
            this.imageIndex++;
-       } else if (this.product && this.product.images) {
+       } else if (this.product && this.product.pictures) {
            this.imageIndex =  0;
        }
    }
