@@ -20,6 +20,6 @@ export class ProductDetailsDataComponent implements OnInit {
       console.log('Debug, Java >>> C#')
   }
 
-}
+
 
 }
