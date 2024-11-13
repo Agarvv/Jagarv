@@ -19,6 +19,7 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { SendResetPasswordComponent } from './auth/send-reset-password/send-reset-password.component'
 import { AddProductVariantComponent } from './admin/add-product-variant/add-product-variant.component'
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CartComponent } from './cart/cart.component';
 
 // LayoutComponent 
 
@@ -63,6 +64,10 @@ const routes: Routes = [
              // product details page
              path: 'product/:productId',
              component: ProductDetailsComponent
+         },
+         {
+          path: 'cart',
+          component: CartComponent
          }
       ]
   },

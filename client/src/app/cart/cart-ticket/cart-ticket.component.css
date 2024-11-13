@@ -1,0 +1,24 @@
+.cart-ticket {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: white;
+  }
+  
+  .ct-total {
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .ct-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .ct-item p {
+    margin: 0;
+  }

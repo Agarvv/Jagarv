@@ -1,0 +1,20 @@
+main {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+    background-color: #f8f9fa;
+  }
+  
+  .cart-products {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+   }
+  

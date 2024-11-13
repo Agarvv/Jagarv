@@ -63,6 +63,11 @@ import { LayoutComponentComponent } from './layout-component/layout-component.co
 import { productDetailsReducer } from '@store/cart/product-details.reducer';
 import { ProductDetailsDataAttributesComponent } from './product-details/product-details-data/product-details-data-attributes/product-details-data-attributes.component';
 import { CreateOpinionSubmitComponent } from './product-details/create-product-opinion/create-opinion-submit/create-opinion-submit.component';
+import { CartComponent } from './cart/cart.component';
+import { CartProductComponent } from './cart/cart-product/cart-product.component';
+import { RemoveCartProductComponent } from './cart/cart-product/remove-cart-product/remove-cart-product.component';
+import { CartTicketComponent } from './cart/cart-ticket/cart-ticket.component';
+import { CheckoutButtonComponent } from './cart/cart-ticket/checkout-button/checkout-button.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +121,12 @@ import { CreateOpinionSubmitComponent } from './product-details/create-product-o
     CreateProductOpinionComponent,
     LayoutComponentComponent,
     ProductDetailsDataAttributesComponent,
-    CreateOpinionSubmitComponent
+    CreateOpinionSubmitComponent,
+    CartComponent,
+    CartProductComponent,
+    RemoveCartProductComponent,
+    CartTicketComponent,
+    CheckoutButtonComponent
   ],
   imports: [
     BrowserModule,
