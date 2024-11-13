@@ -17,6 +17,7 @@ public class ProductDTO {
     private List<String> pictures;
     private BigDecimal price;
     private List<ProductVariantDTO> variants;  
+    private List<ProductOpinionDTO> opinions
 
     public ProductDTO() {
     }
@@ -114,5 +115,13 @@ public class ProductDTO {
 
     public void setVariants(List<ProductVariantDTO> variants) {
         this.variants = variants;
+    }
+    
+    public List<ProductOpinionDTO> getOpinions() {
+        return opinions;
+    }
+    
+    public void setOpinions(List<ProductOpinionDTO> opinions) {
+        this.opinions = opinions;
     }
 }
