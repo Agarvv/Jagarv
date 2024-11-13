@@ -17,7 +17,7 @@ public class ProductDTO {
     private List<String> pictures;
     private BigDecimal price;
     private List<ProductVariantDTO> variants;  
-    private List<ProductOpinionDTO> opinions
+    private List<ProductOpinionDTO> opinions;
 
     public ProductDTO() {
     }
