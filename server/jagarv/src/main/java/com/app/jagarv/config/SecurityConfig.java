@@ -1,7 +1,7 @@
 package com.app.jagarv.config;
 
 import com.app.jagarv.service.auth.CustomUserDetailsService;
-
+import com.app.jagarv.filter.AuthFilter; 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,19 +11,18 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
+    private final AuthFilter authFilter; 
 
-    public SecurityConfig(
-
-        CustomUserDetailsService customUserDetailsService
-    ) {
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService, AuthFilter authFilter) {
         this.customUserDetailsService = customUserDetailsService;
+        this.authFilter = authFilter; 
     }
 
     @Bean
@@ -35,8 +34,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(requests -> requests
-                        .anyRequest().permitAll()) // routes will be also for sure protected on production
-                .csrf(csrf -> csrf.disable()); // this will be for sure enabled on production
+                        .anyRequest().permitAll()) 
+                .csrf(csrf -> csrf.disable()); 
+                
+        http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 

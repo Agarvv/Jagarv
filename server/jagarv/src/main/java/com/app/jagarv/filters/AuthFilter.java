@@ -1,6 +1,6 @@
 package com.app.jagarv.filter;
 
-import com.app.jagarv.service.security.JwtTokenService;
+import com.app.jagarv.outil.JwtOutil;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.filter.OncePerRequestFilter;

@@ -9,7 +9,8 @@ import com.app.jagarv.repository.UserRepository;
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.entity.User;
 import com.app.jagarv.entity.product.ProductOpinion;
-import com.app.jagarv.repository.ProductOpinionRepository;
+import com.app.jagarv.repository.product.ProductOpinionRepository; 
+
 import com.app.jagarv.outil.SecurityOutil;
 import com.app.jagarv.exception.exceptions.users.UserIdNotValidException;
 import com.app.jagarv.exception.exceptions.users.UserNotFoundException;
