@@ -40,16 +40,15 @@ public class AdminProductController {
 
     // DELETE A PRODUCT BY PRODUCT ID
     @DeleteMapping("/delete/{productId}")
-    public ResponseEntity<Map<String, String>> deleteProduct(@PathVariable Long productId) {
+    public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable Long productId) {
         productService.deleteProduct(productId);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Product deleted successfully");
-        return ResponseEntity.ok(response);
+        
+        return ResponseEntity.ok(new ApiResponse<>("Product deleted", null));
     }
 
     // FEATURE A PRODUCT
     @PostMapping("/feature")
-    public ResponseEntity<Map<String, String>>
+    public ResponseEntity<ApiResponse<Void>>
     featureProduct(@RequestBody Map<String, Long> request) {
         
     Long productId = request.get("productId");
@@ -57,26 +56,20 @@ public class AdminProductController {
     // message can be "Product featured" or "Product unfeatured", i use this for informing the frontend and making changes in the UI.
     String message = productService.featureProduct(productId);
     
-    Map<String, String> response = new HashMap<>();
-    
-    response.put("message", message);
-    
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(new ApiResponse<>(message, null));
     
     }
     
     // update a prouct
     @PutMapping("/update/{productId}")
-    public ResponseEntity<Map<String, String>> updateProduct(
+    public ResponseEntity<Map<ApiResponse<Void>> updateProduct(
         @RequestBody CreateProductDTO updateProductDTO,
         @PathVariable Long productId
     ) {
       // yes, im using the same dto that we use in the create endpoint. i need the same validations, that's why
       productService.updateProduct(productId, updateProductDTO);
 
-      Map<String, String> response = new HashMap<>();
-      response.put("message", "Product updated!");
-      return ResponseEntity.ok(response);
+      return ResponseEntity.ok(new ApiResponse<>("Product Updated!", null));
     }
     
     
