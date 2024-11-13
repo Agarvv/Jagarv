@@ -2,12 +2,23 @@
     <div>
         <img src="/assets/images/istockphoto-579156228-1024x1024.jpg">
     </div>
-    <div class="add-opinion-inp">
-      <input type="text" placeholder="Add Your Opinion">
-    </div>
-    <div class="add-opinion-submit">
-      <button>
-        <i class="fa fa-paper-plane"></i>
-      </button>
-    </div>
-  </div>
+    <form [formGroup]="opinionForm" (ngSubmit)="submitForm()">
+        <div class="add-opinion-inp">
+            <input 
+                type="text" 
+                formControlName="content" 
+                placeholder="Add Your Opinion"
+            />
+            <div *ngIf="opinionForm.get('content')?.invalid && opinionForm.get('content')?.touched" class="error-message">
+                <small class="val-error" *ngIf="opinionForm.get('content')?.errors?.['required']">Please Enter Your Opinion.</small>
+            </div>
+        </div>
+        <div class="add-opinion-submit">
+             <app-create-opinion-submit 
+             [form]="opinionForm"
+             >
+           
+             </app-create-opinion-submit>
+        </div>
+    </form>
+</div>

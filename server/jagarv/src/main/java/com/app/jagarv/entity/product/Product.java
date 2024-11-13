@@ -56,6 +56,10 @@ public class Product {
     // Variants of the product, each with specific attribute combinations like color, size, etc.
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductVariant> variants;
+    
+    // product opinions
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductOpinion> opinions;
 
     // Getters and Setters
     public Long getId() {
@@ -130,7 +134,7 @@ public class Product {
         this.price = price;
     }
 
-    // Getter and Setter for Variants
+
     public List<ProductVariant> getVariants() {
         return variants;
     }
@@ -139,4 +143,11 @@ public class Product {
         this.variants = variants;
     }
     
+    public List<ProductOpinion> getOpinions() {
+        return opinions;
+    }
+    
+    public void setOpinions(List<ProductOpinion> opinions) {
+        this.opinions = opinions;
+    }
 }
