@@ -36,6 +36,9 @@ import jakarta.servlet.http.Cookie;
 import com.app.jagarv.dto.user.SendResetCodeDTO;
 import com.app.jagarv.dto.user.ResetPasswordDTO;
 
+import com.app.jagarv.entity.cart.Cart;
+import com.app.jagarv.repository.cart.CartRepository;
+
 @Service
 public class AuthService {
     private final UserRepository userRepository;
@@ -44,13 +47,15 @@ public class AuthService {
     private final ResetPasswordTokenRepository resetPasswordTokenRepository;
     private final SendMail sendMail;
     private final JwtOutil jwtOutil;
+    private final CartRepository cartRepository;
 
     public AuthService(
          UserRepository userRepository,
          PasswordEncoder passwordEncoder, 
          AuthenticationManager authenticationManager,
          ResetPasswordTokenRepository resetPasswordTokenRepository,
-         SendMail sendMail, JwtOutil jwtOutil
+         SendMail sendMail, JwtOutil jwtOutil,
+         CartRepository cartRepository
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -58,6 +63,7 @@ public class AuthService {
         this.resetPasswordTokenRepository = resetPasswordTokenRepository;
         this.sendMail = sendMail;
         this.jwtOutil = jwtOutil;
+        this.cartRepository = cartRepository;
  }
 
     // Registers a user in the system
@@ -80,6 +86,12 @@ public class AuthService {
         
         // Save the user in the repository
         userRepository.save(user);
+
+        // create a cart for the user that registers 
+        Cart cart = new Cart();
+        cart.setUser(user);
+        cartRepository.save(cart);
+
     }
 
     // Handles user login
