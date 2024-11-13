@@ -1,6 +1,7 @@
 package com.app.jagarv.entity.product;
 
-import com.app.jagarv.entity.
+import com.app.jagarv.entity.User;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
