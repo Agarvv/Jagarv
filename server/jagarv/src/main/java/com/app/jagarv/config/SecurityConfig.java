@@ -1,7 +1,7 @@
 package com.app.jagarv.config;
 
 import com.app.jagarv.service.auth.CustomUserDetailsService;
-import com.app.jagarv.filter.AuthFilter; 
+import com.app.jagarv.filters.AuthFilter; 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

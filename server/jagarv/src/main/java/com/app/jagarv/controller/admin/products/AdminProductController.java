@@ -62,7 +62,7 @@ public class AdminProductController {
     
     // update a prouct
     @PutMapping("/update/{productId}")
-    public ResponseEntity<Map<ApiResponse<Void>> updateProduct(
+    public ResponseEntity<ApiResponse<Void>> updateProduct(
         @RequestBody CreateProductDTO updateProductDTO,
         @PathVariable Long productId
     ) {
