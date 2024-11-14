@@ -7,6 +7,8 @@ import com.app.jagarv.dto.ApiResponse;
 import com.app.jagarv.dto.cart.AddToCartDTO;
 import com.app.jagarv.service.cart.CartService;
 
+import com.app.jagarv.dto.cart.CartDTO;
+
 // The App Cart Controller, Handles all the user's carts logic.
 @RestController 
 @RequestMapping("/api/jagarv/cart")
@@ -15,6 +17,12 @@ public class CartController {
 
     public CartController(CartService cartService) {
         this.cartService = cartService;
+    }
+    
+    @GetMapping 
+    public ResponseEntity<CartDTO> getUserCart()
+    {
+        return ResponseEntity.ok(cartService.getUserCart());
     }
 
     // this endpoint finds a item on the user cart, and if that item already exists, removes it

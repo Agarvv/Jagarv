@@ -1,0 +1,23 @@
+package com.app.jagarv.mapper;
+
+import com.app.jagarv.dto.CartDTO;
+import com.app.jagarv.dto.CartItemDTO;
+import com.app.jagarv.entity.cart.Cart;
+import com.app.jagarv.entity.cart.CartItem;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring")  
+public interface CartMapper {
+    @Mapping(source = "id", target = "cartId")
+    @Mapping(source = "cartItems", target = "cartItems")
+    CartDTO toDto(Cart cart);
+
+    List<CartItemDTO> cartItemsToCartItemDTO(List<CartItem> cartItems);
+
+    @Mapping(source = "product.id", target = "productId")
+    @Mapping(source = "product.title", target = "title")
+    CartItemDTO cartItemToCartItemDTO(CartItem cartItem);
+}

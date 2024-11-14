@@ -11,6 +11,9 @@ import com.app.jagarv.entity.cart.CartItem;
 import com.app.jagarv.repository.cart.CartRepository;
 import com.app.jagarv.repository.cart.CartItemRepository;
 import com.app.jagarv.outil.SecurityOutil;
+import com.app.jagarv.dto.cart.CartDTO;
+
+import com.app.jagarv.mapper.CartMapper; 
 
 // the app user's cart service
 @Service 
@@ -19,17 +22,30 @@ public class CartService {
     private final CartRepository cartRepository; 
     private final CartItemRepository cartItemRepository; 
     private final SecurityOutil securityOutil;
+    private final CartMapper cartMapper; 
 
     public CartService(
         ProductRepository productRepository,
         CartRepository cartRepository,
         CartItemRepository cartItemRepository,
-        SecurityOutil securityOutil
+        SecurityOutil securityOutil,
+        CartMapper cartMapper
     ) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
         this.securityOutil = securityOutil;
+        this.cartMapper = cartMapper; 
+    }
+    
+    public CardtDTO getUserCart() {
+        Long userId = securityOutil.getAuthenticatedUserId();
+        
+        Cart cart = cartRepository.findByUserId(userId).orElseThrow(() -> 
+         new CartNotFoundException("Something is wrong with your cart, Please try again later")
+       ); // if user cart does not exist, throw exception
+       
+       return cartMapper.toDto(cart);
     }
     
     public void addOrRemoveToCart(AddToCartDTO addToCartDTO) {
