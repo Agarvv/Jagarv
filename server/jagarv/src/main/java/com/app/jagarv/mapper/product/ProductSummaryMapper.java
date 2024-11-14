@@ -6,9 +6,8 @@ import org.mapstruct.factory.Mappers;
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.dto.product.read.ProductSummaryDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ProductSummaryMapper {
-
     ProductSummaryMapper INSTANCE = Mappers.getMapper(ProductSummaryMapper.class);
 
     ProductSummaryDTO toDto(Product product);
