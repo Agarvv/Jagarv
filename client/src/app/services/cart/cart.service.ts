@@ -13,7 +13,7 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
   
-  addToCard(data: AddToCart): Observable<AddToCart> 
+  addToCard(data: any): Observable<any> 
   {
       return this.http.post(`${this.apiUrl}/create`, data);
   }
