@@ -9,13 +9,13 @@ import { environment } from "@env/environment"
 })
 export class CartService {
     
-  private apiUrl = `${apiUrl}/api/jagarv/cart`
+  private apiUrl = `${environment.apiUrl}/api/jagarv/cart`
 
   constructor(private http: HttpClient) { }
   
   addToCard(data: AddToCart): Observable<AddToCart> 
   {
-      return this.http.post(`${apiUrl}/create`, data);
+      return this.http.post(`${this.apiUrl}/create`, data);
   }
   
   
