@@ -13,7 +13,14 @@ export class PublicProductsService {
   private apiUrl = `${environment.apiUrl}/api/jagarv/products`;
   constructor(private http: HttpClient) { }
   
+  // finds product by id 
   getProductById(productId: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${productId}`) 
   }
+  
+  // finds product by category 
+  findProductsByCategory(category: String): Observable<any> { // i will type it soon
+      return this.http.get(`${this.apiUrl}/category/${category}`);
+  }
+  
 }

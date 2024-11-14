@@ -68,6 +68,7 @@ import { CartProductComponent } from './cart/cart-product/cart-product.component
 import { RemoveCartProductComponent } from './cart/cart-product/remove-cart-product/remove-cart-product.component';
 import { CartTicketComponent } from './cart/cart-ticket/cart-ticket.component';
 import { CheckoutButtonComponent } from './cart/cart-ticket/checkout-button/checkout-button.component';
+import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,8 @@ import { CheckoutButtonComponent } from './cart/cart-ticket/checkout-button/chec
     CartProductComponent,
     RemoveCartProductComponent,
     CartTicketComponent,
-    CheckoutButtonComponent
+    CheckoutButtonComponent,
+    ProductsByCategoryComponent
   ],
   imports: [
     BrowserModule,
