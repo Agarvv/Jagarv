@@ -13,12 +13,12 @@
                 <small class="val-error" *ngIf="opinionForm.get('content')?.errors?.['required']">Please Enter Your Opinion.</small>
             </div>
         </div>
-        <div class="add-opinion-submit">
-             <app-create-opinion-submit 
-             [form]="opinionForm"
-             >
-           
-             </app-create-opinion-submit>
-        </div>
     </form>
+    <div class="add-opinion-submit">
+       <app-create-opinion-submit 
+             [form]="opinionForm"
+        >
+           
+        </app-create-opinion-submit>
+     </div>
 </div>
