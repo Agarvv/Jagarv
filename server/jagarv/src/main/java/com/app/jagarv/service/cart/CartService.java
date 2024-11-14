@@ -1,6 +1,5 @@
 package com.app.jagarv.service.cart;
 
-import com.app.jagarv.dto.cart.AddToCartDTO;
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.exception.exceptions.cart.CartNotFoundException;
 import com.app.jagarv.exception.exceptions.products.ProductNotFoundException;
@@ -11,9 +10,9 @@ import com.app.jagarv.entity.cart.CartItem;
 import com.app.jagarv.repository.cart.CartRepository;
 import com.app.jagarv.repository.cart.CartItemRepository;
 import com.app.jagarv.outil.SecurityOutil;
-import com.app.jagarv.dto.cart.CartDTO;
-
-import com.app.jagarv.mapper.CartMapper; 
+import com.app.jagarv.dto.cart.create.AddToCartDTO;
+import com.app.jagarv.dto.cart.read.CartDTO;
+import com.app.jagarv.mapper.cart.CartMapper; 
 
 // the app user's cart service
 @Service 
@@ -38,7 +37,8 @@ public class CartService {
         this.cartMapper = cartMapper; 
     }
     
-    public CardtDTO getUserCart() {
+    // get the user cart
+    public CartDTO getUserCart() {
         Long userId = securityOutil.getAuthenticatedUserId();
         
         Cart cart = cartRepository.findByUserId(userId).orElseThrow(() -> 
@@ -48,7 +48,8 @@ public class CartService {
        return cartMapper.toDto(cart);
     }
     
-    public void addOrRemoveToCart(AddToCartDTO addToCartDTO) {
+    // adds or remove a product from the user card, if product exists, delete it
+    public String addOrRemoveToCart(AddToCartDTO addToCartDTO) {
 
         Long userId = securityOutil.getAuthenticatedUserId(); // authenticated user id
 
@@ -69,6 +70,7 @@ public class CartService {
             if(existingCartItem != null) {
                 // if the item already exists on that cart, delete it.
                 cartItemRepository.delete(existingCartItem);
+                return "REMOVED"; // will be returned as response in the controller
             }
 
             // if not, creates a new item to that cart 
@@ -77,5 +79,7 @@ public class CartService {
             newItem.setProduct(product);
             newItem.setOptions(addToCartDTO.getOptions());
             cartItemRepository.save(newItem);
+
+            return "ADDED"; // will be returned as response in the controller
     }
 }

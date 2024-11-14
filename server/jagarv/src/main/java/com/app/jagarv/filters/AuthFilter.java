@@ -5,7 +5,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.stereotype.Component;
-import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
@@ -16,7 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 
-import com.app.jagarv.outil.JwtOutil; 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 @Component 

@@ -1,6 +1,6 @@
 package com.app.jagarv.controller.admin.orders;
 
-import com.app.jagarv.dto.order.OrdersDTO; 
+import com.app.jagarv.dto.order.read.OrdersDTO;
 import com.app.jagarv.service.admin.order.AdminOrdersService;
 
 import org.springframework.web.bind.annotation.RequestMapping;

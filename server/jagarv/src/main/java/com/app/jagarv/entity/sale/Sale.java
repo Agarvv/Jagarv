@@ -1,4 +1,4 @@
-package com.app.jagarv.entity;
+package com.app.jagarv.entity.sale;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;

@@ -4,10 +4,9 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.app.jagarv.dto.ApiResponse;
-import com.app.jagarv.dto.cart.AddToCartDTO;
 import com.app.jagarv.service.cart.CartService;
-
-import com.app.jagarv.dto.cart.CartDTO;
+import com.app.jagarv.dto.cart.create.AddToCartDTO;
+import com.app.jagarv.dto.cart.read.CartDTO;
 
 // The App Cart Controller, Handles all the user's carts logic.
 @RestController 
@@ -19,6 +18,7 @@ public class CartController {
         this.cartService = cartService;
     }
     
+    // gets the user cart 
     @GetMapping 
     public ResponseEntity<CartDTO> getUserCart()
     {
@@ -28,7 +28,8 @@ public class CartController {
     // this endpoint finds a item on the user cart, and if that item already exists, removes it
     @PostMapping("/addOrRemove")
     public ResponseEntity<ApiResponse<Void>> addToCart(@Valid @RequestBody AddToCartDTO addToCartDTO) {
-      cartService.addOrRemoveToCart(addToCartDTO);
-      return ResponseEntity.ok(new ApiResponse<>("Product added to cart", null));
+      String message = cartService.addOrRemoveToCart(addToCartDTO); 
+      // message can be either "Added" or "Removed" depending.
+      return ResponseEntity.ok(new ApiResponse<>(message, null));
     }
 }

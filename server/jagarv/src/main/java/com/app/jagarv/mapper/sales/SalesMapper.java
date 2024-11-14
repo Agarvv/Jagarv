@@ -1,8 +1,9 @@
 package com.app.jagarv.mapper.sales; 
 
 import org.mapstruct.Mapper;
-import com.app.jagarv.dto.sales.SalesDTO;
-import com.app.jagarv.entity.Sale;
+
+import com.app.jagarv.dto.sales.read.SalesDTO;
+import com.app.jagarv.entity.sale.Sale;
 
 @Mapper(componentModel = "spring") 
 public interface SalesMapper {

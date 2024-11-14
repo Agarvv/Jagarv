@@ -1,7 +1,8 @@
-package com.app.jagarv.repository;
+package com.app.jagarv.repository.order;
 
-import com.app.jagarv.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.app.jagarv.entity.order.Order;
 
 
 

@@ -42,25 +42,31 @@ public class AuthController {
         Cookie jwtCookie = authService.loginUser(loginUserDTO);
         response.addCookie(jwtCookie); 
         
-        return ResponseEntity.ok(new ApiResponse<>("Welcome Back!", jwtCookie.getValue()));
+        return ResponseEntity.ok(new ApiResponse<>("Welcome Back!", jwtCookie.getValue())); 
+        // debugging the JWT 
     }
     
+    // sends reset password instructions to user email
     @PostMapping("/send_reset_code")
     public ResponseEntity<ApiResponse<Void>> sendResetCode(@Valid @RequestBody SendResetCodeDTO sendCodeDTO) {
         authService.sendResetCode(sendCodeDTO);
         return ResponseEntity.ok(new ApiResponse<Void>("Check Your Email!", null));
     }
     
+    // resets user password
     @PostMapping("/reset_password")
     public ResponseEntity<ApiResponse<Void>> resetPassword(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO) {
         authService.resetPassword(resetPasswordDTO);
         return ResponseEntity.ok(new ApiResponse<Void>("Your Password Has Been Reset!", null));
     }
     
+    // checks if user is authenticated, if not throws exception in service
     @GetMapping("/check")
-    public ResponseEntity<ApiResponse<Void>> checkUserAuthenticated(@CookieValue(value="jwt", required = false) String jwtToken) {
+    public ResponseEntity<ApiResponse<Void>> checkUserAuthenticated(
+        @CookieValue(value="jwt", required = false) String jwtToken) {
+
         authService.checkIfAuthenticated(jwtToken);
         return ResponseEntity.ok(new ApiResponse<Void>("AUTHENTICATED", null)); 
-        // that message will be not displayed on frontend
+        // that message will be not displayed on frontend, just for debugging finals
     }
 }

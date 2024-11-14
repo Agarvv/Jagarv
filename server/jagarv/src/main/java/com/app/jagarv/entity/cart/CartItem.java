@@ -1,7 +1,6 @@
 package com.app.jagarv.entity.cart;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 

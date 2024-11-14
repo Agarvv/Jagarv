@@ -5,14 +5,13 @@ import org.springframework.stereotype.Service;
 import com.app.jagarv.dto.product.create.CreateProductOpinionDTO;
 import com.app.jagarv.exception.exceptions.products.ProductNotFoundException;
 import com.app.jagarv.repository.product.ProductRepository;
-import com.app.jagarv.repository.UserRepository;
+import com.app.jagarv.repository.user.UserRepository;
 import com.app.jagarv.entity.product.Product;
-import com.app.jagarv.entity.User;
 import com.app.jagarv.entity.product.ProductOpinion;
+import com.app.jagarv.entity.user.User;
 import com.app.jagarv.repository.product.ProductOpinionRepository; 
 
 import com.app.jagarv.outil.SecurityOutil;
-import com.app.jagarv.exception.exceptions.users.UserIdNotValidException;
 import com.app.jagarv.exception.exceptions.users.UserNotFoundException;
 
 @Service
@@ -36,11 +35,8 @@ public class ProductOpinionService {
                 .orElseThrow(() -> new ProductNotFoundException("That Product Does Not Exist..."));
 
         Long userId = securityOutil.getAuthenticatedUserId();
-        if (userId == null) {
-            throw new UserIdNotValidException("Please try to log in or try again later...");
-        }
 
-        User user = userRepository.findById(securityOutil.getAuthenticatedUserId()).orElseThrow(() ->
+        User user = userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("Please Try again later..."));
 
         ProductOpinion newOpinion = new ProductOpinion();

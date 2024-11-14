@@ -1,8 +1,7 @@
 package com.app.jagarv.controller.admin.sales;
 
+import com.app.jagarv.dto.sales.read.SalesDTO;
 import com.app.jagarv.service.admin.sales.AdminSalesService;
-import com.app.jagarv.dto.sales.SalesDTO;
-
 
 import org.springframework.web.bind.annotation.RequestMapping;
 

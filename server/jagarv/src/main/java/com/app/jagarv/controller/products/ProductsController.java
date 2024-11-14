@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-
+// products endpoints 
 @RestController
 @RequestMapping("/api/jagarv/products")
 public class ProductsController {
@@ -19,7 +19,7 @@ public class ProductsController {
     public ProductsController(ProductsService productsService) {
         this.productsService = productsService;
     }
-    
+     
     // product by id endpoint
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {

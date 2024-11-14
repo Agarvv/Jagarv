@@ -1,12 +1,9 @@
 package com.app.jagarv.service.admin.order;
 
-import com.app.jagarv.repository.OrderRepository;
+import com.app.jagarv.dto.order.read.OrdersDTO;
 import com.app.jagarv.mapper.orders.OrdersMapper;
-import com.app.jagarv.dto.order.OrdersDTO;
+import com.app.jagarv.repository.order.OrderRepository;
 
-
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -17,11 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class AdminOrdersService {
     // Injections
-    @Autowired
-    private OrderRepository orderRepository; 
+    private final OrderRepository orderRepository; 
+    private final OrdersMapper ordersMapper; 
     
-    @Autowired 
-    private OrdersMapper ordersMapper; 
+    public AdminOrdersService(OrderRepository orderRepository, OrdersMapper ordersMapper) {
+      this.orderRepository = orderRepository;
+      this.ordersMapper = ordersMapper;
+    }
     
     // Returns all the App's orders to the controller
     public List<OrdersDTO> getOrders() {

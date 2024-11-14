@@ -21,7 +21,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    // creates a new category
+    // creates a new product category
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<Void>> createCategory(@Valid @RequestBody CreateCategoryDTO category) {
         categoryService.createCategory(category);

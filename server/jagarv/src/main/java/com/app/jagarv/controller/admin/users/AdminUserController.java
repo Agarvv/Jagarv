@@ -17,6 +17,7 @@ public class AdminUserController {
    @Autowired 
    private AdminUserService userService; 
    
+   // gets all the users of the app for the admins
    @GetMapping
    public List<UserDTO> getUsers() {
        return userService.getUsers();

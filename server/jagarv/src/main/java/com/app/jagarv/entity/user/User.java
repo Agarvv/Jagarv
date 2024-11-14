@@ -1,4 +1,4 @@
-package com.app.jagarv.entity;
+package com.app.jagarv.entity.user;
 
 import com.app.jagarv.enums.Role;
 import jakarta.persistence.*;

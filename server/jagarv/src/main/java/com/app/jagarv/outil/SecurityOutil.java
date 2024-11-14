@@ -16,7 +16,8 @@ public class SecurityOutil {
         if (authentication != null && authentication.getPrincipal() instanceof Long) 
         {
             return (Long) authentication.getPrincipal();
-        }
+        } 
+        
         return null;
     }
     

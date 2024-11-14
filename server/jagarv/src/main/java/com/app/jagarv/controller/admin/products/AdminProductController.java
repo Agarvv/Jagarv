@@ -2,15 +2,15 @@ package com.app.jagarv.controller.admin.products;
 
 import com.app.jagarv.dto.product.create.CreateProductDTO;
 import com.app.jagarv.dto.product.read.ProductDTO;
+import com.app.jagarv.dto.product.create.FeatureProductDTO;
 import com.app.jagarv.service.admin.product.AdminProductService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.app.jagarv.dto.ApiResponse;
 
@@ -21,8 +21,11 @@ import com.app.jagarv.dto.ApiResponse;
 public class AdminProductController {
 
     // INJECTIONS
-    @Autowired 
-    private AdminProductService productService;
+    private final AdminProductService productService;
+
+    public AdminProductController(AdminProductService productService) {
+       this.productService = productService;
+    }
 
     // GETS ALL THE PRODUCTS FROM THE DB
     @GetMapping
@@ -32,45 +35,42 @@ public class AdminProductController {
 
     // CREATE A NEW PRODUCT
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Void>> createProduct(@RequestBody CreateProductDTO createProductDTO) {
+    public ResponseEntity<ApiResponse<Long>> createProduct(@Valid @RequestBody CreateProductDTO createProductDTO) {
         ProductDTO createdProduct = productService.createProduct(createProductDTO); // Get the created product DTO
         
-        return ResponseEntity.ok(new ApiResponse("Product created!", createdProduct.getId()));
+        return ResponseEntity.ok(new ApiResponse<>("Product created!", createdProduct.getId()));
     }
 
     // DELETE A PRODUCT BY PRODUCT ID
     @DeleteMapping("/delete/{productId}")
-    public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable Long productId) {
+    public ResponseEntity<ApiResponse<Long>> deleteProduct(@PathVariable Long productId) {
         productService.deleteProduct(productId);
         
-        return ResponseEntity.ok(new ApiResponse<>("Product deleted", null));
+        return ResponseEntity.ok(new ApiResponse<Long>("Product deleted with id", productId));
     }
 
     // FEATURE A PRODUCT
     @PostMapping("/feature")
-    public ResponseEntity<ApiResponse<Void>>
-    featureProduct(@RequestBody Map<String, Long> request) {
-        
-    Long productId = request.get("productId");
-    
+    public ResponseEntity<ApiResponse<Long>>
+    featureProduct(@RequestBody @Valid FeatureProductDTO feature) {
+    Long productId = feature.getProductId();
+
     // message can be "Product featured" or "Product unfeatured", i use this for informing the frontend and making changes in the UI.
     String message = productService.featureProduct(productId);
     
-    return ResponseEntity.ok(new ApiResponse<>(message, null));
+    return ResponseEntity.ok(new ApiResponse<Long>(message, productId));
     
     }
     
     // update a prouct
     @PutMapping("/update/{productId}")
-    public ResponseEntity<ApiResponse<Void>> updateProduct(
+    public ResponseEntity<ApiResponse<Long>> updateProduct(
         @RequestBody CreateProductDTO updateProductDTO,
         @PathVariable Long productId
     ) {
       // yes, im using the same dto that we use in the create endpoint. i need the same validations, that's why
       productService.updateProduct(productId, updateProductDTO);
-
-      return ResponseEntity.ok(new ApiResponse<>("Product Updated!", null));
+      return ResponseEntity.ok(new ApiResponse<Long>("Product Updated!", productId));
     }
-    
     
 }

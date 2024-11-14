@@ -1,8 +1,8 @@
-package com.app.jagarv.repository;
-
-import com.app.jagarv.entity.ResetPasswordToken;
+package com.app.jagarv.repository.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.app.jagarv.entity.user.ResetPasswordToken;
 
 import java.util.Optional;
 

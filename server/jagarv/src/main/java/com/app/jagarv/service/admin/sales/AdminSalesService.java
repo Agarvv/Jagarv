@@ -1,10 +1,8 @@
 package com.app.jagarv.service.admin.sales;
 
-import com.app.jagarv.repository.SalesRepository;
-import com.app.jagarv.dto.sales.SalesDTO;
+import com.app.jagarv.dto.sales.read.SalesDTO;
 import com.app.jagarv.mapper.sales.SalesMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.app.jagarv.repository.sale.SalesRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -16,14 +14,15 @@ import java.util.stream.Collectors;
 @Service
 public class AdminSalesService {
     // Injections
-    @Autowired
-    private SalesRepository salesRepository;
-    
-    @Autowired
-    private SalesMapper salesMapper;
+    private final SalesRepository salesRepository;
+    private final SalesMapper salesMapper;
+
+    public AdminSalesService(SalesRepository salesRepository, SalesMapper salesMapper) {
+      this.salesRepository = salesRepository;
+      this.salesMapper = salesMapper;
+    }
      // Returns all the app's sales to the controller
     public List<SalesDTO> getSales() {
-
         return salesRepository.findAll()
         .stream()
         .map(salesMapper::salesToDTO)

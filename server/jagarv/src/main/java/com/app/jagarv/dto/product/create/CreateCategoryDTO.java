@@ -2,8 +2,6 @@ package com.app.jagarv.dto.product.create;
 
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 public class CreateCategoryDTO {
     @NotBlank(message = "Category Name Can Not Be Blank.")

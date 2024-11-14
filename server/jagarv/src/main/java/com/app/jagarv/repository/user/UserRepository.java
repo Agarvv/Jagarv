@@ -1,10 +1,10 @@
-package com.app.jagarv.repository;
-
-import com.app.jagarv.entity.User;
+package com.app.jagarv.repository.user;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.app.jagarv.entity.user.User;
 
 
 

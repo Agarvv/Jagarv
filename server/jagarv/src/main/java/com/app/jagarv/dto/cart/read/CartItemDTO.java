@@ -1,4 +1,4 @@
-package com.app.jagarv.dto.cart;
+package com.app.jagarv.dto.cart.read;
 
 import java.util.List;
 import java.math.BigDecimal; 
@@ -14,7 +14,7 @@ public class CartItemDTO {
 
     public CartItemDTO(Long productId, String productName, Long quantity, List<Long> options) {
         this.productId = productId;
-        this.productName = productName;
+        this.title  = productName;
         this.quantity = quantity;
         this.options = options;
     }
@@ -27,12 +27,12 @@ public class CartItemDTO {
         this.productId = productId;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Long getQuantity() {

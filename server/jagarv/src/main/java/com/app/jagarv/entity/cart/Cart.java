@@ -2,7 +2,8 @@ package com.app.jagarv.entity.cart;
 
 import jakarta.persistence.*;
 import java.util.List;
-import com.app.jagarv.entity.User;
+
+import com.app.jagarv.entity.user.User;
 
 @Entity
 public class Cart {

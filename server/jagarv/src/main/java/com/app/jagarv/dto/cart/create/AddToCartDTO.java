@@ -1,9 +1,8 @@
-package com.app.jagarv.dto.cart;
+package com.app.jagarv.dto.cart.create;
 
 
 import java.util.List;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class AddToCartDTO {

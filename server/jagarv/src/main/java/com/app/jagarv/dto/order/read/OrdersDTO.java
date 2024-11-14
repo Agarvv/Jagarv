@@ -1,4 +1,4 @@
-package com.app.jagarv.dto.order;
+package com.app.jagarv.dto.order.read;
 
 public class OrdersDTO {
     private String status;

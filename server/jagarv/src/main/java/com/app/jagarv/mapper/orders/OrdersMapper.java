@@ -1,8 +1,9 @@
 package com.app.jagarv.mapper.orders;
 
 import org.mapstruct.Mapper;
-import com.app.jagarv.dto.order.OrdersDTO;
-import com.app.jagarv.entity.Order;
+
+import com.app.jagarv.dto.order.read.OrdersDTO;
+import com.app.jagarv.entity.order.Order;
 
 @Mapper(componentModel = "spring") 
 public interface OrdersMapper {

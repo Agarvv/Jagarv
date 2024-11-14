@@ -1,4 +1,4 @@
-package com.app.jagarv.controller;
+package com.app.jagarv.controller.health;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

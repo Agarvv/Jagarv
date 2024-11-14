@@ -1,4 +1,4 @@
-package com.app.jagarv.dto.sales; 
+package com.app.jagarv.dto.sales.read; 
 
 import java.math.BigDecimal;
 

@@ -22,6 +22,7 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+// service for admin's CRUD logic in the app.
 @Service 
 public class AdminProductService {
 

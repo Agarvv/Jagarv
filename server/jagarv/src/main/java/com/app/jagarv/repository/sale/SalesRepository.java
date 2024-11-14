@@ -1,8 +1,9 @@
-package com.app.jagarv.repository;
+package com.app.jagarv.repository.sale;
 
-import com.app.jagarv.entity.Sale;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.app.jagarv.entity.sale.Sale;
 
 
 @Repository 

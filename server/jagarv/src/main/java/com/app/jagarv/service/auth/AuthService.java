@@ -14,20 +14,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.google.api.client.auth.openidconnect.IdToken.Payload;
-
-import com.app.jagarv.entity.User;
 import com.app.jagarv.dto.user.RegisterUserDTO;
-import com.app.jagarv.dto.user.LoginUserDTO; 
-import com.app.jagarv.repository.UserRepository;
+import com.app.jagarv.dto.user.LoginUserDTO;
 import com.app.jagarv.exception.exceptions.users.EmailAlreadyExistsException;
 import com.app.jagarv.exception.exceptions.users.UsernameAlreadyExistsException;
 import com.app.jagarv.exception.exceptions.users.EmailNotFoundException;
 import com.app.jagarv.exception.exceptions.users.InvalidCredentialsException;
 import com.app.jagarv.exception.exceptions.users.InvalidResetTokenOrEmail;
 import com.app.jagarv.exception.exceptions.users.UserSessionNotValidException;
-import com.app.jagarv.entity.ResetPasswordToken;
 import com.app.jagarv.outil.GenerateResetPasswordToken;
-import com.app.jagarv.repository.ResetPasswordTokenRepository;
 import com.app.jagarv.outil.SendMail;
 import com.app.jagarv.outil.JwtOutil;
 import com.app.jagarv.outil.CookieOutil;
@@ -37,8 +32,13 @@ import com.app.jagarv.dto.user.SendResetCodeDTO;
 import com.app.jagarv.dto.user.ResetPasswordDTO;
 
 import com.app.jagarv.entity.cart.Cart;
+import com.app.jagarv.entity.user.ResetPasswordToken;
+import com.app.jagarv.entity.user.User;
 import com.app.jagarv.repository.cart.CartRepository;
+import com.app.jagarv.repository.user.ResetPasswordTokenRepository;
+import com.app.jagarv.repository.user.UserRepository;
 
+// handles auth logic
 @Service
 public class AuthService {
     private final UserRepository userRepository;
@@ -82,7 +82,7 @@ public class AuthService {
         User user = new User();
         user.setUsername(newUser.getUsername());
         user.setEmail(newUser.getEmail());
-        user.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        user.setPassword(passwordEncoder.encode(newUser.getPassword())); // pass encoded
         
         // Save the user in the repository
         userRepository.save(user);
@@ -97,6 +97,7 @@ public class AuthService {
     // Handles user login
     public Cookie loginUser(LoginUserDTO loginUserDTO) {
         try {
+            // if the user not exists, throw exception
             Boolean userExists = userRepository.existsByEmail(loginUserDTO.getEmail()); 
             if(!userExists) {
                 throw new EmailNotFoundException("Your Account Does not Exist...");
@@ -111,32 +112,41 @@ public class AuthService {
 
             CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
             User user = customUserDetails.getUser();
-
+            
+            // generate jwt token
             String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
-
+            // put jwt in a cookie
             Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
             
+            // return cookie with jwt to controller and controller sets cookie in response
             return jwtCookie;
 
         } catch (BadCredentialsException e) {
+            // if bad credentials, that means password is not valid, throw exception
             throw new InvalidCredentialsException("Password Does Not Match...");
         }
     }
-
+    
+    // sends reset password instructions to email
     public void sendResetCode(SendResetCodeDTO sendResetCodeDTO) {
+        // if email not exists throw exception
         User user = userRepository.findByEmail(sendResetCodeDTO.getEmail()).orElseThrow(() -> 
             new EmailNotFoundException("Email not exists"));
-
+        
+        // generate new reset token
         String resetToken = GenerateResetPasswordToken.generate();
         ResetPasswordToken resetPasswordToken = new ResetPasswordToken();
         resetPasswordToken.setUserEmail(user.getEmail());
         resetPasswordToken.setToken(resetToken);
+        // 1 hour expire time
         Date expireDate = new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1));
         resetPasswordToken.setExpireDate(expireDate);
         resetPasswordTokenRepository.save(resetPasswordToken);
 
+        // reset link string
         String resetLink = String.format("https://jagarv.vercel.app/reset-password/%s/%s", user.getEmail(), resetToken);
         
+        // sends that mail with the link 
         sendMail.sendMail(sendResetCodeDTO.getEmail(), 
             "PASSWORD RESET AT JAGARV", 
             "To reset your password, please click on the following link:\n" + 
@@ -146,23 +156,29 @@ public class AuthService {
         );
     }
     
+    // resets user password
     public void resetPassword(ResetPasswordDTO resetPasswordDTO) {
+        // if user email not exist, throw exception
         User user = userRepository.findByEmail(resetPasswordDTO.getEmail())
             .orElseThrow(() -> new EmailNotFoundException("User not found"));
-
+        
+        // searches a reset password token in te db, if not found throw exceptio,
         ResetPasswordToken token = resetPasswordTokenRepository
             .findByUserEmailAndToken(resetPasswordDTO.getEmail(), resetPasswordDTO.getToken())
             .orElseThrow(() -> new InvalidResetTokenOrEmail("Invalid reset token or email"));
-
+        
+        // if expired throw exception
         if (token.hasExpired()) {
             throw new InvalidResetTokenOrEmail("Reset token has expired."); // token expired
         }
-
+        
+        // encoded new password
         user.setPassword(passwordEncoder.encode(resetPasswordDTO.getPassword()));  
         userRepository.save(user);
         resetPasswordTokenRepository.delete(token);
     }
- 
+     
+    // login with google social media
     public Cookie loginWithSocialMedia(Payload payload) {
         String email = (String) payload.get("email");
 
@@ -180,10 +196,11 @@ public class AuthService {
         String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
         
         Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
-        
+        // will be setted on the response by the controller
         return jwtCookie; 
     }
-
+     
+    // check if the user is authenticated
     public void checkIfAuthenticated(String jwtToken) {
         if (jwtToken == null) {
             throw new UserSessionNotValidException("Please Log In.");

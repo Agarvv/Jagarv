@@ -1,8 +1,8 @@
 package com.app.jagarv.mapper.user;
 
 import org.mapstruct.Mapper; 
-import com.app.jagarv.dto.user.UserDTO; 
-import com.app.jagarv.entity.User; 
+import com.app.jagarv.dto.user.UserDTO;
+import com.app.jagarv.entity.user.User; 
 
 
 @Mapper(componentModel = "spring") 

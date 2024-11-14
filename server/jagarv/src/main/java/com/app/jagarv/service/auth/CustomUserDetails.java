@@ -1,13 +1,15 @@
 package com.app.jagarv.service.auth;
 
-import com.app.jagarv.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.app.jagarv.entity.user.User;
+
 import java.util.Collections;
 import java.util.Collection;
 
+// custom user details 
 public class CustomUserDetails implements UserDetails {
 
     private final User user;
