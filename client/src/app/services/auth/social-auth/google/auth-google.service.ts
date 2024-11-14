@@ -12,6 +12,8 @@ export class AuthGoogleService {
   private apiUrl = environment.apiUrl + '/api/jagarv/auth';
   
   sendGoogleTokenToServer(token: string): Observable<any> {
-      return this.http.post<any>(`${this.apiUrl}/google`, token); 
+      return this.http.post<any>(`${this.apiUrl}/google`, token, {
+          withCredentials: true
+      }); 
   }
 }

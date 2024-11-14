@@ -23,7 +23,9 @@ export class AuthService {
   
   // logins a user 
   loginUser(user: LoginUser): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user);
+    return this.http.post(`${this.apiUrl}/login`, user, {
+        withCredentials: true 
+    });
   }
 
   // sends reset password url with instructions to reset password
