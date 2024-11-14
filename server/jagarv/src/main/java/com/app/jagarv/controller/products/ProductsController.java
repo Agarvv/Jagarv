@@ -29,7 +29,7 @@ public class ProductsController {
     
     // products by category endpoint
     @GetMapping("/category/{category}") 
-    public ProductSummaryDTO findProductsByCategory(@PathVariable String category) 
+    public ResponseEntity<List<ProductSummaryDTO>> findProductsByCategory(@PathVariable String category) 
     {
         List<ProductSummaryDTO> products = productsService.findProductsByCategory(category); 
         
