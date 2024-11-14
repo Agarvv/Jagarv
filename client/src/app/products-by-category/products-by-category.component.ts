@@ -13,7 +13,7 @@ import { setError, clearMessages } from '@store/admin/admin.actions';
 // handles product category read logic
 // if user enters '/category/:category', it will find the products with that category in the server.
 export class ProductsByCategoryComponent implements OnInit {
-  category: string | ''; 
+  category: string | '' = ''; 
 
   constructor(private route: ActivatedRoute, private productsService: PublicProductsService, private store: Store) { }
 
