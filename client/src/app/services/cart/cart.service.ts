@@ -13,9 +13,9 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
   
-  addToCard(data: any): Observable<any> 
+  addOrRemoveToCart(data: any): Observable<any> 
   {
-      return this.http.post(`${this.apiUrl}/create`, data);
+      return this.http.post(`${this.apiUrl}/addOrRemove`, data);
   }
   
   

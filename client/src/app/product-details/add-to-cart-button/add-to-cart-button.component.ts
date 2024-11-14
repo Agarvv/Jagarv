@@ -60,7 +60,7 @@ export class AddToCartButtonComponent {
           return 
       }
       
-      this.cartService.addToCard(this.addProductForm.value).subscribe((data) => {
+      this.cartService.addOrRemoveToCart(this.addProductForm.value).subscribe((data) => {
           console.log("Added to cart") // debug
       }, (error) => {
           console.error(error); // debug
