@@ -15,6 +15,8 @@ export class OpinionsService {
   
   // creates a new opinion for a product
   createOpinion(opinion: CreateProductOpinion): Observable<CreateProductOpinion> {
-    return this.http.post<CreateProductOpinion>(`${this.apiUrl}/create`, opinion);
+    return this.http.post<CreateProductOpinion>(`${this.apiUrl}/create`, opinion, {
+        withCredentials: true // server needs to extact jwt token cookie from user 
+    });
   }
 }
