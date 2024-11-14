@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.app.jagarv.dto.product.read.ProductSummaryDTO;
 import com.app.jagarv.mapper.product.ProductSummaryMapper;
 import com.app.jagarv.repository.product.ProductCategoryRepository;
-import com.app.jagarv.exception.exceptions.product.CategoryNotFoundException; 
+import com.app.jagarv.exception.exceptions.products.CategoryNotFoundException; 
 
 
 import java.util.List;
