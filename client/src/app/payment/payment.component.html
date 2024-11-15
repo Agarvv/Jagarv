@@ -1,0 +1,14 @@
+<div>
+    <h2>Pay</h2>
+    
+    <div id="card-element">
+
+    </div>
+  
+    <div *ngIf="cardErrors" class="error">
+      {{ cardErrors }}
+    </div>
+  
+    <button (click)="handlePayment()">Pay</button>
+  </div>
+  
