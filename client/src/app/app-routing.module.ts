@@ -76,7 +76,7 @@ const routes: Routes = [
           component: ProductsByCategoryComponent
          },
          {
-          path: '/pay',
+          path: 'pay',
           component: PaymentComponent
          }
       ]
