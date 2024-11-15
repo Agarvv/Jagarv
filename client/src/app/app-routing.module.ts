@@ -71,7 +71,7 @@ const routes: Routes = [
           component: CartComponent
          },
          {
-          path: '/category/:category',
+          path: 'category/:category',
           component: ProductsByCategoryComponent
          }
       ]
