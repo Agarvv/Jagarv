@@ -25,7 +25,6 @@ export class ProductsByCategoryComponent implements OnInit {
     this.getProductsByCategory();
     
   }
-  
   getProductsByCategory(): void {
       
       this.store.dispatch(clearMessages());
@@ -40,8 +39,5 @@ export class ProductsByCategoryComponent implements OnInit {
         this.store.dispatch(setError({ errorMessage: "Something went wrong, Please try again later.."}));
         
     })
-    
   }
-  
-  
 }
