@@ -70,6 +70,7 @@ import { CartTicketComponent } from './cart/cart-ticket/cart-ticket.component';
 import { CheckoutButtonComponent } from './cart/cart-ticket/checkout-button/checkout-button.component';
 import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 import { ProductCardComponent } from './layout/product-card/product-card.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -130,7 +131,8 @@ import { ProductCardComponent } from './layout/product-card/product-card.compone
     CartTicketComponent,
     CheckoutButtonComponent,
     ProductsByCategoryComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

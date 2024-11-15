@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   apiUrl: 'https://jagarv-jq5o.onrender.com',
+  stripePublicKey: 'pk_test_51QLORxG0ugv4veBG48CWA8Eo1gb9dHDL13El35Fbub17pbv3pzUBU7g9e60QCQ3U4BgrNnPmMSVHVIrKnjATr0Yv00d7aCtVxX',
   cloudinary: {
       cloud_name: 'dtlpkq8w3',
       upload_preset: 'Jagarv'
