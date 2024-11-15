@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, Stripe, StripeElements } from '@stripe/stripe-js';
 import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StripeService {
-  private stripe: any;
-  private elements: any;
+  private stripe: Stripe | null = null;
+  private elements: StripeElements | null = null;
 
   constructor() {
-    loadStripe(environment.stripePublicKey).then((stripe) => {
-      this.stripe = stripe;
-      this.elements = stripe.elements(); 
+    loadStripe(environment.stripePublicKey).then((stripe: Stripe | null) => {
+      if (stripe) { 
+        this.stripe = stripe;
+        this.elements = stripe.elements();
+      }
     });
   }
 
-  createPaymentMethod(cardElement: any): Promise<any> {
+  async createPaymentMethod(cardElement: any): Promise<any> {
+    if (!this.stripe) {
+      throw new Error('Stripe is not initzialized');
+    }
     return this.stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
@@ -24,6 +29,9 @@ export class StripeService {
   }
 
   createCardElement() {
-    return this.elements.create('card'); 
+    if (!this.elements) {
+      throw new Error('Stripe Elements not initialized');
+    }
+    return this.elements.create('card');
   }
 }

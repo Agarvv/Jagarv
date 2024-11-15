@@ -21,6 +21,7 @@ import { AddProductVariantComponent } from './admin/add-product-variant/add-prod
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
+import { PaymentComponent } from './payment/payment.component';
 
 // LayoutComponent 
 
@@ -73,6 +74,10 @@ const routes: Routes = [
          {
           path: 'category/:category',
           component: ProductsByCategoryComponent
+         },
+         {
+          path: '/pay',
+          component: PaymentComponent
          }
       ]
   },
