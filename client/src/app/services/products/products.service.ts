@@ -21,8 +21,8 @@ export class PublicProductsService {
   }
   
   // finds product by category 
-  findProductsByCategory(category: String): Observable<ProductSummary[]> {
-      return this.http.get(`${this.apiUrl}/category/${category}`);
-  }
+  findProductsByCategory(category: string): Observable<ProductSummary[]> {
+  return this.http.get<ProductSummary[]>(`${this.apiUrl}/category/${category}`);
+}
   
 }
