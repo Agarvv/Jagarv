@@ -1,65 +1,88 @@
 <aside class="sidebar" [class.collapsed]="isCollapsed">
-    <div class="aside-header" (click)="toggleSidebar()">
-      <h2 *ngIf="!isCollapsed" class="logo">Jagarv</h2>
-      <i id="icon" class="fa" [ngClass]="isCollapsed ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
-    </div>
-  
-    <nav class="aside-nav">
-      <ul>
-        <li>
+  <div class="aside-header" (click)="toggleSidebar()">
+    <h2 *ngIf="!isCollapsed" class="logo">Jagarv</h2>
+    <i id="icon" class="fa" [ngClass]="isCollapsed ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
+  </div>
+
+  <nav class="aside-nav">
+    <ul>
+      <li>
+        <a routerLink="/">
           <i class="fa fa-home"></i>
-          <span><a routerLink="/">Home</a></span>
-        </li>
-        <li>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/cart">
           <i class="fa fa-shopping-cart"></i>
-          <span><a routerLink="/cart">My Cart</a></span>
-        </li>
-        <li>
+          <span>My Cart</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/orders">
           <i class="fa fa-truck"></i>
-          <span><a routerLink="/orders">My Orders</a></span>
-        </li>
-        <li>
+          <span>My Orders</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/wishlist">
           <i class="fa fa-heart"></i>
-          <span><a routerLink="/wishlist">My Wishlist</a></span>
-        </li>
-        <li>
+          <span>My Wishlist</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/account">
           <i class="fa fa-user"></i>
-          <span><a routerLink="/account">My Account</a></span>
-        </li>
-        <li class="products-li">
-          <div class="flex-li">
+          <span>My Account</span>
+        </a>
+      </li>
+      <li class="products-li">
+        <div class="flex-li">
+          <a href="#" class="products-toggle">
             <i class="fa fa-box"></i>
-            <span><a href="#" class="products-toggle">Products</a></span>
-            <i (click)="toggleSubmenu()" *ngIf="!isCollapsed" [ngClass]="isSubmenuOpen ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
-          </div>
-          <ul class="submenu" [class.open]="isSubmenuOpen">
-            <li>
+            <span>Products</span>
+          </a>
+          <i (click)="toggleSubmenu()" *ngIf="!isCollapsed" [ngClass]="isSubmenuOpen ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </div>
+        <ul class="submenu" [class.open]="isSubmenuOpen">
+          <li>
+            <a routerLink="/products/phones">
               <i class="fa fa-mobile"></i>
-              <span><a routerLink="/products/phones">Smartphones</a></span>
-            </li>
-            <li>
+              <span>Smartphones</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/products/pc">
               <i class="fa fa-laptop"></i>
-              <span><a routerLink="/products/pc">PCs</a></span>
-            </li>
-            <li>
+              <span>PCs</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/products/consoles">
               <i class="fa fa-gamepad"></i>
-              <span><a routerLink="/products/consoles">Consoles</a></span>
-            </li>
-            <li>
+              <span>Consoles</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/products/tv">
               <i class="fa fa-tv"></i>
-              <span><a routerLink="/products/tv">TV</a></span>
-            </li>
-            <li>
+              <span>TV</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/products/music">
               <i class="fa fa-headset"></i>
-              <span><a routerLink="/products/music">Music</a></span>
-            </li>
-          </ul>
-        </li>
-        <li class="admin-li">
+              <span>Music</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="admin-li">
+        <a routerLink="/admin">
           <i class="fa fa-users-cog"></i>
-          <span><a routerLink="/admin">Admin</a></span>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-  
+          <span>Admin</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

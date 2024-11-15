@@ -1,38 +1,54 @@
 <aside class="sidebar" [class.collapsed]="isCollapsed">
   <div class="aside-header" (click)="toggleSidebar()">
-    <h2 class="logo" [style.display]="isCollapsed ? 'none' : 'block'">Jagarv</h2>
+    <a routerLink="/" *ngIf="!isCollapsed">
+      <h2 class="logo">Jagarv</h2>
+    </a>
     <i id="icon" class="fa" [ngClass]="isCollapsed ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
   </div>
 
   <nav class="aside-nav">
     <ul>
       <li>
-        <i class="fa fa-dashboard"></i>
-        <span><a routerLink="/admin">Dashboard</a></span>
+        <a routerLink="/admin/dashboard">
+          <i class="fa fa-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
       </li>
       <li>
-        <i class="fa fa-box"></i>
-        <span><a routerLink="/admin/products">Products</a></span>
+        <a routerLink="/admin/products">
+          <i class="fa fa-box"></i>
+          <span>Products</span>
+        </a>
       </li>
       <li>
-        <i class="fa fa-users"></i>
-        <span><a routerLink="/admin/users">Users</a></span>
+        <a routerLink="/admin/users">
+          <i class="fa fa-users"></i>
+          <span>Users</span>
+        </a>
       </li>
       <li>
-        <i class="fa fa-truck"></i>
-        <span><a routerLink="/admin/orders">Orders</a></span>
+        <a routerLink="/admin/orders">
+          <i class="fa fa-truck"></i>
+          <span>Orders</span>
+        </a>
       </li>
       <li>
-        <i class="fa fa-usd"></i>
-        <span><a routerLink="/admin/sales">Sales</a></span>
+        <a routerLink="/admin/sales">
+          <i class="fa fa-usd"></i>
+          <span>Sales</span>
+        </a>
       </li>
       <li>
-        <i class="fa fa-bell"></i>
-        <span><a routerLink="/admin/notifications" href="Notifications">Notifications</a></span>
+        <a routerLink="/admin/notifications">
+          <i class="fa fa-bell"></i>
+          <span>Notifications</span>
+        </a>
       </li>
       <li>
-        <i class="fa fa-arrow-left"></i>
-        <span><a routerLink="/">Go Back Home</a></span>
+        <a routerLink="/">
+          <i class="fa fa-arrow-left"></i>
+          <span>Go Back Home</span>
+        </a>
       </li>
     </ul>
   </nav>

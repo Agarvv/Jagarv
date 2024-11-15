@@ -1,9 +1,11 @@
-<div class="product">
-  <div class="product-card">
-    <img [src]="product.pictures[0]" alt="Producto" class="product-img">
-    <div class="product-info">
-      <h3 class="product-title">{{ product.title }}</h3>
-      <span class="product-price">${{ product.price }}</span>
+<a [routerLink]="['/product', product.id]">
+  <div class="product">
+    <div class="product-card">
+      <img [src]="product.pictures[0]" alt="Producto" class="product-img">
+      <div class="product-info">
+        <h3 class="product-title">{{ product.title }}</h3>
+        <span class="product-price">${{ product.price }}</span>
+      </div>
     </div>
   </div>
-</div>
+</a>
