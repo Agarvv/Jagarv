@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'; 
 import { Observable } from 'rxjs';
-import { Product } from '../../models/Product'; 
+import { Product } from '@models/Product'; 
+import { ProductSummary } from "@models/ProductSummary"
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class PublicProductsService {
   }
   
   // finds product by category 
-  findProductsByCategory(category: String): Observable<any> { // i will type it soon
+  findProductsByCategory(category: String): Observable<ProductSummary[]> {
       return this.http.get(`${this.apiUrl}/category/${category}`);
   }
   

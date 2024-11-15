@@ -1,11 +1,9 @@
 <main>
   <div class="products">
-    
-    <div class="product">
-        <app-product-card>
+    <div *ngFor="let product of products" class="product">
+      <app-product-card [product]="product">
           
-        </app-product-card>
+      </app-product-card> 
     </div>
-  
   </div>
 </main>
