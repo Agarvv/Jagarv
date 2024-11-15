@@ -12,10 +12,22 @@ export class PaymentComponent implements OnInit {
 
   constructor(private stripeService: StripeService) {} 
   
-  ngOnInit(): void {
-    this.cardElement = this.stripeService.createCardElement();
-    this.cardElement.mount('#card-element')
+  async ngOnInit(): Promise<void> {
+    try {
+      await this.stripeService.ensureInitialized();
+      this.cardElement = await this.stripeService.createCardElement();
+  
+      if (this.cardElement && typeof this.cardElement.mount === 'function') {
+        this.cardElement.mount('#card-element');
+      } else {
+        throw new Error('Could not create stripe card');
+      }
+    } catch (error) {
+      console.error(error);
+      this.cardErrors = 'Something went wrong..'
+    }
   }
+  
 
   async handlePayment() {
     // Crear el PaymentMethod con el token
