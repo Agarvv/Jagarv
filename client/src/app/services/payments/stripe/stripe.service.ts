@@ -43,6 +43,30 @@ export class StripeService {
     if (!this.elements) {
       throw new Error('Stripe Elements not init');
     }
-    return this.elements.create('card');
+  
+    const style = {
+      base: {
+        color: '#32325d', 
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif', 
+        fontSmoothing: 'antialiased',
+        fontSize: '16px', 
+        '::placeholder': {
+          color: '#aab7c4', 
+        },
+      },
+      invalid: {
+        color: '#fa755a', 
+        iconColor: '#fa755a', 
+      },
+    };
+  
+    const cardElement = this.elements.create('card', { style });
+  
+    if (!cardElement || typeof cardElement.mount !== 'function') {
+      throw new Error('could not create stripe card');
+    }
+  
+    return cardElement;
   }
+  
 }
