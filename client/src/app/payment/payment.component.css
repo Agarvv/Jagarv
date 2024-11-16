@@ -1,28 +1,30 @@
 #card-element {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  font-size: 16px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-#card-element iframe {
-  border-radius: 4px !important;
+  height: 40px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
 button {
   background-color: #5469d4;
-  border: none;
   color: white;
-  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
   font-size: 16px;
   cursor: pointer;
-  width: 100%;
-  margin-top: 20px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
   background-color: #4353b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
