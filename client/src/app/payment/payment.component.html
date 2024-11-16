@@ -1,14 +1,12 @@
-<div>
-    <h2>Pay</h2>
-    
-    <div id="card-element">
+<div class="payment-form">
+  <h2>Pagar ahora</h2>
+  <form id="payment-form">
+    <div class="input-group">
+      <label for="card-element">Tarjeta de Crédito</label>
+      <div id="card-element"></div> 
+    </div>
 
-    </div>
-  
-    <div *ngIf="cardErrors" class="error">
-      {{ cardErrors }}
-    </div>
-  
-    <button (click)="handlePayment()">Pay</button>
-  </div>
-  
+    <button type="submit" id="submit-btn">Pagar</button>
+  </form>
+  <div id="error-message" class="error-message"></div>
+</div>
