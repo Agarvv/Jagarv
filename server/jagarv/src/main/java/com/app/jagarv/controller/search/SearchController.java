@@ -25,4 +25,5 @@ public class SearchController {
     {
         return searchService.searchProductsByQuery(query); 
     }
+    
 }
