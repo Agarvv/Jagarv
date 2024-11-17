@@ -9,7 +9,7 @@ import com.app.jagarv.entity.product.Product;
 
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.EntityGraph;
+import org.springframework.data.jpa.repository.EntityGraph;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
