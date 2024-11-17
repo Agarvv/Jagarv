@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
         },
         (error) => {
           console.error("Search failure", error); // debug
-          this.store.dispatch(setError({ erroMessage: "Oops, something went wrong..." }));
+          this.store.dispatch(setError({ errorMessage: "Oops, something went wrong..." }));
         }
       );
     } else {
