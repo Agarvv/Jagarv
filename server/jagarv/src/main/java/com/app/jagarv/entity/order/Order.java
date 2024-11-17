@@ -1,38 +1,39 @@
 package com.app.jagarv.entity.order;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-@Entity 
-@Table(name = "orders") 
+import java.util.List;
+
+import com.app.jagarv.entity.product.Product;
+import com.app.jagarv.entity.user.User;
+
+@Entity
+@Table(name = "orders")
 public class Order {
-    
-    // THE ORDER ID
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // THE ORDER PRODUCT ID 
-    @NotNull(message = "Product ID cannot be null") 
-    private Long productId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false) 
+    private User user;
 
-    // THE ORDER USER ID
-    @NotNull(message = "User ID cannot be null") 
-    private Long userId;
+    @ManyToMany
+    @JoinTable(
+        name = "order_product", 
+        joinColumns = @JoinColumn(name = "order_id"), 
+        inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 
-    // THE ORDER STATUS
-    @NotBlank(message = "Status cannot be blank") 
+    @NotBlank(message = "Status cannot be blank")
     @Size(max = 20, message = "Status cannot exceed 20 characters")
     private String status;
-    
-    // HOW MANY PRODUCTS THE USER ORDERED, LIKE 3 or 1 or 5 or even 5453123416, whatever.
-    @Min(value = 1, message = "Quantity must be at least 1") 
-    private Long quantity;
 
-  
     public Long getId() {
         return id;
     }
@@ -41,20 +42,20 @@ public class Order {
         this.id = id;
     }
 
-    public Long getProductId() {
-        return productId;
+    public User getUser() {
+        return user;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getUserId() {
-        return userId;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public String getStatus() {
@@ -63,13 +64,5 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
     }
 }

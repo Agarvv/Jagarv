@@ -1,48 +1,61 @@
 package com.app.jagarv.service.payments;
 
-// import org.springframework.stereotype.Service;
-// import com.app.jagarv.dto.payments.ProductPaymentDTO;
-// import com.stripe.model.Charge;
-// import com.stripe.exception.StripeException;
-// import com.stripe.Stripe;
-// import com.stripe.model.Token;
-// import com.app.jagarv.repository.product.ProductRepository;
-// import com.app.jagarv.entity.product.Product;
-// import com.app.jagarv.outil.ProductOutil;
-// import com.app.jagarv.outil.PaymentOutil;
+import com.stripe.Stripe;
+import com.stripe.model.PaymentIntent;
+import com.stripe.exception.StripeException;
+import com.stripe.param.PaymentIntentCreateParams;
 
-// import java.util.List;
-// import java.util.Map;
-// import java.util.stream.Collectors;
+import java.util.List;
 
-// // @Service
-// public class StripeService {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-//     // private final ProductRepository productRepository;
-//     // private final ProductOutil productOutil;
-//     // private final PaymentOutil paymentOutil;
+import com.app.jagarv.dto.payments.ProductPaymentDTO;
+import com.app.jagarv.entity.product.Product;
+import com.app.jagarv.repository.product.ProductRepository;
+import com.app.jagarv.outil.PaymentOutil;
 
-//     // public StripeService(ProductRepository productRepository, ProductOutil productOutil, PaymentOutil paymentOutil) {
-//     //     this.productRepository = productRepository;
-//     //     this.productOutil = productOutil;
-//     //     this.paymentOutil = paymentOutil;
-//     // }
+@Service
+public class StripeService {
+    private final ProductRepository productRepository;
 
-//     // public void payProducts(ProductPaymentDTO payment) {
-//     //     Map<Long, Product> productsMap = productOutil.findAllById(payment.getProductIds());
-//     //     Long finalPrice = paymentOutil.calculateProductsPrice(productsMap) * 100; 
+    @Value("${stripe.publicKey}")
+    private String stripeApiKey;
+
+    public StripeService
+    (
+        ProductRepository productRepository
+    ) 
+    {
+      this.productRepository = productRepository;
+    }
+
+    public String createPaymentIntent(ProductPaymentDTO payment) {
+        try {
+     
+            List<Product> products = productRepository.findAllById(payment.getProductIds());
     
-//     //     try {
-//     //         Charge charge = Charge.create(
-//     //             Map.of(
-//     //                 "amount", finalPrice,
-//     //                 "currency", "usd",
-//     //                 "source", "tokn,",
-//     //                 "description", "Products Payment at Jagarv"
-//     //             )
-//     //         );
-//     //     } catch (StripeException e) {
-//     //         System.err.println("Error" + e.getMessage());
-//     //     }
-//     // }
-// }
+        
+            Long finalPrice = PaymentOutil.calculateProductsPrice(products) * 100;
+    
+            
+            Stripe.apiKey = stripeApiKey;
+    
+            PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
+                .setAmount(finalPrice) 
+                .setCurrency("usd")
+                .setDescription("Jagarv payment")
+                .build();
+    
+            PaymentIntent paymentIntent = PaymentIntent.create(params);
+    
+            return paymentIntent.getClientSecret();
+    
+        } catch (StripeException e) {
+            throw new RuntimeException("Payment error stripe" + e.getMessage(), e);
+            // just for now as debug
+        }
+    }
+
+}
+

@@ -18,13 +18,9 @@ public class ProductOutil {
     
     
     // find products given a list Of Ids
-    public Map<Long, Product> findAllById(List<Long> ids) {
+   // public List<Product> findAllById(List<Long> ids) {
         
-        List<Product> products = productRepository.findAllById(ids);
-
-            Map<Long, Product> productMap = products.stream()
-                    .collect(Collectors.toMap(Product::getId, product -> product));
-                    
-            return productMap; 
-    }
+  //      List<Product> products = productRepository.findAllById(ids);
+  //          return products; 
+  //  }
 }
