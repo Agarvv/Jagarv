@@ -71,6 +71,8 @@ import { CheckoutButtonComponent } from './cart/cart-ticket/checkout-button/chec
 import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 import { ProductCardComponent } from './layout/product-card/product-card.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SearchComponent } from './search/search.component';
+import { SearchPageAsideComponent } from './layout/search-page-aside/search-page-aside.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +134,9 @@ import { PaymentComponent } from './payment/payment.component';
     CheckoutButtonComponent,
     ProductsByCategoryComponent,
     ProductCardComponent,
-    PaymentComponent
+    PaymentComponent,
+    SearchComponent,
+    SearchPageAsideComponent
   ],
   imports: [
     BrowserModule,
