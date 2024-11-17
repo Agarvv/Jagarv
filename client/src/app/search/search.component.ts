@@ -3,7 +3,7 @@ import { SearchService } from "@services/search-page/search/search.service"
 import { ActivatedRoute } from "@angular/router"; 
 import { finalize } from "rxjs";
 import { Store } from '@ngrx/store';
-import { setLoading, setError, clearMessages } from '../../store/admin/admin.actions';
+import { setLoading, setError, clearMessages } from '@store/admin/admin.actions';
 
 
 @Component({
@@ -24,7 +24,8 @@ export class SearchComponent implements OnInit {
     this.store.dispatch(clearMessages());
     this.store.dispatch(setLoading({ isLoading: true }));
 
-    this.searchService.searchProducts(query)
+    if(query) {
+        this.searchService.searchProducts(query)
       .pipe(finalize(() => {
           this.store.dispatch(setLoading({ isLoading: false }));
       }))
@@ -37,6 +38,10 @@ export class SearchComponent implements OnInit {
           this.store.dispatch(setError({ erroMessage: "Oops, something went wrong..." }));
         }
       );
+    } else {
+        console.error("Not query found"); // debug
+    }
+      
  }
   
   
