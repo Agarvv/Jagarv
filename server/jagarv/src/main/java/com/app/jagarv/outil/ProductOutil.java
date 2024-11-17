@@ -10,9 +10,9 @@ import com.app.jagarv.repository.product.ProductRepository;
 
 public class ProductOutil {
     
-    private final ProductRepisitory productRepository; 
+    private final ProductRepository productRepository; 
     
-    public ProductOutil(ProductRepisitory productRepository) {
+    public ProductOutil(ProductRepository productRepository) {
         this.productRepository = productRepository; 
     }
     

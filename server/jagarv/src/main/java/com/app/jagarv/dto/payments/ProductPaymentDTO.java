@@ -2,7 +2,7 @@ package com.app.jagarv.dto.payments;
 
 import java.util.List;
 
-public class ProductPaymentsDTO {
+public class ProductPaymentDTO {
     private List<Long> productIds;  // product ids
     private List<Long> optionIds;   // product options, color, size..etc
 

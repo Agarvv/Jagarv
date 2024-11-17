@@ -6,7 +6,7 @@ import com.stripe.model.Charge;
 import com.stripe.exception.StripeException;
 import com.stripe.Stripe;
 import com.stripe.model.Token;
-import com.app.jagarv.repository.ProductRepository;
+import com.app.jagarv.repository.product.ProductRepository;
 import com.app.jagarv.entity.product.Product;  
 import com.app.jagarv.outil.ProductOutil; 
 import com.app.jagarv.outil.PaymentOutil; 
@@ -33,15 +33,14 @@ public class StripeService {
         Map<Long, Product> productsMap = productOutil.findAllById(payment.getProductIds());
         
         Long finalPrice = paymentOutil.calculateProductsPrice(productsMap) * 100; // converted to cents
-        
-        String token = payment.getStripeToken();
+    
         
         try {
             Charge charge = Charge.create(
                 Map.of(
                     "amount", finalPrice, 
                     "currency", "usd", 
-                    "source", token, 
+                    "source", "tokn,", 
                     "description", "Products Payment at Jagarv"
                 )
             );
