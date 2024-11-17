@@ -73,6 +73,8 @@ import { ProductCardComponent } from './layout/product-card/product-card.compone
 import { PaymentComponent } from './payment/payment.component';
 import { SearchComponent } from './search/search.component';
 import { SearchPageAsideComponent } from './layout/search-page-aside/search-page-aside.component';
+import { ProductListComponent } from './layout/product-list/product-list.component';
+import { searchReducer } from '@store/search/search.reducer'
 
 @NgModule({
   declarations: [
@@ -136,7 +138,8 @@ import { SearchPageAsideComponent } from './layout/search-page-aside/search-page
     ProductCardComponent,
     PaymentComponent,
     SearchComponent,
-    SearchPageAsideComponent
+    SearchPageAsideComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -146,7 +149,8 @@ import { SearchPageAsideComponent } from './layout/search-page-aside/search-page
     ReactiveFormsModule,
     StoreModule.forRoot({ 
         admin: adminReducer,
-        productDetails: productDetailsReducer
+        productDetails: productDetailsReducer,
+        search: searchReducer
     }),
     SocialLoginModule 
   ],

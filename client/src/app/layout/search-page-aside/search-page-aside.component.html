@@ -1,1 +1,66 @@
-<p>search-page-aside works!</p>
+<aside class="sidebar">
+    
+    <div class="filter">
+        <label for="categoria">Categoría</label>
+        <select id="categoria">
+            <option value="todos">Todos</option>
+            <option value="electrodomesticos">Electrodomésticos</option>
+            <option value="electronica">Electrónica</option>
+            <option value="ropa">Ropa</option>
+            <option value="hogar">Hogar</option>
+        </select>
+    </div>
+    
+    <div class="filter">
+        <label for="precio-min">Precio Mínimo</label>
+        <input type="number" id="precio-min" placeholder="Min. $0" min="0" step="10">
+    </div>
+    
+    <div class="filter">
+        <label for="precio-max">Precio Máximo</label>
+        <input type="number" id="precio-max" placeholder="Max. $1000" min="0" step="10">
+    </div>
+    
+    <div class="filter">
+          <label for="ram">RAM</label>
+          <select id="ram">
+            <option value="4gb">4GB</option>
+            <option value="8gb">8GB</option>
+            <option value="16gb">16GB</option>
+            <option value="32gb">32GB</option>
+          </select>
+    </div>
+    
+    <div class="filter">
+          <label for="ram">Color</label>
+          <select id="ram">
+            <option value="red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+          </select>
+    </div>
+    
+   
+       <div class="filter">
+         <label for="ram">Storage</label>
+         <select id="ram">
+           <option value="32">32GB</option>
+           <option value="8gb">64</option>
+           <option value="16gb">128</option>
+           <option value="32gb">248</option>
+         </select>
+       </div>
+      
+         <div class="filter">
+           <label for="ram"></label>
+           <select id="ram">
+             <option value="4gb">4GB</option>
+             <option value="8gb">8GB</option>
+             <option value="16gb">16GB</option>
+             <option value="32gb">32GB</option>
+           </select>
+         </div>
+
+    <button class="apply-btn">Apply</button>
+</aside>

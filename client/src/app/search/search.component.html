@@ -1,1 +1,13 @@
-<p>search works!</p>
+<div>
+  <div class="header">
+    <app-header></app-header>
+  </div>
+
+  <div class="aside">
+    <app-search-page-aside></app-search-page-aside>
+  </div>
+
+  <main class="search-results">
+    <app-product-list [products]="searchResults$ | async"></app-product-list>
+  </main>
+</div>

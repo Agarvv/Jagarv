@@ -22,6 +22,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SearchComponent } from './search/search.component'; 
+
 
 // LayoutComponent 
 
@@ -50,6 +52,12 @@ const routes: Routes = [
   {
       path: 'reset-password/:email/:token',
       component: ResetPasswordComponent 
+  },
+  // Search page with his own layout
+  
+  {
+      path: 'search/:query',
+      component: SearchComponent
   },
   
   {   // the main layout
