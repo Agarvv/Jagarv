@@ -3,7 +3,7 @@ package com.app.jagarv.controller.search;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import com.app.jagarv.dto.product.read.ProductSummaryDTO;
+import com.app.jagarv.dto.product.read.ProductDTO;
 
 import com.app.jagarv.service.search.SearchService; 
 
@@ -20,7 +20,7 @@ public class SearchController {
     }
 
     @GetMapping("/{query}") 
-    public List<ProductSummaryDTO>
+    public List<ProductDTO>
     searchProductsByQuery(@PathVariable String query)
     {
         return searchService.searchProductsByQuery(query); 
