@@ -2,7 +2,7 @@ package com.app.jagarv.service.user;
 
 import org.springframework.stereotype.Service;
 import com.app.jagarv.dto.user.UserDTO; 
-import com.app.jagarv.entity.User; 
+import com.app.jagarv.entity.user.User; 
 import com.app.jagarv.outil.SecurityOutil;
 import com.app.jagarv.repository.user.UserRepository; 
 import com.app.jagarv.exception.exceptions.users.UserNotFoundException; 
@@ -40,14 +40,16 @@ public class UserService
         return userMapper.userToDTO(user); 
     }
     
-    public void setUserProfilePicture(setUserProfilePicture user)
+    public void setUserProfilePicture(SetUserProfilePicDTO data)
     {
         
-        Long userId = securityOutil.getUserId();
+        Long userId = securityOutil.getAuthenticatedUserId();
         
-        User user = userRepository.findById(userId);
+        User user = userRepository.findById(userId).orElseThrow(() 
+         -> new UserNotFoundException("User not Found...")
+        );
         
-        user.setProfilePicture(user.getProfilePicture); 
+        user.setProfilePicture(data.getProfilePicture()); 
         
         userRepository.save(user); 
         

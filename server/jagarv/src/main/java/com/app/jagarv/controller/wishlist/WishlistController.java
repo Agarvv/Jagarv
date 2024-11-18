@@ -43,7 +43,7 @@ public class WishlistController
         String message = wishlistService.addOrRemoveFromWishlist(wishlist); 
         
         return ResponseEntity.ok(
-          new ApiResponse<>(message, null); 
-        )
+          new ApiResponse<>(message, null)
+        );
     }
 }

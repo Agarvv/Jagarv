@@ -11,7 +11,7 @@ import com.app.jagarv.mapper.wishlist.WishlistMapper;
 import com.app.jagarv.dto.wishlist.AddToWishlistDTO;
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.repository.product.ProductRepository;
-import com.app.jagarv.exceptions.exception.products.ProductNotFoundException;
+import com.app.jagarv.exception.exceptions.products.ProductNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service

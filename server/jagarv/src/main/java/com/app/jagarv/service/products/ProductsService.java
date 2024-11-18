@@ -36,7 +36,7 @@ public class ProductsService {
         ProductCategoryRepository productCategoryRepository,
         ProductSummaryMapper productSummaryMapper,
         WishlistService wishlistService,
-        SecutityOutil securityOutil
+        SecurityOutil securityOutil
     ) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
@@ -53,7 +53,7 @@ public class ProductsService {
             new ProductNotFoundException("That product does not exist...")
         );
 
-        ProductDTo productDto = productMapper.productToDTO(product);
+        ProductDTO productDto = productMapper.productToDTO(product);
         
         Boolean inWishlist = wishlistService.isProductInWishlist(userId, product.getId()); 
         
