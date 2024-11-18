@@ -1,0 +1,22 @@
+.upf-header {
+  padding: 15px;
+}
+
+.upf-user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.user-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.upf-user {
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}

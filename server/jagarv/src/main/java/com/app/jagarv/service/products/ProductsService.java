@@ -13,6 +13,9 @@ import com.app.jagarv.mapper.product.ProductSummaryMapper;
 import com.app.jagarv.repository.product.ProductCategoryRepository;
 import com.app.jagarv.exception.exceptions.products.CategoryNotFoundException; 
 
+import com.app.jagarv.service.wishlist.WishlistService; 
+import com.app.jagarv.outil.SecurityOutil; 
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,25 +27,38 @@ public class ProductsService {
     private final ProductMapper productMapper;
     private final ProductCategoryRepository productCategoryRepository; 
     private final ProductSummaryMapper productSummaryMapper; 
+    private final WishlistService wishlistService;
+    private final SecurityOutil securityOutil;
     
     public ProductsService(
         ProductRepository productRepository,
         ProductMapper productMapper,
         ProductCategoryRepository productCategoryRepository,
-        ProductSummaryMapper productSummaryMapper
+        ProductSummaryMapper productSummaryMapper,
+        WishlistService wishlistService,
+        SecutityOutil securityOutil
     ) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.productCategoryRepository = productCategoryRepository;
         this.productSummaryMapper = productSummaryMapper;
+        this.wishlistService = wishlistService;
+        this.securityOutil = securityOutil;
     }
     
     public ProductDTO getProductById(Long id) {
+        Long userId = securityOutil.getAuthenticatedUserId(); 
+        
         Product product = productRepository.findById(id).orElseThrow(() -> 
             new ProductNotFoundException("That product does not exist...")
         );
 
-        return productMapper.productToDTO(product);
+        ProductDTo productDto = productMapper.productToDTO(product);
+        
+        Boolean inWishlist = wishlistService.isProductInWishlist(userId, product.getId()); 
+        
+        productDto.setInWishlist(inWishlist); 
+        return productDto; 
     }
     
     public List<ProductSummaryDTO> findProductsByCategory(String category) {

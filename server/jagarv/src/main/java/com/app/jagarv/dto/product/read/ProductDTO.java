@@ -18,6 +18,7 @@ public class ProductDTO {
     private BigDecimal price;
     private List<ProductVariantDTO> variants;  
     private List<ProductOpinionDTO> opinions;
+    private Boolean inWishlist; 
 
     public ProductDTO() {
     }
@@ -123,5 +124,14 @@ public class ProductDTO {
     
     public void setOpinions(List<ProductOpinionDTO> opinions) {
         this.opinions = opinions;
+    }
+    
+    public Boolean getInWishlist() {
+        return inWishlist;
+    }
+    
+    public void setInWishlist(Boolean inWishlist)
+    {
+        this.inWishlist = inWishlist;
     }
 }

@@ -26,6 +26,8 @@ public class User {
     @Size(min = 6, message = "Password must be min 6 chars")
     private String password;
     
+    private String profilePicture; 
+    
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -79,5 +81,15 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+    
+    public String getProfilePicture() 
+    {
+        return profilePicture; 
+    }
+    
+    public void setProfilePicture(String profilePicture)
+    {
+        this.profilePicture = profilePicture;
     }
 }

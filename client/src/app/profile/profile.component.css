@@ -1,0 +1,18 @@
+
+.u-data {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.u-data div {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid gray;
+  padding: 20px;
+}
+
+.u-data div i {
+  font-size: 25px;
+  color: gray;
+}

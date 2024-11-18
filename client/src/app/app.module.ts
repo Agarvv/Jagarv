@@ -74,7 +74,11 @@ import { PaymentComponent } from './payment/payment.component';
 import { SearchComponent } from './search/search.component';
 import { SearchPageAsideComponent } from './layout/search-page-aside/search-page-aside.component';
 import { ProductListComponent } from './layout/product-list/product-list.component';
-import { searchReducer } from '@store/search/search.reducer'
+import { searchReducer } from '@store/search/search.reducer';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { AddToWishlistComponent } from './layout/product-card/add-to-wishlist/add-to-wishlist.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileDataComponent } from './profile/profile-data/profile-data.component'
 
 @NgModule({
   declarations: [
@@ -139,7 +143,11 @@ import { searchReducer } from '@store/search/search.reducer'
     PaymentComponent,
     SearchComponent,
     SearchPageAsideComponent,
-    ProductListComponent
+    ProductListComponent,
+    WishlistComponent,
+    AddToWishlistComponent,
+    ProfileComponent,
+    ProfileDataComponent
   ],
   imports: [
     BrowserModule,
