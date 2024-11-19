@@ -4,8 +4,9 @@ import java.util.List;
 import java.math.BigDecimal; 
 
 public class CartItemDTO {
-
-    private Long productId;
+   
+   // product id
+    private Long id;
     private String title;
     private BigDecimal price; 
     private Long quantity;
@@ -22,11 +23,11 @@ public class CartItemDTO {
     }
     
     public Long getProductId() {
-        return productId;
+        return id;
     }
 
     public void setProductId(Long productId) {
-        this.productId = productId;
+        this.id = productId;
     }
 
     public String getTitle() {
