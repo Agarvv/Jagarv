@@ -8,7 +8,11 @@ import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.entity.wishlist.Wishlist;
 
 public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
-    Boolean existsByUserIdAndProductId(Long userId, Long productId);
+    
+    @Query("SELECT CASE WHEN COUNT(w) > 0 THEN TRUE ELSE FALSE END " +
+       "FROM Wishlist w JOIN w.products p " +
+       "WHERE w.user.id = :userId AND p.id = :productId")
+    Boolean existsByUserIdAndProductId(@Param("userId") Long userId, @Param("productId") Long productId);
 
     Optional<Wishlist> findByUserId(Long userId);
 }
