@@ -11,7 +11,7 @@ import { Product } from '@models/Product';
 })
 export class SearchPageAsideComponent implements OnInit {
 
-  searchResults$: Observable<Product[]>;  
+  searchResults$: Observable<Product[]> = new Observable<Product[]>();
   
   filters = {
     
@@ -20,7 +20,7 @@ export class SearchPageAsideComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.searchResults$ = this.store.select(state => state.search.results);
+    this.searchResults$ = this.store.select(state: any => state.search.results);
   }
 
   applyFilters() {

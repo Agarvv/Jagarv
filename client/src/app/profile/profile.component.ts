@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '@services/user/user.service'; 
-import { Store } from 'ngrx'; 
+import { Store } from '@ngrx/store';
 import { setError, clearMessages } from '@store/admin/admin.actions'
-import { User } from '@models/user/User'; 
+import { User } from '@models/User/User'; 
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
        }, (error: any) => {
            console.error('Error user data', error);
            this.store.dispatch(setError({
-               errorMessage: 'Something Went Wrong While Fetching Your Data...'; 
+               errorMessage: 'Something Went Wrong While Fetching Your Data...'
            }))
        })
    }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'; 
 import { Observable } from 'rxjs';
-import { User } from '@models/user/User'; 
+import { User } from '@models/User/User'; 
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class UserService {
   
   // finds user data 
   getUserData(): Observable<User> {
-      return this.http.get<User>(apiUrl, {
+      return this.http.get<User>(this.apiUrl, {
           withCredentials: true 
       })
   }
@@ -23,7 +23,7 @@ export class UserService {
   // here data is the URL of the profile picture, a string 
   setUserPicture(data: string): Observable<string>
   {
-      return this.http.post(`${apiUrl}/setProfilePicture`, data, {
+      return this.http.post<string>(`${this.apiUrl}/setProfilePicture`, data, {
           withCredentials: true 
       })
   }

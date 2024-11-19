@@ -16,7 +16,7 @@ import { Product } from '@models/Product';
 })
 export class SearchComponent implements OnInit {
 
-  searchResults$: Observable<Product[]>; 
+  searchResults$: Observable<Product[]> = new Observable<Product[]>();
 
   constructor(
     private searchService: SearchService,
@@ -48,6 +48,6 @@ export class SearchComponent implements OnInit {
       console.error("No query found"); // debug
     }
 
-    this.searchResults$ = this.store.select(state => state.search.results);  
+    this.searchResults$ = this.store.select(state: any => state.search.results);  
   }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { ProductSummary } from "@models/ProductSummary"
+import { Product } from "@models/Product"
 
 
 @Injectable({
@@ -14,8 +14,8 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  searchProducts(query: string): Observable<ProductSummary[]> {  
-      return this.http.get<ProductSummary[]>(`${this.apiUrl}/${query}`);  
+  searchProducts(query: string): Observable<Product[]> {  
+      return this.http.get<Product[]>(`${this.apiUrl}/${query}`);  
   }
   
 }
