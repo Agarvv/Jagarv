@@ -1,21 +1,17 @@
 package com.app.jagarv.mapper.product;
 
 import com.app.jagarv.dto.product.read.ProductOpinionDTO;
-import com.app.jagarv.entity.product.ProductOpinion;
-import com.app.jagarv.mapper.user.UserMapper;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
-
 import com.app.jagarv.dto.user.UserDTO;
+import com.app.jagarv.entity.product.ProductOpinion;
 import com.app.jagarv.entity.user.User;
+import com.app.jagarv.mapper.user.UserMapper; 
 
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+@Mapper(componentModel = "spring", uses = {UserMapper.class}) 
 public interface ProductOpinionMapper {
 
-    ProductOpinionMapper INSTANCE = Mappers.getMapper(ProductOpinionMapper.class);
-    
-    @Mapping(source = "user", target = "user")
-    ProductOpinionDTO productOpinionToDTO(ProductOpinion opinion);
-    
-    UserDTO userToDTO(User user); 
+    @Mapping(source = "user", target = "user") 
+    ProductOpinionDTO opinionToDTO(ProductOpinion opinion);
 }
