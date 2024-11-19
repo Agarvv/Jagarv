@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { ProductOpinion } from '@models/ProductOpinion'
 
 @Component({
   selector: 'app-product-opinion',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './product-opinion.component.css'
 })
 export class ProductOpinionComponent {
-
+  @Input() opinion: ProductOpinion | null = null; 
 }

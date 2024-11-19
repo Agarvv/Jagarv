@@ -15,9 +15,11 @@
     <div class="main-opinions">
         <!-- Create opinion form -->
         <app-create-product-opinion></app-create-product-opinion>
-        <div class="opinion">
+        <div class="opinion" *ngFor="opinion in product.opinions">
             <!-- Product opinion -->
-            <app-product-opinion></app-product-opinion>
+            <app-product-opinion [opinion]="opinion">
+                
+            </app-product-opinion>
         </div>
     </div> 
 </main>
