@@ -10,7 +10,7 @@ import { clearMessages, setError } from '@store/admin/admin.actions'
   styleUrl: './remove-cart-product.component.css'
 })
 export class RemoveCartProductComponent {
- @Input() productId: number || null 
+ @Input() productId: number | null;
  
  constructor(private cartService: CartService, private store: Store) {} 
  
