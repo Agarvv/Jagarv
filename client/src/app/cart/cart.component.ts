@@ -11,7 +11,7 @@ import { CartState } from '@store/cartt/cart.state'
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  constructor(private cartService: CartService, private store: Store<{ CartState }>) {} 
+  constructor(private cartService: CartService, private store: Store<{ cart: CartState }>) {} 
   
   ngOnInit(): void {
       this.store.dispatch(clearMessages()); 
