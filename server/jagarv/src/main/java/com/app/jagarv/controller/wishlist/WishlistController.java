@@ -38,7 +38,7 @@ public class WishlistController
     @PostMapping("/add") 
     public ResponseEntity<ApiResponse<Void>>
     addOrRemoveFromWishlist
-    (@Valid AddToWishlistDTO wishlist) 
+    (@Valid @RequestBody AddToWishlistDTO wishlist) 
     {
         String message = wishlistService.addOrRemoveFromWishlist(wishlist); 
         
