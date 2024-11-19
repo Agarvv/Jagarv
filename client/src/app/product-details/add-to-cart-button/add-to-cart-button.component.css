@@ -1,18 +1,15 @@
-button {
-  background-color: #ff6f61;
-  color: #fff;
+button.add-to-cart {
+  background-color: #ff6f61; 
+  color: #fff; 
   border: none; 
   border-radius: 8px;
-  padding: 12px 24px; 
-  font-size: 16px;
-  font-weight: bold;
+  padding: 12px 24px;
   cursor: pointer; 
-  transition: all 0.3s ease;
-  width: 100%;
+  transition: all 0.3s ease; 
 }
 
-button:hover {
-  background-color: #e85a4f;
+button.add-to-cart:hover {
+  background-color: #e85a4f; 
   transform: scale(1.05); 
 }
 

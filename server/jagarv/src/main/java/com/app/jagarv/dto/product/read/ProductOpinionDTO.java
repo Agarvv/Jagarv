@@ -1,16 +1,18 @@
 package com.app.jagarv.dto.product.read;
 
+import com.app.jagarv.dto.user.UserDTO;
+
 public class ProductOpinionDTO {
 
     private Long id;
     private String content;
-    private Long userId;
+    private UserDTO user; 
     
     
-    public ProductOpinionDTO(Long id, String content, Long userId) {
+    public ProductOpinionDTO(Long id, String content, UserDTO user) {
         this.id = id;
         this.content = content;
-        this.userId = userId;
+        this.user = user;
     }
 
     public Long getId() {
@@ -29,11 +31,11 @@ public class ProductOpinionDTO {
         this.content = content;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserId(UserDTO user) {
+        this.user = user;
     }
 }
