@@ -14,7 +14,7 @@ public class CartItemDTO {
     private List<String> pictures; 
 
     public CartItemDTO(Long productId, String title, BigDecimal price, Long quantity, List<Long> options, List<String> pictures) {
-        this.productId = productId;
+        this.id = productId;
         this.title = title;
         this.price = price; 
         this.quantity = quantity;
