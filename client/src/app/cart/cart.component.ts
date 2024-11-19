@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '@services/cart/cart.service'; 
-import { Store } from 'ngrx/store'
+import { Store } from '@ngrx/store';
 import { setError, clearMessages } from '@store/admin/admin.actions'; 
 
 @Component({

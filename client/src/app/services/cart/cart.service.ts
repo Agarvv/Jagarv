@@ -17,7 +17,7 @@ export class CartService {
   constructor(private http: HttpClient) { }
   
   getUserCart(): Observable<Cart> {
-      return this.http.get<Cart>(apiUrl, {
+      return this.http.get<Cart>(this.apiUrl, {
           withCredentials: true 
       })
   }
