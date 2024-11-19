@@ -1,6 +1,7 @@
 .p-buy-options {
     display: flex;
     gap: 10px;
+    flex-direction: column;
     margin-top: 15px;
   }
   
