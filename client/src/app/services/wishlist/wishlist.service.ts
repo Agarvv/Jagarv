@@ -23,3 +23,5 @@ export class WishlistService {
   addToWishlist(data: number): Observable<string> {
       return this.http.post<string>(`${this.apiUrl}/add`, data); 
   }
+
+}

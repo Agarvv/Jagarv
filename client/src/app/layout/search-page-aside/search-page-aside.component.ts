@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { setResults } from '@store/search/search.actions';  
 import { Product } from '@models/Product';  
+import { SearchState } from '@store/search/search.state'; 
 
 @Component({
   selector: 'app-search-page-aside',
@@ -17,10 +18,10 @@ export class SearchPageAsideComponent implements OnInit {
     
   };
 
-  constructor(private store: Store) {}
+  constructor(private store: Store<search: SearchState>) {}
 
   ngOnInit(): void {
-    this.searchResults$ = this.store.select(state: any => state.search.results);
+    this.searchResults$ = this.store.select(state => state.search.results);
   }
 
   applyFilters() {

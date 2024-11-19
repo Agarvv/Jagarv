@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,
-    private store: Store<SearchState>  
+    private store: Store<search: SearchState>  
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +48,6 @@ export class SearchComponent implements OnInit {
       console.error("No query found"); // debug
     }
 
-    this.searchResults$ = this.store.select(state: any => state.search.results);  
+    this.searchResults$ = this.store.select(state => state.search.results);
   }
 }
