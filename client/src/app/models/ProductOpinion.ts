@@ -1,4 +1,4 @@
-import { User } from './User/user'; 
+import { User } from './User/User'; 
 
 
 export interface ProductOpinion {
