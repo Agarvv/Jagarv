@@ -1,28 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '@services/cart/cart.service'; 
-import { Store } from '@ngrx/store';
-import { setError, clearMessages } from '@store/admin/admin.actions'; 
-import { CartState } from '@store/cartt/cart.state' 
-
+import { Store, select } from '@ngrx/store';
+import { setCart } from '@store/cartt/cart.actions';  
+import { CartService } from '@services/cart/cart.service';  
+import { Cart } from '@models/cart/Cart'; 
+import { Observable } from 'rxjs';
+import { CartState } from '@store/cartt/cart.state';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  styleUrls: ['./cart.component.css'],
 })
-export class CartComponent {
-  constructor(private cartService: CartService, private store: Store<{ cart: CartState }>) {} 
-  
+export class CartComponent implements OnInit {
+  cart$: Observable<Cart | null>;
+
+  constructor(private cartService: CartService, private store: Store<{ cart: CartState }>) {
+    this.cart$ = this.store.pipe(select(state => state.cart.cart));  
+  }
+
   ngOnInit(): void {
-      this.store.dispatch(clearMessages()); 
-      this.cartService.getUserCart() 
-      .subscribe((data) => {
-          console.log('User cart', data)
-      }, (error) => {
-          console.error(error); 
-          this.store.dispatch(setError({
-              errorMessage: 'Oops, Something Went Wrong...'
-          }))
-      })
+    this.cartService.getUserCart().subscribe(
+      (data) => {
+        console.log('Cart service:', data);
+
+        this.store.dispatch(setCart({ cart: data }));
+
+        this.store.pipe(select(state => state.cart.cart)).subscribe(cart => {
+          console.log('store cart', cart);
+        });
+      },
+      (error) => {
+        console.error('Erro:', error);
+      }
+    );
   }
 }
