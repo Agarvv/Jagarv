@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CartService } from '@services/cart/cart.service'
+import { Store } from '@ngrx/store'
+import { clearMessages, setError } from '@store/admin/admin.actions'
+
 
 @Component({
   selector: 'app-remove-cart-product',
@@ -6,7 +10,25 @@ import { Component } from '@angular/core';
   styleUrl: './remove-cart-product.component.css'
 })
 export class RemoveCartProductComponent {
+ @Input() productId: number || null 
+ 
+ constructor(private cartService: CartService, private store: Store) {} 
+ 
   removeProductFromCart(): void {
-    // i will ad the logic here soon
+      this.store.dispatch(clearMessages()); 
+     if(this.productId) {
+         this.cartService.addOrRemoveToCart(this.productId)
+         .subscribe((data) => {
+             console.log('Data from cart', data);
+             window.location.reload(); // simple
+         }, (error) => {
+             console.error(error)
+             this.store.dispatch(setError({
+                 errorMessage: 'Something went wrong...'
+             }))
+         })
+     } else {
+         console.error('Product id not provided')
+     }
   }
 }
