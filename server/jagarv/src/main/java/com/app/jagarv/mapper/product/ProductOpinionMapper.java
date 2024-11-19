@@ -12,6 +12,5 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {UserMapper.class}) 
 public interface ProductOpinionMapper {
 
-    @Mapping(source = "user", target = "user") 
     ProductOpinionDTO opinionToDTO(ProductOpinion opinion);
 }

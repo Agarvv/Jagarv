@@ -31,7 +31,7 @@ public class ProductOpinionDTO {
         this.content = content;
     }
 
-    public Long getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
