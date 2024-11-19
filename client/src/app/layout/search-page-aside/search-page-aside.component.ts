@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { setResults } from '@store/search/search.actions';  
-import { Product } from '@models/Product';  
 import { SearchState } from '@store/search/search.state'; 
+import { Product } from '@models/Product';  
 
 @Component({
   selector: 'app-search-page-aside',
@@ -13,19 +12,18 @@ import { SearchState } from '@store/search/search.state';
 export class SearchPageAsideComponent implements OnInit {
 
   searchResults$: Observable<Product[]> = new Observable<Product[]>();
-  
+
   filters = {
-    
+
   };
 
-  constructor(private store: Store<search: SearchState>) {}
+  constructor(private store: Store<{ search: SearchState }>) {}
 
   ngOnInit(): void {
     this.searchResults$ = this.store.select(state => state.search.results);
   }
 
   applyFilters() {
-    
-  }
 
+  }
 }

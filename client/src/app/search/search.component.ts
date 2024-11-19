@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from "@services/search-page/search/search.service";
-import { ActivatedRoute } from "@angular/router";
-import { finalize } from "rxjs";
+import { SearchService } from '@services/search-page/search/search.service';
+import { ActivatedRoute } from '@angular/router';
+import { finalize } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs'; 
 import { setLoading, setError, clearMessages } from '@store/admin/admin.actions';
@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,
-    private store: Store<search: SearchState>  
+    private store: Store<{ search: SearchState }>  
   ) {}
 
   ngOnInit(): void {
