@@ -1,30 +1,14 @@
 <div class="cart-ticket">
-    <p class="ct-total">Total: 4591 €</p>
-    <div class="ct-items">
-      <div class="ct-item">
-        <p>iPhone 20 Pro Max</p>
-        <p>730 €</p>
-      </div>
-       <div class="ct-item">
-        <p>iPhone 20 Pro Max</p>
-        <p>730 €</p>
-      </div>
-       <div class="ct-item">
-         <p>iPhone 20 Pro Max</p>
-         <p>730 €</p>
-       </div>
-        <div class="ct-item">
-          <p>iPhone 20 Pro Max</p>
-          <p>730 €</p>
-        </div>
-         <div class="ct-item">
-           <p>iPhone 20 Pro Max</p>
-           <p>730 €</p>
-         </div>
+  <p class="ct-total">Total: $ {{ finalPrice ?? null }}</p>
+
+  <div class="ct-items" *ngIf="cart$ | async as cart">
+    <div class="ct-item" *ngFor="let product of cart.items">
+      <p>{{ product.title }}</p>
+      <p>{{ product.price | currency: 'USD' }}</p>
     </div>
-    
-    <!-- Checkout button -->
-    <app-checkout-button>
-      
-    </app-checkout-button>
   </div>
+
+  <app-checkout-button>
+      
+  </app-checkout-button>
+</div>

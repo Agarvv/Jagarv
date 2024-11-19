@@ -27,5 +27,16 @@ export class CartService {
       return this.http.post(`${this.apiUrl}/addOrRemove`, data);
   }
   
+  calculateCartFinalPrice(cart: Cart): number {
+  const finalPrice = cart.items.reduce((total, product) => {
+      
+    return total + product.price;  
+    
+  }, 0);  
   
+  return finalPrice;
+  
+  } 
+
+
 }
