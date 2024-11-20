@@ -1,4 +1,6 @@
-<button (click)="addOrRemoveToWishlist()" class="wishlist-btn">
-    <i class="fa fa-heart"></i>
+<button 
+  (click)="addOrRemoveToWishlist()" 
+  class="wishlist-btn" 
+  [ngClass]="{'on': inWishlist}">
+  <i class="fa fa-heart"></i>
 </button>
-  

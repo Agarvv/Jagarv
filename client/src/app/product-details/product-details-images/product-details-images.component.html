@@ -6,6 +6,7 @@
         <div class="add-to-wishlist">
            <app-add-to-wishlist
             [productId]="(product$ | async)?.id ?? null"
+            [inWishlist]="(product$ | async)?.inWishlist ?? false"
            >
              <!-- Add or remove To Wishlist Component -->
            </app-add-to-wishlist> 
