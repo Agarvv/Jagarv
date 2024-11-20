@@ -1,27 +1,21 @@
-.wishlist-btn {
+.add-to-cart {
     background-color: #fff;
-    border: 2px solid #ff2a68;
-    border-radius: 50%;
-    width: 50px; 
-    height: 50px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 18px;
-    color: black;
+    border: 2px solid #28a745; 
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #28a745; 
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.wishlist-btn:hover {
-    background-color: #ff2a68;
+.add-to-cart:hover {
+    background-color: #28a745;
     color: #fff;
 }
 
-.wishlist-btn i {
-    margin: 0;
-}
-
-.wishlist-btn.on {
-    color: red;
+.add-to-cart.on {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
 }

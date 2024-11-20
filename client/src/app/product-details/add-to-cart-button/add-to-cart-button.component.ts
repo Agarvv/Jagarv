@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ProductDetailsState } from '@store/cart/product-details.state';
 import { Product } from '@models/Product';
 import { CartService } from "@services/cart/cart.service"
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-to-cart-button',
@@ -21,14 +21,15 @@ export class AddToCartButtonComponent {
   constructor(
     private fb: FormBuilder,
     private cartService: CartService,
-    private store: Store<ProductDetailsState>
+    private store: Store<ProductDetailsState
+    private router: Router
   ) {
     this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
     this.options$ = this.store.pipe(select((state: any) => state.productDetails.attributes));
 
     this.addProductForm = this.fb.group({
       productId: ['', Validators.required],
-      options: this.fb.array([], Validators.required)  
+      options: this.fb.array([], this.inCart ? [] : Validators.required)  
     });
 
     this.options$.subscribe(options => {
@@ -54,18 +55,22 @@ export class AddToCartButtonComponent {
     });
   }
   
+  // ad or remove product of cart
   addToCart(): void {
-      console.log('value', this.addProductForm.value)
-      if(this.addProductForm.invalid) {
-          console.error("Form not valid")
-          return 
-      }
-      
-      this.cartService.addOrRemoveToCart(this.addProductForm.value).subscribe((data) => {
-          console.log("Added to cart") // debug
-      }, (error) => {
-          console.error(error); // debug
-      })
+    console.log('value', this.addProductForm.value);
+    // if product is in cart that means or user wants to delete it
+    if (this.inCart || this.addProductForm.valid) {  
+      this.cartService.addOrRemoveToCart(this.addProductForm.value).subscribe(
+        (data) => {
+          console.log("Added to cart");  // debug
+          this.router.navigate(['/cart'])
+        },
+        (error) => {
+          console.error(error);  // debug
+        }
+      );
+    } else {
+      console.error("Form not valid");
+    }
   }
-  
 }
