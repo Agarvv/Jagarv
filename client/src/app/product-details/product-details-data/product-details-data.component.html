@@ -16,7 +16,9 @@
       </button>
     </div>
     <div class="p-add-to-cart">
-       <app-add-to-cart-button>
+       <app-add-to-cart-button
+       [inCart]="(product$ | async)?.inCart"
+       >
            
        </app-add-to-cart-button>
     </div>

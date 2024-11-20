@@ -1,26 +1,27 @@
-.add-to-cart {
-  background-color: #ff6f61; 
-  color: #fff; 
-  border: none; 
-  border-radius: 8px;
-  padding: 12px 24px;
-  cursor: pointer; 
-  transition: all 0.3s ease; 
-  width: 100%;
+.wishlist-btn {
+    background-color: #fff;
+    border: 2px solid #ff2a68;
+    border-radius: 50%;
+    width: 50px; 
+    height: 50px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.add-to-cart:hover {
-  background-color: #e85a4f; 
-  transform: scale(1.05); 
+.wishlist-btn:hover {
+    background-color: #ff2a68;
+    color: #fff;
 }
 
-.add-to-cart:active {
-  background-color: #d44b3c; 
-  transform: scale(0.98); 
+.wishlist-btn i {
+    margin: 0;
 }
 
-
-.add-to-cart.on {
-    background: transparent;
-    border: .3px solid gray;
+.wishlist-btn.on {
+    color: red;
 }
