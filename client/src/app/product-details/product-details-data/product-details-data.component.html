@@ -17,7 +17,7 @@
     </div>
     <div class="p-add-to-cart">
        <app-add-to-cart-button
-       [inCart]="(product$ | async)?.inCart"
+       [inCart]="(product$ | async)?.inCart ?? false"
        >
            
        </app-add-to-cart-button>
