@@ -21,7 +21,7 @@ export class WishlistService {
   }
 
   addOrRemoveToWishlist(data: number): Observable<string> {
-      return this.http.post<string>(`${this.apiUrl}/addOrRemove`, data); 
-  }
+  return this.http.post<string>(`${this.apiUrl}/addOrRemove`, { productId: data });
+}
 
 }
