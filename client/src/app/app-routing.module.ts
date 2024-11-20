@@ -24,7 +24,7 @@ import { ProductsByCategoryComponent } from './products-by-category/products-by-
 import { PaymentComponent } from './payment/payment.component';
 import { SearchComponent } from './search/search.component'; 
 import { WishlistComponent } from './wishlist/wishlist.component'; 
-
+import { ProfileComponent } from './profile/profile.component'
 
 // LayoutComponent 
 
@@ -76,6 +76,10 @@ const routes: Routes = [
              path: 'product/:productId',
              component: ProductDetailsComponent
          },
+         {
+             path: 'profile',
+             component: ProfileComponent
+         }
          {
           path: 'cart',
           component: CartComponent
