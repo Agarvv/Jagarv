@@ -2,15 +2,16 @@
     
     <div class="filter">
         <label for="category">Category</label>
-        <select id="category">
-            <option value="">All</option>
-            <option value="Smartphones">Smartphones</option>
-            <option value="PC">PC</option>
-            <option value="Gaming">Gaming</option>
-            <option value="Music">Music</option>
-            <option value="TV">TV</option>
-            <option value="Accesories">Accesories</option>
+        <select id="category" [(ngModel)]="filters.category">
+          <option value="">All</option>
+          <option value="Smartphones">Smartphones</option>
+          <option value="PC">PC</option>
+          <option value="Gaming">Gaming</option>
+          <option value="Music">Music</option>
+          <option value="TV">TV</option>
+          <option value="Accesories">Accesories</option>
         </select>
+        
     </div>
     
     <div class="filter">
