@@ -61,7 +61,7 @@ public class ProductsService {
         
         Boolean inWishlist = wishlistService.isProductInWishlist(userId, product.getId()); 
         
-        Boolean inCart = cartRepository.existsByUserIdAndProductId(userId, product.getId()); 
+        Boolean inCart = cartRepository.existsByUserIdAndCartItemsProductId(userId, product.getId()); 
         
         
         productDto.setInWishlist(inWishlist); 

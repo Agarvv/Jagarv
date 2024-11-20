@@ -11,7 +11,7 @@ import { Wishlist } from '@models/wishlist/Wishlist'
   styleUrls: ['./wishlist.component.css'] 
 })
 export class WishlistComponent implements OnInit {
-  products: Product[] = []; 
+  wishlist: Wishlist | null = null; 
 
   constructor(
     private wishlistService: WishlistService,
@@ -28,6 +28,7 @@ export class WishlistComponent implements OnInit {
       .subscribe(
         (data: Wishlist) => { 
           console.log('User wishlist:', data);
+          this.wishlist = data; 
         },
         (error: any) => { 
           console.error('Error fetching wishlist:', error);
