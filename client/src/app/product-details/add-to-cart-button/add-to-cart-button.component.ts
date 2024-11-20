@@ -21,7 +21,7 @@ export class AddToCartButtonComponent {
   constructor(
     private fb: FormBuilder,
     private cartService: CartService,
-    private store: Store<ProductDetailsState
+    private store: Store<ProductDetailsState>,
     private router: Router
   ) {
     this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
