@@ -23,7 +23,7 @@ export class ProfileDataComponent {
       
       this.mediaService.uploadProductImage(this.selectedFile).subscribe(
         (data: any) => {
-          console.log(data);
+          console.log('cloudinary', data);
           
           this.userService.setUserPicture(data.secure_url).subscribe(
             (data: any) => {
