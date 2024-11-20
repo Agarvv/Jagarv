@@ -85,6 +85,6 @@ public class CartService {
     
     public Boolean inCart(Long userId, Long productId) 
     {
-        return cartRepository.existsByUserIdAndProductId(userId, productId); 
+        return cartRepository.existsByUserIdAndCartItemsProductId(userId, productId); 
     }
 }
