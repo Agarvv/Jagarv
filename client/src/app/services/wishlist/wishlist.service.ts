@@ -21,9 +21,10 @@ export class WishlistService {
   }
 
   addOrRemoveToWishlist(data: { productId: number }): Observable<string> {
-  const headers = { 'Content-Type': 'application/json' };  
   console.log('data send', data)
-  return this.http.post<string>(`${this.apiUrl}/addOrRemove`, data, { headers });
+  return this.http.post<string>(`${this.apiUrl}/addOrRemove`, data, {
+      withCredentials: true 
+  });
 }
 
 }
