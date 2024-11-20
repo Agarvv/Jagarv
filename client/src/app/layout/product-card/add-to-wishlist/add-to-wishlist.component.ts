@@ -12,11 +12,11 @@ export class AddToWishlistComponent {
     
    constructor(private wishlistService: WishlistService) {} 
    
-   addToWishlist(): void
+   addOrRemoveToWishlist(): void
    {
        if(this.productId) 
        {
-           this.wishlistService.addToWishlist(this.productId)
+           this.wishlistService.addOrRemoveToWishlist(this.productId)
            .subscribe((data) => {
                console.log('add wishlist ok', data)
            }, (error) => {

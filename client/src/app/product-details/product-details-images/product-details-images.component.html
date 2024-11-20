@@ -4,9 +4,11 @@
             <i class="fa fa-arrow-left"></i>
         </div>
         <div class="add-to-wishlist">
-           <app-add-to-wishlist>
+           <app-add-to-wishlist
+            [productId]="(product$ | async)?.id"
+           >
              <!-- Add or remove To Wishlist Component -->
-           </app-add-to-wishlist>
+           </app-add-to-wishlist> 
         </div>
         <img [src]="(product$ | async)?.pictures?.[imageIndex] || '/assets/images/istockphoto-579156228-1024x1024.jpg'">
         <div (click)="incrementImage()" class="slider-action-right">
