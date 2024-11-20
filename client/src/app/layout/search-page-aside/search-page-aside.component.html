@@ -23,7 +23,7 @@
         <input type="number" id="max-price" placeholder="Max. $1000" min="0" step="10">
     </div>
     
-    <div class="filter" *ngIf="filters.category == 'Smartphones' || 'PC' ">
+    <div class="filter" *ngIf="filters.category == 'Smartphones' || filters.category == 'PC' ">
           <label for="ram">RAM</label>
           <select id="ram">
             <option value="4gb">4GB</option>
