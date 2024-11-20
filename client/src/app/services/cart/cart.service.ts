@@ -24,7 +24,9 @@ export class CartService {
   
   addOrRemoveToCart(data: any): Observable<any> 
   {
-      return this.http.post(`${this.apiUrl}/addOrRemove`, data);
+      return this.http.post(`${this.apiUrl}/addOrRemove`, data, {
+          withCredentials: true
+      });
   }
   
   calculateCartFinalPrice(cart: Cart): number {
