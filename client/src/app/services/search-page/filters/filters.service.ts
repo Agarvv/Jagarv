@@ -11,6 +11,8 @@ export class FiltersService {
 
   applyFilters(products: Product[], filters: Filters): Product[] 
   {
+    console.log('products', products) // debug 
+    console.log('filters', filters)
      return products.filter((product) => {
         product.category.name == filters.category
         product.price >= filters.minPrice! && product.price <= filters.maxPrice!
