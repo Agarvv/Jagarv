@@ -35,7 +35,7 @@ public class WishlistController
         return ResponseEntity.ok(wishlist);
     }
     
-    @PostMapping("/add") 
+    @PostMapping("/addOrRemove") 
     public ResponseEntity<ApiResponse<Void>>
     addOrRemoveFromWishlist
     (@Valid @RequestBody AddToWishlistDTO wishlist) 
