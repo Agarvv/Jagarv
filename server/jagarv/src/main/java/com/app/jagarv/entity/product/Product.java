@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -48,6 +50,7 @@ public class Product {
     // Category of the product, like 'Smartphones', 'Gaming', whatever
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonBackReference 
     private ProductCategory category;
     
     // the category id the product belongs to

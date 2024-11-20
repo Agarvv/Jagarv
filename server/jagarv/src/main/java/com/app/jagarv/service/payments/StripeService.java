@@ -46,6 +46,8 @@ public class StripeService {
             .setAmount(finalPrice)
             .setCurrency("usd")
             .setDescription("Jagarv payment")
+            
+        
             .build();
 
         PaymentIntent paymentIntent = PaymentIntent.create(params);
