@@ -13,6 +13,7 @@ import { CartService } from "@services/cart/cart.service"
   styleUrls: ['./add-to-cart-button.component.css']
 })
 export class AddToCartButtonComponent {
+  @Input() inCart: boolean | false = false; 
   addProductForm: FormGroup;
   product$: Observable<Product | null>;
   options$: Observable<{ attributeName: string; attributeOptionId: number }[]> | null;

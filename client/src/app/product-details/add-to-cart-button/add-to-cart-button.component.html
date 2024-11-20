@@ -1,1 +1,6 @@
-<button (click)="addToCart()">Add To Cart</button>
+<button 
+  (click)="addToCart()" 
+  class="add-to-cart" 
+  [ngClass]="{'on': inCart}">
+  {{ inCart ? 'Remove From Cart' : 'Add To Cart' }}
+</button>

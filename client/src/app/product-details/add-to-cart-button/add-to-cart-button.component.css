@@ -1,4 +1,4 @@
-button {
+.add-to-cart {
   background-color: #ff6f61; 
   color: #fff; 
   border: none; 
@@ -9,12 +9,18 @@ button {
   width: 100%;
 }
 
-button:hover {
+.add-to-cart:hover {
   background-color: #e85a4f; 
   transform: scale(1.05); 
 }
 
-button:active {
+.add-to-cart:active {
   background-color: #d44b3c; 
   transform: scale(0.98); 
+}
+
+
+.add-to-cart.on {
+    background: transparent;
+    border: .3px solid gray;
 }

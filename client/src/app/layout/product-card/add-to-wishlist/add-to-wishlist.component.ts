@@ -8,7 +8,7 @@ import { WishlistService } from '@services/wishlist/wishlist.service';
 })
 export class AddToWishlistComponent {
   @Input() productId: number | null = null;
-  @Input() inWishlist: Boolean | false = false; 
+  @Input() inWishlist: boolean | false = false; 
 
   constructor(private wishlistService: WishlistService) {}
 
