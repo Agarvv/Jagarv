@@ -17,7 +17,9 @@ export class PublicProductsService {
   
   // finds product by id 
   getProductById(productId: number): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${productId}`) 
+    return this.http.get<Product>(`${this.apiUrl}/${productId}`, {
+        withCredentials: true 
+    }) 
   }
   
   // finds product by category 
