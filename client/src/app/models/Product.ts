@@ -14,5 +14,7 @@ export interface Product {
     pictures: string[],
     price: number,
     variants: ProductVariant[],
-    opinions: ProductOpinion[]
+    opinions: ProductOpinion[],
+    inWishlist: boolean,
+    inCart: boolean 
 } 
