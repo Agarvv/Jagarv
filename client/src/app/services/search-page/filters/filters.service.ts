@@ -9,13 +9,15 @@ export class FiltersService {
 
   constructor() { }
 
-  applyFilters(products: Product[], filters: Filters): Product[] 
-  {
-    console.log('products', products) // debug 
-    console.log('filters', filters)
-     return products.filter((product) => {
-        product.category.name == filters.category
-        product.price >= filters.minPrice! && product.price <= filters.maxPrice!
-     })
+  applyFilters(products: Product[], filters: Filters): Product[] {
+    console.log('products', products); 
+    console.log('filters', filters);
+
+    return products.filter((product) => {
+      const matchesCategory = filters.category ? product.category.name === filters.category : true;
+      const matchesPrice = (filters.minPrice == null || product.price >= filters.minPrice) &&
+                           (filters.maxPrice == null || product.price <= filters.maxPrice);
+      return matchesCategory && matchesPrice;
+    });
   }
 }
