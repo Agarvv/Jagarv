@@ -20,8 +20,8 @@ export class WishlistService {
       }); 
   }
 
-  addOrRemoveToWishlist(data: number): Observable<string> {
-  return this.http.post<string>(`${this.apiUrl}/addOrRemove`, { productId: data });
+  addOrRemoveToWishlist(data: { productId: number }): Observable<string> {
+  return this.http.post<string>(`${this.apiUrl}/addOrRemove`, data);
 }
 
 }
