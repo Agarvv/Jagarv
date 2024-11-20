@@ -19,6 +19,7 @@ public class ProductDTO {
     private List<ProductVariantDTO> variants;  
     private List<ProductOpinionDTO> opinions;
     private Boolean inWishlist; 
+    private Boolean inCart; 
 
     public ProductDTO() {
     }
@@ -133,5 +134,15 @@ public class ProductDTO {
     public void setInWishlist(Boolean inWishlist)
     {
         this.inWishlist = inWishlist;
+    }
+    
+    public Boolean getInCart() 
+    {
+        return inCart;
+    }
+    
+    public void setInCart(Boolean inCart) 
+    {
+        this.inCart = inCart; 
     }
 }

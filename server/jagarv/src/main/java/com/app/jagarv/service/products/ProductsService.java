@@ -15,6 +15,7 @@ import com.app.jagarv.exception.exceptions.products.CategoryNotFoundException;
 
 import com.app.jagarv.service.wishlist.WishlistService; 
 import com.app.jagarv.outil.SecurityOutil; 
+import com.app.jagarv.repository.cart.CartRepository; 
 
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class ProductsService {
     private final ProductSummaryMapper productSummaryMapper; 
     private final WishlistService wishlistService;
     private final SecurityOutil securityOutil;
+    private final CartRepository cartRepository; 
     
     public ProductsService(
         ProductRepository productRepository,
@@ -36,7 +38,8 @@ public class ProductsService {
         ProductCategoryRepository productCategoryRepository,
         ProductSummaryMapper productSummaryMapper,
         WishlistService wishlistService,
-        SecurityOutil securityOutil
+        SecurityOutil securityOutil,
+        CartRepository cartRepository 
     ) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
@@ -44,6 +47,7 @@ public class ProductsService {
         this.productSummaryMapper = productSummaryMapper;
         this.wishlistService = wishlistService;
         this.securityOutil = securityOutil;
+        this.cartRepository = cartRepository; 
     }
     
     public ProductDTO getProductById(Long id) {
@@ -57,7 +61,11 @@ public class ProductsService {
         
         Boolean inWishlist = wishlistService.isProductInWishlist(userId, product.getId()); 
         
+        Boolean inCart = cartRepository.existsByUserIdAndProductId(userId, product.getId()); 
+        
+        
         productDto.setInWishlist(inWishlist); 
+        productDto.setInCart(inCart); 
         return productDto; 
     }
     

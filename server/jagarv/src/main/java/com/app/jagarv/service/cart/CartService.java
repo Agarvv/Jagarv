@@ -82,4 +82,9 @@ public class CartService {
 
             return "ADDED"; // will be returned as response in the controller
     }
+    
+    public Boolean inCart(Long userId, Long productId) 
+    {
+        return cartRepository.existsByUserIdAndProductId(userId, productId); 
+    }
 }
