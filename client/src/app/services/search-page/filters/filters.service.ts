@@ -10,14 +10,16 @@ export class FiltersService {
   constructor() { }
 
   applyFilters(products: Product[], filters: Filters): Product[] {
-    console.log('products', products); 
+    console.log('products', products); // debug
     console.log('filters', filters);
 
     return products.filter((product) => {
-      const matchesCategory = filters.category ? product.category.name === filters.category : true;
-      const matchesPrice = (filters.minPrice == null || product.price >= filters.minPrice) &&
-                           (filters.maxPrice == null || product.price <= filters.maxPrice);
-      return matchesCategory && matchesPrice;
+      return (!filters.category || product.category.name === filters.category) &&
+             (!filters.minPrice || product.price >= filters.minPrice) &&
+             (!filters.maxPrice || product.price <= filters.maxPrice) &&
+             (!filters.color || product.category.attributes.some
+              (attr => attr.name === 'Color' && attr.options.some
+                (option => option.value.toLowerCase() === filters.color?.toLowerCase())));
     });
   }
 }
