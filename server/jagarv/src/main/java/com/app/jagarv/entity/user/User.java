@@ -26,7 +26,8 @@ public class User {
     @Size(min = 6, message = "Password must be min 6 chars")
     private String password;
     
-    private String profilePicture; 
+    @Column(name = "profile_picture")
+    private String profilePicture;
     
     @Enumerated(EnumType.STRING)
     private Role role;
