@@ -18,8 +18,7 @@ public class BanService
     public String banOrUnbanUser(BanUserDTO ban)
     {
         Ban existingBan = banRepository.findByUserId(ban.getUserId());
-        if(existingBan != null)
-        {
+        if(existingBan != null) {
             banRepository.delete(existingBan);
             return "UNBANNED";
         }
