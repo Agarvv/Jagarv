@@ -11,7 +11,7 @@ export class BanService {
 
   constructor(private http: HttpClient) { }
   
-  banOrUnbanUser(userId: number): Observable<String> {
-      return this.http.post<String>(this.apiUrl, { userId: userId });
+  banOrUnbanUser(userId: number): Observable<string> {
+      return this.http.post<string>(this.apiUrl, { userId: userId });
   }
 }
