@@ -14,7 +14,6 @@ import com.app.jagarv.repository.product.ProductOpinionRepository;
 import com.app.jagarv.outil.SecurityOutil;
 import com.app.jagarv.exception.exceptions.users.UserNotFoundException;
 import com.app.jagarv.exception.exceptions.products.ProductNotPurchasedException;
-import com.app.jagarv.service.products.ProductsService;
 
 
 @Service
