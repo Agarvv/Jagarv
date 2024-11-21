@@ -2,25 +2,25 @@
     display: grid; 
     grid-template-areas: 
       "header header header"
-      "searchResults searchResults searchResults"
+      "aside searchResults searchResults"
       "footer footer footer"; 
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr 1fr; 
     grid-template-rows: auto 1fr 120px; 
     min-height: 100vh; 
 }
 
 .header {
     grid-area: header;
-  }
+}
 
-  .aside {
-    grid-area: aside
-  }
+.aside {
+    grid-area: aside;
+}
 
-  .search-results {
+.search-results {
     grid-area: searchResults;
-  } 
-  
-  .footer {
-      grid-area: footer
-  }
+}
+
+.footer {
+    grid-area: footer;
+}
