@@ -6,6 +6,8 @@ import com.app.jagarv.entity.user.Ban;
 
 import java.time.LocalDate;
 
+import org.springframework.stereotype.Service;
+
 @Service
 public class BanService
 {
