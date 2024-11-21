@@ -6,6 +6,7 @@ import com.app.jagarv.entity.user.Ban;
 
 import java.time.LocalDate;
 
+@Service
 public class BanService
 {
     private final BanRepository banRepository; 
