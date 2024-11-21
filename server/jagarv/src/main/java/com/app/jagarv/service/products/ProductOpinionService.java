@@ -13,6 +13,9 @@ import com.app.jagarv.repository.product.ProductOpinionRepository;
 
 import com.app.jagarv.outil.SecurityOutil;
 import com.app.jagarv.exception.exceptions.users.UserNotFoundException;
+import com.app.jagarv.exception.exceptions.products.ProductNotPurchasedException;
+import com.app.jagarv.service.products.ProductsService;
+
 
 @Service
 public class ProductOpinionService {
@@ -21,12 +24,20 @@ public class ProductOpinionService {
     private final SecurityOutil securityOutil;
     private final UserRepository userRepository;
     private final ProductOpinionRepository productOpinionRepository;
+    private final ProductsService productsService;
 
-    public ProductOpinionService(ProductRepository productRepository, SecurityOutil securityOutil, UserRepository userRepository, ProductOpinionRepository productOpinionRepository) {
+    public ProductOpinionService(
+        ProductRepository productRepository,
+         SecurityOutil securityOutil, 
+         UserRepository userRepository, 
+         ProductOpinionRepository productOpinionRepository,
+         ProductsService productsService
+        ) {
         this.productRepository = productRepository;
         this.securityOutil = securityOutil;
         this.userRepository = userRepository;
         this.productOpinionRepository = productOpinionRepository;
+        this.productsService = productsService;
     }
 
     public void createProductOpinion(CreateProductOpinionDTO opinion) {
@@ -38,6 +49,10 @@ public class ProductOpinionService {
 
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("Please Try again later..."));
+        
+        if(!productsService.isPurchasedByUser(userId)) {
+            throw new ProductNotPurchasedException("You have not purchased this product yet");
+        }
 
         ProductOpinion newOpinion = new ProductOpinion();
         newOpinion.setContent(opinion.getContent());
@@ -46,6 +61,6 @@ public class ProductOpinionService {
 
         productOpinionRepository.save(newOpinion);
 
-        // i will add also if user purchased product validations here, but when orders and cart system is finished
+      
     }
 }

@@ -16,7 +16,7 @@ import com.app.jagarv.exception.exceptions.products.CategoryNotFoundException;
 import com.app.jagarv.service.wishlist.WishlistService; 
 import com.app.jagarv.outil.SecurityOutil; 
 import com.app.jagarv.repository.cart.CartRepository; 
-
+import com.app.jagarv.repository.order.OrderRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +31,7 @@ public class ProductsService {
     private final WishlistService wishlistService;
     private final SecurityOutil securityOutil;
     private final CartRepository cartRepository; 
+    private final OrderRepository orderRepository; 
     
     public ProductsService(
         ProductRepository productRepository,
@@ -39,7 +40,8 @@ public class ProductsService {
         ProductSummaryMapper productSummaryMapper,
         WishlistService wishlistService,
         SecurityOutil securityOutil,
-        CartRepository cartRepository 
+        CartRepository cartRepository,
+        OrderRepository orderRepository
     ) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
@@ -48,6 +50,7 @@ public class ProductsService {
         this.wishlistService = wishlistService;
         this.securityOutil = securityOutil;
         this.cartRepository = cartRepository; 
+        this.orderRepository = orderRepository;
     }
     
     public ProductDTO getProductById(Long id) {
@@ -84,5 +87,10 @@ public class ProductsService {
         return products.stream()
             .map(productSummaryMapper::toDto)
             .collect(Collectors.toList());
+    }
+    
+    // verify if a product is purchased by a user
+    public Boolean isPurchasedByUser(Long userId) {
+        return orderRepository.existsByUserId(userId);
     }
 }
