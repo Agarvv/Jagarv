@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface AttributeOptionRepository extends JpaRepository<AttributeOption, Long> {
-    List<AttributeOption> findAllById(List<Long> ids);
+    List<AttributeOption> findAllById(Iterable<Long> ids);
 }
