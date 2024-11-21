@@ -1,0 +1,10 @@
+ .actions-ban {
+    background: #B41D1D;
+    color: white;
+  }
+  
+  button {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+  }

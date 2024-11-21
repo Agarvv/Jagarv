@@ -14,41 +14,25 @@
                 </tr>
             </thead>
             <tbody>
-              
-              <tr>
-                <td>
-                  1
-                </td>
-                <td>
-                  Maria
-                </td>
-                <td>
-                  maria777&#64;gmail.com
-                </td>
-                <td>
-                  23,65€
-                </td>
-                <td>
-                  18/8/2023
-                </td>
-                <td>
-                  23/9/2023
-                </td>
-                <td>
-                  Yes
-                </td>
+              <tr *ngFor="let user of users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>Spent</td>
+                <td>{{ user.joinedDate }}</td>
+                <td>Last Login</td>
+                <td>Ban</td>
                 <td class="actions">
                   <button class="actions-profile">
                     <i class="fa fa-user"></i>
                   </button>
-                  <button class="actions-ban">
-                    <i class="fa fa-ban"></i>
-                  </button>
+                  
+                  <app-ban-user [userId]="user.id ?? null">
+                      
+                  </app-ban-user>
                 </td>
               </tr>
-    
             </tbody>
         </table>
     </div>
-    
 </main>
