@@ -12,7 +12,7 @@ import { Product } from '@models/Product';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrl: './search.component.css'
 })
 export class SearchComponent implements OnInit {
 
