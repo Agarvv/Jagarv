@@ -28,8 +28,8 @@ public class BanService
         newBan.setUserId(ban.getUserId());
         newBan.setBanDate(LocalDate.now().toString());
 
-        LocalDate expiryDate = LocalDate.now().plusMonths(1).toString();
-        newBan.setExpiry(expiryDate);
+        String expiryDate = LocalDate.now().plusMonths(1).toString();
+        newBan.setBanExpiry(expiryDate);
 
         banRepository.save(newBan);
 
