@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { setProduct, addOrUpdateAttribute } from './product-details.actions';
+import { setProduct, addOrUpdateAttribute, setOrUpdateQuantity} from './product-details.actions';
 import { ProductDetailsState, initialState } from './product-details.state';
+
 
 export const productDetailsReducer = createReducer(
   initialState,

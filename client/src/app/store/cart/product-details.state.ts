@@ -10,11 +10,11 @@ export interface ProductDetailsState {
     attributes: { attributeName: string; attributeOptionId: number }[];
     
     // this is the product quantity 
-    quantity: number; 
+    quantity: number;
   }
   
   export const initialState: ProductDetailsState = {
     product: null,
     attributes: [],
-    quantity: 1;
+    quantity: 1
 };
