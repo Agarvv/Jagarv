@@ -122,6 +122,8 @@ public class AuthService {
             
             dbUser.setLastLogin(LocalDate.now().toString());
             
+            userRepository.save(dbUser);
+            
             
             // return cookie with jwt to controller and controller sets cookie in response
             return jwtCookie;

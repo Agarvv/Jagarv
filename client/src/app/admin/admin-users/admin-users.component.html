@@ -20,15 +20,15 @@
                 <td>{{ user.email }}</td>
                 <td>Spent</td>
                 <td>{{ user.joinedAt }}</td>
-                <td>Last Login</td>
+                <td>{{ user.lastLogin ?? 'New User' }}</td>
                 <td>Ban</td>
                 <td class="actions">
                   <button class="actions-profile">
                     <i class="fa fa-user"></i>
                   </button>
                   
-                  <app-ban-user [userId]="user.id ?? null">
-                      
+                  <app-ban-user 
+                  [userId]="user.id ?? null">
                   </app-ban-user>
                 </td>
               </tr>
