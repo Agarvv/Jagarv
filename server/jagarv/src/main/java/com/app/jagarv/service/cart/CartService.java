@@ -14,6 +14,8 @@ import com.app.jagarv.dto.cart.create.AddToCartDTO;
 import com.app.jagarv.dto.cart.read.CartDTO;
 import com.app.jagarv.mapper.cart.CartMapper; 
 import com.app.jagarv.exception.exceptions.products.RunOfStockException;
+import com.app.jagarv.repository.product.AttributeOptionRepository; 
+import com.app.jagarv.entity.product.AttributeOption;
 
 // the app user's cart service
 @Service 
@@ -23,19 +25,22 @@ public class CartService {
     private final CartItemRepository cartItemRepository; 
     private final SecurityOutil securityOutil;
     private final CartMapper cartMapper; 
+    private final AttributeOptionRepository attributeOptionRepository; 
 
     public CartService(
         ProductRepository productRepository,
         CartRepository cartRepository,
         CartItemRepository cartItemRepository,
         SecurityOutil securityOutil,
-        CartMapper cartMapper
+        CartMapper cartMapper,
+        AttributeOptionRepository attributeOptionRepository
     ) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
         this.securityOutil = securityOutil;
         this.cartMapper = cartMapper; 
+        this.attributeOptionRepository = attributeOptionRepository;
     }
     
     // get the user cart
@@ -78,12 +83,15 @@ public class CartService {
                 cartItemRepository.delete(existingCartItem);
                 return "REMOVED"; // will be returned as response in the controller
             }
+            
+            // find the product options that user have choosed 
+            List<AttributeOption> options = attributeOptionRepository.findAllById(addToCartDTO.getOptions()); 
 
             // if not, creates a new item to that cart 
             CartItem newItem = new CartItem();
             newItem.setCart(cart);
             newItem.setProduct(product);
-            newItem.setOptions(addToCartDTO.getOptions());
+            newItem.setOptions(options);
             newItem.setQuantity(addToCartDTO.getQuantity()); 
             cartItemRepository.save(newItem);
 

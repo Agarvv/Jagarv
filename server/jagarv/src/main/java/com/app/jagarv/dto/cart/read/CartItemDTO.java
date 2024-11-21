@@ -2,6 +2,8 @@ package com.app.jagarv.dto.cart.read;
 
 import java.util.List;
 import java.math.BigDecimal; 
+import com.app.jagarv.entity.product.AttributeOption;
+
 
 public class CartItemDTO {
    
@@ -10,10 +12,10 @@ public class CartItemDTO {
     private String title;
     private BigDecimal price; 
     private Long quantity;
-    private List<Long> options;
+    private List<AttributeOption> options;
     private List<String> pictures; 
 
-    public CartItemDTO(Long productId, String title, BigDecimal price, Long quantity, List<Long> options, List<String> pictures) {
+    public CartItemDTO(Long productId, String title, BigDecimal price, Long quantity, List<AttributeOption> options, List<String> pictures) {
         this.id = productId;
         this.title = title;
         this.price = price; 
@@ -46,11 +48,11 @@ public class CartItemDTO {
         this.quantity = quantity;
     }
 
-    public List<Long> getOptions() {
+    public List<AttributeOption> getOptions() {
         return options;
     }
 
-    public void setOptions(List<Long> options) {
+    public void setOptions(List<AttributeOption> options) {
         this.options = options;
     }
     

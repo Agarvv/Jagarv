@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+import com.app.jagarv.entity.product.AttributeOption;
 import com.app.jagarv.entity.product.Product;
 
 @Entity
@@ -23,7 +24,12 @@ public class CartItem {
     
     private Long quantity;
 
-    private List<Long> options; // product options, color, size etc
+    @ManyToMany
+    @JoinTable(
+      name = "cart_item_attribute_option", 
+      joinColumns = @JoinColumn(name = "cart_item_id"), 
+      inverseJoinColumns = @JoinColumn(name = "attribute_option_id"))
+    private List<AttributeOption> options;
 
     public Long getId() {
         return id;
@@ -57,11 +63,11 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public List<Long> getOptions() {
+    public List<AttributeOption> getOptions() {
         return options;
     }
 
-    public void setOptions(List<Long> options) {
+    public void setOptions(List<AttributeOption> options) {
         this.options = options;
     }
 }

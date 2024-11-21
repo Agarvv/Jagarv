@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.app.jagarv.entity.product.AttributeOption;
 
+import java.util.List;
+
 @Repository
 public interface AttributeOptionRepository extends JpaRepository<AttributeOption, Long> {
-    
+    List<AttributeOption> findAllById(List<Long> ids)
 }
