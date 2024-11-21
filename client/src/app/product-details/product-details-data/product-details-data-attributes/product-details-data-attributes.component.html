@@ -1,4 +1,13 @@
 <div *ngIf="product$ | async as product">
+  <div class="p-buy-quantity">
+    <input 
+      type="number" 
+      [min]="1" 
+      [max]="product.stock" 
+      [(ngModel)]="quantity" 
+      (change)="onQuantityChange($event)" 
+      />
+  </div>
   <div class="p-buy-options">
     <div *ngFor="let attribute of product.category.attributes" class="p-buy-option">
       <label>{{ attribute.name }}</label>

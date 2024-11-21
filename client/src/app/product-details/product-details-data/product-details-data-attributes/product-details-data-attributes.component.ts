@@ -3,7 +3,7 @@ import { Product } from '@models/Product';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ProductDetailsState } from '@store/cart/product-details.state';
-import { addOrUpdateAttribute } from '@store/cart/product-details.actions'
+import { addOrUpdateAttribute, setOrUpdateQuantity } from '@store/cart/product-details.actions'
 
 @Component({
   selector: 'app-product-details-data-attributes',
@@ -24,7 +24,12 @@ export class ProductDetailsDataAttributesComponent {
            attributeOptionId: Number(event.target.value)
         }
         this.store.dispatch(addOrUpdateAttribute({ attribute: finalAttributeObject }));
-}
+     }
+     
+      onQuantityChange(event: any) {
+        const quantity = Number(event.target.value);
+        this.store.dispatch(setOrUpdateQuantity({ quantity }));
+       }
 
 }
 

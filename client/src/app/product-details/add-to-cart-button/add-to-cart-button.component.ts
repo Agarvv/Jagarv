@@ -17,6 +17,7 @@ export class AddToCartButtonComponent {
   addProductForm: FormGroup;
   product$: Observable<Product | null>;
   options$: Observable<{ attributeName: string; attributeOptionId: number }[]> | null;
+  quantity$: Observable<number>
 
   constructor(
     private fb: FormBuilder,
@@ -26,10 +27,12 @@ export class AddToCartButtonComponent {
   ) {
     this.product$ = this.store.pipe(select((state: any) => state.productDetails.product));
     this.options$ = this.store.pipe(select((state: any) => state.productDetails.attributes));
+    this.quantity$ = this.store.pipe(select(state: any ) => state.productDetails.quantity )
 
     this.addProductForm = this.fb.group({
       productId: ['', Validators.required],
-      options: this.fb.array([], this.inCart ? [] : Validators.required)  
+      options: this.fb.array([], this.inCart ? [] : Validators.required),
+      quantity: ['', Validators.required]
     });
 
     this.options$.subscribe(options => {
@@ -44,6 +47,14 @@ export class AddToCartButtonComponent {
         });
       }
     });
+    
+    this.quantity$.subscribe((quantity) => {
+        if(quantity) {
+            this.addProductForm.patchValue({
+                quantity: Number(quantity)
+            })
+        }
+    })
   }
 
   private setOptions(optionIds: number[]) {

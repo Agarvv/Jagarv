@@ -10,3 +10,8 @@ export const addOrUpdateAttribute = createAction(
   '[Product Details] Add or Update Attribute',
   props<{ attribute: { attributeName: string; attributeOptionId: number } }>()
 );
+
+export const setOrUpdateQuantity = createAction(
+    'Add Or Update Quantity',
+    props<{ quantity: number }>()
+)

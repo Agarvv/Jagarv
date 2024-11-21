@@ -27,4 +27,10 @@ export const productDetailsReducer = createReducer(
       attributes: updatedAttributes
     };
   })
+  
+  on(setOrUpdateQuantity, (state, { quantity }) => ({
+  ...state,
+  quantity
+})),
+
 );
