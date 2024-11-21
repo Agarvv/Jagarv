@@ -25,7 +25,7 @@ export class BanUserComponent {
         }
 
         this.banService.banOrUnbanUser(this.userId)
-            .subscribe((data: string) => {
+            .subscribe((data: any) => {
                 
                 console.log('ban data', data);
                 

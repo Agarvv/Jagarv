@@ -7,6 +7,7 @@ public class UserDTO {
     private String profilePicture;
     private String joinedAt; 
     private String lastLogin; 
+    private Boolean isBanned; 
     
     public UserDTO() {} 
     
@@ -67,5 +68,15 @@ public class UserDTO {
     public void setLastLogin(String lastLogin)
     {
         this.lastLogin = lastLogin; 
+    }
+    
+    public Boolean getIsBanned() 
+    {
+        return isBanned;
+    }
+    
+    public void setIsBanned(Boolean isBanned)
+    {
+        this.isBanned = isBanned; 
     }
 }

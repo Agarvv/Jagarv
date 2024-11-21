@@ -33,7 +33,7 @@ public class AdminUserService {
             .map
             (user -> 
             userMapper.userToDTO(user)
-            .setBanned
+            .setIsBanned
             (banService.isBanned(user.getId())))
             .collect(Collectors.toList());
     }
