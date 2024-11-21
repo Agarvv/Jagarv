@@ -1,0 +1,26 @@
+.container {
+    display: grid; 
+    grid-template-areas: 
+      "header header header"
+      "searchResults searchResults searchResults"
+      "footer footer footer"; 
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr 120px; 
+    min-height: 100vh; 
+}
+
+.header {
+    grid-area: header;
+  }
+
+  .aside {
+    grid-area: aside
+  }
+
+  .search-results {
+    grid-area: searchResults;
+  } 
+  
+  .footer {
+      grid-area: footer
+  }

@@ -5,6 +5,7 @@ import { SearchState } from '@store/search/search.state';
 import { Product } from '@models/Product';
 import { Filters } from '@models/search/Filters';
 import { FiltersService } from '@services/search-page/filters/filters.service'
+import { setResults } from '@store/search/search.actions';
 
 @Component({
   selector: 'app-search-page-aside',
@@ -31,8 +32,18 @@ export class SearchPageAsideComponent implements OnInit {
 
   applyFilters() {
     this.searchResults$.subscribe((products) => {
+
       const filteredResults = this.filtersService.applyFilters(products, this.filters);
-      console.log(filteredResults);
+
+      console.log(filteredResults); // debug
+
+      this.store.dispatch(
+        setResults({
+          results: filteredResults
+        })
+        
+      )
+
     });
   }
 }
