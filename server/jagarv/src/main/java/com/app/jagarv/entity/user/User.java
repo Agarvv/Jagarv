@@ -31,6 +31,9 @@ public class User {
     
     @Enumerated(EnumType.STRING)
     private Role role;
+    
+    private String joinedAt; 
+    private String lastLogin; 
 
     public User() {
         this.role = Role.USER; 
@@ -92,5 +95,25 @@ public class User {
     public void setProfilePicture(String profilePicture)
     {
         this.profilePicture = profilePicture;
+    }
+    
+    public String getJoinedAt() 
+    {
+        return joinedAt; 
+    }
+    
+    public void setJoinedAt(String joinedAt) 
+    {
+        this.joinedAt = joinedAt;
+    }
+    
+    public String getLastLogin()
+    {
+        return lastLogin;
+    }
+    
+    public void setLastLogin(String lastLogin)
+    {
+        this.lastLogin = lastLogin; 
     }
 }

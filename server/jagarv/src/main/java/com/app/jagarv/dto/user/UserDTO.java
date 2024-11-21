@@ -5,6 +5,8 @@ public class UserDTO {
     private String username;
     private String email;
     private String profilePicture;
+    private String joinedAt; 
+    private String lastLogin; 
     
     public UserDTO() {} 
     
@@ -45,5 +47,25 @@ public class UserDTO {
     
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+    
+    public String getJoinedAt() 
+    {
+        return joinedAt; 
+    }
+    
+    public void setJoinedAt(String joinedAt) 
+    {
+        this.joinedAt = joinedAt;
+    }
+    
+    public String getLastLogin()
+    {
+        return lastLogin;
+    }
+    
+    public void setLastLogin(String lastLogin)
+    {
+        this.lastLogin = lastLogin; 
     }
 }

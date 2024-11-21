@@ -38,6 +38,8 @@ import com.app.jagarv.repository.cart.CartRepository;
 import com.app.jagarv.repository.user.ResetPasswordTokenRepository;
 import com.app.jagarv.repository.user.UserRepository;
 
+import java.util.LocalDate; 
+
 // handles auth logic
 @Service
 public class AuthService {
@@ -83,6 +85,7 @@ public class AuthService {
         user.setUsername(newUser.getUsername());
         user.setEmail(newUser.getEmail());
         user.setPassword(passwordEncoder.encode(newUser.getPassword())); // pass encoded
+        user.setJoinedAt(LocalDate.now().toString()); 
         
         // Save the user in the repository
         userRepository.save(user);
@@ -98,10 +101,9 @@ public class AuthService {
     public Cookie loginUser(LoginUserDTO loginUserDTO) {
         try {
             // if the user not exists, throw exception
-            Boolean userExists = userRepository.existsByEmail(loginUserDTO.getEmail()); 
-            if(!userExists) {
-                throw new EmailNotFoundException("Your Account Does not Exist...");
-            }
+            User dbUser = userRepository.findByEmail(loginUserDTO.getEmail()).orElseThrow(()
+            -> new EmailNotFoundException("That Email Does Not Exist")
+            ); 
             
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 loginUserDTO.getEmail(), loginUserDTO.getPassword()
@@ -117,6 +119,9 @@ public class AuthService {
             String jwtToken = jwtOutil.generateToken(user.getId(), user.getRole().name());
             // put jwt in a cookie
             Cookie jwtCookie = CookieOutil.generateJwtCookie(jwtToken);
+            
+            dbUser.setLastLogin(LocalDate.now().toString());
+            
             
             // return cookie with jwt to controller and controller sets cookie in response
             return jwtCookie;
