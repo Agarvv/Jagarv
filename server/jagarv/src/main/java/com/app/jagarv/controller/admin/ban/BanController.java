@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import com.app.jagarv.dto.ApiResponse;
 import com.app.jagarv.service.admin.ban.BanService;
-import com.app.jagarv.dto.user.BanUserDTO; 
+import com.app.jagarv.dto.user.BanUserDTO;
+import jakarta.validation.Valid;
+
 
 @RestController 
 @RequestMapping("/api/jagarv/admin/users/ban")
