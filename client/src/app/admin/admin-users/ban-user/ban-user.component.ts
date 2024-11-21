@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { BanService } from '@services/ban/ban.service'
 import { Store } from '@ngrx/store'
-import { clearMessages, setError } from '@store/admin/admin.state'
+import { clearMessages, setError } from '@store/admin/admin.actions'
 
 @Component({
   selector: 'app-ban-user',
@@ -15,11 +15,11 @@ export class BanUserComponent {
  
  banOrUnban(): void {
      this.store.dispatch(clearMessages());
-     this.banService.banOrUnbanUser(userId)
-     .subscribe((data) => {
+     this.banService.banOrUnbanUser(this.userId)
+     .subscribe((data: string) => {
          console.log('ban data', data)
      }, (error) => {
-         console.error(error);
+         console.error(error: any);
          this.store.dispatch(setError({
              errorMessage: 'Something went wrong...'
          }))
