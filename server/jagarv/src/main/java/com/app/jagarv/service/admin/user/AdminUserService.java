@@ -30,13 +30,13 @@ public class AdminUserService {
     public List<UserDTO> getUsers() {
     return userRepository.findAll()
             .stream()
-            .map
-            (user -> 
-            userMapper.userToDTO(user)
-            .setIsBanned
-            (banService.isBanned(user.getId())))
+            .map(user -> {
+                UserDTO dto = userMapper.userToDTO(user);
+                dto.setIsBanned(banService.isBanned(user.getId()));
+                return dto;
+            })
             .collect(Collectors.toList());
-    }
+      }
     
     
 }
