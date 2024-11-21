@@ -50,7 +50,7 @@ public class ProductOpinionService {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new UserNotFoundException("Please Try again later..."));
         
-        if(!productsService.isPurchasedByUser(userId)) {
+        if(!productsService.isPurchasedByUser(userId, product.getId())) {
             throw new ProductNotPurchasedException("You have not purchased this product yet");
         }
 

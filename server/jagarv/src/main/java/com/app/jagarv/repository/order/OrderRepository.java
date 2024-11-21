@@ -7,5 +7,5 @@ import com.app.jagarv.entity.order.Order;
 
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    Boolean existsByUserId(Long userId);
+    Boolean existsByUserIdAndProductId(Long userId, Long productId);
 }
