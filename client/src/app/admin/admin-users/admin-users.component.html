@@ -21,7 +21,7 @@
                 <td>Spent</td>
                 <td>{{ user.joinedAt }}</td>
                 <td>{{ user.lastLogin }}</td>
-                <td>Ban</td>
+                <td>{{ user.isBanned ? 'Yes' : 'No' }}</td>
                 <td class="actions">
                   <button class="actions-profile">
                     <i class="fa fa-user"></i>

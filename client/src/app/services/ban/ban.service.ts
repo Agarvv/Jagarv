@@ -7,7 +7,7 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class BanService {
-    private apiUrl = `${environment.apiUrl}api/jagarv/admin/users/ban`
+    private apiUrl = `${environment.apiUrl}/api/jagarv/admin/users/ban`
 
   constructor(private http: HttpClient) { }
   

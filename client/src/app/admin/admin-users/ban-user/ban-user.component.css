@@ -1,10 +1,14 @@
- .actions-ban {
-    background: #B41D1D;
+.actions-ban {
     color: white;
-  }
-  
-  button {
     padding: 5px;
     border: none;
     border-radius: 5px;
-  }
+}
+
+.banned {
+    background-color: #B41D1D; 
+}
+
+.unbanned {
+    background-color: #28a745; 
+}
