@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { setProduct, addOrUpdateAttribute, setOrUpdateQuantity} from './product-details.actions';
+import { setProduct, addOrUpdateAttribute, setOrUpdateQuantity } from './product-details.actions';
 import { ProductDetailsState, initialState } from './product-details.state';
-
 
 export const productDetailsReducer = createReducer(
   initialState,
@@ -11,7 +10,7 @@ export const productDetailsReducer = createReducer(
   })),
 
   on(addOrUpdateAttribute, (state, { attribute }) => {
-    // if user alreadys selected for example, a attribute with the name of 'color', upates that wanted attribute.
+    // if user already selected, for example, an attribute with the name of 'color', updates that wanted attribute.
     const existingIndex = state.attributes.findIndex(
       (attr) => attr.attributeName === attribute.attributeName
     );
@@ -22,16 +21,15 @@ export const productDetailsReducer = createReducer(
             index === existingIndex ? attribute : attr
           )
         : [...state.attributes, attribute];
-     // else adds new attribute to the list of selected attributes.
+    // else adds new attribute to the list of selected attributes.
     return {
       ...state,
       attributes: updatedAttributes
     };
-  })
-  
-  on(setOrUpdateQuantity, (state, { quantity }) => ({
-  ...state,
-  quantity
-})),
+  }),
 
+  on(setOrUpdateQuantity, (state, { quantity }) => ({
+    ...state,
+    quantity
+  }))
 );

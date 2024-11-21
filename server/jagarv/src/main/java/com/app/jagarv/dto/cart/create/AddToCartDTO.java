@@ -9,6 +9,7 @@ public class AddToCartDTO {
     @NotNull
     private Long productId;
     private List<Long> options; // the product options, like color, size or whatever
+    private Long quantity; 
 
     public Long getProductId() {
         return productId;
@@ -24,5 +25,13 @@ public class AddToCartDTO {
 
     public void setOptions(List<Long> options) {
         this.options = options;
+    }
+    
+    public Long getQuantity() {
+        return quantity; 
+    }
+    
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 }
