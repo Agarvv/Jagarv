@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../../services/admin/users/users.service';
+import { AdminUser } from '@models/User/AdminUser'
+import { Store } from '@ngrx/store'
+import { setError, clearMessages } from '@store/admin/admin.actions'
+ 
  
 @Component({
   selector: 'app-admin-users',
@@ -8,10 +12,10 @@ import { UsersService } from '../../services/admin/users/users.service';
 })
 export class AdminUsersComponent {
    // The users array will be filled with data from the server
-   users: any[] = [];
-   error: String = "";
+   users: AdminUser[] = [];
 
-   constructor(private usersService: UsersService) { }
+
+   constructor(private usersService: UsersService, private store: Store) { }
    
    // gets the users from the server
    ngOnInit(): void {
@@ -19,12 +23,16 @@ export class AdminUsersComponent {
    }
    
    loadUsers(): void {
+      this.store.dispatch(clearMessages()); 
+      
      this.usersService.getUsers().subscribe((data) => {
        console.log('Our server returned', data)
        this.users = data;
      }, (error) => {
        console.error('An error occurred', error)
-       this.error = "Something Went Wrong, Please Try Again...";
+       this.store.dispatch(setError({
+           errorMessage: "Something Went Wrong..."
+       }))
      })
    }
 }

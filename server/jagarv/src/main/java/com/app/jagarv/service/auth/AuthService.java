@@ -38,7 +38,7 @@ import com.app.jagarv.repository.cart.CartRepository;
 import com.app.jagarv.repository.user.ResetPasswordTokenRepository;
 import com.app.jagarv.repository.user.UserRepository;
 
-import java.util.LocalDate; 
+import java.time.LocalDate;
 
 // handles auth logic
 @Service
