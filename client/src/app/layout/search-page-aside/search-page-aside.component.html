@@ -22,7 +22,7 @@
     <input type="number" id="max-price" [(ngModel)]="filters.maxPrice" placeholder="Max. $1000" min="0" step="10">
   </div>
 
-  <div class="filter" *ngIf="filters.category == 'Smartphones' || filters.category == 'PC'">
+  <div class="filter" *ngIf="filters.category == 'PC'">
     <label for="ram">RAM</label>
     <select id="ram" [(ngModel)]="filters.ram">
       <option value="4gb">4GB</option>
@@ -39,6 +39,17 @@
       <option value="blue">Blue</option>
       <option value="white">White</option>
       <option value="black">Black</option>
+    </select>
+  </div>
+
+  <div class="filter" *ngIf="filters.category == 'Smartphones'">
+    <label for="color">Storage</label>
+    <select id="color" [(ngModel)]="filters.storage">
+      <option value="32">32 GB</option>
+      <option value="64">64 GB</option>
+      <option value="128">128 GB</option>
+      <option value="248">248 GB</option>
+      <option value="1000">1TB</option>
     </select>
   </div>
 
