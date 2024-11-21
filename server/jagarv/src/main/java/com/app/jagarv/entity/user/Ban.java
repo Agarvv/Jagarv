@@ -6,6 +6,11 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Ban {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     @NotNull 
     private Long userId; 
