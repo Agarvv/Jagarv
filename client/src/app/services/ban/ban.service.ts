@@ -7,11 +7,13 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class BanService {
-    private apiUrl = `${environment.apiUrl}/admin/user/ban`
+    private apiUrl = `${environment.apiUrl}api/jagarv/admin/users/ban`
 
   constructor(private http: HttpClient) { }
   
   banOrUnbanUser(userId: number): Observable<string> {
       return this.http.post<string>(this.apiUrl, { userId: userId });
   }
+  
+  
 }

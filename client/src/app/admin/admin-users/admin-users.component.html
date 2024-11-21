@@ -28,7 +28,9 @@
                   </button>
                   
                   <app-ban-user 
-                  [userId]="user.id ?? null">
+                  [userId]="user.id ?? null"
+                  [isBanned]="user.isBanned ?? false"
+                  >
                   </app-ban-user>
                 </td>
               </tr>

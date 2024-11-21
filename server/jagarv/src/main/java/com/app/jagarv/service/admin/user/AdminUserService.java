@@ -6,6 +6,8 @@ import com.app.jagarv.repository.user.UserRepository;
 
 import org.springframework.stereotype.Service;
 
+import com.app.jagarv.service.admin.ban.BanService;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,18 +16,28 @@ import java.util.stream.Collectors;
 @Service
 public class AdminUserService {
     
+    private final BanService banService; 
     private final UserRepository userRepository; 
     private final UserMapper userMapper;
 
-    public AdminUserService(UserRepository userRepository, UserMapper userMapper) {
+    public AdminUserService(UserRepository userRepository, UserMapper userMapper, BanService banService) {
       this.userRepository = userRepository;
       this.userMapper = userMapper;
+      this.banService = banService;
     }
     
     
     public List<UserDTO> getUsers() {
-        return userRepository.findAll()           .stream()
-            .map(userMapper::userToDTO)
+    return userRepository.findAll()
+            .stream()
+            .map
+            (user -> 
+            userMapper.userToDTO(user)
+            .setBanned
+            (banService.isBanned(user.getId())))
             .collect(Collectors.toList());
     }
+    
+    
 }
+

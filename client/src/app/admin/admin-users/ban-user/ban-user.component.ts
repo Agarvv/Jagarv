@@ -10,6 +10,7 @@ import { clearMessages, setError } from '@store/admin/admin.actions';
 })
 export class BanUserComponent {
     @Input() userId: number | null = null; 
+    @Input() isBanned: boolean | false = false; 
 
     constructor(private banService: BanService, private store: Store) {} 
 
@@ -25,7 +26,15 @@ export class BanUserComponent {
 
         this.banService.banOrUnbanUser(this.userId)
             .subscribe((data: string) => {
+                
                 console.log('ban data', data);
+                
+                if(data.message == 'BANNED') {
+                    this.isBanned = true; 
+                } else {
+                    this.isBanned = false;
+                }
+                
             }, (error) => {
                 console.error(error);
                 this.store.dispatch(setError({

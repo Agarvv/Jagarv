@@ -5,5 +5,6 @@ export interface AdminUser {
     email: string,
     profilePicture: string,
     joinedAt: string,
-    lastLogin: string
+    lastLogin: string,
+    isBanned: boolean 
 }
