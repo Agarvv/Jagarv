@@ -11,14 +11,17 @@
 
 .header {
     grid-area: header;
+    border: 3px solid black;
 }
 
 .aside {
     grid-area: aside;
+    border: 5px solid red;
 }
 
 .search-results {
     grid-area: searchResults;
+    border: 7px solid blue;
 }
 
 .footer {
