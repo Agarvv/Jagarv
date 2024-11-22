@@ -80,7 +80,8 @@ import { AddToWishlistComponent } from './layout/product-card/add-to-wishlist/ad
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileDataComponent } from './profile/profile-data/profile-data.component'
 import { cartReducer } from '@store/cartt/cart.reducer';
-import { BanUserComponent } from './admin/admin-users/ban-user/ban-user.component'
+import { BanUserComponent } from './admin/admin-users/ban-user/ban-user.component';
+import { SearchPageHeaderComponent } from './layout/search-page-header/search-page-header.component'
 
 @NgModule({
   declarations: [
@@ -150,7 +151,8 @@ import { BanUserComponent } from './admin/admin-users/ban-user/ban-user.componen
     AddToWishlistComponent,
     ProfileComponent,
     ProfileDataComponent,
-    BanUserComponent
+    BanUserComponent,
+    SearchPageHeaderComponent
   ],
   imports: [
     BrowserModule,
