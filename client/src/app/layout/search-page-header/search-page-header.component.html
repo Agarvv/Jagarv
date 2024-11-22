@@ -6,12 +6,12 @@
     <div class="h-grow">
       
       <div class="h-grow-search">
-        <input type="text" placeholder="Search Something">
+        <input [(ngModel)]="searchQ" type="text" placeholder="Search Something">
       </div>
 
     </div>
     <div class="h-user">
-      <div class="h-search">
+      <div (click)="handleSearch()" class="h-search">
         <i class="fa fa-search"></i>
       </div>
       <div class="h-cart">

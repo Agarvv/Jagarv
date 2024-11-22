@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-page-header',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './search-page-header.component.css'
 })
 export class SearchPageHeaderComponent {
+ @Input() searchQ: string = "";
+ 
+ constructor(private router: Router) {} 
 
+ handleSearch(): void {
+   this.router.navigate(['/search', this.searchQ]);
+ }
 }
