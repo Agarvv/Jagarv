@@ -54,5 +54,6 @@ export class SearchComponent implements OnInit {
 
   onShowFilters(): void {
     this.showFilters = !this.showFilters;
-  }
+    console.log('event received') // debug
+  } 
 }

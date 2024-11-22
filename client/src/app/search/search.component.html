@@ -8,15 +8,10 @@
     </app-search-page-header>
   </div>
 
-  <div class="aside">
-    <app-search-page-aside
-    *ngIf="showFilters"
-    >
-
-
-    </app-search-page-aside>
-  </div> 
-
+  <div class="aside" [class.show]="showFilters">
+    <app-search-page-aside></app-search-page-aside>
+  </div>
+  
   <main class="search-results">
     <app-product-list [products]="searchResults$ | async"></app-product-list>
   </main>
