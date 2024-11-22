@@ -2,6 +2,7 @@ import { ProductVariant } from './ProductVariant'
 import { Attribute } from './Attribute' 
 import { ProductCategory } from './ProductCategory'
 import { ProductOpinion } from './ProductOpinion'
+import { AttributeOption } from './AttributeOption'
 
 export interface Product {
     category: ProductCategory
@@ -16,5 +17,6 @@ export interface Product {
     variants: ProductVariant[],
     opinions: ProductOpinion[],
     inWishlist: boolean,
-    inCart: boolean 
+    inCart: boolean,
+    options: AttributeOption[]
 } 

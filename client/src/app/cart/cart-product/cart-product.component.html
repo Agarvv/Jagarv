@@ -7,9 +7,8 @@
       <div class="cp-data">
         <p class="cp-title">{{ product?.title ?? 'Not Provided' }}</p>
         <p class="cp-price">$ {{ product?.price ?? 0}}</p>
-        <div class="cp-attrubutes">
-          <p>128GB</p>
-          <p>Red</p>
+        <div class="cp-attrubutes" *ngFor="let option of product?.options">
+           <p>{{ option.name }}: {{ option.value }}</p> 
         </div>
       </div>
     </div>
