@@ -1,6 +1,10 @@
 <div class="upf-header">
   <div class="upf-user">
-    <img class="user-img" src="user?.profilePicture ?? 'i will ad url here soon'" alt="" (click)="fileInput.click()">
+     <img 
+  class="user-img" 
+  [src]="user?.profilePicture || 'url-default-.jpg'" 
+  alt="User image" 
+  (click)="fileInput.click()">
     <h3>{{ user?.username ?? 'Not Provided'}}</h3>
     <input #fileInput type="file" style="display:none" (change)="onFileSelected($event)">
   </div>
