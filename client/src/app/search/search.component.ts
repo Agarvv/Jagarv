@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
         .subscribe(
           (data) => {
             console.log('Search Success', data); 
-            this.store.dispatch(setResults({ results: data }));
+          //  this.store.dispatch(setResults({ results: data }));
           },
           (error) => {
             console.error("Search failure", error); // debug
