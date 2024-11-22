@@ -8,11 +8,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SearchPageHeaderComponent {
  @Input() searchQ: string  | null = "";
- @Output() showFiltersAside: EventEmitter<void> = new EventEmitter();
+ @Output() showFilters: EventEmitter<void> = new EventEmitter();
+
  
  constructor() {} 
 
- showFilters() {
-  this.showFiltersAside.emit();
+ showFiltersAside() {
+  this.showFilters.emit();
  }
 }
