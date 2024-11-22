@@ -8,7 +8,7 @@
         <p class="cp-title">{{ product?.title ?? 'Not Provided' }}</p>
         <p class="cp-price">$ {{ product?.price ?? 0}}</p>
         <div class="cp-attrubutes" *ngFor="let option of product?.options">
-           <p>{{ option.name }}: {{ option.value }}</p> 
+           <p>{{ option.attributeName }}: {{ option.value }}</p> 
         </div>
       </div>
     </div>
