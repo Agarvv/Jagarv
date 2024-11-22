@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './search-page-header.component.css'
 })
 export class SearchPageHeaderComponent {
- @Input() searchQ: string = "";
+ @Input() searchQ: string  | null = "";
  
  constructor(private router: Router) {} 
 

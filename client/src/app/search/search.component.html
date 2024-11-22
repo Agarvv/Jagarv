@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <app-search-page-header
-     [searchQ]="route.snapshot.paramMap.get('query')"
+     [searchQ]="route.snapshot.paramMap.get('query') || '' "
     >
         
     </app-search-page-header>

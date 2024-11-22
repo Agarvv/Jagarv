@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute, // used on html, thats why is public
     private store: Store<{ search: SearchState }>  
   ) {}
 
