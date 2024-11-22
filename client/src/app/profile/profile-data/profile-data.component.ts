@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MediaServiceService } from '@services/media/media-service.service';
 import { UserService } from '@services/user/user.service';
+import { User } from '@models/User/User'; 
 
 @Component({
   selector: 'app-profile-data',
@@ -9,6 +10,7 @@ import { UserService } from '@services/user/user.service';
 })
 export class ProfileDataComponent {
   selectedFile: File | null = null;
+  @Input() user: User | null = null; 
   
   constructor(
     private mediaService: MediaServiceService, 

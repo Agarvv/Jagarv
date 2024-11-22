@@ -12,6 +12,8 @@ import { finalize } from 'rxjs'
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
+    user: User | null = null; 
+    
    constructor(private userService: UserService, private store: Store) {}
    
    ngOnInit(): void {
@@ -32,6 +34,7 @@ export class ProfileComponent implements OnInit {
        .subscribe((data: User) => {
            
            console.log('User data', data)
+           this.user = data; 
            window.location.reload()
            
        }, (error: any) => {
