@@ -3,7 +3,7 @@ package com.app.jagarv.entity.product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "attribute")
@@ -25,7 +25,7 @@ public class Attribute {
     
     // the options of this attribute, like: 'Red', 'Blue', 'Green' etc.
     @OneToMany(mappedBy = "attribute", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
     private List<AttributeOption> options;
     
     // getters and setters
