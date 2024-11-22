@@ -1,4 +1,4 @@
-package com.app.jagarv.entity.order;
+qpackage com.app.jagarv.entity.order;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
