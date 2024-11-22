@@ -18,7 +18,7 @@ public class ProductCategory {
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    @JsonManagedReference  
+    @JsonManagedReference 
     private List<Attribute> attributes; 
     
     public Long getCategoryId() {

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "attribute")
@@ -21,11 +22,12 @@ public class Attribute {
     // the product category this attribute belongs to
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonBackReference // Evita loops hacia la categoría
     private ProductCategory category;
     
     // the options of this attribute, like: 'Red', 'Blue', 'Green' etc.
     @OneToMany(mappedBy = "attribute", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference // Controla el lado "dueño" de la relación con AttributeOption
     private List<AttributeOption> options;
     
     // getters and setters
