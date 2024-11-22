@@ -32,7 +32,7 @@ public interface ProductVariantMapper {
                 .collect(Collectors.groupingBy(
                         option -> option.getAttribute().getName(),
                         Collectors.mapping(
-                                option -> new AttributeOptionDTO(option.getId(), option.getValue()),
+                                option -> new AttributeOptionDTO(option.getId(), option.getValue(), option.getAttribute().getName()),
                                 Collectors.toList()
                         )
                 ));
@@ -46,13 +46,11 @@ public interface ProductVariantMapper {
                 })
                 .collect(Collectors.toList());
     }
-    
-    
+
     default List<AttributeOption> mapAttributesToAttributeOptions(List<AttributeDTO> attributes) {
-    return attributes.stream()
+        return attributes.stream()
             .flatMap(attributeDTO -> attributeDTO.getOptions().stream()
                     .map(optionDTO -> {
-    
                         AttributeOption option = new AttributeOption();
                         option.setId(optionDTO.getId());
                         option.setValue(optionDTO.getValue());
@@ -65,6 +63,5 @@ public interface ProductVariantMapper {
                     })
             )
             .collect(Collectors.toList());
-}
-
+    }
 }
