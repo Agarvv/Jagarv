@@ -17,6 +17,7 @@ import { Product } from '@models/Product';
 export class SearchComponent implements OnInit {
 
   searchResults$: Observable<Product[]> = new Observable<Product[]>();
+  showFilters: boolean = false;  // add this property to control the visibility of filters aside
 
   constructor(
     private searchService: SearchService,
@@ -49,5 +50,9 @@ export class SearchComponent implements OnInit {
     }
 
     this.searchResults$ = this.store.select(state => state.search.results);
+  }
+
+  onShowFilters(): void {
+    this.showFilters = !this.showFilters;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -8,6 +8,11 @@ import { Component, Input } from '@angular/core';
 })
 export class SearchPageHeaderComponent {
  @Input() searchQ: string  | null = "";
+ @Output() showFiltersAside: EventEmitter<void> = new EventEmitter();
  
  constructor() {} 
+
+ showFilters() {
+  this.showFiltersAside.emit();
+ }
 }

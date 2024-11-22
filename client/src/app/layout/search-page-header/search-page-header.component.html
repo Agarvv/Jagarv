@@ -12,11 +12,8 @@
       <a [routerLink]="['/search', searchQ]" class="h-search" role="button">
         <i class="fa fa-search"></i>
       </a>
-      <div class="h-cart">
-        <i class="fa fa-shopping-cart"></i>
-        <div class="h-cart-len">
-          <p>0</p>
-        </div>
+      <div (click)="showFilters()" class="h-filters">
+        <i class="fa fa-filters"></i>
       </div>
       <div>
         <div class="not-logged-in">

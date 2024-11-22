@@ -2,6 +2,8 @@
   <div class="header">
     <app-search-page-header
      [searchQ]="route.snapshot.paramMap.get('query') || '' "
+     (showFilters)="onShowFilters()"
+     *ngIf="showFilters"
     >
         
     </app-search-page-header>
