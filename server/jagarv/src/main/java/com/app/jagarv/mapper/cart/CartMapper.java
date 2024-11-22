@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface CartMapper {
+
     @Mapping(source = "id", target = "cartId")
     @Mapping(source = "cartItems", target = "items")
     CartDTO toDto(Cart cart);

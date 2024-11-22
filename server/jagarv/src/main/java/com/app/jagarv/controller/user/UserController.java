@@ -34,7 +34,7 @@ public class UserController
     
     @PostMapping("/setProfilePicture")
     public ResponseEntity<ApiResponse<Void>> 
-    setUserProfilePicture(@Valid SetUserProfilePicDTO user)
+    setUserProfilePicture(@RequestBody @Valid SetUserProfilePicDTO user)
     {
         userService.setUserProfilePicture(user);
         
