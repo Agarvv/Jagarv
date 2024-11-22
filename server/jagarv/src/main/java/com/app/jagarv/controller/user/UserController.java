@@ -38,6 +38,6 @@ public class UserController
     {
         userService.setUserProfilePicture(user);
         
-        return ResponseEntity.ok(new ApiResponse<>("Profile Picture Setted!", null)); 
+        return ResponseEntity.ok(new ApiResponse<>(user.getProfilePicture(), null)); 
     }
 }

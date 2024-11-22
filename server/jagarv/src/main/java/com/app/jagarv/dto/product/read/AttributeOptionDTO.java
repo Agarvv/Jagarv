@@ -1,22 +1,11 @@
-package com.app.jagarv.entity.product;
+package com.app.jagarv.dto.product.read;
 
-import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
-@Table(name = "attribute_option")
-public class AttributeOption {
+public class AttributeOptionDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String value;
 
-    @ManyToOne
-    @JoinColumn(name = "attribute_id")
-    @JsonBackReference 
-    private Attribute attribute;
 
     public Long getId() {
         return id;
@@ -32,13 +21,5 @@ public class AttributeOption {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public Attribute getAttribute() {
-        return attribute;
-    }
-
-    public void setAttribute(Attribute attribute) {
-        this.attribute = attribute;
     }
 }
