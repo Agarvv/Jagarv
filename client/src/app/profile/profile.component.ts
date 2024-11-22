@@ -35,7 +35,6 @@ export class ProfileComponent implements OnInit {
            
            console.log('User data', data)
            this.user = data; 
-           window.location.reload()
            
        }, (error: any) => {
            

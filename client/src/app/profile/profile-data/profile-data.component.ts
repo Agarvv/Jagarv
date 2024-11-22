@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { MediaServiceService } from '@services/media/media-service.service';
 import { UserService } from '@services/user/user.service';
 import { User } from '@models/User/User'; 
+import { Store } from '@ngrx/store';
+import { setError, setLoading, clearMessages } from '@store/admin/admin.actions'
 
 @Component({
   selector: 'app-profile-data',
@@ -14,7 +16,8 @@ export class ProfileDataComponent {
   
   constructor(
     private mediaService: MediaServiceService, 
-    private userService: UserService
+    private userService: UserService,
+    private store: Store
   ) {}
 
   onFileSelected(event: Event): void {
@@ -30,6 +33,7 @@ export class ProfileDataComponent {
           this.userService.setUserPicture(data.secure_url).subscribe(
             (data: any) => {
               console.log('Setted profile pic', data);
+              window.location.reload()
             },
             (error) => {
               console.error(error);
