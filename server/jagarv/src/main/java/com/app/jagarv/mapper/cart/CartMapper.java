@@ -8,7 +8,6 @@ import com.app.jagarv.entity.cart.CartItem;
 import com.app.jagarv.entity.product.AttributeOption;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,10 +24,9 @@ public interface CartMapper {
     @Mapping(source = "product.id", target = "productId")
     @Mapping(source = "product.title", target = "title")
     @Mapping(source = "product.price", target = "price")
-    @Mapping(source = "options", target = "options", qualifiedByName = "mapOptions")
+    @Mapping(source = "options", target = "options")
     CartItemDTO cartItemToCartItemDTO(CartItem cartItem);
 
-    @Named("mapOptions")
     default List<AttributeOptionDTO> mapOptions(List<AttributeOption> options) {
         return options.stream()
                 .map(option -> new AttributeOptionDTO(
