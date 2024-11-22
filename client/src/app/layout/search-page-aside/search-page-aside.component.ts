@@ -6,6 +6,7 @@ import { Product } from '@models/Product';
 import { Filters } from '@models/search/Filters';
 import { FiltersService } from '@services/search-page/filters/filters.service'
 import { setResults } from '@store/search/search.actions';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-page-aside',
@@ -31,7 +32,7 @@ export class SearchPageAsideComponent implements OnInit {
   }
 
   applyFilters() {
-    this.searchResults$.subscribe((products) => {
+    this.searchResults$.pipe(take(1)).subscribe((products) => {
 
       const filteredResults = this.filtersService.applyFilters(products, this.filters);
 
