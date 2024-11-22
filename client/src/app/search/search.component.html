@@ -3,14 +3,18 @@
     <app-search-page-header
      [searchQ]="route.snapshot.paramMap.get('query') || '' "
      (showFilters)="onShowFilters()"
-     *ngIf="showFilters"
     >
         
     </app-search-page-header>
   </div>
 
   <div class="aside">
-    <app-search-page-aside></app-search-page-aside>
+    <app-search-page-aside
+    *ngIf="showFilters"
+    >
+
+
+    </app-search-page-aside>
   </div> 
 
   <main class="search-results">
