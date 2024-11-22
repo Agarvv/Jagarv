@@ -23,7 +23,7 @@ export class UserService {
   // here data is the URL of the profile picture, a string 
   setUserPicture(data: string): Observable<string>
   {
-      return this.http.post<string>(`${this.apiUrl}/setProfilePicture`, data, {
+      return this.http.post<string>(`${this.apiUrl}/setProfilePicture`, { profilePicture: data}, {
           withCredentials: true 
       })
   }
