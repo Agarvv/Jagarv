@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+// product ctaegory mapper 
 @Mapper(componentModel = "spring", uses = {AttributeMapper.class}) 
 public interface ProductCategoryMapper {
 
