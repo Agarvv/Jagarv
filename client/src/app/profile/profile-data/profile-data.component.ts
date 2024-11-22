@@ -3,7 +3,8 @@ import { MediaServiceService } from '@services/media/media-service.service';
 import { UserService } from '@services/user/user.service';
 import { User } from '@models/User/User'; 
 import { Store } from '@ngrx/store';
-import { setError, setLoading, clearMessages } from '@store/admin/admin.actions'
+import { setError, setLoading, clearMessages } from '@store/admin/admin.actions';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-profile-data',
@@ -21,6 +22,12 @@ export class ProfileDataComponent {
   ) {}
 
   onFileSelected(event: Event): void {
+    this.store.dispatch(clearMessages()); 
+    
+    this.store.dispatch(setLoading({
+      isLoading: true 
+    }));
+      
     const input = event.target as HTMLInputElement;
     
     if (input.files?.length) {
@@ -30,18 +37,32 @@ export class ProfileDataComponent {
         (data: any) => {
           console.log('cloudinary', data);
           
-          this.userService.setUserPicture(data.secure_url).subscribe(
+          this.userService.setUserPicture(data.secure_url).pipe(
+            finalize(() => {
+              this.store.dispatch(setLoading({
+                isLoading: false
+              }));
+            })
+          ).subscribe(
             (data: any) => {
               console.log('Setted profile pic', data);
-              window.location.reload()
+              window.location.reload();
             },
             (error) => {
-              console.error(error);
+              this.store.dispatch(setError({
+                errorMessage: "Something Went Wrong..."
+              }));
             }
           );
         },
         (error) => {
           console.error(error);
+          this.store.dispatch(setLoading({
+            isLoading: false
+          }));
+          this.store.dispatch(setError({
+            errorMessage: "Error while uploading Your picture..."
+          }));
         }
       );
     }
