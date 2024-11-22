@@ -1,7 +1,6 @@
 package com.app.jagarv.entity.cart;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 import com.app.jagarv.entity.product.AttributeOption;
@@ -13,22 +12,22 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-    
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    
+
     private Long quantity;
 
     @ManyToMany
     @JoinTable(
-      name = "cart_item_attribute_option", 
-      joinColumns = @JoinColumn(name = "cart_item_id"), 
-      inverseJoinColumns = @JoinColumn(name = "attribute_option_id"))
+        name = "cart_item_attribute_option",
+        joinColumns = @JoinColumn(name = "cart_item_id"),
+        inverseJoinColumns = @JoinColumn(name = "attribute_option_id"))
     private List<AttributeOption> options;
 
     public Long getId() {
