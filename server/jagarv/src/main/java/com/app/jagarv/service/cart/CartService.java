@@ -103,4 +103,11 @@ public class CartService {
     {
         return cartRepository.existsByUserIdAndCartItemsProductId(userId, productId); 
     }
+    
+    // will be used on payment services when we need the raw user cart
+    public Cart getUserRawCart() {
+        Long userId = securityOutil.getAuthenticatedUserId();
+        return cartRepository.findByUserId(userId)
+        .orElseThrow(() -> new CartNotFoundException("Something went wrong with your cart..."));
+    }
 }

@@ -1,16 +1,32 @@
 package com.app.jagarv.service.admin.order;
 
+import java.util.List;
+import java.util.ArrayList;
+
+import com.app.jagarv.dto.order.edit.SetOrderDTO;
 import com.app.jagarv.dto.order.read.OrdersDTO;
+import com.app.jagarv.entity.cart.Cart;
+import com.app.jagarv.entity.cart.CartItem;
+import com.app.jagarv.entity.order.Order;
 import com.app.jagarv.entity.product.Product;
+import com.app.jagarv.entity.user.User;
+import com.app.jagarv.exception.exceptions.cart.CartNotFoundException;
+import com.app.jagarv.exception.exceptions.order.OrderNotFoundException;
+import com.app.jagarv.exception.exceptions.users.UserNotFoundException;
 import com.app.jagarv.mapper.orders.OrdersMapper;
+import com.app.jagarv.outil.SecurityOutil;
+import com.app.jagarv.repository.cart.CartRepository;
 import com.app.jagarv.repository.order.OrderRepository;
+import com.app.jagarv.repository.user.UserRepository;
 
 import org.springframework.stereotype.Service;
 
 import com.app.jagarv.dto.payments.ProductPaymentDTO; 
 
+import com.app.jagarv.service.cart.CartService;
 
-import java.util.List;
+
+
 import java.util.stream.Collectors;
 
 // Our App's Orders Service.
@@ -19,10 +35,25 @@ public class AdminOrdersService {
     // Injections
     private final OrderRepository orderRepository; 
     private final OrdersMapper ordersMapper; 
+    private final SecurityOutil securityOutil; 
+    private final CartRepository cartRepository; 
+    private final UserRepository userRepository;
+    private final CartService cartService;
     
-    public AdminOrdersService(OrderRepository orderRepository, OrdersMapper ordersMapper) {
+    public AdminOrdersService
+    (OrderRepository orderRepository,
+     OrdersMapper ordersMapper,
+     CartRepository cartRepository,
+     SecurityOutil securityOutil,
+     UserRepository userRepository,
+     CartService cartService
+    ) {
       this.orderRepository = orderRepository;
       this.ordersMapper = ordersMapper;
+      this.cartRepository = cartRepository;
+      this.securityOutil = securityOutil;  
+      this.cartService = cartService;
+      this.userRepository = userRepository;
     }
     
     // Returns all the App's orders to the controller
@@ -32,4 +63,53 @@ public class AdminOrdersService {
             .collect(Collectors.toList());
     }
 
+    // places a order, will be used on the payments services when the payment is succeded
+
+    public void placeOrder(Long amount, String paymentIntentId) {
+
+      Long userId = securityOutil.getAuthenticatedUserId();
+
+      User user = userRepository.findById(userId)
+      .orElseThrow(()
+       -> new UserNotFoundException("Something is wrong with your account... please log in")
+      );
+
+      Cart cart = cartService.getUserRawCart();
+
+      List<Product> products = new ArrayList<>();
+
+      for(CartItem item: cart.getCartItems()) {
+         products.add(item.getProduct());
+      }
+      
+      Order order = new Order();
+      order.setUser(user);
+      order.setProducts(products);
+      order.setStatus("PREPARING");
+      order.setAmount(amount);
+      order.setPaymentId(paymentIntentId);
+
+      orderRepository.save(order);
+
+    }
+    
+    // sets a order status as in proccess
+    public void setOrderInProcces(SetOrderDTO orderDTO) {
+      Order order = findOrderById(orderDTO.getOrderId());
+      order.setStatus("PROCESSING");
+      orderRepository.save(order);
+    }
+    
+    // sets a order status as arrived
+    public void setOrderArrived(SetOrderDTO orderDTO) {
+      Order order = findOrderById(orderDTO.getOrderId());
+      order.setStatus("ARRIVED");
+      orderRepository.save(order);
+    }
+
+    private Order findOrderById(Long id) {
+      Order order = orderRepository.findById(id).orElseThrow(()
+       -> new OrderNotFoundException("Could not find order")
+      ); 
+    }
 }

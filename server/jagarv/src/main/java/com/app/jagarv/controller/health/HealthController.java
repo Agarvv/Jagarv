@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
     @GetMapping("/health")
     public String healthCheck() {
-        if(5 > 4) {
-            return "5 IS OBVUOUSLY GREATER THAN 4"
-        } else {
-            return "4 IS NOT GREATER THAN 5"
-        } // :P
+
+            return "5 IS OBVUOUSLY GREATER THAN 4";
+
     }
 }
 

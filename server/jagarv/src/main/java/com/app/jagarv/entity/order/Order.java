@@ -33,6 +33,12 @@ public class Order {
     @NotBlank(message = "Status cannot be blank")
     @Size(max = 20, message = "Status cannot exceed 20 characters")
     private String status;
+    
+    @NotNull
+    private Long amount;
+
+    @NotNull 
+    private String paymentId; 
 
     public Long getId() {
         return id;
@@ -64,5 +70,21 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public String getPaymentId() {
+        return paymentId; 
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
     }
 }

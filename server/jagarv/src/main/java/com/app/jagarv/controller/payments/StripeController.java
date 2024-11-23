@@ -24,30 +24,14 @@ public class StripeController
       {
         this.stripeService = stripeService;
       }
-      
-      // handles payment of single product, not cart
-      @PostMapping("/singleProduct")
-      public ResponseEntity<String> payWithStripe(@RequestBody ProductPaymentDTO payment) 
-      {
-        try
-       {
-            String clientSecret = stripeService.createPaymentIntent(payment);
-            return ResponseEntity.ok(clientSecret); 
-
-        } catch (StripeException e) 
-        {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)  
-                .body("Something went wrong with the payment..." + e.getMessage());
-      }
-  }
-
+    
      // handles payment of cart
-     @PostMapping("/cart")
-        public ResponseEntity<String> handleCartPayment(@RequestBody ProductPaymentDTO payment) 
+     @PostMapping
+        public ResponseEntity<String> handleCartPayment() 
         {
           try
          {
-              String clientSecret = stripeService.createPaymentIntent(payment);
+              String clientSecret = stripeService.createPaymentIntent();
               return ResponseEntity.ok(clientSecret); 
   
           } catch (StripeException e) 
