@@ -1,24 +1,28 @@
+.wishlist-btn {
+  background-color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  padding: 0; 
+  font-size: 18px;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
 
-  .wishlist-btn {
-    background-color: #fff;
+.wishlist-btn:hover {
+  background-color: #ff2a68;
+  color: #fff;
+}
 
-    border-radius: 50%;
-    padding: 10px;
-    font-size: 18px;
-    color: black;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.wishlist-btn i {
+  margin: 0;
+}
 
-  .wishlist-btn:hover {
-    background-color: #ff2a68;
-    color: #fff;
-  }
-
-  .wishlist-btn i {
-    margin: 0;
-  }
-  
-  .wishlist-btn.on {
-      color: red;
-  }
+.wishlist-btn.on {
+  color: red;
+}

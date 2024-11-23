@@ -1,10 +1,12 @@
 <div *ngIf="product$ | async as product">
   <div class="p-buy-quantity">
+      <label for="Quantity">Quantity</label>
     <input 
       type="number" 
       [min]="1" 
       [max]="product.stock" 
       (change)="onQuantityChange($event)" 
+      [placeholder]="product.stock"
       />
   </div>
   <div class="p-buy-options">
