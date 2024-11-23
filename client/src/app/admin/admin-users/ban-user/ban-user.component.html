@@ -1,3 +1,5 @@
- <button (click)="banOrUnban()" [ngClass]="{'banned': isBanned, 'unbanned': !isBanned}">
+<button (click)="banOrUnban()" 
+        class="actions-ban" 
+        [ngClass]="{'banned': isBanned, 'unbanned': !isBanned}">
     <i class="fa fa-ban"></i>
 </button>
