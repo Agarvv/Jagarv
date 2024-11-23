@@ -4,5 +4,9 @@ import { SearchState, initialState } from './search.state';
 
 export const searchReducer = createReducer(
   initialState,
-  on(setResults, (state, { results }) => ({ ...state, results }))
+  on(setResults, (state, { allProducts, filteredResults }) => ({
+    ...state,
+    allProducts: allProducts,
+    filteredResults: filteredResults
+  }))
 );

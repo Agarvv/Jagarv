@@ -28,23 +28,13 @@ export class SearchPageAsideComponent implements OnInit {
   constructor(private filtersService: FiltersService, private store: Store<{ search: SearchState }>) {}
 
   ngOnInit(): void {
-    this.searchResults$ = this.store.select(state => state.search.results);
+    this.searchResults$ = this.store.select(state => state.search.filteredResults);
   }
 
   applyFilters() {
-    this.searchResults$.pipe(take(1)).subscribe((products) => {
-
+    this.store.select(state => state.search.allProducts).pipe(take(1)).subscribe((products) => {
       const filteredResults = this.filtersService.applyFilters(products, this.filters);
-
-      console.log(filteredResults); // debug
-
-      this.store.dispatch(
-        setResults({
-          results: filteredResults
-        })
-        
-      )
-
+      this.store.dispatch(setResults({ results: filteredResults }));
     });
   }
 }

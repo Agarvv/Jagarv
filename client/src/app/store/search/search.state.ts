@@ -1,9 +1,11 @@
 import { Product } from '@models/Product'; 
 
 export interface SearchState {
-    results: Product[] 
+  allProducts: Product[];
+  filteredResults: Product[];
 }
 
 export const initialState: SearchState = {
-    results: [] 
+  allProducts: [],
+  filteredResults: [],
 }

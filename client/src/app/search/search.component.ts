@@ -17,11 +17,11 @@ import { Product } from '@models/Product';
 export class SearchComponent implements OnInit {
 
   searchResults$: Observable<Product[]> = new Observable<Product[]>();
-  showFilters: boolean = false;  // add this property to control the visibility of filters aside
+  showFilters: boolean = false;  
 
   constructor(
     private searchService: SearchService,
-    public route: ActivatedRoute, // used on html, thats why is public
+    public route: ActivatedRoute, 
     private store: Store<{ search: SearchState }>  
   ) {}
 
@@ -38,22 +38,25 @@ export class SearchComponent implements OnInit {
         .subscribe(
           (data) => {
             console.log('Search Success', data); 
-            this.store.dispatch(setResults({ results: data }));
+            this.store.dispatch(setResults({ 
+              allProducts: data,  
+              filteredResults: data
+            }));
           },
           (error) => {
-            console.error("Search failure", error); // debug
+            console.error("Search failure", error); 
             this.store.dispatch(setError({ errorMessage: "Oops, something went wrong..." }));
           }
         );
     } else {
-      console.error("No query found"); // debug
+      console.error("No query found"); 
     }
 
-    this.searchResults$ = this.store.select(state => state.search.results);
+    this.searchResults$ = this.store.select(state => state.search.filteredResults); 
   }
 
   onShowFilters(): void {
     this.showFilters = !this.showFilters;
-    console.log('event received') // debug
+    console.log('event received') 
   } 
 }
