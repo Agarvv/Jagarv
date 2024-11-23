@@ -21,11 +21,11 @@ main table th {
 main table td {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 main table .description {
   max-width: 150px; 
+  text-overflow: ellipsis;
 }
 
 main table img {
@@ -39,6 +39,7 @@ main table .p-actions {
   display: flex;
   gap: 10px;
   justify-content: center;
+  border: none;
 }
 
 main table .p-actions button {
