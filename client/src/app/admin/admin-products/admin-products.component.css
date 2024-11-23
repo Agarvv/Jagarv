@@ -1,14 +1,15 @@
-
 main table {
   border-collapse: collapse;
   width: 100%;
+  table-layout: fixed;
 }
 
 main table th,
 main table td {
   padding: 12px 15px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
+  word-wrap: break-word; 
 }
 
 main table th {
@@ -17,45 +18,58 @@ main table th {
   font-weight: bold;
 }
 
-main table td button {
-  margin: 3px;
+main table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-main table button {
+main table .description {
+  max-width: 150px; 
+}
+
+main table img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 5px; 
+}
+
+main table .p-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+main table .p-actions button {
   cursor: pointer;
   padding: 5px;
   border: none;
   color: white;
   border-radius: 5px;
+  background-color: #007bff;
+  transition: background-color 0.3s ease;
 }
 
-main table button:hover {
-  background-color: #45a049;
+main table .p-actions button:hover {
+  background-color: #0056b3;
 }
 
-main table .p-actions {
-  display: flex; 
-  gap: 5px; 
-}
-
-
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   main table,
   main table th,
   main table td {
-    padding: 8px 5px; 
-    font-size: 0.9rem; 
+    padding: 8px 5px;
+    font-size: 0.9rem;
   }
 
-  main table th,
-  main table td {
-    text-align: center; 
-  }
-
-  main table td button {
-    margin: 5px 0;
-    width: 100%; 
-    padding: 6px;
+  main table th:nth-child(3),
+  main table td:nth-child(3),
+  main table th:nth-child(4),
+  main table td:nth-child(4),
+  main table th:nth-child(7),
+  main table td:nth-child(7) {
+    display: none;
   }
 
   main table img {
@@ -63,10 +77,7 @@ main table .p-actions {
     height: 20px;
   }
 
-  main table th:nth-child(3),
-  main table td:nth-child(3),
-  main table th:nth-child(4),
-  main table td:nth-child(4) {
-    display: none;
+  main table .p-actions {
+    flex-direction: column;
   }
 }
