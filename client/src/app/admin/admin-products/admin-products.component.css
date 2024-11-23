@@ -1,7 +1,7 @@
 main table {
   border-collapse: collapse;
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 main table th,
@@ -9,7 +9,6 @@ main table td {
   padding: 12px 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
-  word-wrap: break-word;
 }
 
 main table th {
@@ -24,13 +23,8 @@ main table td {
 }
 
 main table .description {
-  max-width: 300px;
   white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  overflow: auto;
 }
 
 main table img {
