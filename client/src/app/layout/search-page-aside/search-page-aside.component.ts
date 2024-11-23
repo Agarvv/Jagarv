@@ -34,7 +34,10 @@ export class SearchPageAsideComponent implements OnInit {
   applyFilters() {
     this.store.select(state => state.search.allProducts).pipe(take(1)).subscribe((products) => {
       const filteredResults = this.filtersService.applyFilters(products, this.filters);
-      this.store.dispatch(setResults({ results: filteredResults }));
+      this.store.dispatch(setResults({ 
+        allProducts: products, 
+        filteredResults: filteredResults 
+      }));
     });
   }
 }
