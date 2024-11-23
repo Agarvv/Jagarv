@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProductsService } from '../../../services/admin/products/products.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { ProductsService } from '../../../services/admin/products/products.servi
 })
 export class DeleteProductButtonComponent {
   @Input() productId!: number; 
-  @Output() productDeleted = new EventEmitter<number>();
 
   constructor(
       private productsService: ProductsService
@@ -19,9 +18,7 @@ export class DeleteProductButtonComponent {
     this.productsService.deleteProduct(this.productId).subscribe(
       () => {
         console.log('Product Deleted!');
-        // emits a event to the father compponent,
-        // the father component will delete from the UI the product with this id
-        this.productDeleted.emit(this.productId); 
+        window.location.reload()
       },
       (error) => {
         console.error('Error deleting product!', error);

@@ -11,6 +11,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.app.jagarv.entity.cart.CartItem;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -63,6 +65,10 @@ public class Product {
     // product opinions
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductOpinion> opinions;
+    
+    
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<CartItem> cartItems;
 
     // Getters and Setters
     public Long getId() {

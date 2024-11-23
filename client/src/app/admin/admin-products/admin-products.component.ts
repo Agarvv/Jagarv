@@ -21,7 +21,9 @@ export class AdminProductsComponent implements OnInit {
     
     this.productsService.getProducts()
       .pipe(
-        finalize(() => console.log("finalized") )  // i will handle it later, when all the models and error handling stuff is fixed
+        finalize(() => 
+        console.log("finalized") 
+        )  
       )
       .subscribe(
         (data) => {
@@ -34,10 +36,5 @@ export class AdminProductsComponent implements OnInit {
         }
       );
   }
-  
-  // this is called when the child delete button components emits the 'productDeleted' event
-  // with the id of the product that has been deleted on the server.
-  onProductDeleted(deletedProductId: number) {
-      this.products = this.products.filter(product => product.id !== deletedProductId)
-  }
+ 
 }
