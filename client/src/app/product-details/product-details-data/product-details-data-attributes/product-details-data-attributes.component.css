@@ -18,6 +18,6 @@
     padding-top: 10px;
 }
 
-.p-buy-quantity input {
-    
+.p-buy-quantity label {
+    display: block;
 }
