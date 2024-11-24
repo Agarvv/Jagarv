@@ -16,7 +16,7 @@ export class ProfileAdressComponent {
   constructor
   (
    private store: Store,
-   private userService: UserService; 
+   private userService: UserService
   ) 
   {
       
@@ -31,7 +31,7 @@ export class ProfileAdressComponent {
     
     this.store.dispatch(setLoading({ isLoading: true }))
     
-    this.userService.setUserAdress(this.adress)
+    this.userService.setUserAdress(this.address)
     .pipe(
       finalize(() => {
           this.store.dispatch(setLoading({
