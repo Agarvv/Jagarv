@@ -82,7 +82,9 @@ import { ProfileDataComponent } from './profile/profile-data/profile-data.compon
 import { cartReducer } from '@store/cartt/cart.reducer';
 import { BanUserComponent } from './admin/admin-users/ban-user/ban-user.component';
 import { SearchPageHeaderComponent } from './layout/search-page-header/search-page-header.component';
-import { ProfileAdressComponent } from './profile/profile-adress/profile-adress.component'
+import { ProfileAdressComponent } from './profile/profile-adress/profile-adress.component';
+import { BestSellersComponent } from './best-sellers/best-sellers.component';
+import { OrdersComponent } from './orders/orders.component'
 
 @NgModule({
   declarations: [
@@ -154,7 +156,9 @@ import { ProfileAdressComponent } from './profile/profile-adress/profile-adress.
     ProfileDataComponent,
     BanUserComponent,
     SearchPageHeaderComponent,
-    ProfileAdressComponent
+    ProfileAdressComponent,
+    BestSellersComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
