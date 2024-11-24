@@ -25,7 +25,7 @@ import com.app.jagarv.dto.payments.ProductPaymentDTO;
 
 import com.app.jagarv.service.cart.CartService;
 
-
+import com.app.jagarv.service.user.UserService; 
 
 import java.util.stream.Collectors;
 
@@ -39,6 +39,7 @@ public class AdminOrdersService {
     private final CartRepository cartRepository; 
     private final UserRepository userRepository;
     private final CartService cartService;
+    private final UserService userService; 
     
     public AdminOrdersService
     (OrderRepository orderRepository,
@@ -46,7 +47,8 @@ public class AdminOrdersService {
      CartRepository cartRepository,
      SecurityOutil securityOutil,
      UserRepository userRepository,
-     CartService cartService
+     CartService cartService,
+     UserService userService 
     ) {
       this.orderRepository = orderRepository;
       this.ordersMapper = ordersMapper;
@@ -54,6 +56,7 @@ public class AdminOrdersService {
       this.securityOutil = securityOutil;  
       this.cartService = cartService;
       this.userRepository = userRepository;
+      this.userService = userService; 
     }
     
     // Returns all the App's orders to the controller
@@ -66,14 +69,8 @@ public class AdminOrdersService {
     // places a order, will be used on the payments services when the payment is succeded
 
     public void placeOrder(Long amount, String paymentIntentId) {
-
-      Long userId = securityOutil.getAuthenticatedUserId();
-
-      User user = userRepository.findById(userId)
-      .orElseThrow(()
-       -> new UserNotFoundException("Something is wrong with your account... please log in")
-      );
-
+      
+      User user = userService.getAuthenticatedUser(); 
       Cart cart = cartService.getUserRawCart();
 
       List<Product> products = new ArrayList<>();
@@ -88,6 +85,7 @@ public class AdminOrdersService {
       order.setStatus("PREPARING");
       order.setAmount(amount);
       order.setPaymentId(paymentIntentId);
+      order.setAdress(user.getAdress()); 
 
       orderRepository.save(order);
 

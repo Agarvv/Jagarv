@@ -39,6 +39,9 @@ public class Order {
 
     @NotNull 
     private String paymentId; 
+    
+    @NotBlank
+    private String adress;
 
     public Long getId() {
         return id;
@@ -86,5 +89,13 @@ public class Order {
 
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
+    }
+    
+    public String getAdress() {
+        return adress;
+    }
+    
+    public void setAdress(String adress) {
+        this.adress = adress; 
     }
 }

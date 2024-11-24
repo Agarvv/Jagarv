@@ -8,6 +8,7 @@ import com.app.jagarv.repository.user.UserRepository;
 import com.app.jagarv.exception.exceptions.users.UserNotFoundException; 
 import com.app.jagarv.dto.user.SetUserProfilePicDTO;
 import com.app.jagarv.mapper.user.UserMapper; 
+import com.app.jagarv.dto.user.SetUserAdressDTO; 
 
 @Service 
 public class UserService
@@ -30,28 +31,34 @@ public class UserService
     
     public UserDTO getUserData() 
     {
-        Long userId = securityOutil.getAuthenticatedUserId(); 
-        
-        User user = userRepository.findById(userId)
-        .orElseThrow(()
-        -> new UserNotFoundException("User not Found...")
-        ); 
-        
+        User user = findAuthenticatedUser(); 
         return userMapper.userToDTO(user); 
     }
     
     public void setUserProfilePicture(SetUserProfilePicDTO data)
     {
+        User user = findAuthenticatedUser(); 
         
+        user.setProfilePicture(data.getProfilePicture()); 
+        
+        userRepository.save(user); 
+    }
+    
+    public void setUserAdress(SetUserAdressDTO adress) 
+    {
+        User user = findAuthenticatedUser(); 
+        user.setAdress(adress.getAdress()); 
+        userRepository.save(user); 
+    }
+    
+    public User findAuthenticatedUser() 
+    {
         Long userId = securityOutil.getAuthenticatedUserId();
         
         User user = userRepository.findById(userId).orElseThrow(() 
          -> new UserNotFoundException("User not Found...")
         );
         
-        user.setProfilePicture(data.getProfilePicture()); 
-        
-        userRepository.save(user); 
-        
+        return user; 
     }
 }

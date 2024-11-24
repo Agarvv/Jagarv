@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { UserService } from '@services/user/user.service'; 
+import { Store } from '@ngrx/store'; 
+import { clearMessages, setLoading, setError } from '@store/admin/admin.actions';
+import { finalize } from 'rxjs'
 
 @Component({
   selector: 'app-profile-adress',
@@ -8,15 +12,39 @@ import { Component } from '@angular/core';
 export class ProfileAdressComponent {
   address: string = 'Your Address';  
   isEditable: boolean = false;  
-
+  
+  constructor
+  (
+   private store: Store,
+   private userService: UserService; 
+  ) 
+  {
+      
+  } 
 
   toggleEdit() {
     this.isEditable = true;
   }
 
   saveAddress() {
-    this.isEditable = false;
-    alert('Adress saved: ' + this.address);
+    this.store.dispatch(clearMessages()); 
+    
+    this.store.dispatch(setLoading({ isLoading: true }))
+    
+    this.userService.setUserAdress(this.adress)
+    .pipe(
+      finalize(() => {
+          this.store.dispatch(setLoading({
+              isLoading: false 
+          }))
+      })
+    ).subscribe((data) => {
+        window.location.reload(); 
+    }, (error) => {
+        this.store.dispatch(setError({
+            errorMessage: 'Something Went Wrong..'
+        }))
+    })
   }
 
   updateAddress(event: any) {

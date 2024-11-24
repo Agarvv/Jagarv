@@ -27,4 +27,15 @@ export class UserService {
           withCredentials: true 
       })
   }
+  
+  setUserAdress(adress: string): Observable<string>
+  {
+      return this.http.post<string>(`${this.apiUrl}/setAdress`, {
+          adress: adress
+      }, {
+          withCredentials: true 
+      })
+  }
+  
+  
 }

@@ -34,6 +34,7 @@ public class User {
     
     private String joinedAt; 
     private String lastLogin; 
+    private String adress; 
 
     public User() {
         this.role = Role.USER; 
@@ -115,5 +116,13 @@ public class User {
     public void setLastLogin(String lastLogin)
     {
         this.lastLogin = lastLogin; 
+    }
+    
+    public String getAdress() {
+        return adress; 
+    }
+    
+    public void setAdress(String adress) {
+        this.adress = adress; 
     }
 }

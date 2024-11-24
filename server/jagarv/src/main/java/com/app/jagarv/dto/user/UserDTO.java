@@ -8,6 +8,7 @@ public class UserDTO {
     private String joinedAt; 
     private String lastLogin; 
     private Boolean isBanned; 
+    private String adress; 
     
     public UserDTO() {} 
     
@@ -78,5 +79,13 @@ public class UserDTO {
     public void setIsBanned(Boolean isBanned)
     {
         this.isBanned = isBanned; 
+    }
+    
+    public String getAdress() {
+        return adress; 
+    }
+    
+    public void setAdress(String adress) {
+        this.adress = adress; 
     }
 }

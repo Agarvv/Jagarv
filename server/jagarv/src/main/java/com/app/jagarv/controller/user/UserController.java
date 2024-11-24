@@ -6,6 +6,7 @@ import com.app.jagarv.dto.user.UserDTO;
 import com.app.jagarv.service.user.UserService; 
 import com.app.jagarv.dto.user.SetUserProfilePicDTO;
 import com.app.jagarv.dto.ApiResponse; 
+import com.app.jagarv.dto.user.SetUserAdressDTO; 
 
 
 import jakarta.validation.Valid;
@@ -40,4 +41,15 @@ public class UserController
         
         return ResponseEntity.ok(new ApiResponse<>(user.getProfilePicture(), null)); 
     }
+    
+    @PostMapping("/setAdress")
+    public ResponseEntity<ApiResponse<Void>> 
+    setUserAdress(@RequestBody @Valid SetUserAdressDTO adress) {
+        userService.setUserAdress(adress); 
+        
+        return ResponseEntity.ok(new ApiResponse<>(user.getAdress(), null)); 
+    }
+    
+    
+    
 }
