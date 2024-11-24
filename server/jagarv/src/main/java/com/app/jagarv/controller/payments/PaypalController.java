@@ -1,12 +1,11 @@
 package com.app.jagarv.controller.payments;
 
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.app.jagarv.service.payments.PaypalService;
+import com.paypal.base.rest.PayPalRESTException;
+
+import com.app.jagarv.exception.exceptions.payments.PaymentException; 
 
 @RestController
 @RequestMapping("/api/jagarv/pay/paypal")
@@ -16,20 +15,37 @@ public class PaypalController
 
     public PaypalController(PaypalService paypalService) 
     {
-      this.paypalService = paypalService;
+        this.paypalService = paypalService;
     }
     
-    // handles payment of single product, not cart
-    @PostMapping("/singleProduct")
-    public ResponseEntity<String> handleSinglePayment() 
+    // paypal payment endpoint
+    @PostMapping
+    public ResponseEntity<String> handleCartPayment
+    () 
     {
-        return ResponseEntity.ok("ok");
+        try {
+            String redirectUrl = paypalService.createPayment();
+            return ResponseEntity.ok(redirectUrl); 
+        } catch (PayPalRESTException e) {
+            throw new PaymentException(e); 
+        }
     }
     
-    // handles payment of cart
-    @PostMapping("/cart") 
-    public ResponseEntity<String> handleCartPayment() 
+    // success paypal payment endpoint 
+    @GetMapping("/success")
+    public ResponseEntity<String>
+    handleSuccess
+    (
+     @RequestParam("paymentId") String paymentId,
+     @RequestParam("PayerID") String payerId
+    ) 
     {
-        return ResponseEntity.ok("ok");
+        try 
+        {
+            String message = paypalService.completePayment(paymentId, payerId);
+            return ResponseEntity.ok(message);
+        } catch (PayPalRESTException e) {
+            throw new PaymentException(e); 
+        }
     }
 }
