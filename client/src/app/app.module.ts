@@ -81,7 +81,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileDataComponent } from './profile/profile-data/profile-data.component'
 import { cartReducer } from '@store/cartt/cart.reducer';
 import { BanUserComponent } from './admin/admin-users/ban-user/ban-user.component';
-import { SearchPageHeaderComponent } from './layout/search-page-header/search-page-header.component'
+import { SearchPageHeaderComponent } from './layout/search-page-header/search-page-header.component';
+import { ProfileAdressComponent } from './profile/profile-adress/profile-adress.component'
 
 @NgModule({
   declarations: [
@@ -152,7 +153,8 @@ import { SearchPageHeaderComponent } from './layout/search-page-header/search-pa
     ProfileComponent,
     ProfileDataComponent,
     BanUserComponent,
-    SearchPageHeaderComponent
+    SearchPageHeaderComponent,
+    ProfileAdressComponent
   ],
   imports: [
     BrowserModule,

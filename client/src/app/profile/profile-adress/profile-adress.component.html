@@ -1,0 +1,16 @@
+<div class="editable-container">
+
+  <div 
+    class="editable-field" 
+    [contentEditable]="isEditable" 
+    (blur)="updateAddress($event)" 
+    (click)="toggleEdit()" 
+    [class.editable-border]="isEditable">
+    {{ address }}
+  </div>
+
+  <button 
+    *ngIf="isEditable" 
+    class="save-button" 
+    (click)="saveAddress()">Save</button>
+</div>

@@ -7,6 +7,11 @@
   (click)="fileInput.click()">
     <h3>{{ user?.username ?? 'Not Provided'}}</h3>
     <input #fileInput type="file" style="display:none" (change)="onFileSelected($event)">
+    <div class="user-adresss">
+        <app-profile-adress>
+            
+        </app-profile-adress>
+    </div>
   </div>
 </div>
 
