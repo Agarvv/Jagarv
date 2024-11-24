@@ -107,7 +107,15 @@ public class CartService {
     // will be used on payment services when we need the raw user cart
     public Cart getUserRawCart() {
         Long userId = securityOutil.getAuthenticatedUserId();
-        return cartRepository.findByUserId(userId)
+        Cart cart = cartRepository.findByUserId(userId)
         .orElseThrow(() -> new CartNotFoundException("Something went wrong with your cart..."));
+
+        for(CartItem item: cart.getCartItems()) {
+            if(item.getProduct().getStock() == 0) {
+                throw new RunOfStockException("Please verify the stock of the products before buying.");
+            }
+        }
+
+        return cart;
     }
 }

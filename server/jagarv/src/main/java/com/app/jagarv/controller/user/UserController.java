@@ -2,7 +2,8 @@ package com.app.jagarv.controller.user;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.app.jagarv.dto.user.UserDTO; 
+import com.app.jagarv.dto.user.UserDTO;
+import com.app.jagarv.entity.user.User;
 import com.app.jagarv.service.user.UserService; 
 import com.app.jagarv.dto.user.SetUserProfilePicDTO;
 import com.app.jagarv.dto.ApiResponse; 
@@ -45,7 +46,7 @@ public class UserController
     @PostMapping("/setAdress")
     public ResponseEntity<ApiResponse<Void>> 
     setUserAdress(@RequestBody @Valid SetUserAdressDTO adress) {
-        userService.setUserAdress(adress); 
+        User user = userService.findAuthenticatedUser(); 
         
         return ResponseEntity.ok(new ApiResponse<>(user.getAdress(), null)); 
     }

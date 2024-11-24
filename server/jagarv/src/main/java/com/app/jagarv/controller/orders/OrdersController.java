@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-import com.app.jagarv.dto.orders.read.OrdersDTO; 
+import com.app.jagarv.dto.order.read.OrdersDTO; 
 import com.app.jagarv.service.orders.OrdersService;
 
 
@@ -27,9 +27,10 @@ public class OrdersController {
     }
     
     @GetMapping 
-    public List<OrdersDTO> 
+    public ResponseEntity<List<OrdersDTO>>
     getUserOrders() 
     {
-        return ResponseEntity.ok(ordersService.getUserOrders()); 
+        List<OrdersDTO> orders = ordersService.getUserOrders();
+        return ResponseEntity.ok(orders);
     }
 }

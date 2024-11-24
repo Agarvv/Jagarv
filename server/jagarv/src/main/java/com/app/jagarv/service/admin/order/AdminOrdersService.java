@@ -73,13 +73,13 @@ public class AdminOrdersService {
 
     public void placeOrder(Long amount, String paymentIntentId) {
       
-      User user = userService.getAuthenticatedUser(); 
+      User user = userService.findAuthenticatedUser(); 
       Cart cart = cartService.getUserRawCart();
 
       List<Product> products = new ArrayList<>();
-
       for(CartItem item: cart.getCartItems()) {
          products.add(item.getProduct());
+         item.getProduct().setStock(item.getProduct().getStock() -1);
       }
       
       Order order = new Order();
@@ -93,6 +93,7 @@ public class AdminOrdersService {
 
       orderRepository.save(order);
 
+      cart.clearCart();
     }
     
     // sets a order status as in proccess
@@ -113,5 +114,7 @@ public class AdminOrdersService {
       Order order = orderRepository.findById(id).orElseThrow(()
        -> new OrderNotFoundException("Could not find order")
       ); 
+
+      return order;
     }
 }

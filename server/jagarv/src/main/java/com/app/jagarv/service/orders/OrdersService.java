@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors; 
 
-import com.app.jagarv.dto.orders.read.OrdersDTO;
+import com.app.jagarv.dto.order.read.OrdersDTO;
 import com.app.jagarv.outil.SecurityOutil;
 import com.app.jagarv.repository.order.OrderRepository;
 import com.app.jagarv.mapper.orders.OrdersMapper;

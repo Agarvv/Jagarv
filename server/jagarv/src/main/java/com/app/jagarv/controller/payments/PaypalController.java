@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.app.jagarv.service.payments.PaypalService;
 import com.paypal.base.rest.PayPalRESTException;
-
+import com.app.jagarv.dto.ApiResponse;
 import com.app.jagarv.exception.exceptions.payments.PaymentException; 
 
 @RestController
@@ -27,13 +27,13 @@ public class PaypalController
             String redirectUrl = paypalService.createPayment();
             return ResponseEntity.ok(redirectUrl); 
         } catch (PayPalRESTException e) {
-            throw new PaymentException(e); 
+            throw new PaymentException(e.getMessage()); 
         }
     }
     
     // success paypal payment endpoint 
     @GetMapping("/success")
-    public ResponseEntity<String>
+    public ResponseEntity<ApiResponse<Void>>
     handleSuccess
     (
      @RequestParam("paymentId") String paymentId,
@@ -43,9 +43,9 @@ public class PaypalController
         try 
         {
             String message = paypalService.completePayment(paymentId, payerId);
-            return ResponseEntity.ok(message);
+            return ResponseEntity.ok(new ApiResponse<>(message, null));
         } catch (PayPalRESTException e) {
-            throw new PaymentException(e); 
+            throw new PaymentException(e.getMessage()); 
         }
     }
 }

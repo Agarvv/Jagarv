@@ -20,7 +20,7 @@ public class PaypalService {
     private final CartService cartService;
     private final AdminOrdersService adminOrdersService; 
 
-    public PaypalService(APIContext apiContext, CartService cartService, adminOrdersService adminOrdersService) {
+    public PaypalService(APIContext apiContext, CartService cartService, AdminOrdersService adminOrdersService) {
         this.apiContext = apiContext;
         this.cartService = cartService;
         this.adminOrdersService = adminOrdersService; 
