@@ -42,6 +42,8 @@ public class Order {
     
     @NotBlank
     private String adress;
+    
+    private String date; 
 
     public Long getId() {
         return id;
@@ -97,5 +99,13 @@ public class Order {
     
     public void setAdress(String adress) {
         this.adress = adress; 
+    }
+    
+    public String getDate() {
+        return date; 
+    }
+    
+    public void setDate(String date) {
+        this.date = date; 
     }
 }

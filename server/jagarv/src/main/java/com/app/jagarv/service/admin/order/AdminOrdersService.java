@@ -18,6 +18,7 @@ import com.app.jagarv.outil.SecurityOutil;
 import com.app.jagarv.repository.cart.CartRepository;
 import com.app.jagarv.repository.order.OrderRepository;
 import com.app.jagarv.repository.user.UserRepository;
+import com.app.jagarv.dto.order.read.AdminOrderDTO;
 
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,8 @@ import com.app.jagarv.service.cart.CartService;
 import com.app.jagarv.service.user.UserService; 
 
 import java.util.stream.Collectors;
+
+import java.time.LocalDate;
 
 // Our App's Orders Service.
 @Service
@@ -60,9 +63,9 @@ public class AdminOrdersService {
     }
     
     // Returns all the App's orders to the controller
-    public List<OrdersDTO> getOrders() {
+    public List<AdminOrderDTO> getOrders() {
         return orderRepository.findAll()           .stream()
-            .map(ordersMapper::orderToDTO)
+            .map(ordersMapper::orderToAdminOrder)
             .collect(Collectors.toList());
     }
 
@@ -86,6 +89,7 @@ public class AdminOrdersService {
       order.setAmount(amount);
       order.setPaymentId(paymentIntentId);
       order.setAdress(user.getAdress()); 
+      order.setDate(LocalDate.now().toString()); 
 
       orderRepository.save(order);
 

@@ -1,6 +1,6 @@
 package com.app.jagarv.controller.admin.orders;
 
-import com.app.jagarv.dto.order.read.OrdersDTO;
+import com.app.jagarv.dto.order.read.AdminOrderDTO;
 import com.app.jagarv.service.admin.order.AdminOrdersService;
 
 import jakarta.validation.Valid;
@@ -27,7 +27,7 @@ public class AdminOrderController {
     
     // Returns all the orders of the app
     @GetMapping 
-    public List<OrdersDTO> getOrders() {
+    public List<AdminOrderDTO> getOrders() {
         return ordersService.getOrders();
     }
     
