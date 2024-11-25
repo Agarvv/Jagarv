@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { StripeService } from "@services/payments/stripe/stripe.service"
 
 @Component({
@@ -7,7 +7,7 @@ import { StripeService } from "@services/payments/stripe/stripe.service"
   styleUrl: './payment.component.css'
 })
 export class PaymentComponent implements OnInit {
-  cardElement: any;
+  /* cardElement: any;
   cardErrors: string = '';
 
   constructor(private stripeService: StripeService) {} 
@@ -36,5 +36,5 @@ export class PaymentComponent implements OnInit {
      
   }
 
-  
+  */
 }
