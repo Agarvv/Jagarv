@@ -55,28 +55,38 @@ public class StripeService {
     }
 
     public String createPaymentIntent(ProductPaymentDTO payment) throws StripeException {
-        DiscountCode discountCode = discountCodeRepository.findByDiscountCode(payment.getDiscountCode())
+    DiscountCode discountCode = null;
+
+    if (payment.getDiscountCode() != null) {
+        discountCode = discountCodeRepository.findByDiscountCode(payment.getDiscountCode())
             .orElseThrow(() -> new DiscountCodeNotFoundException("Please try with another discount code.."));
-
-        Cart cart = cartService.getUserRawCart();
-        BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
-        BigDecimal discount = discountCode.getReduction();
-        
-        BigDecimal finalPrice = totalPrice.subtract(totalPrice.multiply(discount));
-
-        long amountInCents = finalPrice.multiply(BigDecimal.valueOf(100)).longValueExact();
-
-        Stripe.apiKey = stripeApiKey;
-
-        PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
-            .setAmount(amountInCents)
-            .setCurrency("usd")
-            .setDescription("Jagarv payment")
-            .build();
-
-        PaymentIntent paymentIntent = PaymentIntent.create(params);
-        return paymentIntent.getClientSecret();
     }
+
+    Cart cart = cartService.getUserRawCart();
+    BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
+
+    BigDecimal finalPrice = totalPrice;
+
+    if (discountCode != null) {
+        BigDecimal discount = discountCode.getReduction();
+        finalPrice = totalPrice.subtract(totalPrice.multiply(discount));
+    }
+
+    long amountInCents = finalPrice.multiply(BigDecimal.valueOf(100)).longValueExact();
+
+    Stripe.apiKey = stripeApiKey;
+
+    PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
+        .setAmount(amountInCents)
+        .setCurrency("usd")
+        .setDescription("Jagarv payment")
+        .build();
+
+    PaymentIntent paymentIntent = PaymentIntent.create(params);
+    return paymentIntent.getClientSecret();
+}
+    
+    
 
     public void handleStripeWebhook(HttpServletRequest request) throws SignatureVerificationException {
         try {
