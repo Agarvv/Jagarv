@@ -1,3 +1,4 @@
+/* 
 package com.app.jagarv.mapper.admin;
 
 import com.app.jagarv.dto.product.read.MostOrderedProductDTO;
@@ -10,9 +11,9 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface AdminMapper {
+public interface AdminDashboardMapper {
 
-    @Mapping(target = "title", source = "product.title")
+    @Mapping(target = "title", source = "products.title")
     @Mapping(target = "timesOrdered", source = "orderItems.quantity")
     @Mapping(target = "price", source = "product.price")
     @Mapping(target = "stock", source = "product.stock")
@@ -29,3 +30,4 @@ public interface AdminMapper {
     @Mapping(target = "totalAmount", source = "2")
     MonthlySalesDTO toMonthlySalesDTO(Object[] data);
 }
+*/

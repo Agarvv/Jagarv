@@ -1,4 +1,4 @@
-package com.app.jagarv.controller.admin.dashboard; 
+/* package com.app.jagarv.controller.admin.dashboard; 
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,4 +20,4 @@ public class AdminDashboardController {
         AdminDashboardDTO dashboardData = adminDashboardService.getAdminDashboard();
         return ResponseEntity.ok(dashboardData); 
     }
-}
+} */

@@ -1,11 +1,11 @@
-package com.app.jagarv.service.admin.dashboard;
+/* package com.app.jagarv.service.admin.dashboard;
 
 import com.app.jagarv.dto.admin.dashboard.AdminDashboardDTO;
 import com.app.jagarv.dto.product.read.MostOrderedProductDTO;
 import com.app.jagarv.dto.sales.read.MonthlySalesDTO;
 import com.app.jagarv.repository.order.OrderRepository;
 import com.app.jagarv.repository.user.UserRepository;
-import com.app.jagarv.mapper.AdminMapper;
+import com.app.jagarv.mapper.admin.AdminDashboardMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,14 +17,14 @@ public class AdminDashboardService {
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final AdminMapper adminMapper;
+    private final AdminDashboardMapper adminDashboardMapper;
 
     public AdminDashboardService(OrderRepository orderRepository, 
                                  UserRepository userRepository, 
-                                 AdminMapper adminMapper) {
+                                 AdminDashboardMapper adminDashboardMapper) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
-        this.adminMapper = adminMapper;
+        this.adminDashboardMapper = adminDashboardMapper;
     }
 
     public AdminDashboardDTO getAdminDashboard() {
@@ -35,7 +35,8 @@ public class AdminDashboardService {
         Long usersToday = userRepository.getUserRegistrationsToday(today);
 
         List<Object[]> mostOrderedProducts = orderRepository.getMostOrderedProducts();
-        List<Object[]> ordersFromJulyToDecember = orderRepository.getOrdersBetweenDates("2024-07-01", "2024-12-31");
+        List<Object[]> ordersFromJulyToDecember =
+         orderRepository.getOrdersBetweenDates("2024-07-01", "2024-12-31");
 
         List<MostOrderedProductDTO> productsDTO = mostOrderedProducts.stream()
                 .map(adminMapper::toMostOrderedProductDTO)
@@ -47,4 +48,4 @@ public class AdminDashboardService {
 
         return new AdminDashboardDTO(ordersToday, amountToday, usersToday, monthlySales, productsDTO);
     }
-}
+} */

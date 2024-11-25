@@ -15,41 +15,29 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/api/jagarv/pay/stripe")
 public class StripeController 
 {
-      private final StripeService stripeService; 
+    private final StripeService stripeService; 
 
-      public StripeController
-      (
-        StripeService stripeService
-      )
-      {
+    public StripeController(StripeService stripeService) {
         this.stripeService = stripeService;
-      }
-    
-     // handles payment of cart
-     @PostMapping
-        public ResponseEntity<String> handleCartPayment(@RequestBody ProductPaymentDTO payment) 
-        {
-          try
-         {
-              String clientSecret = stripeService.createPaymentIntent(payment);
-              return ResponseEntity.ok(clientSecret); 
-  
-          } catch (StripeException e) 
-          {
-              return ResponseEntity.status(HttpStatus.BAD_REQUEST)  
-                  .body("Something went wrong with the payment..." + e.getMessage());
-          }
+    }
+
+    @PostMapping
+    public ResponseEntity<String> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
+        try {
+            String checkoutSessionUrl = stripeService.createCheckoutSession(payment);
+            return ResponseEntity.ok(checkoutSessionUrl); 
+        } catch (StripeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)  
+                .body("Something went wrong with the payment..." + e.getMessage());
         }
+    }
 
     @PostMapping("/stripe/webhook")
-    public ResponseEntity<String> handleStripeWebhook(HttpServletRequest request) 
-    {
-        try 
-        {
+    public ResponseEntity<String> handleStripeWebhook(HttpServletRequest request) {
+        try {
             stripeService.handleStripeWebhook(request); 
-            return ResponseEntity.ok("Payment Succesfully Processed");
-        } catch (SignatureVerificationException e) 
-        {
+            return ResponseEntity.ok("Payment Successfully Processed");
+        } catch (SignatureVerificationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("Something went wrong with your payment.." + e.getMessage());
         }

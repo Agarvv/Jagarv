@@ -6,6 +6,7 @@ import com.app.jagarv.service.payments.PaypalService;
 import com.paypal.base.rest.PayPalRESTException;
 import com.app.jagarv.dto.ApiResponse;
 import com.app.jagarv.exception.exceptions.payments.PaymentException; 
+import com.app.jagarv.dto.payments.ProductPaymentDTO;
 
 @RestController
 @RequestMapping("/api/jagarv/pay/paypal")
@@ -21,10 +22,10 @@ public class PaypalController
     // paypal payment endpoint
     @PostMapping
     public ResponseEntity<String> handleCartPayment
-    () 
+    (ProductPaymentDTO productPaymentDTO) 
     {
         try {
-            String redirectUrl = paypalService.createPayment();
+            String redirectUrl = paypalService.createPayment(productPaymentDTO.getDiscountCode());
             return ResponseEntity.ok(redirectUrl); 
         } catch (PayPalRESTException e) {
             throw new PaymentException(e.getMessage()); 
