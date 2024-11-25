@@ -71,7 +71,7 @@ public class AdminOrdersService {
 
     // places a order, will be used on the payments services when the payment is succeded
 
-    public void placeOrder(Long amount, String paymentIntentId) {
+    public void placeOrder(Long amount, String paymentIntentId, String method) {
       
       User user = userService.findAuthenticatedUser(); 
       Cart cart = cartService.getUserRawCart();
@@ -90,7 +90,8 @@ public class AdminOrdersService {
       order.setPaymentId(paymentIntentId);
       order.setAdress(user.getAdress()); 
       order.setDate(LocalDate.now().toString()); 
-
+      order.setMethod(method); 
+      
       orderRepository.save(order);
 
       cart.clearCart();

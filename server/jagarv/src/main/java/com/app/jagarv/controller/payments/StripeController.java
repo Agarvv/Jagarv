@@ -27,11 +27,11 @@ public class StripeController
     
      // handles payment of cart
      @PostMapping
-        public ResponseEntity<String> handleCartPayment() 
+        public ResponseEntity<String> handleCartPayment(@RequestBody ProductPaymentDTO payment) 
         {
           try
          {
-              String clientSecret = stripeService.createPaymentIntent();
+              String clientSecret = stripeService.createPaymentIntent(payment);
               return ResponseEntity.ok(clientSecret); 
   
           } catch (StripeException e) 

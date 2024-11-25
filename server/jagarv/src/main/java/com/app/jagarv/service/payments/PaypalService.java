@@ -10,25 +10,38 @@ import java.util.List;
 import java.math.BigDecimal;
 
 import com.app.jagarv.service.cart.CartService;
-import com.app.jagarv.entity.cart.Cart; 
+import com.app.jagarv.entity.cart.Cart;
 import com.app.jagarv.outil.PaymentOutil;
-import com.app.jagarv.service.admin.order.AdminOrdersService; 
+import com.app.jagarv.service.admin.order.AdminOrdersService;
+import com.app.jagarv.exception.exceptions.discount.DiscountCodeNotFoundException;
+import com.app.jagarv.entity.discount.DiscountCode;
+import com.app.jagarv.repository.discount.DiscountCodeRepository;
 
 @Service
 public class PaypalService {
     private final APIContext apiContext;
     private final CartService cartService;
-    private final AdminOrdersService adminOrdersService; 
+    private final AdminOrdersService adminOrdersService;
+    private final DiscountCodeRepository discountCodeRepository;
 
-    public PaypalService(APIContext apiContext, CartService cartService, AdminOrdersService adminOrdersService) {
+    public PaypalService(APIContext apiContext, CartService cartService, AdminOrdersService adminOrdersService, DiscountCodeRepository discountCodeRepository) {
         this.apiContext = apiContext;
         this.cartService = cartService;
-        this.adminOrdersService = adminOrdersService; 
+        this.adminOrdersService = adminOrdersService;
+        this.discountCodeRepository = discountCodeRepository;
     }
 
-    public String createPayment() throws PayPalRESTException {
+    public String createPayment(String discountCode) throws PayPalRESTException {
+        
+        DiscountCode discount = discountCodeRepository.findByDiscountCode(discountCode)
+            .orElseThrow(() -> new DiscountCodeNotFoundException("Invalid discount code"));
+
         Cart cart = cartService.getUserRawCart();
-        BigDecimal finalPrice = PaymentOutil.calculateCartTotalPrice(cart);
+        BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
+
+        BigDecimal finalPrice = totalPrice.subtract(totalPrice.multiply(discount.getReduction()));
+
+        String finalPriceStr = String.valueOf(finalPrice);
 
         String currency = "USD";
         String method = "paypal";
@@ -38,7 +51,7 @@ public class PaypalService {
 
         Amount amount = new Amount();
         amount.setCurrency(currency);
-        amount.setTotal(String.valueOf(finalPrice));
+        amount.setTotal(finalPriceStr);  
 
         Transaction transaction = new Transaction();
         transaction.setAmount(amount);
@@ -68,10 +81,7 @@ public class PaypalService {
             .orElseThrow(() -> new PayPalRESTException("Something Went Wrong..."));
     }
 
-    public String completePayment
-    (String paymentId, String payerId) 
-    throws PayPalRESTException 
-    {
+    public String completePayment(String paymentId, String payerId) throws PayPalRESTException {
         Payment payment = new Payment();
         payment.setId(paymentId);
 
@@ -81,12 +91,9 @@ public class PaypalService {
         Payment executedPayment = payment.execute(apiContext, paymentExecution);
 
         if ("approved".equals(executedPayment.getState())) {
-            
-            
             return "¡Thanks For Your Purchase!";
         } else {
-            throw new PayPalRESTException("Payment Not Aproved..");
+            throw new PayPalRESTException("Payment Not Approved..");
         }
-        
     }
 }

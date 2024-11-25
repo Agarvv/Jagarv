@@ -19,7 +19,9 @@ import com.stripe.net.Webhook;
 import com.stripe.model.Event;
 import com.app.jagarv.service.admin.order.AdminOrdersService;
 import com.app.jagarv.service.cart.CartService;
-import com.app.jagarv.exception.exceptions.payments.PaymentException;
+import com.app.jagarv.exception.exceptions.discount.DiscountCodeNotFoundException;
+import com.app.jagarv.entity.discount.DiscountCode;
+import com.app.jagarv.repository.discount.DiscountCodeRepository;
 
 @Service
 public class StripeService {
@@ -28,6 +30,7 @@ public class StripeService {
     private final SecurityOutil securityOutil;
     private final AdminOrdersService adminOrdersService;
     private final CartService cartService;
+    private final DiscountCodeRepository discountCodeRepository;
 
     @Value("${stripe.publicKey}")
     private String stripeApiKey;
@@ -40,34 +43,41 @@ public class StripeService {
         CartRepository cartRepository,
         SecurityOutil securityOutil,
         AdminOrdersService adminOrdersService,
-        CartService cartService 
+        CartService cartService,
+        DiscountCodeRepository discountCodeRepository
     ) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.securityOutil = securityOutil;
         this.adminOrdersService = adminOrdersService;
         this.cartService = cartService;
+        this.discountCodeRepository = discountCodeRepository;
     }
 
-    public String createPaymentIntent() throws StripeException {
-    
+    public String createPaymentIntent(ProductPaymentDTO payment) throws StripeException {
+        DiscountCode discountCode = discountCodeRepository.findByDiscountCode(payment.getDiscountCode())
+            .orElseThrow(() -> new DiscountCodeNotFoundException("Please try with another discount code.."));
+
         Cart cart = cartService.getUserRawCart();
-        BigDecimal finalPrice = PaymentOutil.calculateCartTotalPrice(cart);
-    
+        BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
+        BigDecimal discount = discountCode.getReduction();
+        
+        BigDecimal finalPrice = totalPrice.subtract(totalPrice.multiply(discount));
+
         long amountInCents = finalPrice.multiply(BigDecimal.valueOf(100)).longValueExact();
-    
+
         Stripe.apiKey = stripeApiKey;
-    
+
         PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
             .setAmount(amountInCents)
             .setCurrency("usd")
             .setDescription("Jagarv payment")
             .build();
-    
+
         PaymentIntent paymentIntent = PaymentIntent.create(params);
         return paymentIntent.getClientSecret();
     }
-    
+
     public void handleStripeWebhook(HttpServletRequest request) throws SignatureVerificationException {
         try {
             String payload = new String(request.getInputStream().readAllBytes());
@@ -82,10 +92,11 @@ public class StripeService {
                 case "payment_intent.payment_failed":
                     handlePaymentFailed(event);
                     break;
-               
+                default:
+                    throw new PaymentException("Unhandled event type: " + event.getType());
             }
         } catch (Exception ex) {
-            throw new PaymentException("Something Went Wrong with your payment");
+            throw new PaymentException("Something went wrong with your payment: " + ex.getMessage(), ex);
         }
     }
 
@@ -94,10 +105,10 @@ public class StripeService {
         Long amountReceived = paymentIntent.getAmountReceived();
         String paymentIntentId = paymentIntent.getId();
 
-        adminOrdersService.placeOrder(amountReceived, paymentIntentId);
+        adminOrdersService.placeOrder(amountReceived, paymentIntentId, "STRIPE");
     }
 
     private void handlePaymentFailed(Event event) {
-       throw new PaymentException("Something went wrong with your payment");
+        throw new PaymentException("Payment failed: " + event.getData().getObject());
     }
 }
