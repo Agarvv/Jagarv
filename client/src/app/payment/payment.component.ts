@@ -6,7 +6,7 @@ import { StripeService } from "@services/payments/stripe/stripe.service"
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent {
   /* cardElement: any;
   cardErrors: string = '';
 
