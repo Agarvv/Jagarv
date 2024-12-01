@@ -47,39 +47,36 @@ public class StripeService {
     }
 
     public String createCheckoutSession(ProductPaymentDTO payment) throws StripeException {
-        Cart cart = cartService.getUserRawCart();
-        BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
+    Cart cart = cartService.getUserRawCart();
+    BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
 
-        long amountInCents = totalPrice.multiply(BigDecimal.valueOf(100)).longValueExact();
+    long amountInCents = totalPrice.multiply(BigDecimal.valueOf(100)).longValueExact();
 
-        Stripe.apiKey = stripeApiKey;
+    Stripe.apiKey = stripeApiKey;
 
-        SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
-            .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
-                .setCurrency("usd")
-                .setUnitAmount(amountInCents)
-                .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                    .setName("Jagarv Products")
-                    .build())
+    SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
+        .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
+            .setCurrency("usd")
+            .setUnitAmount(amountInCents)
+            .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                .setName("Jagarv Products")
                 .build())
-            .build();
-
-        SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
-    .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
-        .setCurrency("usd")
-        .setUnitAmount(amountInCents)
-        .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
-            .setName("Jagarv Products")
             .build())
-        .build())
-    .setQuantity(1) // just for now
-    .build();
-    
-    
-        Session session = Session.create(params);
+        .setQuantity(1L)  // just for now
+        .build();
 
-        return session.getUrl();
-    }
+
+    SessionCreateParams params = SessionCreateParams.builder()
+        .addLineItem(lineItem)  
+        .setMode(SessionCreateParams.Mode.PAYMENT)
+        .setSuccessUrl("https://jagarv-jq5o.onrender.com/api/jagarv/pay/stripe/success?session_id={CHECKOUT_SESSION_ID}")
+        .setCancelUrl("https://jagarv.vercel.app/cancelPayment")
+        .build();
+
+    Session session = Session.create(params);
+
+    return session.getUrl();
+}
 
     public void handleStripeWebhook(HttpServletRequest request) throws SignatureVerificationException {
         try {
