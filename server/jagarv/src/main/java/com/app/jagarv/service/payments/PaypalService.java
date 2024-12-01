@@ -103,9 +103,15 @@ public class PaypalService {
         Payment executedPayment = payment.execute(apiContext, paymentExecution);
 
         if ("approved".equals(executedPayment.getState())) {
+            Amount amount = executedPayment.getTransactions().get(0).getAmount();
+            String totalStr = amount.getTotal();
+            Long totalAmount = Long.valueOf(totalStr.split("\\.")[0]); 
+
+            adminOrdersService.placeOrder(totalAmount, paymentId, "PayPal"); 
             return "¡Thanks For Your Purchase!";
         } else {
             throw new PayPalRESTException("Payment Not Approved..");
         }
     }
+
 }
