@@ -19,6 +19,7 @@ import com.app.jagarv.repository.cart.CartRepository;
 import com.app.jagarv.service.admin.order.AdminOrdersService;
 import com.app.jagarv.service.cart.CartService;
 import com.app.jagarv.dto.payments.ProductPaymentDTO;
+import com.stripe.model.PaymentIntent;
 
 @Service
 public class StripeService {
