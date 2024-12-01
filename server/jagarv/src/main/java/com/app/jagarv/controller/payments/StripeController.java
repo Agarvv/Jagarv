@@ -35,7 +35,7 @@ public class StripeController
         }
     }
 
-    @PostMapping("/stripe/webhook")
+    @PostMapping("/webhook")
 public ResponseEntity<String> handleStripeWebhook(HttpServletRequest request) {
     try {
         sendMail.sendMail("casluagarv@gmail.com", 
