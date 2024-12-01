@@ -99,11 +99,13 @@ public class StripeService {
 }
 
     private void handlePaymentIntentSucceeded(Event event) {
-    PaymentIntent paymentIntent = (PaymentIntent) event.getData().getObject();
-    
-    String paymentIntentId = paymentIntent.getId();
-    Long amountReceived = paymentIntent.getAmountReceived();  
-
-    adminOrdersService.placeOrder(amountReceived, paymentIntentId, "STRIPE");
-}
+     try {
+        PaymentIntent paymentIntent = (PaymentIntent) event.getData().getObject();
+        String paymentIntentId = paymentIntent.getId();
+        Long amountReceived = paymentIntent.getAmountReceived();  
+        adminOrdersService.placeOrder(amountReceived, paymentIntentId, "Stripe");
+     } catch(Exception ex) {
+         throw new PaymentException("Something went wrong with your payment (2): " + ex);
+     }
+   }
 }
