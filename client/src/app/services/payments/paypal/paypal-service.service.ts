@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PaypalServiceService {
+export class PaypalService {
   private apiUrl = `${environment.apiUrl}/api/jagarv/pay/paypal`;
   constructor(private http: HttpClient) { }
 

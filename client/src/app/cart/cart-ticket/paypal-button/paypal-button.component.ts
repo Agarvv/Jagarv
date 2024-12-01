@@ -7,9 +7,14 @@ import { PaypalService } from '@services/payments/paypal/paypal-service.service'
   styleUrl: './paypal-button.component.css'
 })
 export class PaypalButtonComponent {
-  constructor() {}
+  constructor(private paypalService: PaypalService) {}
   
   payWithPayPal(): void {
-    
+     this.paypalService.payWithPaypal()
+     .subscribe((data: any) => {
+       console.log(data); // paypal url 
+     }, (error) => {
+       console.error(error);
+     })
   }
 }
