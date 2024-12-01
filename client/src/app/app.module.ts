@@ -84,7 +84,8 @@ import { BanUserComponent } from './admin/admin-users/ban-user/ban-user.componen
 import { SearchPageHeaderComponent } from './layout/search-page-header/search-page-header.component';
 import { ProfileAdressComponent } from './profile/profile-adress/profile-adress.component';
 import { BestSellersComponent } from './best-sellers/best-sellers.component';
-import { OrdersComponent } from './orders/orders.component'
+import { OrdersComponent } from './orders/orders.component';
+import { PaypalButtonComponent } from './cart/cart-ticket/paypal-button/paypal-button.component'
 
 @NgModule({
   declarations: [
@@ -158,7 +159,8 @@ import { OrdersComponent } from './orders/orders.component'
     SearchPageHeaderComponent,
     ProfileAdressComponent,
     BestSellersComponent,
-    OrdersComponent
+    OrdersComponent,
+    PaypalButtonComponent
   ],
   imports: [
     BrowserModule,
