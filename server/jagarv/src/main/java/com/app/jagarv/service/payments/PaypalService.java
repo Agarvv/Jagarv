@@ -57,8 +57,8 @@ public class PaypalService {
       String currency = "USD";
       String method = "paypal";
       String intent = "sale";
-      String successUrl = "http://localhost:8080/api/jagarv/pay/paypal/success";
-      String cancelUrl = "http://localhost:8080/api/jagarv/pay/paypal/cancel";
+      String successUrl = "https://jagarv-jq5o.onrender.com/api/jagarv/pay/paypal/success";
+      String cancelUrl = "https://jagarv-jq5o.onrender.com/api/jagarv/pay/paypal/cancel";
 
       Amount amount = new Amount();
       amount.setCurrency(currency);
