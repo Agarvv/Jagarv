@@ -20,8 +20,11 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final AuthFilter authFilter; 
 
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
-        this.customUserDetailsService = customUserDetailsService;
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService, AuthFilter authFilter) 
+    {
+    this.customUserDetailsService = customUserDetailsService;
+    this.authFilter = authFilter;
+    
     }
 
     @Bean
