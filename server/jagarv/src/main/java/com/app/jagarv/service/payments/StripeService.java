@@ -93,7 +93,7 @@ public class StripeService {
                     throw new PaymentException("Unhandled event type: " + event.getType());
             }
         } catch (Exception ex) {
-            throw new PaymentException("Something went wrong with your payment: ");
+            throw new PaymentException("Something went wrong with your payment: " + ex);
         }
     }
 
