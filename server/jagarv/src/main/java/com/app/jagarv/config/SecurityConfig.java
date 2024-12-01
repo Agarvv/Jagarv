@@ -1,7 +1,7 @@
 package com.app.jagarv.config;
 
 import com.app.jagarv.service.auth.CustomUserDetailsService;
-// import com.app.jagarv.filters.AuthFilter; 
+import com.app.jagarv.filters.AuthFilter; 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
-    // private final AuthFilter authFilter; 
+    private final AuthFilter authFilter; 
 
     public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .anyRequest().permitAll()) 
                 .csrf(csrf -> csrf.disable()); 
                 
-     //   http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+     http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
