@@ -64,13 +64,18 @@ public class StripeService {
                 .build())
             .build();
 
-        SessionCreateParams params = SessionCreateParams.builder()
-            .addLineItem(lineItem)
-            .setMode(SessionCreateParams.Mode.PAYMENT)
-            .setSuccessUrl("https://jagarv-jq5o.onrender.com/api/jagarv/pay/stripe/success?session_id={CHECKOUT_SESSION_ID}")
-            .setCancelUrl("https://jagarv.vercel.app/cancelPayment")
-            .build();
-
+        SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
+    .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
+        .setCurrency("usd")
+        .setUnitAmount(amountInCents)
+        .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
+            .setName("Jagarv Products")
+            .build())
+        .build())
+    .setQuantity(1) // just for now
+    .build();
+    
+    
         Session session = Session.create(params);
 
         return session.getUrl();
