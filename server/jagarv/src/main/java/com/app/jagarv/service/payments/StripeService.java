@@ -78,26 +78,26 @@ public class StripeService {
     return session.getUrl();
 }
 
-    public void handleStripeWebhook(HttpServletRequest request) throws SignatureVerificationException {
-        try {
-            String payload = new String(request.getInputStream().readAllBytes());
-            String sigHeader = request.getHeader("Stripe-Signature");
+     public void handleStripeWebhook(HttpServletRequest request) throws SignatureVerificationException {
+    try {
+        String payload = new String(request.getInputStream().readAllBytes());
+        String sigHeader = request.getHeader("Stripe-Signature");
 
-            Event event = Webhook.constructEvent(payload, sigHeader, webhookSecret);
+        Event event = Webhook.constructEvent(payload, sigHeader, webhookSecret);
 
-            switch (event.getType()) {
-                case "checkout.session.completed":
-                    handleCheckoutSessionCompleted(event);  
-                    break;
-                default:
-                    throw new PaymentException("Unhandled event type: " + event.getType());
-            }
-        } catch (Exception ex) {
-            throw new PaymentException("Something went wrong with your payment: " + ex);
+        switch (event.getType()) {
+            case "payment_intent.succeeded":
+                handlePaymentIntentSucceeded(event);
+                break;
+            default:
+                break;
         }
+    } catch (Exception ex) {
+        throw new PaymentException("Something went wrong with your payment: " + ex);
     }
+}
 
-    private void handleCheckoutSessionCompleted(Event event) {
+    private void handlePaymentIntentSucceeded(Event event) {
         Session session = (Session) event.getData().getObject();
         
 
