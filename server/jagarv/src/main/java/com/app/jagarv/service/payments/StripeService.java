@@ -98,14 +98,11 @@ public class StripeService {
 }
 
     private void handlePaymentIntentSucceeded(Event event) {
-        Session session = (Session) event.getData().getObject();
-        
-
-        String sessionId = session.getId();
-        Long amountReceived = session.getAmountTotal();
-        String paymentIntentId = session.getPaymentIntent(); 
-        
-        adminOrdersService.placeOrder(amountReceived, paymentIntentId, "STRIPE");
-    }
+    PaymentIntent paymentIntent = (PaymentIntent) event.getData().getObject();
     
+    String paymentIntentId = paymentIntent.getId();
+    Long amountReceived = paymentIntent.getAmountReceived();  
+
+    adminOrdersService.placeOrder(amountReceived, paymentIntentId, "STRIPE");
+}
 }
