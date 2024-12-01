@@ -46,9 +46,9 @@ public class UserController
     @PostMapping("/setAdress")
     public ResponseEntity<ApiResponse<Void>> 
     setUserAdress(@RequestBody @Valid SetUserAdressDTO adress) {
-        User user = userService.findAuthenticatedUser(); 
+         userService.setUserAdress(adress);
         
-        return ResponseEntity.ok(new ApiResponse<>(user.getAdress(), null)); 
+        return ResponseEntity.ok(new ApiResponse<>(adress.getAdress(), null)); 
     }
     
     
