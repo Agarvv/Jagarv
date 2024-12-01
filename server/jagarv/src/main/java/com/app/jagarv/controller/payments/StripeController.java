@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class StripeController 
 {
     private final StripeService stripeService; 
-    private final SendMail sendMail
+    private final SendMail sendMail;
     
     public StripeController(StripeService stripeService, SendMail sendMail) {
         this.stripeService = stripeService;
