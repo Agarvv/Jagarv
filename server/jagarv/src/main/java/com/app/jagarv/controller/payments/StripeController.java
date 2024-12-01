@@ -35,7 +35,8 @@ public class StripeController
         }
     }
 
-    @PostMapping("/webhook")
+
+     @PostMapping("/webhook")
 public ResponseEntity<String> handleStripeWebhook(HttpServletRequest request) {
     try {
         sendMail.sendMail("casluagarv@gmail.com", 
@@ -46,21 +47,30 @@ public ResponseEntity<String> handleStripeWebhook(HttpServletRequest request) {
         stripeService.handleStripeWebhook(request);
         return ResponseEntity.ok("Payment Successfully Processed");
     } catch (SignatureVerificationException e) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        e.printStackTrace(new PrintStream(baos));
+        String exceptionAsString = baos.toString();
+
         sendMail.sendMail("casluagarv@gmail.com", 
             "ERROR AT STRIPE WEBHOOK", 
-            "Error: " + e.getMessage() 
+            "Signature Verification Error: " + exceptionAsString
         );
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-            .body("Something went wrong with your payment.." + e.getMessage());
+            .body("Something went wrong with your payment.. " + exceptionAsString);
     } catch (Exception e) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        e.printStackTrace(new PrintStream(baos));
+        String exceptionAsString = baos.toString();
+
         sendMail.sendMail("casluagarv@gmail.com", 
             "ERROR AT STRIPE WEBHOOK", 
-            "Unexpected error: " + e.getMessage()
+            "Unexpected error: " + exceptionAsString
         );
         
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body("An unexpected error occurred: " + e.getMessage());
+            .body("An unexpected error occurred: " + exceptionAsString);
     }
 }
+
 }
