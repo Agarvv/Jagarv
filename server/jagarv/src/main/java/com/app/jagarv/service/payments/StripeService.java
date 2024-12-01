@@ -28,7 +28,7 @@ public class StripeService {
     private final AdminOrdersService adminOrdersService;
     private final CartService cartService;
 
-    @Value("${stripe.publicKey}")
+    @Value("${stripe.secret}")
     private String stripeApiKey;
 
     @Value("${stripe.webhook_secret}")
