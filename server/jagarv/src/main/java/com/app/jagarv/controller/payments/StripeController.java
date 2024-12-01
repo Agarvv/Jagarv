@@ -11,6 +11,9 @@ import com.app.jagarv.service.payments.StripeService;
 import com.app.jagarv.outil.SendMail;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 
 @RestController
 @RequestMapping("/api/jagarv/pay/stripe")
