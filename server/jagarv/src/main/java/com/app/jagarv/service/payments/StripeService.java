@@ -14,6 +14,8 @@ import com.app.jagarv.dto.payments.ProductPaymentDTO;
 import com.app.jagarv.service.user.UserService;
 import com.app.jagarv.dto.ApiResponse;
 import com.stripe.model.PaymentIntent;
+import com.app.jagarv.service.admin.order.AdminOrdersService;
+import com.app.jagarv.exception.exceptions.payments.PaymentException;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
@@ -23,12 +25,12 @@ public class StripeService {
 
     private final CartService cartService;
     private final UserService userService;
-    private final OrderService orderService;
+    private final AdminOrdersService orderService;
 
     @Value("${stripe.secret}")
     private String stripeApiKey;
 
-    public StripeService(CartService cartService, UserService userService, OrderService orderService) {
+    public StripeService(CartService cartService, UserService userService, AdminOrdersService orderService) {
         this.cartService = cartService;
         this.userService = userService;
         this.orderService = orderService;
@@ -39,6 +41,7 @@ public class StripeService {
         Stripe.apiKey = stripeApiKey;
     }
 
+    // Crear la sesión de pago en Stripe
     public String createCheckoutSession(ProductPaymentDTO payment) throws StripeException {
         User user = userService.findAuthenticatedUser();
 
@@ -80,7 +83,7 @@ public class StripeService {
                 PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
                 Long amountReceived = paymentIntent.getAmountReceived();
 
-                orderService.placeOrder(amountReceived, paymentIntentId, "Stripe", session.getMetadata().get("userId"));
+                orderService.placeOrder(amountReceived, paymentIntentId, "Stripe");
 
                 String message = String.format("Payment succeeded. Payment Intent ID: %s, Amount Received: $%.2f",
                         paymentIntentId, amountReceived / 100.0);
@@ -89,7 +92,7 @@ public class StripeService {
                 return new ApiResponse<>("Payment Failed", "Payment did not succeed. Please try again.");
             }
         } catch (StripeException e) {
-            throw new StripeException("Error occurred while verifying payment status: " + e.getMessage());
+            throw new PaymentException("Error occurred while verifying payment status: " + e.getMessage());
         }
     }
 }
