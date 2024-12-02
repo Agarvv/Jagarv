@@ -28,16 +28,16 @@ public class StripeController
         this.sendMail = sendMail;
     }
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<Void>> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
-        try {
-            String checkoutSessionUrl = stripeService.createCheckoutSession(payment);
-            return ResponseEntity.ok(new ApiResponse<>("url", checkoutSessionUrl));
-        } catch (StripeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)  
-                .body("Something went wrong with the payment..." + e.getMessage());
-        }
+   @PostMapping
+public ResponseEntity<ApiResponse<String>> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
+    try {
+        String checkoutSessionUrl = stripeService.createCheckoutSession(payment);
+        return ResponseEntity.ok(new ApiResponse<>("url", checkoutSessionUrl));
+    } catch (StripeException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)  
+            .body(new ApiResponse<>("Something went wrong with the payment...", e.getMessage()));
     }
+}
 
 
      @PostMapping("/webhook")

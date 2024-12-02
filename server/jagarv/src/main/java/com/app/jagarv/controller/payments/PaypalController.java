@@ -23,7 +23,7 @@ public class PaypalController
     // paypal payment endpoint
     @PostMapping
     public ResponseEntity<ApiResponse<String>> handleCartPayment
-    (ProductPaymentDTO productPaymentDTO) 
+    (@RequestBody ProductPaymentDTO productPaymentDTO) 
     {
         try {
             String redirectUrl = paypalService.createPayment(productPaymentDTO.getDiscountCode());
