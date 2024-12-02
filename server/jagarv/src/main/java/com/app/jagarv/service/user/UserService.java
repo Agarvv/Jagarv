@@ -53,7 +53,7 @@ public class UserService
     
     public User findAuthenticatedUser() 
     {
-        Long userId = securityOutil.getAuthenticatedUserId
+        Long userId = securityOutil.getAuthenticatedUserId(); 
         
         if(userId == null) {
             throw new NullPointerException("User ID Is null!"); // debug
