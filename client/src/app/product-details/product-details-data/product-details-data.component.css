@@ -24,11 +24,11 @@
     margin-top: 20px;
   }
   
-  .p-buy-now, .p-add-to-cart{
+  .p-add-to-cart{
    width: 100%;
   }
   
-  .p-buy-now button, .p-add-to-cart button {
+   .p-add-to-cart button {
     width: 100%;
     height: 45px;
     border-radius: 8px;
@@ -37,12 +37,6 @@
     border: none;
     transition: transform 0.2s ease;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  .p-buy-now button {
-    background: #0077ff;
-    color: white;
-    
   }
   
   .p-add-to-cart button {

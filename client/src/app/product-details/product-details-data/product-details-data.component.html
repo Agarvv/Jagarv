@@ -10,11 +10,6 @@
   </app-product-details-data-attributes>
 
   <div class="p-buy-buttons">
-    <div class="p-buy-now">
-      <button>
-        Buy Now
-      </button>
-    </div>
     <div class="p-add-to-cart">
        <app-add-to-cart-button
        [inCart]="(product$ | async)?.inCart ?? false"

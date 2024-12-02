@@ -23,7 +23,7 @@ import com.stripe.model.PaymentIntent;
 import com.app.jagarv.outil.SendMail;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
+import com.app.jagarv.service.user.UserService; 
 
 @Service
 public class StripeService {
@@ -33,6 +33,7 @@ public class StripeService {
     private final AdminOrdersService adminOrdersService;
     private final CartService cartService;
     private final SendMail sendMail; 
+    private final UserService userService; 
 
     @Value("${stripe.secret}")
     private String stripeApiKey;
@@ -45,16 +46,20 @@ public class StripeService {
         CartRepository cartRepository,
         AdminOrdersService adminOrdersService,
         CartService cartService,
-        SendMail sendMail 
+        SendMail sendMail,
+        UserService userService
     ) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.adminOrdersService = adminOrdersService;
         this.cartService = cartService;
         this.sendMail = sendMail; 
+        this.userService = userService; 
     }
 
     public String createCheckoutSession(ProductPaymentDTO payment) throws StripeException {
+    User user = userService.findAuthenticatedUser(); 
+    
     Cart cart = cartService.getUserRawCart();
     BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
 
@@ -79,6 +84,7 @@ public class StripeService {
         .setMode(SessionCreateParams.Mode.PAYMENT)
         .setSuccessUrl("https://jagarv-jq5o.onrender.com/api/jagarv/pay/stripe/success?session_id={CHECKOUT_SESSION_ID}")
         .setCancelUrl("https://jagarv.vercel.app/cancelPayment")
+        .putMetadata("userId", user.getId().toString())
         .build();
 
     Session session = Session.create(params);
@@ -131,16 +137,24 @@ private void handlePaymentIntentSucceeded(Event event) {
         if (!(obj instanceof PaymentIntent)) {
             throw new PaymentException("Invalid event object: not a PaymentIntent");
         }
+        
         PaymentIntent paymentIntent = (PaymentIntent) obj;
          String paymentIntentId = paymentIntent.getId();
+         Long userId = Long.longParse(paymentIntent.getMetadata().get("userId")); 
+         
         if (paymentIntentId == null) {
             throw new PaymentException("PaymentIntent ID is null");
         }
+        
+        if(userId == null) {
+            throw new PaymentException("User id in metadata is null.");
+        }
+        
         Long amountReceived = paymentIntent.getAmountReceived();
         if (amountReceived == null || amountReceived <= 0) {
             throw new PaymentException("Invalid amount received: " + amountReceived);
         }
-        adminOrdersService.placeOrder(500L, "1931", "Stripe");
+        adminOrdersService.placeOrder(500L, "1931", "Stripe", userId);
     } catch (Exception ex) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ex.printStackTrace(new PrintStream(baos));

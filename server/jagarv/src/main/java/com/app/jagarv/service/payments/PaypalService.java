@@ -107,7 +107,7 @@ public class PaypalService {
             String totalStr = amount.getTotal();
             Long totalAmount = Long.valueOf(totalStr.split("\\.")[0]); 
 
-            adminOrdersService.placeOrder(totalAmount, paymentId, "PayPal"); 
+            adminOrdersService.placeOrder(totalAmount, paymentId, "PayPal", null); 
             return "¡Thanks For Your Purchase!";
         } else {
             throw new PayPalRESTException("Payment Not Approved..");
