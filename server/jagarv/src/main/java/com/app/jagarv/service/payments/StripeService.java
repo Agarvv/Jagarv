@@ -141,7 +141,7 @@ private void handlePaymentIntentSucceeded(Event event) {
         
         PaymentIntent paymentIntent = (PaymentIntent) obj;
          String paymentIntentId = paymentIntent.getId();
-         Long userId = paymentIntent.getMetadata().get("userId")
+         Long userId = paymentIntent.getMetadata().get("userId");
          
         if (paymentIntentId == null) {
             throw new PaymentException("PaymentIntent ID is null");
