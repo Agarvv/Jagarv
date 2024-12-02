@@ -73,7 +73,9 @@ public class AdminOrdersService {
 
     public void placeOrder(Long amount, String paymentIntentId, String method, Long userId) {
       
-      User user = userId == null ? userService.findAuthenticatedUser() : userRepository.findById(userId); 
+       User user = userId == null 
+        ? userService.findAuthenticatedUser() 
+        : userRepository.findById(userId).orElse(null);  
       
       if(user == null) {
           throw new NullPointerException("User is null in order"); 

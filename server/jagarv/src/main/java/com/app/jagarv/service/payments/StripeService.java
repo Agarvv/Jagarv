@@ -141,7 +141,7 @@ private void handlePaymentIntentSucceeded(Event event) {
         
         PaymentIntent paymentIntent = (PaymentIntent) obj;
          String paymentIntentId = paymentIntent.getId();
-         Long userId = paymentIntent.getMetadata().get("userId");
+         Long userId = Long.parseLong(paymentIntent.getMetadata().get("userId")); 
          
         if (paymentIntentId == null) {
             throw new PaymentException("PaymentIntent ID is null");
@@ -150,7 +150,7 @@ private void handlePaymentIntentSucceeded(Event event) {
         if (amountReceived == null || amountReceived <= 0) {
             throw new PaymentException("Invalid amount received: " + amountReceived);
         }
-        adminOrdersService.placeOrder(500L, "1931", "Stripe");
+        adminOrdersService.placeOrder(500L, "1931", "Stripe", userId);
     } catch (Exception ex) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ex.printStackTrace(new PrintStream(baos));

@@ -15,6 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
     Optional<User> findByEmail(String email);
     
+    
    // @Query("SELECT COUNT(u) FROM User u WHERE u.joinedAt = :today")
    // Long getUserRegistrationsToday(@Param("today") String today);
 
