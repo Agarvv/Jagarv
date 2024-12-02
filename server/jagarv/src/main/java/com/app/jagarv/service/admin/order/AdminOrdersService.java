@@ -71,17 +71,15 @@ public class AdminOrdersService {
 
     // places a order, will be used on the payments services when the payment is succeded
 
-    public void placeOrder(Long amount, String paymentIntentId, String method, Long userId) {
+    public void placeOrder(Long amount, String paymentIntentId, String method) {
       
-       User user = userId == null 
-        ? userService.findAuthenticatedUser() 
-        : userRepository.findById(userId).orElse(null);  
+       User user = userService.findAuthenticatedUser(); 
       
       if(user == null) {
           throw new NullPointerException("User is null in order"); 
       }
       
-      Cart cart = userId == null ? cartService.getUserRawCart() : cartRepository.findByUserId(userId).orElse(null); 
+      Cart cart cartService.getUserRawCart(); 
       
       if(cart == null) {
           throw new NullPointerException("User cart is null..");
