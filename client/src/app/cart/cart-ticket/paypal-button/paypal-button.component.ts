@@ -12,7 +12,8 @@ export class PaypalButtonComponent {
   payWithPayPal(): void {
      this.paypalService.payWithPaypal()
      .subscribe((data: any) => {
-       console.log(data); // paypal url 
+       console.log(data.data); // paypal url 
+       window.location.href = data.data
      }, (error) => {
        console.error(error);
      })

@@ -16,7 +16,7 @@ export class CheckoutButtonComponent {
       console.log(data);
       const stripe = await loadStripe(environment.stripePublicKey);
       if(stripe) {
-        window.location.href = data;
+        window.location.href = data.data; // url
       }else {
         console.error('Failed to load Stripe SDK'); // debug
       }

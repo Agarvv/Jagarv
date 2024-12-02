@@ -78,7 +78,7 @@ public class StripeService {
             Session session = Session.retrieve(sessionId);
             String paymentStatus = session.getPaymentStatus();
 
-            if ("succeeded".equals(paymentStatus)) {
+            if ("paid".equals(paymentStatus)) {
                 String paymentIntentId = session.getPaymentIntent();
                 PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
                 Long amountReceived = paymentIntent.getAmountReceived();
