@@ -22,3 +22,10 @@
   .ct-item p {
     margin: 0;
   }
+
+  .p-or {
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
