@@ -81,7 +81,7 @@ public class AdminOrdersService {
           throw new NullPointerException("User is null in order"); 
       }
       
-      Cart cart = userId == null ? cartService.getUserRawCart() : cartRepository.findByUserid(userId); 
+      Cart cart = userId == null ? cartService.getUserRawCart() : cartRepository.findByUserId(userId).orElse(null); 
       
       if(cart == null) {
           throw new NullPointerException("User cart is null..");
