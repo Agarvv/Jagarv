@@ -140,7 +140,7 @@ private void handlePaymentIntentSucceeded(Event event) {
         if (amountReceived == null || amountReceived <= 0) {
             throw new PaymentException("Invalid amount received: " + amountReceived);
         }
-        adminOrdersService.placeOrder(amountReceived, paymentIntentId, "Stripe");
+        // adminOrdersService.placeOrder(amountReceived, paymentIntentId, "Stripe");
     } catch (Exception ex) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ex.printStackTrace(new PrintStream(baos));
