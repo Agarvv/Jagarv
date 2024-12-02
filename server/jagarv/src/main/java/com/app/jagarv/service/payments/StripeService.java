@@ -2,7 +2,6 @@ package com.app.jagarv.service.payments;
 
 import com.stripe.Stripe;
 import com.stripe.model.checkout.Session;
-import com.stripe.model.PaymentIntent;
 import com.stripe.exception.StripeException;
 import com.stripe.param.checkout.SessionCreateParams;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,30 +12,33 @@ import com.app.jagarv.outil.PaymentOutil;
 import com.app.jagarv.service.cart.CartService;
 import com.app.jagarv.dto.payments.ProductPaymentDTO;
 import com.app.jagarv.service.user.UserService;
-import com.app.jagarv.service.admin.order.AdminOrdersService;
 import com.app.jagarv.dto.ApiResponse;
+import com.stripe.model.PaymentIntent;
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
-import com.app.jagarv.exception.exceptions.payments.PaymentException;
 
 @Service
 public class StripeService {
 
     private final CartService cartService;
     private final UserService userService;
-    private final AdminOrdersService orderService;
+    private final OrderService orderService;
 
     @Value("${stripe.secret}")
     private String stripeApiKey;
 
-    public StripeService(CartService cartService, UserService userService, AdminOrdersService orderService) {
+    public StripeService(CartService cartService, UserService userService, OrderService orderService) {
         this.cartService = cartService;
         this.userService = userService;
         this.orderService = orderService;
+    }
+
+    @PostConstruct
+    public void init() {
         Stripe.apiKey = stripeApiKey;
     }
 
-    // Crear la sesión de pago en Stripe
     public String createCheckoutSession(ProductPaymentDTO payment) throws StripeException {
         User user = userService.findAuthenticatedUser();
 
@@ -68,7 +70,6 @@ public class StripeService {
         return session.getUrl();
     }
 
-    // Verificar el estado del pago y retornar un mensaje limpio
     public ApiResponse<String> verifyPaymentStatus(String sessionId) throws StripeException {
         try {
             Session session = Session.retrieve(sessionId);
@@ -76,20 +77,19 @@ public class StripeService {
 
             if ("succeeded".equals(paymentStatus)) {
                 String paymentIntentId = session.getPaymentIntent();
-
                 PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
                 Long amountReceived = paymentIntent.getAmountReceived();
 
-                orderService.placeOrder(amountReceived, paymentIntentId, "Stripe");
+                orderService.placeOrder(amountReceived, paymentIntentId, "Stripe", session.getMetadata().get("userId"));
 
                 String message = String.format("Payment succeeded. Payment Intent ID: %s, Amount Received: $%.2f",
-                                               paymentIntentId, amountReceived / 100.0);
+                        paymentIntentId, amountReceived / 100.0);
                 return new ApiResponse<>("Payment Status", message);
             } else {
                 return new ApiResponse<>("Payment Failed", "Payment did not succeed. Please try again.");
             }
         } catch (StripeException e) {
-            throw new PaymentException("Error occurred while verifying payment status: " + e.getMessage());
+            throw new StripeException("Error occurred while verifying payment status: " + e.getMessage());
         }
     }
 }
