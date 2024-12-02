@@ -9,6 +9,7 @@ import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
 import com.app.jagarv.service.payments.StripeService;
 import com.app.jagarv.outil.SendMail;
+import com.app.jagarv.dto.ApiResponse; 
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
@@ -28,10 +29,10 @@ public class StripeController
     }
 
     @PostMapping
-    public ResponseEntity<String> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
+    public ResponseEntity<ApiResponse<String>> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
         try {
             String checkoutSessionUrl = stripeService.createCheckoutSession(payment);
-            return ResponseEntity.ok(checkoutSessionUrl); 
+            return ResponseEntity.ok(new ApiResponse<>("url", checkoutSessionUrl))
         } catch (StripeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)  
                 .body("Something went wrong with the payment..." + e.getMessage());

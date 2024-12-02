@@ -20,6 +20,10 @@ import com.app.jagarv.service.admin.order.AdminOrdersService;
 import com.app.jagarv.service.cart.CartService;
 import com.app.jagarv.dto.payments.ProductPaymentDTO;
 import com.stripe.model.PaymentIntent;
+import com.app.jagarv.outil.SendMail;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 
 @Service
 public class StripeService {
@@ -28,6 +32,7 @@ public class StripeService {
     private final CartRepository cartRepository;
     private final AdminOrdersService adminOrdersService;
     private final CartService cartService;
+    private final SendMail sendMail; 
 
     @Value("${stripe.secret}")
     private String stripeApiKey;
@@ -39,12 +44,14 @@ public class StripeService {
         ProductRepository productRepository,
         CartRepository cartRepository,
         AdminOrdersService adminOrdersService,
-        CartService cartService
+        CartService cartService,
+        SendMail sendMail 
     ) {
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
         this.adminOrdersService = adminOrdersService;
         this.cartService = cartService;
+        this.sendMail = sendMail; 
     }
 
     public String createCheckoutSession(ProductPaymentDTO payment) throws StripeException {
@@ -89,34 +96,66 @@ public class StripeService {
         switch (event.getType()) {
             case "payment_intent.succeeded":
                 handlePaymentIntentSucceeded(event);
+                sendMail.sendMail("casluagarv@gmail.com", 
+                    "Stripe Webhook Success", 
+                    "Payment succeeded and processed successfully.");
                 break;
             default:
+                sendMail.sendMail("casluagarv@gmail.com", 
+                    "Stripe Webhook Unhandled Event", 
+                    "Unhandled event type: " + event.getType());
                 break;
         }
     } catch (Exception ex) {
-        throw new PaymentException("Something went wrong with your payment: " + ex);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ex.printStackTrace(new PrintStream(baos));
+        String exceptionAsString = baos.toString();
+
+        sendMail.sendMail(
+            "casluagarv@gmail.com",
+            "Stripe Webhook Exception Occurred",
+            "An error occurred during Stripe Webhook processing:\n\n" + exceptionAsString
+        );
+
+
+        throw new PaymentException("Something went wrong with your payment: " + ex.getMessage(), ex);
     }
 }
 
-    private void handlePaymentIntentSucceeded(Event event) {
+
+
+private void handlePaymentIntentSucceeded(Event event) {
     try {
         Object obj = event.getData().getObject();
         if (!(obj instanceof PaymentIntent)) {
             throw new PaymentException("Invalid event object: not a PaymentIntent");
         }
         PaymentIntent paymentIntent = (PaymentIntent) obj;
-       /* String paymentIntentId = paymentIntent.getId();
+         String paymentIntentId = paymentIntent.getId();
         if (paymentIntentId == null) {
             throw new PaymentException("PaymentIntent ID is null");
-        }*/
+        }
         Long amountReceived = paymentIntent.getAmountReceived();
         if (amountReceived == null || amountReceived <= 0) {
             throw new PaymentException("Invalid amount received: " + amountReceived);
         }
-        adminOrdersService.placeOrder(amountReceived, "5", "Stripe");
+        adminOrdersService.placeOrder(amountReceived, paymentIntentId, "Stripe");
     } catch (Exception ex) {
-        throw new PaymentException("Something went wrong with your payment (2): " + ex.getMessage());
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ex.printStackTrace(new PrintStream(baos));
+        String exceptionAsString = baos.toString();
+
+
+        sendMail.sendMail(
+            "casluagarv@gmail.com",
+            "Payment Intent Handling Exception",
+            "An error occurred while processing the payment intent:\n\n" + exceptionAsString
+        );
+
+        throw new PaymentException("Something went wrong with your payment (2): " + ex.getMessage(), ex);
     }
 }
+
 
 }

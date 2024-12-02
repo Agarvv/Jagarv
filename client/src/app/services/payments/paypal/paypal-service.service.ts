@@ -11,6 +11,8 @@ export class PaypalService {
   constructor(private http: HttpClient) { }
 
   payWithPaypal(): Observable<any> {
-    return this.http.post(this.apiUrl, {});
+    return this.http.post(this.apiUrl, {}, {
+        withCredentials: true 
+    });
   }
 }
