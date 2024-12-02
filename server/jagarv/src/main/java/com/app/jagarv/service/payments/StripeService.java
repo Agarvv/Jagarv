@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.app.jagarv.outil.PaymentOutil;
 import com.app.jagarv.entity.cart.Cart;
+import com.app.jagarv.entity.user.User; 
 import com.app.jagarv.exception.exceptions.payments.PaymentException;
 import com.app.jagarv.repository.product.ProductRepository;
 import com.app.jagarv.repository.cart.CartRepository;
@@ -140,21 +141,16 @@ private void handlePaymentIntentSucceeded(Event event) {
         
         PaymentIntent paymentIntent = (PaymentIntent) obj;
          String paymentIntentId = paymentIntent.getId();
-         Long userId = Long.longParse(paymentIntent.getMetadata().get("userId")); 
+         Long userId = paymentIntent.getMetadata().get("userId")
          
         if (paymentIntentId == null) {
             throw new PaymentException("PaymentIntent ID is null");
         }
-        
-        if(userId == null) {
-            throw new PaymentException("User id in metadata is null.");
-        }
-        
         Long amountReceived = paymentIntent.getAmountReceived();
         if (amountReceived == null || amountReceived <= 0) {
             throw new PaymentException("Invalid amount received: " + amountReceived);
         }
-        adminOrdersService.placeOrder(500L, "1931", "Stripe", userId);
+        adminOrdersService.placeOrder(500L, "1931", "Stripe");
     } catch (Exception ex) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ex.printStackTrace(new PrintStream(baos));
