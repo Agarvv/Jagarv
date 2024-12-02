@@ -89,7 +89,7 @@ public class StripeService {
                         paymentIntentId, amountReceived / 100.0);
                 return new ApiResponse<>("Payment Status", message);
             } else {
-                return new ApiResponse<>("Payment Failed", "Payment did not succeed. Please try again.");
+                return new ApiResponse<>("Payment Failed" + paymentStatus, "Payment did not succeed. Please try again.");
             }
         } catch (StripeException e) {
             throw new PaymentException("Error occurred while verifying payment status: " + e.getMessage());
