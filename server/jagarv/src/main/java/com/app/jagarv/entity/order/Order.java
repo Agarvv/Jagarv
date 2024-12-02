@@ -30,17 +30,17 @@ public class Order {
     )
     private List<Product> products;
 
-    @NotBlank(message = "Status cannot be blank")
-    @Size(max = 20, message = "Status cannot exceed 20 characters")
+    // @NotBlank(message = "Status cannot be blank")
+   // @Size(max = 20, message = "Status cannot exceed 20 characters")
     private String status;
     
-    @NotNull
+  //  @NotNull
     private Long amount;
 
-    @NotNull 
+   // @NotNull 
     private String paymentId; 
     
-    @NotBlank
+   // @NotBlank
     private String adress;
     
     private String date; 
