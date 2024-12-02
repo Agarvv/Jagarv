@@ -119,7 +119,7 @@ public class StripeService {
         );
 
 
-        throw new PaymentException("Something went wrong with your payment: " + ex.getMessage(), ex);
+        throw new PaymentException("Something went wrong with your payment: ");
     }
 }
 
@@ -153,7 +153,7 @@ private void handlePaymentIntentSucceeded(Event event) {
             "An error occurred while processing the payment intent:\n\n" + exceptionAsString
         );
 
-        throw new PaymentException("Something went wrong with your payment (2): " + ex.getMessage(), ex);
+        throw new PaymentException("Something went wrong with your payment (2): ");
     }
 }
 
