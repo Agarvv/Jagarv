@@ -29,7 +29,7 @@ public class StripeController
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<String>> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
+    public ResponseEntity<ApiResponse<Void>> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
         try {
             String checkoutSessionUrl = stripeService.createCheckoutSession(payment);
             return ResponseEntity.ok(new ApiResponse<>("url", checkoutSessionUrl));
