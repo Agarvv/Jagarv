@@ -1,0 +1,20 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .success-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 40px 30px; 
+    border-radius: 20px;
+    width: 300px; 
+    background-color: #f4f4f9; 
+  }
+  
+  .thanks {
+    font-size: 20px;
+    padding: 10px;
+    font-weight: bold;
+  }

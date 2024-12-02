@@ -25,6 +25,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { SearchComponent } from './search/search.component'; 
 import { WishlistComponent } from './wishlist/wishlist.component'; 
 import { ProfileComponent } from './profile/profile.component'
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 
 // LayoutComponent 
 
@@ -59,6 +61,16 @@ const routes: Routes = [
   {
       path: 'search/:query',
       component: SearchComponent
+  },
+  // succes payment
+  {
+    path: 'paymentSuccess',
+    component: PaymentSuccessComponent
+  },
+
+  {
+    path: 'paymentFailure',
+    component: PaymentFailureComponent
   },
   
   {   // the main layout

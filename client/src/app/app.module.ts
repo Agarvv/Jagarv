@@ -85,7 +85,9 @@ import { SearchPageHeaderComponent } from './layout/search-page-header/search-pa
 import { ProfileAdressComponent } from './profile/profile-adress/profile-adress.component';
 import { BestSellersComponent } from './best-sellers/best-sellers.component';
 import { OrdersComponent } from './orders/orders.component';
-import { PaypalButtonComponent } from './cart/cart-ticket/paypal-button/paypal-button.component'
+import { PaypalButtonComponent } from './cart/cart-ticket/paypal-button/paypal-button.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component'
 
 @NgModule({
   declarations: [
@@ -160,7 +162,9 @@ import { PaypalButtonComponent } from './cart/cart-ticket/paypal-button/paypal-b
     ProfileAdressComponent,
     BestSellersComponent,
     OrdersComponent,
-    PaypalButtonComponent
+    PaypalButtonComponent,
+    PaymentSuccessComponent,
+    PaymentFailureComponent
   ],
   imports: [
     BrowserModule,
