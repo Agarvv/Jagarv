@@ -79,7 +79,7 @@ public class AdminOrdersService {
           throw new NullPointerException("User is null in order"); 
       }
       
-      Cart cart cartService.getUserRawCart(); 
+      Cart cart = cartService.getUserRawCart();
       
       if(cart == null) {
           throw new NullPointerException("User cart is null..");
