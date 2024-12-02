@@ -105,15 +105,15 @@ public class StripeService {
             throw new PaymentException("Invalid event object: not a PaymentIntent");
         }
         PaymentIntent paymentIntent = (PaymentIntent) obj;
-        String paymentIntentId = paymentIntent.getId();
+       /* String paymentIntentId = paymentIntent.getId();
         if (paymentIntentId == null) {
             throw new PaymentException("PaymentIntent ID is null");
-        }
+        }*/
         Long amountReceived = paymentIntent.getAmountReceived();
         if (amountReceived == null || amountReceived <= 0) {
             throw new PaymentException("Invalid amount received: " + amountReceived);
         }
-        adminOrdersService.placeOrder(amountReceived, paymentIntentId, "Stripe");
+        adminOrdersService.placeOrder(amountReceived, "5", "Stripe");
     } catch (Exception ex) {
         throw new PaymentException("Something went wrong with your payment (2): " + ex.getMessage());
     }
