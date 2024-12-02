@@ -107,6 +107,10 @@ public class CartService {
     // will be used on payment services when we need the raw user cart
     public Cart getUserRawCart() {
         Long userId = securityOutil.getAuthenticatedUserId();
+        if(userId == null) {
+            throw new NullPointerException("Tried to find user cart but user cart is null..."); // debug
+        }
+        
         Cart cart = cartRepository.findByUserId(userId)
         .orElseThrow(() -> new CartNotFoundException("Something went wrong with your cart..."));
 

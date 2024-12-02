@@ -74,7 +74,16 @@ public class AdminOrdersService {
     public void placeOrder(Long amount, String paymentIntentId, String method) {
       
       User user = userService.findAuthenticatedUser(); 
+      
+      if(user == null) {
+          throw new NullPointerException("User is null in order"); 
+      }
+      
       Cart cart = cartService.getUserRawCart();
+      
+      if(cart == null) {
+          throw new NullPointerException("User cart is null..");
+      }
 
       List<Product> products = new ArrayList<>();
       for(CartItem item: cart.getCartItems()) {
