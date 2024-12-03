@@ -14,6 +14,8 @@ export class OrdersService {
   constructor(private http: HttpClient) { }
   
    getUserOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.apiUrl);
+    return this.http.get<Order[]>(this.apiUrl, {
+      withCredentials: true  
+    });
    }
 }

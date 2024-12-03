@@ -5,5 +5,6 @@ export interface Order {
     adress: string,
     amount: number,
     products: OrderProduct[],
-    status: string
+    status: string,
+    date: string
 }
