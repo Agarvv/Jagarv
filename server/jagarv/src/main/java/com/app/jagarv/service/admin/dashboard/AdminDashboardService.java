@@ -1,4 +1,4 @@
-/* package com.app.jagarv.service.admin.dashboard;
+package com.app.jagarv.service.admin.dashboard;
 
 import com.app.jagarv.dto.admin.dashboard.AdminDashboardDTO;
 import com.app.jagarv.dto.product.read.MostOrderedProductDTO;
@@ -12,40 +12,27 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class AdminDashboardService {
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final AdminDashboardMapper adminDashboardMapper;
 
-    public AdminDashboardService(OrderRepository orderRepository, 
-                                 UserRepository userRepository, 
-                                 AdminDashboardMapper adminDashboardMapper) {
+    public AdminDashboardService(OrderRepository orderRepository, UserRepository userRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
-        this.adminDashboardMapper = adminDashboardMapper;
     }
 
-    public AdminDashboardDTO getAdminDashboard() {
-        String today = LocalDate.now().toString();
-
-        Long ordersToday = orderRepository.getOrdersCountForToday(today);
-        Long amountToday = orderRepository.getTotalAmountForToday(today);
-        Long usersToday = userRepository.getUserRegistrationsToday(today);
-
-        List<Object[]> mostOrderedProducts = orderRepository.getMostOrderedProducts();
-        List<Object[]> ordersFromJulyToDecember =
-         orderRepository.getOrdersBetweenDates("2024-07-01", "2024-12-31");
-
-        List<MostOrderedProductDTO> productsDTO = mostOrderedProducts.stream()
-                .map(adminMapper::toMostOrderedProductDTO)
-                .collect(Collectors.toList());
-
-        List<MonthlySalesDTO> monthlySales = ordersFromJulyToDecember.stream()
-                .map(adminMapper::toMonthlySalesDTO)
-                .collect(Collectors.toList());
-
-        return new AdminDashboardDTO(ordersToday, amountToday, usersToday, monthlySales, productsDTO);
+    public Map<String, Object> getAdminDashboard() {
+        Map<String, Object> dashboardData = new HashMap<>(); // just for now 
+        dashboardData.put("ordersToday", orderRepository.findOrdersToday());
+        dashboardData.put("totalEarningsToday", orderRepository.getTotalEarningsToday());
+        dashboardData.put("mostOrderedProducts", orderRepository.findMostOrderedProducts());
+        dashboardData.put("orderCountByMonth", orderRepository.getOrderCountByMonth());
+        dashboardData.put("usersToday", userRepository.findUsersToday());
+        return dashboardData;
     }
-} */
+}
