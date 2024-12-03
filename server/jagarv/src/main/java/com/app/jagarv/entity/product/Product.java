@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.app.jagarv.entity.order.Order;
 
 import com.app.jagarv.entity.cart.CartItem;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "products")
@@ -66,14 +67,15 @@ public class Product {
     
     // product opinions
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<ProductOpinion> opinions;
     
     
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
     
-    @ManyToMany(mappedBy = "products")
-    private List<Order> orders;
+  //  @ManyToMany(mappedBy = "products")
+   // private List<Order> orders;
 
     // Getters and Setters
     public Long getId() {
@@ -165,11 +167,11 @@ public class Product {
         this.opinions = opinions;
     }
     
-    public List<Order> getOrders() {
-        return orders;
-    }
+    //public List<Order> getOrders() {
+   //     return orders;
+   // }
     
-    public void setOrders(List<Order> orders) {
-        this.orders = orders; 
-    }
+  //  public void setOrders(List<Order> orders) {
+   //     this.orders = orders; 
+  //  }
 }

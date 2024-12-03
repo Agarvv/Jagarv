@@ -4,7 +4,7 @@ import com.app.jagarv.entity.user.User;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity 
 public class ProductOpinion
@@ -18,6 +18,7 @@ public class ProductOpinion
     
     @ManyToOne
     @JoinColumn(name="product_id")  
+    @JsonBackReference
     private Product product;
     
     @ManyToOne
