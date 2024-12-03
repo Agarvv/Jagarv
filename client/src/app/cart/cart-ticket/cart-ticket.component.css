@@ -35,6 +35,10 @@
     padding: 15px;
     width: 100%;
 
+  }    
+  
+  .reduction-inp form {
+      width: 100%;
   }
 
   .reduction-inp input {
