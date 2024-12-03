@@ -20,11 +20,17 @@ public class AdminDashboardService {
 
     public Map<String, Object> getAdminDashboard() {
         Map<String, Object> dashboardData = new HashMap<>();
-        dashboardData.put("ordersToday", orderRepository.findOrdersToday());
-        dashboardData.put("totalEarningsToday", orderRepository.getTotalEarningsToday());
-        dashboardData.put("mostOrderedProducts", orderRepository.findMostOrderedProducts());
+        
+        dashboardData.put("ordersToday", orderRepository.countOrdersToday()); 
+        
+        dashboardData.put("totalEarningsToday", orderRepository.getTotalEarningsToday()); 
+        
+        dashboardData.put("mostOrderedProducts", orderRepository.findMostOrderedProducts()); 
+        
         dashboardData.put("orderCountByMonth", orderRepository.getOrderCountByMonth());
-        dashboardData.put("usersToday", userRepository.findUsersToday());
+        
+        dashboardData.put("usersToday", userRepository.countUsersToday()); // Solo el número de usuarios registrados hoy
+        
         return dashboardData;
     }
 }

@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Query("SELECT o FROM Order o WHERE CAST(o.date AS java.sql.Date) = CURRENT_DATE")
-    List<Order> findOrdersToday();
+    @Query("SELECT COUNT(o) FROM Order o WHERE CAST(o.date AS java.sql.Date) = CURRENT_DATE")
+    Long countOrdersToday();
 
     @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
     Long getTotalEarningsToday();
