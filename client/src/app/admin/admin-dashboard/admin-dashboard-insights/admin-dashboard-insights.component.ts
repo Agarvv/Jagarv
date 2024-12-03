@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard'
+
 
 @Component({
   selector: 'app-admin-dashboard-insights',
@@ -6,7 +8,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './admin-dashboard-insights.component.css'
 })
 export class AdminDashboardInsightsComponent {
-  @Input() totalEarningsToday!: number;
-  @Input() ordersToday!: number;
-  @Input() usersToday!: number;
+  @Input() dashboard: AdminDashboard | null = null; 
 }

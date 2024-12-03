@@ -1,20 +1,18 @@
 <main>
-  <div class="dashboard">
+  <div class="dashboard" *ngIf="dashboardData">
     <!-- INSIGHTS -->
     <app-admin-dashboard-insights 
-      [totalEarningsToday]="dashboardData?.totalEarningsToday"
-      [ordersToday]="dashboardData?.ordersToday"
-      [usersToday]="dashboardData?.usersToday">
+      [dashboardData]="dashboardData">
     </app-admin-dashboard-insights>
 
     <!-- CHART -->
     <app-admin-dashboard-chart 
-      [orderCountByMonth]="dashboardData?.orderCountByMonth">
+      [dashboardData]="dashboardData">
     </app-admin-dashboard-chart>
 
     <!-- TOP PURCHASED PRODUCTS -->
     <app-admin-dashboard-top-products 
-      [mostOrderedProducts]="dashboardData?.mostOrderedProducts">
+      [dashboardData]="dashboardData">
     </app-admin-dashboard-top-products>
   </div>
 </main>

@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './admin-dashboard-chart.component.css'
 })
 export class AdminDashboardChartComponent {
- @Input() orderCountByMonth!: [number, number][];
+ @Input() dashboard: AdminDashboard | null = null; 
 }
