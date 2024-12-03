@@ -9,20 +9,24 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Query("SELECT COUNT(o) FROM Order o WHERE o.date = :today")
-    Long getOrdersCountForToday(@Param("today") String today);
+    @Query("SELECT o FROM Order o WHERE CAST(o.date AS java.sql.Date) = CURRENT_DATE")
+    List<Order> findOrdersToday();
 
-    @Query("SELECT SUM(o.amount) FROM Order o WHERE o.date = :today")
-    Long getTotalAmountForToday(@Param("today") String today);
+    @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
+    Long getTotalEarningsToday();
 
-    @Query("SELECT o FROM Order o WHERE o.date BETWEEN :start AND :end")
-    List<Order> getOrdersBetweenDates(@Param("start") String start, @Param("end") String end);
-
-   // @Query("SELECT p.title, SUM(oi.quantity), p.price, p.stock " +
-  //        "FROM Order o JOIN o.orderItems oi JOIN oi.product p " +
- //         "GROUP BY p.title, p.price, p.stock")
- //   List<Object[]> getMostOrderedProducts(); 
-
+    @Query("SELECT p FROM Product p JOIN p.orders op GROUP BY p.id ORDER BY COUNT(op.product.id) DESC")
+    List<Product> findMostOrderedProducts();
+    
+    @Query(value = "SELECT EXTRACT(MONTH FROM date::DATE) AS month, COUNT(*) AS order_count " +
+               "FROM orders " +
+               "WHERE EXTRACT(MONTH FROM date::DATE) BETWEEN 7 AND 12 " +
+               "GROUP BY month " +
+               "ORDER BY month", nativeQuery = true)
+    List<Object[]> getOrderCountByMonth();
+   
+    
+    
     List<Order> findAllByUser_Id(Long userId);
 
     Boolean existsByUserIdAndProducts_Id(Long userId, Long productId);
