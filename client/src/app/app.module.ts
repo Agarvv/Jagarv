@@ -87,7 +87,9 @@ import { BestSellersComponent } from './best-sellers/best-sellers.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PaypalButtonComponent } from './cart/cart-ticket/paypal-button/paypal-button.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { PaymentFailureComponent } from './payment-failure/payment-failure.component'
+import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
+import { AdminOrderComponent } from './admin/admin-orders/admin-order/admin-order.component';
+import { OrderComponent } from './orders/order/order.component'
 
 @NgModule({
   declarations: [
@@ -164,7 +166,9 @@ import { PaymentFailureComponent } from './payment-failure/payment-failure.compo
     OrdersComponent,
     PaypalButtonComponent,
     PaymentSuccessComponent,
-    PaymentFailureComponent
+    PaymentFailureComponent,
+    AdminOrderComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

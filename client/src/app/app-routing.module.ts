@@ -27,6 +27,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { ProfileComponent } from './profile/profile.component'
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
+import { OrdersComponent } from './orders/orders.component'; 
 
 // LayoutComponent 
 
@@ -103,6 +104,10 @@ const routes: Routes = [
          {
              path: 'wishlist',
              component: WishlistComponent
+         },
+         {
+             path: 'orders',
+             component: OrdersComponent // the orders page for the users
          },
          {
           path: 'pay',

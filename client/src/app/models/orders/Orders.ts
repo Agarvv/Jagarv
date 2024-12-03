@@ -1,4 +1,9 @@
-export interface Orders {
-    status: string, // the order status.
-    quantity: number // quanity of the order
+import { OrderProduct } from "@models/product/OrderProduct"
+
+export interface Order {
+    id: number,
+    adress: string,
+    amount: number,
+    products: OrderProduct[],
+    status: string
 }
