@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Order } from '@models/orders/Orders';
 
 @Component({
   selector: 'app-order',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './order.component.css'
 })
 export class OrderComponent {
-
+ @Input() order: Order | null = null;
 }
