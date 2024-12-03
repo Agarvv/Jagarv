@@ -15,7 +15,7 @@
       <div class="order-m">
         <div class="order-imgs">
           <div class="order-img" *ngFor="let product of order?.products">
-            <img *ngIf="product?.images?.length > 0" [src]="product?.images[0]" [alt]="'Image of product ' + product?.id">
+            <img *ngIf="product?.pictures?.length > 0" [src]="product?.images[0]" [alt]="'Image of product ' + product?.id">
           </div>
         </div>
       </div>
