@@ -35,7 +35,7 @@ public class PaypalController
     
     // success paypal payment endpoint 
     @GetMapping("/success")
-    public ResponseEntity<ApiResponse<Void>>
+    public String
     handleSuccess
     (
      @RequestParam("paymentId") String paymentId,
@@ -44,10 +44,10 @@ public class PaypalController
     {
         try 
         {
-            String message = paypalService.completePayment(paymentId, payerId);
-            return ResponseEntity.ok(new ApiResponse<>(message, null));
+            paypalService.completePayment(paymentId, payerId);
+            return "redirect:https://jagarv.vercel.app/paymentSuccess";
         } catch (PayPalRESTException e) {
-            throw new PaymentException(e.getMessage()); 
+            return "redirect:https://jagarv.vercel.app/paymentFailure"; 
         }
     }
 }

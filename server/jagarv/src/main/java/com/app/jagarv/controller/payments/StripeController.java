@@ -34,13 +34,13 @@ public class StripeController {
     }
 
     @GetMapping("/success")
-    public ResponseEntity<ApiResponse<String>> handleSuccess(@RequestParam String session_id) {
+    public String handleSuccess(@RequestParam String session_id) {
         try {
-            ApiResponse<String> response = stripeService.verifyPaymentStatus(session_id);
-            return ResponseEntity.ok(response); 
+            stripeService.verifyPaymentStatus(session_id);
+            return "redirect:https://jagarv.vercel.app/paymentSuccess";
         } catch (StripeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse<>("Error In Payment...", e.getMessage()));
+            return "redirect:https://jagarv.vercel.app/paymentFailure"; 
         }
     }
+    
 }
