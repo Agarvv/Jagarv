@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.app.jagarv.entity.user.User;
 
+import java.util.List;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
