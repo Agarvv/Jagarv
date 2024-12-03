@@ -25,11 +25,11 @@ public class Order {
 
     @ManyToMany
     @JoinTable(
-        name = "order_product", 
-        joinColumns = @JoinColumn(name = "order_id"), 
-        inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<CartItem> products;
+    name = "order_product", 
+    joinColumns = @JoinColumn(name = "order_id"), 
+    inverseJoinColumns = @JoinColumn(name = "cart_item_id")  
+     )
+     private List<CartItem> products;
 
     // @NotBlank(message = "Status cannot be blank")
    // @Size(max = 20, message = "Status cannot exceed 20 characters")
