@@ -11,6 +11,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.app.jagarv.entity.order.Order;
+
 import com.app.jagarv.entity.cart.CartItem;
 
 @Entity
@@ -69,6 +71,9 @@ public class Product {
     
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<CartItem> cartItems;
+    
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders;
 
     // Getters and Setters
     public Long getId() {
@@ -158,5 +163,13 @@ public class Product {
     
     public void setOpinions(List<ProductOpinion> opinions) {
         this.opinions = opinions;
+    }
+    
+    public List<Order> getOrders() {
+        return orders;
+    }
+    
+    public void setOrders(List<Order> orders) {
+        this.orders = orders; 
     }
 }
