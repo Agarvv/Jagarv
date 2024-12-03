@@ -17,7 +17,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
     Long getTotalEarningsToday();
 
-    @Query("SELECT p FROM Product p JOIN p.orders op GROUP BY p.id ORDER BY COUNT(op.product.id) DESC")
+    @Query("SELECT p FROM Product p JOIN p.orders o GROUP BY p ORDER BY COUNT(o) DESC")
     List<Product> findMostOrderedProducts();
     
     @Query(value = "SELECT EXTRACT(MONTH FROM date::DATE) AS month, COUNT(*) AS order_count " +
