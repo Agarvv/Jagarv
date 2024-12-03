@@ -5,8 +5,8 @@
   </div>
   <div class="order-m">
     <div class="order-imgs">
-      <div class="order-img" *ngFor="let orderProduct of order!.products!.product">
-        <img [src]="orderProduct.pictures[0]" alt="Order image" />
+      <div class="order-img" *ngFor="let orderProduct of order!.products">
+        <img [src]="orderProduct.product.pictures[0]" alt="Order image" />
       </div>
     </div>
   </div>
