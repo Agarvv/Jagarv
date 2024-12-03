@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class CartItem {
@@ -21,9 +21,14 @@ public class CartItem {
     @JsonIgnore 
     private Cart cart;
 
+   // @ManyToOne
+    //@JoinColumn(name = "product_id")
+   // @JsonBackReference
+    //private Product product;
+    
     @ManyToOne
     @JoinColumn(name = "product_id")
-   // @JsonBackReference
+    @JsonManagedReference
     private Product product;
 
     private Long quantity;

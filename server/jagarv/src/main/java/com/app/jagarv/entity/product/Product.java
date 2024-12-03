@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.math.BigDecimal;
 import java.util.List;
 import com.app.jagarv.entity.cart.CartItem;
@@ -45,8 +46,8 @@ public class Product {
     @JsonBackReference
     private ProductCategory category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private List<CartItem> cartItems;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
