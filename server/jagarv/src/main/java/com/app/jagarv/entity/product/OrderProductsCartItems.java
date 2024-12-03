@@ -1,6 +1,6 @@
 package com.app.jagarv.entity.product;
 
-import com.app.jagarv.entity.cart.read.CartItem; 
+import com.app.jagarv.entity.cart.CartItem;
 import jakarta.persistence.*;
 import com.app.jagarv.entity.order.Order; 
 
