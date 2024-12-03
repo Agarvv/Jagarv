@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-admin-dashboard-chart',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './admin-dashboard-chart.component.css'
 })
 export class AdminDashboardChartComponent {
-
+ @Input() orderCountByMonth!: [number, number][];
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-admin-dashboard-top-products',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './admin-dashboard-top-products.component.css'
 })
 export class AdminDashboardTopProductsComponent {
-
+ @Input() mostOrderedProducts!: [number, string, number][];
 }

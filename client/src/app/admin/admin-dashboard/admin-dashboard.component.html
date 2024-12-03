@@ -1,19 +1,20 @@
 <main>
-    <div class="dashboard">
-      <!-- INSIGHTS -->
-       <app-admin-dashboard-insights>
+  <div class="dashboard">
+    <!-- INSIGHTS -->
+    <app-admin-dashboard-insights 
+      [totalEarningsToday]="dashboardData?.totalEarningsToday"
+      [ordersToday]="dashboardData?.ordersToday"
+      [usersToday]="dashboardData?.usersToday">
+    </app-admin-dashboard-insights>
 
-       </app-admin-dashboard-insights>
+    <!-- CHART -->
+    <app-admin-dashboard-chart 
+      [orderCountByMonth]="dashboardData?.orderCountByMonth">
+    </app-admin-dashboard-chart>
 
-       <!-- CHART -->
-        <app-admin-dashboard-chart>
-
-        </app-admin-dashboard-chart>
-
-        <!-- TOP PURCHASED PRODUCTS -->
-
-        <app-admin-dashboard-top-products>
-          
-        </app-admin-dashboard-top-products>
-    </div>
-  </main>
+    <!-- TOP PURCHASED PRODUCTS -->
+    <app-admin-dashboard-top-products 
+      [mostOrderedProducts]="dashboardData?.mostOrderedProducts">
+    </app-admin-dashboard-top-products>
+  </div>
+</main>
