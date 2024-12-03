@@ -1,10 +1,13 @@
 package com.app.jagarv.entity.product;
 
+import com.app.jagarv.entity.cart.read.CartItem; 
 import jakarta.persistence.*;
+import com.app.jagarv.entity.order.Order; 
+
 
 @Entity
 @Table(name = "order_products_cart_items")
-public class OrderProductsCartItem {
+public class OrderProductsCartItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
