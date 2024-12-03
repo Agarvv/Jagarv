@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import java.util.List; 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "attribute_option")
@@ -21,7 +22,7 @@ public class AttributeOption {
 
     @ManyToOne
     @JoinColumn(name = "attribute_id")
-    @JsonManagedReference
+    @JsonBackReference
     private Attribute attribute;
 
     public Long getId() {
