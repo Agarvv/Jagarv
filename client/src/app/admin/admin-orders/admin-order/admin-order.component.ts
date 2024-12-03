@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Order } from '@stripe/stripe-js';
+import { Order } from '@models/orders/Orders'; 
 
 @Component({
   selector: 'app-admin-order',
