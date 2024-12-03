@@ -10,8 +10,8 @@ export class PaypalService {
   private apiUrl = `${environment.apiUrl}/api/jagarv/pay/paypal`;
   constructor(private http: HttpClient) { }
 
-  payWithPaypal(): Observable<any> {
-    return this.http.post(this.apiUrl, {}, {
+  payWithPaypal(reduction?: any): Observable<any> {
+    return this.http.post(this.apiUrl, reduction, {
         withCredentials: true 
     });
   }

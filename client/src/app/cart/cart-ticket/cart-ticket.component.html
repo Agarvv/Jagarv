@@ -1,5 +1,5 @@
 <div class="cart-ticket">
-  <p class="ct-total">Total: $ {{ finalPrice ?? null }}</p>
+  <p class="ct-total">Total: $ {{ finalPrice }}</p>
 
   <div class="ct-items" *ngIf="cart$ | async as cart">
     <div class="ct-item" *ngFor="let product of cart.items">
@@ -7,18 +7,27 @@
       <p>{{ product.price | currency: 'USD' }}</p>
     </div>
   </div>
- 
-  <app-checkout-button>
-      
+
+  <div class="reduction-inp">
+    <form [formGroup]="reductionForm" (ngSubmit)="applyReduction()">
+      <input 
+        type="text" 
+        formControlName="reductionCode" 
+        placeholder="Have A Reduction Code?" 
+      />
+      <button type="submit">Apply</button>
+    </form>
+  </div>
+
+  <app-checkout-button [reductionForm]="reductionForm">
+
   </app-checkout-button>
 
   <div class="p-or">
     <p>OR</p>
   </div>
 
-  <app-paypal-button>
-    
-  </app-paypal-button>
+  <app-paypal-button [reductionForm]="reductionForm">
 
+  </app-paypal-button>
 </div>
- 

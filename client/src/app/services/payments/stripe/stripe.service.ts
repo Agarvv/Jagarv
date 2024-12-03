@@ -12,8 +12,8 @@ export class StripeService {
 
   constructor(private http: HttpClient) {}
 
-  createCheckoutSession(): Observable<any> {
-    return this.http.post<any>(this.apiUrl, {}, {
+  createCheckoutSession(reduction?: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, reduction, {
       withCredentials: true
     });
   }

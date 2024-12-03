@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { environment } from '@env/environment';
 import { StripeService } from '@services/payments/stripe/stripe.service';
 import { loadStripe } from '@stripe/stripe-js';
 import { Store } from '@ngrx/store'
 import { setLoading, clearMessages } from '@store/admin/admin.actions'
 import { finalize } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout-button',
@@ -12,12 +13,13 @@ import { finalize } from 'rxjs';
   styleUrl: './checkout-button.component.css'
 })
 export class CheckoutButtonComponent {
+  @Input() reductionForm: FormGroup | null = null
   constructor(private stripeService: StripeService, private store: Store) {}
 
   pay() {
     this.store.dispatch(clearMessages());
     this.store.dispatch(setLoading({ isLoading: true }))
-    this.stripeService.createCheckoutSession().pipe(
+    this.stripeService.createCheckoutSession(this.reductionForm?.value).pipe(
      finalize(() => {
       this.store.dispatch(setLoading({ isLoading: false}))
      })
