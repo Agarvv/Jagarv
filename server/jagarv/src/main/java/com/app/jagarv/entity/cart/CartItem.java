@@ -1,10 +1,11 @@
 package com.app.jagarv.entity.cart;
 
 import jakarta.persistence.*;
-import java.util.List;
-
 import com.app.jagarv.entity.product.AttributeOption;
 import com.app.jagarv.entity.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
 
 @Entity
 public class CartItem {
@@ -15,10 +16,12 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
+    @JsonIgnore 
     private Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonBackReference
     private Product product;
 
     private Long quantity;
