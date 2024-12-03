@@ -16,6 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
     Optional<User> findByEmail(String email);
     
-    @Query(value = "SELECT * FROM users WHERE DATE(joined_at) = CURRENT_DATE", nativeQuery = true)
+    @Query(value = "SELECT * FROM app_user WHERE DATE(joined_at) = CURRENT_DATE", nativeQuery = true)
     List<User> findUsersToday();
 }
