@@ -2,16 +2,17 @@ package com.app.jagarv.dto.order.read;
 
 import com.app.jagarv.dto.product.read.OrderProductDTO;
 import java.util.List;
+import com.app.jagarv.entity.cart.CartItem; 
 
 public class OrdersDTO {
     private Long id; 
-    private List<OrderProductDTO> products; 
+    private List<CartItem> products; 
     private String status;
     private Long amount; 
     
     public OrdersDTO() {}
 
-    public OrdersDTO(Long id, String status, Long amount, List<OrderProductDTO> products) {
+    public OrdersDTO(Long id, String status, Long amount, List<CartItem> products) {
         this.id = id;
         this.status = status;
         this.amount = amount;
@@ -26,11 +27,11 @@ public class OrdersDTO {
         this.id = id;
     }
 
-    public List<OrderProductDTO> getProducts() {
+    public List<CartItem> getProducts() {
         return products;
     }
 
-    public void setProducts(List<OrderProductDTO> products) {
+    public void setProducts(List<CartItem> products) {
         this.products = products;
     }
 

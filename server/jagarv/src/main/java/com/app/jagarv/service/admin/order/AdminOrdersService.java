@@ -85,9 +85,10 @@ public class AdminOrdersService {
           throw new NullPointerException("User cart is null..");
       }
 
-      List<Product> products = new ArrayList<>();
+      List<CartItem> products = new ArrayList<>();
       for(CartItem item: cart.getCartItems()) {
-         products.add(item.getProduct());
+         // products.add(item.getProduct());
+         products.add(item);
          item.getProduct().setStock(item.getProduct().getStock() -1);
       }
       

@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.entity.user.User;
+import com.app.jagarv.entity.cart.CartItem;
 
 @Entity
 @Table(name = "orders")
@@ -28,7 +29,7 @@ public class Order {
         joinColumns = @JoinColumn(name = "order_id"), 
         inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<Product> products;
+    private List<CartItem> products;
 
     // @NotBlank(message = "Status cannot be blank")
    // @Size(max = 20, message = "Status cannot exceed 20 characters")
@@ -63,11 +64,11 @@ public class Order {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
+    public List<CartItem> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<CartItem> products) {
         this.products = products;
     }
 
