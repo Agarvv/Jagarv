@@ -18,9 +18,9 @@ export class AdminDashboardComponent implements OnInit {
       
       )
       .subscribe((data: AdminDashboard) => {
-          console.log("Dashboard", dashboard)
+          console.log("Dashboard", data)
           this.dashboardData = data; 
-      }, (error) => {
+      }, (error: any) => {
           console.error("Error!", error) // debug8
       }) 
   }
