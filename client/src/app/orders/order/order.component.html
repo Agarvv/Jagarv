@@ -1,12 +1,12 @@
-<main>
+
   <div class="order">
     <div class="order-h">
       <p class="o-id">Order N: {{ order?.id ?? 'NULL' }}</p>
       <div class="order-details">
-        <div class="order-detail" *ngFor="let product of order?.products">
-          <p>Product ID: {{ product.product?.id ?? 'NULL' }}</p>
-          <p>Quantity: {{ product.product?.quantity }}</p>
-          <div class="order-detail-attribute" *ngFor="let option of product.product?.options">
+        <div class="order-detail" *ngFor="let orderProduct of order?.products">
+          <p>Product ID: {{ orderProduct?.product?.id ?? 'NULL' }}</p>
+          <p>Quantity: {{ orderProduct?.quantity ?? 'NULL' }}</p>
+          <div class="order-detail-attribute" *ngFor="let option of orderProduct?.product?.options">
             <p>{{ option?.attributeName }}: {{ option?.value }}</p>
           </div>
         </div>
@@ -14,18 +14,17 @@
     </div>
     <div class="order-m">
       <div class="order-imgs">
-        <div class="order-img" *ngFor="let product of order?.products">
-          <img *ngIf="product.product?.pictures?.length > 0" [src]="product.product?.pictures[0]">
+        <div class="order-img" *ngFor="let orderProduct of order?.products">
+          <img *ngIf="orderProduct?.product?.pictures?.length > 0" [src]="orderProduct?.product?.pictures[0]" />
         </div>
       </div>
     </div>
     <div class="order-f">
       <div class="order-amount">
-        <p>$ {{ order?.amount }}</p>
+        <p>$ {{ order?.amount ?? 'NULL' }}</p>
       </div>
       <div class="order-status">
-        <p>{{ order?.status }}</p>
+        <p>{{ order?.status ?? 'NULL' }}</p>
       </div>
     </div>
   </div>
-</main>
