@@ -14,7 +14,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
     Long getTotalEarningsToday();
 
-    @Query(value = "SELECT p.id, p.name, COUNT(o.id) AS order_count " +
+    @Query(value = "SELECT p.id, p.title, COUNT(o.id) AS order_count " +
                    "FROM products p " +
                    "JOIN order_product op ON op.product_id = p.id " +
                    "JOIN orders o ON o.id = op.order_id " +
