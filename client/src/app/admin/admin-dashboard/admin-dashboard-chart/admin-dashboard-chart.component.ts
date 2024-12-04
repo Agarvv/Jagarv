@@ -7,7 +7,7 @@ import { Chart, ChartType } from 'chart.js';
   templateUrl: './admin-dashboard-chart.component.html',
   styleUrls: ['./admin-dashboard-chart.component.css'],
 })
-export class AdminDashboardChartComponent implements AfterViewInit, OnInit {
+export class AdminDashboardChartComponent implements AfterViewInit {
   @Input() dashboard: AdminDashboard | null = null;
   @ViewChild('chartCanvas') private chartCanvas!: ElementRef<HTMLCanvasElement>;
 
@@ -15,11 +15,11 @@ export class AdminDashboardChartComponent implements AfterViewInit, OnInit {
   chartType: ChartType = 'bar'; 
 
   chartData = {
-    labels: [] as string[],  
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] as string[],  
     datasets: [
       {
         label: 'Sales Per Month',
-        data: [] as number[],  
+        data: [50, 25, 36, 40, 82, 40, 5, 40, 58, 10, 45, 12] as number[],  
         backgroundColor: [
           'rgba(75, 192, 192, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -73,7 +73,7 @@ export class AdminDashboardChartComponent implements AfterViewInit, OnInit {
     return months[i];
   }
 
-  ngOnInit(): void {
+  /* ngOnInit(): void {
     if (this.dashboard && this.dashboard.orderCountByMonth) {
       const labels = this.dashboard.orderCountByMonth.map(([monthIndex, orderCount]) => {
         const monthName = this.getMonth(monthIndex - 1);
@@ -86,5 +86,5 @@ export class AdminDashboardChartComponent implements AfterViewInit, OnInit {
       const data = this.dashboard.orderCountByMonth.map(([monthIndex, orderCount]) => orderCount);
       this.chartData.datasets[0].data = data;
     }
-  }
+  } */
 }
