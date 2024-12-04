@@ -90,7 +90,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { AdminOrderComponent } from './admin/admin-orders/admin-order/admin-order.component';
 import { OrderComponent } from './orders/order/order.component'
-import { NgxEchartsModule } from 'ngx-echarts';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -185,7 +185,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
         cart: cartReducer
     }),
     SocialLoginModule,
-    NgxEchartsModule
+    ChartsModule
   ],
   providers: [
     {

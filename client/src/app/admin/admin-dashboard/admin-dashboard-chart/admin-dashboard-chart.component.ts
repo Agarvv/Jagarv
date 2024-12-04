@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
-import { EChartsOption } from 'echarts';
+import { ChartOptions, ChartData } from 'chart.js';
 
 @Component({
   selector: 'app-admin-dashboard-chart',
@@ -10,21 +10,33 @@ import { EChartsOption } from 'echarts';
 export class AdminDashboardChartComponent implements OnChanges {
   @Input() dashboard: AdminDashboard | null = null;
 
-  chartOptions: EChartsOption = {
-    title: {
-      text: 'Sales Per Month',
+  chartOptions: ChartOptions = {
+    responsive: true,
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Month',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Orders',
+        },
+      },
     },
-    xAxis: {
-      type: 'category',
-      data: [] as string[], 
-    },
-    yAxis: {
-      type: 'value',
-    },
-    series: [
+  };
+
+  chartData: ChartData = {
+    labels: [] as string[], 
+    datasets: [
       {
+        label: 'Sales Per Month',
         data: [] as number[],
-        type: 'line',
+        fill: false,
+        borderColor: 'rgba(75,192,192,1)',
+        tension: 0.1,
       },
     ],
   };
@@ -37,8 +49,8 @@ export class AdminDashboardChartComponent implements OnChanges {
 
       const orderCounts = this.dashboard.orderCountByMonth.map(([, orders]) => orders);
 
-      (this.chartOptions.xAxis as { data: string[] }).data = months; 
-      (this.chartOptions.series as { data: number[] }[])[0].data = orderCounts; 
+      this.chartData.labels = months;
+      this.chartData.datasets[0].data = orderCounts;
     }
   }
 }
