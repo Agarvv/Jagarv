@@ -6,8 +6,8 @@ import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
   templateUrl: './admin-dashboard-chart.component.html',
   styleUrls: ['./admin-dashboard-chart.component.css'],
 })
-export class AdminDashboardChartComponent implements OnChanges {
-  @Input() dashboard: AdminDashboard | null = null;
+export class AdminDashboardChartComponent  {
+  /* @Input() dashboard: AdminDashboard | null = null;
 
   chartType = 'bar'; 
   chartData = {
@@ -49,4 +49,5 @@ export class AdminDashboardChartComponent implements OnChanges {
       this.chartData.datasets[0].data = orderCounts;
     }
   } */
+  
 }
