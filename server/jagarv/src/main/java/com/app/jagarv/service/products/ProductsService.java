@@ -94,7 +94,7 @@ public class ProductsService {
         return orderRepository.existsByUserIdAndProducts_Id(userId, productId);
     }
     
-    public List<Object> getBestSellers() {
+    public List<Object[]> getBestSellers() {
         return orderRepository.findMostOrderedProducts();
     }
 }

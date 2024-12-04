@@ -39,7 +39,7 @@ public class ProductsController {
     // best sellers endpoint
     @GetMapping("/bestSellers")
     public ResponseEntity<List<Object[]>> getBestSellers() {
-       List<Object[]> bestSellers = orderRepository.findMostOrderedProducts();
+       List<Object[]> bestSellers = productsService.getBestSellers();
        return ResponseEntity.ok(bestSellers);
 }
 

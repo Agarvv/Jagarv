@@ -1,4 +1,5 @@
-import { ChartsModule } from 'ng2-charts';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -185,7 +186,7 @@ import { OrderComponent } from './orders/order/order.component'
         cart: cartReducer
     }),
     SocialLoginModule,
-    ChartsModule
+    NgxEchartsModule
   ],
   providers: [
     {
