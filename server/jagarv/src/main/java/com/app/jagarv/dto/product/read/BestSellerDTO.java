@@ -1,14 +1,17 @@
 package com.app.jagarv.dto.product.read;
 
+import java.math.BigDecimal; 
+
+
 public class BestSellerDTO {
     private Long id;
     private String title;
     private String pictures;  
     private Long stock;
-    private Long price;
+    private BigDecimal price;
     private Long selled;
 
-    public BestSellerDTO(Long id, String title, String pictures, Long stock, Long price, Long selled) {
+    public BestSellerDTO(Long id, String title, String pictures, Long stock, BigDecimal price, Long selled) {
         this.id = id;
         this.title = title;
         this.pictures = pictures;
@@ -49,11 +52,11 @@ public class BestSellerDTO {
         this.stock = stock;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
