@@ -19,7 +19,7 @@ export class AdminDashboardChartComponent implements AfterViewInit {
     datasets: [
       {
         label: 'Sales Per Month',
-        data: [120, 150, 180, 200, 170, 220],
+        data: [],
         backgroundColor: [
           'rgba(75, 192, 192, 0.2)',
           'rgba(54, 162, 235, 0.2)',
