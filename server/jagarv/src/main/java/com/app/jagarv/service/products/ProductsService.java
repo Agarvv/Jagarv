@@ -107,7 +107,7 @@ public class ProductsService {
     String title = (String) result[1];
     String pictures = (String) result[2];
     Long stock = (Long) result[3];  
-    BigDecimal price = (BigDecimal) result[4];
+    Long price = (Long) result[4];
     Long ordersCount = (Long) result[5];
 
     BestSellerDTO dto = new BestSellerDTO(productId, title, pictures, stock, price, ordersCount);
