@@ -40,11 +40,17 @@
   </div>
 
   <div class="order-actions">
-    <button class="status-btn in-progress" *ngIf="order!.status === 'TRANSIT'">
-      <i class="fas fa-plane"></i> TRANSIT
-    </button>
-    <button class="status-btn arrived" *ngIf="order!.status === 'ARRIVED'">
-      <i class="fas fa-check"></i> ARRIVED
-    </button>
+  <!-- Set order status as in transit button --> 
+    <app-admin-order-in-transit-button
+    [orderId]="order?.id"
+    >
+    </app-admin-order-in-transit-button>
+  
+    <!-- Set order status as arrived button --> 
+    <app-admin-order-arrived-button
+    [orderId]="order?.id"
+    >
+        
+    </app-admin-order-arrived-button>
   </div>
 </div>
