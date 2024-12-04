@@ -29,7 +29,7 @@ export class AdminDashboardChartComponent implements OnChanges {
     ],
   };
 
-  ngOnChanges() {
+  /* ngOnChanges() {
     if (this.dashboard?.orderCountByMonth) {
       const months = this.dashboard.orderCountByMonth.map(([month]) =>
         ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'][month - 1]
@@ -40,5 +40,17 @@ export class AdminDashboardChartComponent implements OnChanges {
       (this.chartOptions.xAxis as { data: string[] }).data = months;
       (this.chartOptions.series as { data: number[] }[])[0].data = orderCounts;
     }
-  }
+  } */ 
+  
+  ngOnChanges() {
+  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  const orderCounts = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
+
+  (this.chartOptions.xAxis as { data: string[] }).data = months;
+  (this.chartOptions.series as { data: number[] }[])[0].data = orderCounts;
+
+  console.log('Datos dummy cargados: ', { months, orderCounts });
+}
+  
+  
 }
