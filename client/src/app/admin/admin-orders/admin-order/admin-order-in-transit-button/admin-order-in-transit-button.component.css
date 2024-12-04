@@ -1,0 +1,13 @@
+ .status-btn .in-progress {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: #BFBFBF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+

@@ -1,0 +1,14 @@
+.status-btn .arrived {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: #22CB14;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+

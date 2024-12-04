@@ -1,7 +1,7 @@
 <div class="order">
   <div class="order-h">
     <p class="o-id">Order N: {{ order!.id ?? 'NULL' }}</p>
-    <p class="o-date">odate</p>
+    <p class="o-date">{{ order?.date ?? 'NULL' }}</p>
   </div>
   <div class="order-m">
     <div class="order-imgs">
@@ -14,8 +14,20 @@
     <div class="order-amount">
       <p>$ {{ order!.amount ?? 'NULL' }}</p>
     </div>
-    <div class="order-status">
-      <p>{{ order!.status ?? 'NULL' }}</p>
+    <div class="order-status" [ngClass]="{
+        'preparing': order?.status === 'PREPARING',
+        'processing': order?.status === 'PROCESSING',
+        'arrived': order?.status === 'ARRIVED'
+    }">
+      <p *ngIf="order?.status === 'PREPARING'">
+        <i class="fas fa-cogs"></i> PREPARING
+      </p>
+      <p *ngIf="order?.status === 'PROCESSING'">
+        <i class="fas fa-plane"></i> IN TRANSIT
+      </p>
+      <p *ngIf="order?.status === 'ARRIVED'">
+        <i class="fas fa-check"></i> ARRIVED
+      </p>
     </div>
   </div>
 </div>

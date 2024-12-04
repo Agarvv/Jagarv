@@ -1,108 +1,150 @@
 .order {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 25px;
-    background: #ffffff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    max-width: 650px;
-    margin: 0 auto 30px auto;
-    transition: transform 0.3s ease-in-out;
-  }
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 25px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  max-width: 650px;
+  margin: 0 auto 30px auto;
+  transition: transform 0.3s ease-in-out;
+}
 
-  .order:hover {
-    transform: scale(1.02); 
-  }
+.order:hover {
+  transform: scale(1.02);
+}
 
-  .order .order-h .o-id {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 12px;
-    letter-spacing: 0.5px; 
-  }
+.order .order-h .o-id {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
 
-  .order .order-h .order-details {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 10px;
-  }
+.order .order-h .order-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 10px;
+}
 
-  .order .order-h .order-detail {
-    padding: 8px;
-    background-color: #f9f9f9; 
-    border-radius: 8px;
-    border: 1px solid #eee; 
-    transition: background-color 0.3s;
-  }
+.order .order-h .order-detail {
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  transition: background-color 0.3s;
+}
 
-  .order .order-h .order-detail:hover {
-    background-color: #fafafa; 
-  }
+.order .order-h .order-detail:hover {
+  background-color: #fafafa;
+}
 
-  .order .order-h .order-detail p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.5;
-    margin: 5px 0;
-  }
+.order .order-h .order-detail p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  margin: 5px 0;
+}
 
-  .order .order-h .order-detail-attribute p {
-    font-size: 13px;
-    color: #777;
-    margin: 3px 0;
-  }
+.order .order-h .order-detail-attribute p {
+  font-size: 13px;
+  color: #777;
+  margin: 3px 0;
+}
 
-  .order .order-img img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
-    transition: transform 0.3s ease;
-  }
+.order .order-img img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: transform 0.3s ease;
+}
 
-  .order .order-img:hover img {
-    transform: scale(1.1); 
-  }
+.order .order-img:hover img {
+  transform: scale(1.1);
+}
 
-  .order .order-imgs {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-  }
+.order .order-imgs {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
 
-  
-  .order .order-f {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-    font-size: 14px;
-  }
+.order .order-f {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+}
 
-  .order .order-amount p {
-    font-size: 22px;
-    font-weight: bold;
-    color: #27ae60;
-    margin: 0;
-  }
+.order .order-amount p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #27ae60;
+  margin: 0;
+}
 
-  .order .order-status p {
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background: #f39c12;
-    padding: 8px 12px;
-    border-radius: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.order .order-status {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  
-  
+.order .order-status.preparing {
+  background-color: #f39c12;  
+}
+
+.order .order-status.processing {
+  background-color: #BFBFBF; 
+}
+
+.order .order-status.arrived {
+  background-color: #27ae60;  
+}
+
+.order .order-status i {
+  margin-right: 8px;
+}
+
+.order .order-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.order .order-actions .status-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.order .order-actions .status-btn i {
+  margin-right: 8px;
+}
+
+.order .order-actions .arrived {
+  background-color: #22CB14;
+}
+
+.order .order-actions .in-progress {
+  background-color: #BFBFBF;
+}

@@ -92,7 +92,9 @@ import { PaypalButtonComponent } from './cart/cart-ticket/paypal-button/paypal-b
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { AdminOrderComponent } from './admin/admin-orders/admin-order/admin-order.component';
-import { OrderComponent } from './orders/order/order.component'
+import { OrderComponent } from './orders/order/order.component';
+import { AdminOrderInTransitButtonComponent } from './admin/admin-orders/admin-order/admin-order-in-transit-button/admin-order-in-transit-button.component';
+import { AdminOrderArrivedButtonComponent } from './admin/admin-orders/admin-order/admin-order-arrived-button/admin-order-arrived-button.component'
 
 
 @NgModule({
@@ -172,7 +174,9 @@ import { OrderComponent } from './orders/order/order.component'
     PaymentSuccessComponent,
     PaymentFailureComponent,
     AdminOrderComponent,
-    OrderComponent
+    OrderComponent,
+    AdminOrderInTransitButtonComponent,
+    AdminOrderArrivedButtonComponent
   ],
   imports: [
     BrowserModule,

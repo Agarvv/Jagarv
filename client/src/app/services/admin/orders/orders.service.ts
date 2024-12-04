@@ -16,4 +16,14 @@ export class OrdersService {
   getOrders(): Observable<Order[]> {
      return this.http.get<Order[]>(this.apiUrl);
   }
+  
+  // set order status as arrivdd
+  setOrderArrived(orderId: number): Observable<any> {
+      return this.http.post(`${apiUrl}/setArrived`, { orderId: orderId }); 
+  }
+  
+  // set order status as in transit 
+  setOrderInTransit(orderId: number): Observable<any> {
+      return this.http.post(`${apiUrl}/setInProcess`, { orderId: orderId }); 
+  }
 }
