@@ -13,12 +13,12 @@
       <tbody>
         <tr *ngFor="let product of dashboard?.mostOrderedProducts">
           <td class="product-cell">
-            <img [src]="product[2]" alt="Producto" class="product-image">
-            <span class="product-title">{{ product[1] }}</span>
+            <img [src]="product.pictures[0]" alt="Producto" class="product-image">
+            <span class="product-title">{{ product.title }}</span>
           </td>
-          <td>{{ product[3] }}</td>
-          <td>{{ product[4] }}</td>
-          <td>${{ product[5] }}</td> 
+          <td>{{ product.selled }}</td>
+          <td>{{ product.stock }}</td>
+          <td>${{ product.price }}</td> 
         </tr>
       </tbody>
     </table>
