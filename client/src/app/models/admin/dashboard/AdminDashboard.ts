@@ -5,4 +5,5 @@ export interface AdminDashboard {
   ordersToday: number;
   mostOrderedProducts: [number, string, number][];
   totalEarningsToday: number;
+  totalIncome: number;
 }

@@ -8,5 +8,6 @@ import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard'
   styleUrl: './admin-dashboard-top-products.component.css'
 })
 export class AdminDashboardTopProductsComponent {
- @Input() dashboard: AdminDashboard | null = null; 
+ @Input() dashboard: AdminDashboard | null = null;
+ 
 }

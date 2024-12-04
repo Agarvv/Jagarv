@@ -1,5 +1,5 @@
 <div class="main-header"> 
-    <h3>¡Hello, Juan!</h3>
+    <h3>¡Hello!</h3>
     <p>Dashboard</p>
 </div>
 
@@ -9,7 +9,7 @@
     <div class="insight">
      <div class="ins-info">
        <p>Income Today</p>
-       <p class="ins-income">+ $79</p>
+       <p class="ins-income">+ {{ dashboard?.totalEarningsToday ?? 0 }}</p>
      </div>
      <div class="ins-icon">
        <div>
@@ -21,7 +21,7 @@
     <div class="insight">
                  <div class="ins-info">
        <p>Orders Today</p>
-       <p class="ins-income">0</p>
+       <p class="ins-income">{{ dashboard?.ordersToday ?? 0}} </p>
      </div>
      <div class="ins-icon">
        <div>
@@ -33,7 +33,7 @@
     <div class="insight">
                   <div class="ins-info">
        <p>Users Today</p>
-       <p class="ins-income">+ 3</p>
+       <p class="ins-income">+ {{ dashboard?.usersToday ?? 0 }} </p>
      </div>
      <div class="ins-icon">
        <div>
@@ -43,7 +43,7 @@
     </div>
     <div class="insight">
                 <div class="ins-info">
-       <p>Total Income</p>
+       <p>{{ dashboard?.totalIncome ?? 0 }}</p>
        <p class="ins-income">$ 8913</p>
      </div>
      <div class="ins-icon">
