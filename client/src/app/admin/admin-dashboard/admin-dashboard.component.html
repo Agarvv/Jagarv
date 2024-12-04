@@ -1,18 +1,15 @@
 <main>
-  <div class="dashboard" *ngIf="dashboardData">
+  <div class="dashboard" *ngIf="dashboardData$ | async as dashboardData">
     <!-- INSIGHTS -->
-    <app-admin-dashboard-insights 
-      [dashboardData]="dashboardData">
+    <app-admin-dashboard-insights [dashboardData]="dashboardData">
     </app-admin-dashboard-insights>
 
     <!-- CHART -->
-    <app-admin-dashboard-chart 
-      [dashboardData]="dashboardData">
+    <app-admin-dashboard-chart [dashboardData]="dashboardData">
     </app-admin-dashboard-chart>
 
     <!-- TOP PURCHASED PRODUCTS -->
-    <app-admin-dashboard-top-products 
-      [dashboardData]="dashboardData">
+    <app-admin-dashboard-top-products [dashboardData]="dashboardData">
     </app-admin-dashboard-top-products>
   </div>
 </main>

@@ -1,27 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '@services/admin/dashboard/dashboard.service'
-import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard'
-
+import { DashboardService } from '@services/admin/dashboard/dashboard.service';
+import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrl: './admin-dashboard.component.css'
+  styleUrls: ['./admin-dashboard.component.css'] 
 })
 export class AdminDashboardComponent implements OnInit {
-  dashboardData: AdminDashboard | null = null; 
-  constructor(private dashboardService: DashboardService) {} 
-  
+  dashboardData$: Observable<AdminDashboard> | null = null; 
+
+  constructor(private dashboardService: DashboardService) {}
+
   ngOnInit() {
-      this.dashboardService.getAdminDashboard()
-      .pipe(
-      
-      )
-      .subscribe((data: AdminDashboard) => {
-          console.log("Dashboard", data)
-          this.dashboardData = data; 
-      }, (error: any) => {
-          console.error("Error!", error) // debug8
-      }) 
+    this.dashboardData$ = this.dashboardService.getAdminDashboard(); 
   }
 }
