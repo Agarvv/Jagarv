@@ -1,4 +1,4 @@
-import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';  
 
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -200,6 +200,10 @@ import { OrderComponent } from './orders/order/order.component'
         }
       ]
     } as SocialAuthServiceConfig,
+  },
+  {
+    provide: NGX_ECHARTS_CONFIG,
+    useValue: {} 
   }
 ],
   bootstrap: [AppComponent],
