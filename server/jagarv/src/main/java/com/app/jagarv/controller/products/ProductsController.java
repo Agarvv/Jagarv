@@ -8,6 +8,7 @@ import com.app.jagarv.dto.product.read.ProductSummaryDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import com.app.jagarv.dto.product.read.BestSellerDTO;
 
 // products endpoints 
 @RestController
@@ -38,8 +39,8 @@ public class ProductsController {
     
     // best sellers endpoint
     @GetMapping("/bestSellers")
-    public ResponseEntity<List<Object[]>> getBestSellers() {
-       List<Object[]> bestSellers = productsService.getBestSellers();
+    public ResponseEntity<List<BestSellerDTO[]>> getBestSellers() {
+       List<BestSellerDTO[]> bestSellers = productsService.getBestSellers();
        return ResponseEntity.ok(bestSellers);
 }
 
