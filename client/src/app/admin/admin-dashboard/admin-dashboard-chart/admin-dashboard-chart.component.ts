@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
-import { EChartsOption } from 'echarts';
 
 @Component({
   selector: 'app-admin-dashboard-chart',
@@ -10,21 +9,30 @@ import { EChartsOption } from 'echarts';
 export class AdminDashboardChartComponent implements OnChanges {
   @Input() dashboard: AdminDashboard | null = null;
 
-  chartOptions: EChartsOption = {
-    title: {
-      text: 'Sales Per Month',
-    },
-    xAxis: {
-      type: 'category',
-      data: [] as string[], 
-    },
-    yAxis: {
-      type: 'value',
-    },
-    series: [
+  chartType = 'bar'; 
+  chartData = {
+    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+    datasets: [
       {
-        data: [] as number[], 
-        type: 'line',
+        label: 'Sales Per Month',
+        data: [120, 150, 180, 200, 170, 220], 
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 1,
       },
     ],
   };
@@ -36,21 +44,9 @@ export class AdminDashboardChartComponent implements OnChanges {
       );
 
       const orderCounts = this.dashboard.orderCountByMonth.map(([, orders]) => orders);
-      
-      (this.chartOptions.xAxis as { data: string[] }).data = months;
-      (this.chartOptions.series as { data: number[] }[])[0].data = orderCounts;
+
+      this.chartData.labels = months;
+      this.chartData.datasets[0].data = orderCounts;
     }
-  } */ 
-  
-  ngOnChanges() {
-  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-  const orderCounts = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60];
-
-  (this.chartOptions.xAxis as { data: string[] }).data = months;
-  (this.chartOptions.series as { data: number[] }[])[0].data = orderCounts;
-
-  console.log('Datos dummy cargados: ', { months, orderCounts });
-}
-  
-  
+  } */
 }

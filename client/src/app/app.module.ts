@@ -1,4 +1,4 @@
-import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';  
+import { ChartsModule } from 'ng2-charts';
 
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -186,7 +186,7 @@ import { OrderComponent } from './orders/order/order.component'
         cart: cartReducer
     }),
     SocialLoginModule,
-    NgxEchartsModule
+    ChartsModule
   ],
   providers: [
   {
@@ -201,10 +201,6 @@ import { OrderComponent } from './orders/order/order.component'
       ]
     } as SocialAuthServiceConfig,
   },
-  {
-    provide: NGX_ECHARTS_CONFIG,
-    useValue: {} 
-  }
 ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA] 
