@@ -6,16 +6,16 @@ import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
   templateUrl: './admin-dashboard-chart.component.html',
   styleUrls: ['./admin-dashboard-chart.component.css'],
 })
-export class AdminDashboardChartComponent  {
-   @Input() dashboard: AdminDashboard | null = null;
+export class AdminDashboardChartComponent {
+  @Input() dashboard: AdminDashboard | null = null;
 
-  chartType = 'bar'; 
+  chartType = 'bar';
   chartData = {
     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
     datasets: [
       {
         label: 'Sales Per Month',
-        data: [120, 150, 180, 200, 170, 220], 
+        data: [120, 150, 180, 200, 170, 220],
         backgroundColor: [
           'rgba(75, 192, 192, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -37,6 +37,23 @@ export class AdminDashboardChartComponent  {
     ],
   };
 
+  chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
   /* ngOnChanges() {
     if (this.dashboard?.orderCountByMonth) {
       const months = this.dashboard.orderCountByMonth.map(([month]) =>
@@ -49,5 +66,4 @@ export class AdminDashboardChartComponent  {
       this.chartData.datasets[0].data = orderCounts;
     }
   } */
-  
 }
