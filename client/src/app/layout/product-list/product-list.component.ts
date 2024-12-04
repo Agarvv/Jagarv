@@ -8,5 +8,7 @@ import { Product } from "@models/Product"
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
-  @Input() products: Product[] | null = [];
+  // @Input() products: Product[] | null = [];
+  @Input() products: any[] | null = []; // will be used more times in the app with diferent data, that's why any.
+ 
 }

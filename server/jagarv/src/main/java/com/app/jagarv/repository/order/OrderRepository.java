@@ -23,10 +23,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     "p.price AS price, " + 
     "COUNT(opci.cart_item_id) AS ordersCount " +
     "FROM products p " +  
-    "JOIN cart_items ci ON p.id = ci.product_id " +
+    "JOIN cart_item ci ON p.id = ci.product_id " +  
     "JOIN order_product_cart_items opci ON ci.id = opci.cart_item_id " +
     "JOIN orders o ON opci.order_id = o.id " +
-    "JOIN pictures pp ON p.id = pp.product_id " +
+    "JOIN product_pictures pp ON p.id = pp.product_id " +  
     "GROUP BY p.id, p.title, p.stock, p.price, pp.pictures " +
     "ORDER BY COUNT(opci.cart_item_id) DESC", nativeQuery = true)
     List<BestSellerDTO> findMostOrderedProducts();
