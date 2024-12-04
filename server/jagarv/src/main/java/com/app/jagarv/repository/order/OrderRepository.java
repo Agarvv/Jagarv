@@ -14,12 +14,13 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
     Long getTotalEarningsToday();
 
-    @Query(value = "SELECT p.id, p.title, p.pictures, p.stock, p.price, COUNT(opci.cart_item_id) AS order_count " +
+    @Query(value = "SELECT p.id, p.title, pp.pictures, p.stock, p.price, COUNT(opci.cart_item_id) AS order_count " +
                "FROM products p " +
                "JOIN cart_item ci ON ci.product_id = p.id " +
                "JOIN order_products_cart_items opci ON opci.cart_item_id = ci.id " +
                "JOIN orders o ON o.id = opci.order_id " +
-               "GROUP BY p.id, p.title " +
+               "JOIN product_pictures pp ON pp.product_id = p.id " +
+               "GROUP BY p.id, p.title, pp.pictures, p.stock, p.price " +
                "ORDER BY order_count DESC", 
        nativeQuery = true)
     List<Object[]> findMostOrderedProducts();
