@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard'
 
 
@@ -7,6 +7,10 @@ import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard'
   templateUrl: './admin-dashboard-insights.component.html',
   styleUrl: './admin-dashboard-insights.component.css'
 })
-export class AdminDashboardInsightsComponent {
-  @Input() dashboard: AdminDashboard | null = null; 
+export class AdminDashboardInsightsComponent implements OnInit {
+  @Input() dashboard: AdminDashboard | null = null;
+  
+  ngOnInit(): void {
+      console.log("Dashboard prop", this.dashboard)
+  }
 }
