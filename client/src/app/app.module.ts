@@ -189,26 +189,22 @@ import { OrderComponent } from './orders/order/order.component'
     NgxEchartsModule
   ],
   providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              environment.googleClientId
-            )
-          }
-        ]
-      } as SocialAuthServiceConfig,
-    }
- //   {
-    //  provide: HTTP_INTERCEPTORS, 
-    //  useClass: withCredentialsInterceptor, 
-   //   multi: true
- //   }
-  ],
+  { provide: NgxEchartsConfig, useValue: {} },
+
+
+  {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(environment.googleClientId)
+        }
+      ]
+    } as SocialAuthServiceConfig,
+  }
+],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA] 
 })

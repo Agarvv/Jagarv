@@ -28,6 +28,7 @@ import { ProfileComponent } from './profile/profile.component'
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { OrdersComponent } from './orders/orders.component'; 
+import { BestSellersComponent } from './best-sellers/best-sellers.component'
 
 // LayoutComponent 
 
@@ -100,6 +101,10 @@ const routes: Routes = [
          {
           path: 'category/:category',
           component: ProductsByCategoryComponent
+         },
+         {
+             path: 'bestSellers',
+             component: BestSellersComponent
          },
          {
              path: 'wishlist',

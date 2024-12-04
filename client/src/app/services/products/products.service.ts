@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Product } from '@models/Product'; 
 import { ProductSummary } from "@models/ProductSummary"
+import { BestSeller } from '@models/product/BestSeller'
 
 
 @Injectable({
@@ -25,6 +26,11 @@ export class PublicProductsService {
   // finds product by category 
   findProductsByCategory(category: string): Observable<ProductSummary[]> {
   return this.http.get<ProductSummary[]>(`${this.apiUrl}/category/${category}`);
-}
+   }
+   
+   // gets best sellers 
+   getBestSellers(): Observable<BestSeller[]> {
+   return this.http.get<BestSeller[]>(`${this.apiUrl}/bestSellers`); 
+   }
   
 }
