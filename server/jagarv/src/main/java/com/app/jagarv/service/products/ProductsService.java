@@ -18,6 +18,7 @@ import com.app.jagarv.outil.SecurityOutil;
 import com.app.jagarv.repository.cart.CartRepository; 
 import com.app.jagarv.repository.order.OrderRepository;
 import com.app.jagarv.dto.product.read.BestSellerDTO;
+import java.util.ArrayList;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -95,8 +96,8 @@ public class ProductsService {
         return orderRepository.existsByUserIdAndProducts_Id(userId, productId);
     }
     
-    public List<BestSellerDTO> findMostOrderedProducts() {
-    List<Object[]> results = repository.findMostOrderedProducts();
+    public List<BestSellerDTO> getBestSellers() {
+    List<Object[]> results = orderRepository.findMostOrderedProducts();
     List<BestSellerDTO> bestSellerDTOList = new ArrayList<>();
 
     for (Object[] result : results) {
