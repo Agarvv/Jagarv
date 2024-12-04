@@ -16,20 +16,15 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     Long getTotalEarningsToday();
 
      @Query(value = 
-    "SELECT p.id AS productId, " +
-    "p.title AS title, " +
-    "STRING_AGG(pp.pictures, ',') AS pictures, " +  
-    "p.stock AS stock, " + 
-    "p.price AS price, " + 
-    "COUNT(opci.cart_item_id) AS ordersCount " +
-    "FROM products p " +  
-    "JOIN cart_item ci ON p.id = ci.product_id " +  
-    "JOIN order_products_cart_items opci ON ci.id = opci.cart_item_id " +
-    "JOIN orders o ON opci.order_id = o.id " +
-    "JOIN product_pictures pp ON p.id = pp.product_id " +  
-    "GROUP BY p.id, p.title, p.stock, p.price " +
-    "ORDER BY COUNT(opci.cart_item_id) DESC", nativeQuery = true)
-      List<BestSellerDTO> findMostOrderedProducts();
+        "SELECT new com.app.jagarv.dto.product.read.BestSellerDTO(p.id, p.title, pp.pictures, p.stock, p.price, COUNT(opci.cart_item_id)) " +
+        "FROM products p " +  
+        "JOIN cart_item ci ON p.id = ci.product_id " +  
+         "JOIN order_products_cart_items opci ON ci.id = opci.cart_item_id " +
+          "JOIN orders o ON opci.order_id = o.id " +
+          "JOIN product_pictures pp ON p.id = pp.product_id " +  
+           "GROUP BY p.id, p.title, p.stock, p.price, pp.pictures " +
+            "ORDER BY COUNT(opci.cart_item_id) DESC", nativeQuery = true)
+         List<BestSellerDTO> findMostOrderedProducts();
 
     @Query(value = "SELECT EXTRACT(MONTH FROM date::DATE) AS month, COUNT(*) AS order_count " +
                    "FROM orders " +
