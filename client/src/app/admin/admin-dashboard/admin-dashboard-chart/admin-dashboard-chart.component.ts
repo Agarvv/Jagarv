@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
 import { Chart, ChartType } from 'chart.js'; 
 
@@ -7,7 +7,7 @@ import { Chart, ChartType } from 'chart.js';
   templateUrl: './admin-dashboard-chart.component.html',
   styleUrls: ['./admin-dashboard-chart.component.css'],
 })
-export class AdminDashboardChartComponent implements AfterViewInit {
+export class AdminDashboardChartComponent implements AfterViewInit, OnInit {
   @Input() dashboard: AdminDashboard | null = null;
   @ViewChild('chartCanvas') private chartCanvas!: ElementRef<HTMLCanvasElement>;
 
@@ -15,11 +15,11 @@ export class AdminDashboardChartComponent implements AfterViewInit {
   chartType: ChartType = 'bar'; 
 
   chartData = {
-    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+    labels: [] as string[],  
     datasets: [
       {
         label: 'Sales Per Month',
-        data: [],
+        data: [] as number[],  
         backgroundColor: [
           'rgba(75, 192, 192, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -66,5 +66,24 @@ export class AdminDashboardChartComponent implements AfterViewInit {
       data: this.chartData,
       options: this.chartOptions,
     });
+  }
+
+  getMonth(i: number) {
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    return months[i];
+  }
+
+  ngOnInit(): void {
+    if (this.dashboard && this.dashboard.orderCountByMonth) {
+      const labels = this.dashboard.orderCountByMonth.map(([monthIndex, orderCount]) => {
+        const monthName = this.getMonth(monthIndex - 1);
+        return monthName;
+      });
+
+      this.chartData.labels = labels;
+
+      const data = this.dashboard.orderCountByMonth.map(([monthIndex, orderCount]) => orderCount);
+      this.chartData.datasets[0].data = data;
+    }
   }
 }
