@@ -15,7 +15,8 @@ export class AdminOrderArrivedButtonComponent {
   constructor(private ordersService: OrdersService, private store: Store) {} 
   
   setOrderArrived(): void {
-      this.store.dispatch(clearMessages()); 
+      if(this.orderId) {
+          this.store.dispatch(clearMessages()); 
       this.ordersService.setOrderArrived(this.orderId)
       .subscribe((data) => {
           console.log("Data from order arrived", data); 
@@ -26,5 +27,8 @@ export class AdminOrderArrivedButtonComponent {
               errorMessage: "Could not set order status as arrived..."
           }))
       })
+      } else {
+          console.log("order id not provided")
+      }
   }
 }

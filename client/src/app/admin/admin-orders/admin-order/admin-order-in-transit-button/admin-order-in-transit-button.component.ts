@@ -15,6 +15,8 @@ export class AdminOrderInTransitButtonComponent {
   constructor(private ordersService: OrdersService, private store: Store) {} 
   
   setOrderInTransit() {
+      if(this.orderId) {
+          this.store.dispatch(clearMessages())
       this.ordersService.setOrderInTransit(this.orderId)
       .subscribe((data) => {
           window.location.reload()
@@ -24,5 +26,8 @@ export class AdminOrderInTransitButtonComponent {
               errorMessage: 'Could not set order status in transit...'
           }))
       })
+      } else {
+          console.log("Order id not provided")
+      }
   }
 }

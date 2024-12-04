@@ -19,11 +19,11 @@ export class OrdersService {
   
   // set order status as arrivdd
   setOrderArrived(orderId: number): Observable<any> {
-      return this.http.post(`${apiUrl}/setArrived`, { orderId: orderId }); 
+      return this.http.post(`${this.apiUrl}/setArrived`, { orderId: orderId }); 
   }
   
   // set order status as in transit 
   setOrderInTransit(orderId: number): Observable<any> {
-      return this.http.post(`${apiUrl}/setInProcess`, { orderId: orderId }); 
+      return this.http.post(`${this.apiUrl}/setInProcess`, { orderId: orderId }); 
   }
 }
