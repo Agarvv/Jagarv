@@ -39,8 +39,8 @@ public class ProductsController {
     
     // best sellers endpoint
     @GetMapping("/bestSellers")
-    public ResponseEntity<List<BestSellerDTO[]>> getBestSellers() {
-       List<BestSellerDTO[]> bestSellers = productsService.getBestSellers();
+    public ResponseEntity<List<BestSellerDTO>> getBestSellers() {
+       List<BestSellerDTO> bestSellers = productsService.getBestSellers();
        return ResponseEntity.ok(bestSellers);
 }
 
