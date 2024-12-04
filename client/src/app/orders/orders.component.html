@@ -1,8 +1,5 @@
 <main>
-    <div *ngFor="let order in orders">
-      <app-order
-      [order]="order">
-      >
-      </app-order>
-    </div>
+  <div *ngFor="let order of orders">
+    <app-order [order]="order"></app-order>
+  </div>
 </main>
