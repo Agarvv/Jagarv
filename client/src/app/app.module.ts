@@ -189,9 +189,6 @@ import { OrderComponent } from './orders/order/order.component'
     NgxEchartsModule
   ],
   providers: [
-  { provide: NgxEchartsConfig, useValue: {} },
-
-
   {
     provide: 'SocialAuthServiceConfig',
     useValue: {
