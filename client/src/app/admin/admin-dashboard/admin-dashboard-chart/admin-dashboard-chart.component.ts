@@ -16,36 +16,29 @@ export class AdminDashboardChartComponent implements OnChanges {
     },
     xAxis: {
       type: 'category',
-      data: [],  
+      data: [] as string[], 
     },
     yAxis: {
       type: 'value',
     },
     series: [
       {
-        data: [], 
+        data: [] as number[],  
         type: 'line',
       },
     ],
   };
 
   ngOnChanges() {
-    if (this.dashboard && this.dashboard.orderCountByMonth) {
-        
-      const months = this.dashboard.orderCountByMonth.map(item => {
-        return this.getMonthName(item[0]);  
-      });
-      const orderCounts = this.dashboard.orderCountByMonth.map(item => item[1]);
+    if (this.dashboard?.orderCountByMonth) {
+      const months = this.dashboard.orderCountByMonth.map(([month]) =>
+        ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'][month - 1]
+      );
 
+      const orderCounts = this.dashboard.orderCountByMonth.map(([, orders]) => orders);
+      
       this.chartOptions.xAxis.data = months;
-      this.chartOptions.series[0].data = orderCounts;
+      this.chartOptions.series![0]!.data = orderCounts;
     }
-  }
-
-  getMonthName(monthNumber: number): string {
-    const months = [
-      'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
-    ];
-    return months[monthNumber - 1] || '';  
   }
 }
