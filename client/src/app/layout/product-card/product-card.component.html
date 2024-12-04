@@ -2,7 +2,8 @@
   <div class="product">
      <div class="product-card">
   <div class="product-image">
-    <img [src]="product.pictures[0]" alt="Product">
+      <!-- image can be either a array or a simple string. -->
+    <img [src]="product.pictures[0] || product.pictures" alt="Product">
   </div>
   <div class="product-data">
     <p class="p-data-title">{{ product.title }}</p>

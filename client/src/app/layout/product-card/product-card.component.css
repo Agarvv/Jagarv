@@ -23,3 +23,7 @@
 .p-data-price {
   color: green;
 }
+
+a {
+    text-decoration: none;
+}

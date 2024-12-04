@@ -15,21 +15,21 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
     Long getTotalEarningsToday();
 
-     @Query(value = 
-        "SELECT p.id AS productId, " +
-        "p.title AS title, " +
-        "pp.pictures AS pictures, " + 
-        "p.stock AS stock, " + 
-        "p.price AS price, " + 
-        "COUNT(opci.cart_item_id) AS ordersCount " +
-        "FROM products p " +  
-         "JOIN cart_item ci ON p.id = ci.product_id " +  
-        "JOIN order_products_cart_items opci ON ci.id = opci.cart_item_id " +
-        "JOIN orders o ON opci.order_id = o.id " +
-         "JOIN product_pictures pp ON p.id = pp.product_id " +  
-          "GROUP BY p.id, p.title, p.stock, p.price, pp.pictures " +
-         "ORDER BY COUNT(opci.cart_item_id) DESC", nativeQuery = true)
-        List<Object[]> findMostOrderedProducts();
+    @Query(value = 
+    "SELECT p.id AS productId, " +
+    "p.title AS title, " +
+    "pp.pictures AS pictures, " + 
+    "p.stock AS stock, " + 
+    "p.price AS price, " + 
+    "COUNT(opci.cart_item_id) AS ordersCount " +
+    "FROM products p " +  
+    "JOIN cart_item ci ON p.id = ci.product_id " +  
+    "JOIN order_products_cart_items opci ON ci.id = opci.cart_item_id " +
+    "JOIN orders o ON opci.order_id = o.id " +
+    "JOIN product_pictures pp ON p.id = pp.product_id " +  
+    "GROUP BY p.id, p.title, p.stock, p.price " +  
+    "ORDER BY COUNT(opci.cart_item_id) DESC", nativeQuery = true)
+    List<Object[]> findMostOrderedProducts();
 
     @Query(value = "SELECT EXTRACT(MONTH FROM date::DATE) AS month, COUNT(*) AS order_count " +
                    "FROM orders " +
