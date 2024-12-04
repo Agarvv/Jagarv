@@ -93,4 +93,8 @@ public class ProductsService {
     public Boolean isPurchasedByUser(Long userId, Long productId) {
         return orderRepository.existsByUserIdAndProducts_Id(userId, productId);
     }
+    
+    public List<Object> getBestSellers() {
+        return orderRepository.findMostOrderedProducts();
+    }
 }

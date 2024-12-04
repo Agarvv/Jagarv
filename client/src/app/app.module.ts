@@ -1,3 +1,4 @@
+import { ChartsModule } from 'ng2-charts';
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -90,7 +91,6 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { AdminOrderComponent } from './admin/admin-orders/admin-order/admin-order.component';
 import { OrderComponent } from './orders/order/order.component'
-import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({

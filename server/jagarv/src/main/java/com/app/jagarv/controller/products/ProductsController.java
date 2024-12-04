@@ -36,4 +36,12 @@ public class ProductsController {
         return ResponseEntity.ok(products);
     }
     
+    // best sellers endpoint
+    @GetMapping("/bestSellers")
+    public ResponseEntity<List<Object[]>> getBestSellers() {
+       List<Object[]> bestSellers = orderRepository.findMostOrderedProducts();
+       return ResponseEntity.ok(bestSellers);
+}
+
+
 }
