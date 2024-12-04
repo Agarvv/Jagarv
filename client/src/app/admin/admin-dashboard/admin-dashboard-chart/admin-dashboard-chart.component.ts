@@ -77,6 +77,7 @@ export class AdminDashboardChartComponent implements AfterViewInit, OnInit {
     if (this.dashboard && this.dashboard.orderCountByMonth) {
       const labels = this.dashboard.orderCountByMonth.map(([monthIndex, orderCount]) => {
         const monthName = this.getMonth(monthIndex - 1);
+        console.log('month name', monthName)
         return monthName;
       });
 
