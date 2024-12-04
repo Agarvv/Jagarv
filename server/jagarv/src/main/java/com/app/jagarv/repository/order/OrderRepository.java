@@ -15,16 +15,21 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
     Long getTotalEarningsToday();
 
-    @Query(value = "SELECT new com.tu.paquete.BestSellerDTO(" +
-               "p.id, p.title, GROUP_CONCAT(pp.pictures), p.stock, p.price, COUNT(opci.cart_item_id)) " +
-               "FROM Product p " +
-               "JOIN p.cartItems ci " +
-               "JOIN ci.orderProductCartItems opci " +
-               "JOIN opci.order o " +
-               "JOIN p.pictures pp " +
-               "GROUP BY p.id, p.title, p.stock, p.price " +
-               "ORDER BY COUNT(opci.cart_item_id) DESC")
-    List<BestSellerDTO> findMostOrderedProducts();
+    @Query(value = 
+    "SELECT p.id AS productId, " +
+    "p.title AS title, " +
+    "pp.pictures AS pictures, " + 
+    "p.stock AS stock, " + 
+    "p.price AS price, " + 
+    "COUNT(opci.cart_item_id) AS ordersCount " +
+    "FROM product p " +
+    "JOIN cart_items ci ON p.id = ci.product_id " +
+    "JOIN order_product_cart_items opci ON ci.id = opci.cart_item_id " +
+    "JOIN orders o ON opci.order_id = o.id " +
+    "JOIN pictures pp ON p.id = pp.product_id " +
+    "GROUP BY p.id, p.title, p.stock, p.price, pp.pictures " +
+    "ORDER BY COUNT(opci.cart_item_id) DESC", nativeQuery = true)
+     List<BestSellerDTO> findMostOrderedProducts();
 
     @Query(value = "SELECT EXTRACT(MONTH FROM date::DATE) AS month, COUNT(*) AS order_count " +
                    "FROM orders " +
