@@ -4,8 +4,8 @@ public class BestSellerDTO {
     private Long id;
     private String title;
     private String pictures;  
-    private Integer stock;
-    private Double price;
+    private Long stock;
+    private Long price;
     private Long selled;
 
     public BestSellerDTO(Long id, String title, String pictures, Integer stock, Double price, Long selled) {
