@@ -1,10 +1,7 @@
 <div class="chart-wrapper">
   <div class="chart">
-    <ng-chart 
-    [type]="chartType"
-    [data]="chartData"
-    [options]="chartOptions">
-  </ng-chart>
-  
+    <div class="chart-container">
+      <canvas #chartCanvas></canvas>
+    </div>
   </div>
 </div>

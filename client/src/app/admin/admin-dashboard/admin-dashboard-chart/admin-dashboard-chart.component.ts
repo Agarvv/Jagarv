@@ -1,15 +1,19 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
+import { Chart, ChartType } from 'chart.js'; 
 
 @Component({
   selector: 'app-admin-dashboard-chart',
   templateUrl: './admin-dashboard-chart.component.html',
   styleUrls: ['./admin-dashboard-chart.component.css'],
 })
-export class AdminDashboardChartComponent {
+export class AdminDashboardChartComponent implements AfterViewInit {
   @Input() dashboard: AdminDashboard | null = null;
+  @ViewChild('chartCanvas') private chartCanvas!: ElementRef<HTMLCanvasElement>;
 
-  chartType = 'bar';
+  chart: any;  
+  chartType: ChartType = 'bar'; 
+
   chartData = {
     labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
     datasets: [
@@ -41,7 +45,7 @@ export class AdminDashboardChartComponent {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: 'top' as const,  
       },
     },
     scales: {
@@ -54,16 +58,13 @@ export class AdminDashboardChartComponent {
     },
   };
 
-  /* ngOnChanges() {
-    if (this.dashboard?.orderCountByMonth) {
-      const months = this.dashboard.orderCountByMonth.map(([month]) =>
-        ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'][month - 1]
-      );
+  ngAfterViewInit() {
+    const canvas = this.chartCanvas.nativeElement;
 
-      const orderCounts = this.dashboard.orderCountByMonth.map(([, orders]) => orders);
-
-      this.chartData.labels = months;
-      this.chartData.datasets[0].data = orderCounts;
-    }
-  } */
+    this.chart = new Chart(canvas, {
+      type: this.chartType,
+      data: this.chartData,
+      options: this.chartOptions,
+    });
+  }
 }
