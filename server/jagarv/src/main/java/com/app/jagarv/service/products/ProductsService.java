@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.math.BigDecimal;
+
 @Service
 public class ProductsService {
 
@@ -101,19 +103,20 @@ public class ProductsService {
     List<BestSellerDTO> bestSellerDTOList = new ArrayList<>();
 
     for (Object[] result : results) {
-        Long productId = (Long) result[0];
-        String title = (String) result[1];
-        String pictures = (String) result[2];
-        Long stock = (Integer) result[3];
-        Long price = (Double) result[4];
-        Long ordersCount = (Long) result[5];
+    Long productId = (Long) result[0];
+    String title = (String) result[1];
+    String pictures = (String) result[2];
+    Long stock = (Long) result[3];  
+    BigDecimal price = (BigDecimal) result[4];
+    Long ordersCount = (Long) result[5];
 
-        BestSellerDTO dto = new BestSellerDTO(productId, title, pictures, stock, price, ordersCount);
-        bestSellerDTOList.add(dto);
-    }
+    BestSellerDTO dto = new BestSellerDTO(productId, title, pictures, stock, price, ordersCount);
+    bestSellerDTOList.add(dto);
+}
+
 
     return bestSellerDTOList;
-   }
+ 
 
 
 }
