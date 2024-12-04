@@ -1,16 +1,14 @@
 package com.app.jagarv.dto.product.read;
 
-import java.util.List;
-
 public class BestSellerDTO {
     private Long id;
     private String title;
-    private List<String> pictures;
+    private String pictures;  
     private Integer stock;
     private Double price;
     private Long selled;
 
-    public BestSellerDTO(Long id, String title, List<String> pictures, Integer stock, Double price, Long selled) {
+    public BestSellerDTO(Long id, String title, String pictures, Integer stock, Double price, Long selled) {
         this.id = id;
         this.title = title;
         this.pictures = pictures;
@@ -35,11 +33,11 @@ public class BestSellerDTO {
         this.title = title;
     }
 
-    public List<String> getPictures() {
+    public String getPictures() {
         return pictures;
     }
 
-    public void setPictures(List<String> pictures) {
+    public void setPictures(String pictures) {
         this.pictures = pictures;
     }
 
