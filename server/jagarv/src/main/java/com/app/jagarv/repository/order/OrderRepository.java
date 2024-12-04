@@ -42,7 +42,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     Long getTotalIncome();
     
     
-    List<Order> findAllByUser_Id(Long userId);
+    @Query("SELECT o FROM Order o WHERE o.user.id = :userId")
+    List<Order> findOrdersByUserId(@Param("userId") Long userId);
 
     Boolean existsByUserIdAndProducts_Id(Long userId, Long productId);
 }

@@ -27,7 +27,7 @@ public class OrdersService {
 
     public List<OrdersDTO> getUserOrders() {
         Long userId = securityOutil.getAuthenticatedUserId();
-        return orderRepository.findAllByUser_Id(userId)
+        return orderRepository.findOrdersByUserId(userId)
                 .stream()
                 .map(ordersMapper::orderToDTO)
                 .collect(Collectors.toList());
