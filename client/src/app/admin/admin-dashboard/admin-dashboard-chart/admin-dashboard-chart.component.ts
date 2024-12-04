@@ -7,7 +7,7 @@ import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
   styleUrls: ['./admin-dashboard-chart.component.css'],
 })
 export class AdminDashboardChartComponent  {
-  /* @Input() dashboard: AdminDashboard | null = null;
+   @Input() dashboard: AdminDashboard | null = null;
 
   chartType = 'bar'; 
   chartData = {

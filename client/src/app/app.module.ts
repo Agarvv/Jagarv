@@ -1,4 +1,5 @@
-// import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
+
 
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -186,7 +187,7 @@ import { OrderComponent } from './orders/order/order.component'
         cart: cartReducer
     }),
     SocialLoginModule,
-   // ChartsModule
+    NgChartsModule
   ],
   providers: [
   {
