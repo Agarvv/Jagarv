@@ -95,7 +95,24 @@ public class ProductsService {
         return orderRepository.existsByUserIdAndProducts_Id(userId, productId);
     }
     
-    public List<BestSellerDTO> getBestSellers() {
-        return orderRepository.findMostOrderedProducts();
+    public List<BestSellerDTO> findMostOrderedProducts() {
+    List<Object[]> results = repository.findMostOrderedProducts();
+    List<BestSellerDTO> bestSellerDTOList = new ArrayList<>();
+
+    for (Object[] result : results) {
+        Long productId = (Long) result[0];
+        String title = (String) result[1];
+        String pictures = (String) result[2];
+        Integer stock = (Integer) result[3];
+        Double price = (Double) result[4];
+        Long ordersCount = (Long) result[5];
+
+        BestSellerDTO dto = new BestSellerDTO(productId, title, pictures, stock, price, ordersCount);
+        bestSellerDTOList.add(dto);
     }
+
+    return bestSellerDTOList;
+   }
+
+
 }
