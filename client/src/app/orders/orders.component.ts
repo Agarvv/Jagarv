@@ -18,6 +18,7 @@ export class OrdersComponent implements OnInit {
     )
     .subscribe(orders => {
       this.orders = orders;
+      console.log("orders received", orders)
     }, (error) => {
       console.error("something went wrong", error); // debug
     });
