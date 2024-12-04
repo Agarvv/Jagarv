@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 public class BestSellerDTO {
     private Long id;
     private String title;
-    private String pictures;  
+    private String[] pictures;
     private Long stock;
     private BigDecimal price;
     private Long selled;
 
-    public BestSellerDTO(Long id, String title, String pictures, Long stock, BigDecimal price, Long selled) {
+    public BestSellerDTO(Long id, String title, String[] pictures, Long stock, BigDecimal price, Long selled) {
         this.id = id;
         this.title = title;
         this.pictures = pictures;
@@ -36,11 +36,11 @@ public class BestSellerDTO {
         this.title = title;
     }
 
-    public String getPictures() {
+    public String[] getPictures() {
         return pictures;
     }
 
-    public void setPictures(String pictures) {
+    public void setPictures(String[] pictures) {
         this.pictures = pictures;
     }
 
