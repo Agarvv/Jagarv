@@ -42,13 +42,13 @@
   <div class="order-actions">
   <!-- Set order status as in transit button --> 
     <app-admin-order-in-transit-button
-    [orderId]="order?.id"
+    [orderId]="order?.id ?? null"
     >
     </app-admin-order-in-transit-button>
   
     <!-- Set order status as arrived button --> 
     <app-admin-order-arrived-button
-    [orderId]="order?.id"
+    [orderId]="order?.id ?? null"
     >
         
     </app-admin-order-arrived-button>
