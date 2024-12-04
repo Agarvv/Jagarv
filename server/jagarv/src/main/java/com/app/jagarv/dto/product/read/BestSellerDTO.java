@@ -8,7 +8,7 @@ public class BestSellerDTO {
     private Long price;
     private Long selled;
 
-    public BestSellerDTO(Long id, String title, String pictures, Integer stock, Double price, Long selled) {
+    public BestSellerDTO(Long id, String title, String pictures, Long stock, Long price, Long selled) {
         this.id = id;
         this.title = title;
         this.pictures = pictures;
