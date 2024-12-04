@@ -29,7 +29,9 @@ public class AdminDashboardService {
         
         dashboardData.put("orderCountByMonth", orderRepository.getOrderCountByMonth());
         
-        dashboardData.put("usersToday", userRepository.countUsersToday()); // Solo el número de usuarios registrados hoy
+        dashboardData.put("usersToday", userRepository.countUsersToday());
+        
+        dashboardData.put("totalIncome", orderRepository.getTotalIncome()); 
         
         return dashboardData;
     }

@@ -14,7 +14,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT SUM(amount) FROM orders WHERE date::DATE = CURRENT_DATE", nativeQuery = true)
     Long getTotalEarningsToday();
 
-    @Query(value = "SELECT p.id, p.title, COUNT(opci.cart_item_id) AS order_count " +
+    @Query(value = "SELECT p.id, p.title, p.pictures, p.stock, p.price, COUNT(opci.cart_item_id) AS order_count " +
                "FROM products p " +
                "JOIN cart_item ci ON ci.product_id = p.id " +
                "JOIN order_products_cart_items opci ON opci.cart_item_id = ci.id " +
@@ -30,7 +30,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
                    "GROUP BY month " +
                    "ORDER BY month", nativeQuery = true)
     List<Object[]> getOrderCountByMonth();
-
+    
+    @Query(value = "SELECT SUM(amount) FROM orders", nativeQuery = true)
+    Long getTotalIncome();
+    
+    
     List<Order> findAllByUser_Id(Long userId);
 
     Boolean existsByUserIdAndProducts_Id(Long userId, Long productId);
