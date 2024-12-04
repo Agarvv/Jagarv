@@ -1,11 +1,11 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard'
-import { EChartsOption } from 'echarts'
+import { AdminDashboard } from '@models/admin/dashboard/AdminDashboard';
+import { EChartsOption } from 'echarts';
 
 @Component({
   selector: 'app-admin-dashboard-chart',
   templateUrl: './admin-dashboard-chart.component.html',
-  styleUrls: ['./admin-dashboard-chart.component.css']
+  styleUrls: ['./admin-dashboard-chart.component.css'],
 })
 export class AdminDashboardChartComponent implements OnChanges {
   @Input() dashboard: AdminDashboard | null = null;
@@ -23,7 +23,7 @@ export class AdminDashboardChartComponent implements OnChanges {
     },
     series: [
       {
-        data: [] as number[],  
+        data: [] as number[],
         type: 'line',
       },
     ],
@@ -36,9 +36,9 @@ export class AdminDashboardChartComponent implements OnChanges {
       );
 
       const orderCounts = this.dashboard.orderCountByMonth.map(([, orders]) => orders);
-      
-      this.chartOptions.xAxis.data = months;
-      this.chartOptions.series![0]!.data = orderCounts;
+
+      (this.chartOptions.xAxis as { data: string[] }).data = months; 
+      (this.chartOptions.series as { data: number[] }[])[0].data = orderCounts; 
     }
   }
 }
