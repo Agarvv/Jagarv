@@ -46,10 +46,11 @@ export class ResetPasswordButtonComponent {
     this.store.dispatch(setLoading({ isLoading: true }));
     
     const requestData = {
-      email: this.email,
-      token: this.token,
-      password: this.form.value.password
-    };
+         email: this.email,
+         token: this.token,
+         password: this.form.value.password.trim()
+     };
+    
     
     console.log("final request data", requestData)
 

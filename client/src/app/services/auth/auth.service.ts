@@ -35,7 +35,7 @@ export class AuthService {
   
   // resets password 
   resetPassword(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/reset_password`, data);
+    return this.http.post(`${this.apiUrl}/reset_password`, { data });
   }
   
   // check if the user is authenticated
