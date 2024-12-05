@@ -9,14 +9,16 @@ public class OrdersDTO {
     private List<CartItem> products; 
     private String status;
     private Long amount; 
+    private String date;
     
     public OrdersDTO() {}
 
-    public OrdersDTO(Long id, String status, Long amount, List<CartItem> products) {
+    public OrdersDTO(Long id, String status, Long amount, List<CartItem> products, String date) {
         this.id = id;
         this.status = status;
         this.amount = amount;
         this.products = products;
+        this.date = date;
     }
 
     public Long getId() {
@@ -49,5 +51,13 @@ public class OrdersDTO {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
