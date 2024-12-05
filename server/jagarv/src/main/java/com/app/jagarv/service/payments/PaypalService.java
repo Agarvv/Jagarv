@@ -37,7 +37,7 @@ public class PaypalService {
         Cart cart = cartService.getUserRawCart();
         BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
       
-        if (discountCode != null) { 
+        if (discountCode != "" && discountCode != null) { 
 
         DiscountCode discount = discountCodeRepository.findByDiscountCode(discountCode)
 
