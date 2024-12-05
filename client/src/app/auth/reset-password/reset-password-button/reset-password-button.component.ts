@@ -54,7 +54,7 @@ export class ResetPasswordButtonComponent {
     
     console.log("final request data", requestData)
 
-    this.authService.sendResetPassword(requestData).pipe(
+    this.authService.resetPassword(requestData).pipe(
       finalize(() => {
         this.store.dispatch(setLoading({ isLoading: false }));
       })
