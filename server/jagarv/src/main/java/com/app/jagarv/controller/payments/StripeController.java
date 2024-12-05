@@ -25,7 +25,7 @@ public class StripeController {
     @PostMapping
     public ResponseEntity<ApiResponse<String>> handleCartPayment(@RequestBody ProductPaymentDTO payment) {
         try {
-            String checkoutSessionUrl = stripeService.createCheckoutSession(payment);
+            String checkoutSessionUrl = stripeService.createCheckoutSession(payment.getDiscountCode());
             return ResponseEntity.ok(new ApiResponse<>("url", checkoutSessionUrl));
         } catch (StripeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)  

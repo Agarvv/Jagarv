@@ -15,6 +15,7 @@ import com.app.jagarv.entity.cart.Cart;
 import com.app.jagarv.outil.PaymentOutil;
 import com.app.jagarv.service.admin.order.AdminOrdersService;
 import com.app.jagarv.exception.exceptions.discount.DiscountCodeNotFoundException;
+import com.app.jagarv.exception.exceptions.payments.PaymentException;
 import com.app.jagarv.entity.discount.DiscountCode;
 import com.app.jagarv.repository.discount.DiscountCodeRepository;
 
@@ -33,63 +34,61 @@ public class PaypalService {
     }
 
     public String createPayment(String discountCode) throws PayPalRESTException {
-        BigDecimal finalPrice;
-        Cart cart = cartService.getUserRawCart();
-        BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
-      
-        if (discountCode != "" && discountCode != null) { 
+    BigDecimal finalPrice;
+    Cart cart = cartService.getUserRawCart();
+    BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
 
+    if (discountCode != null && !discountCode.isEmpty()) { 
         DiscountCode discount = discountCodeRepository.findByDiscountCode(discountCode)
-
             .orElseThrow(() -> new DiscountCodeNotFoundException("Invalid discount code"));
         finalPrice = totalPrice.subtract(totalPrice.multiply(discount.getReduction()));
-
-       } else {
-
+    } else {
         finalPrice = totalPrice; 
+    }
 
-       }
+    if (finalPrice.compareTo(BigDecimal.ZERO) <= 0) {
+        throw new PaymentException("The final amount cannot be zero or negative.");
+    }
 
-      finalPrice = finalPrice.multiply(BigDecimal.valueOf(100)).setScale(0, RoundingMode.HALF_UP);
-      String finalPriceStr = finalPrice.toPlainString();
+    finalPrice = finalPrice.multiply(BigDecimal.valueOf(100)).setScale(0, RoundingMode.HALF_UP);
+    String finalPriceStr = finalPrice.toPlainString();
 
+    String currency = "USD";
+    String method = "paypal";
+    String intent = "sale";
+    String successUrl = "https://jagarv-jq5o.onrender.com/api/jagarv/pay/paypal/success";
+    String cancelUrl = "https://jagarv-jq5o.onrender.com/api/jagarv/pay/paypal/cancel";
 
-      String currency = "USD";
-      String method = "paypal";
-      String intent = "sale";
-      String successUrl = "https://jagarv-jq5o.onrender.com/api/jagarv/pay/paypal/success";
-      String cancelUrl = "https://jagarv-jq5o.onrender.com/api/jagarv/pay/paypal/cancel";
+    Amount amount = new Amount();
+    amount.setCurrency(currency);
+    amount.setTotal(finalPriceStr);
 
-      Amount amount = new Amount();
-      amount.setCurrency(currency);
-      amount.setTotal(finalPriceStr);
+    Transaction transaction = new Transaction();
+    transaction.setAmount(amount);
 
-      Transaction transaction = new Transaction();
-      transaction.setAmount(amount);
+    List<Transaction> transactions = new ArrayList<>();
+    transactions.add(transaction);
 
-      List<Transaction> transactions = new ArrayList<>();
-      transactions.add(transaction);
+    Payer payer = new Payer();
+    payer.setPaymentMethod(method);
 
-      Payer payer = new Payer();
-      payer.setPaymentMethod(method);
+    Payment payment = new Payment();
+    payment.setIntent(intent);
+    payment.setPayer(payer);
+    payment.setTransactions(transactions);
 
-      Payment payment = new Payment();
-      payment.setIntent(intent);
-      payment.setPayer(payer);
-      payment.setTransactions(transactions);
+    RedirectUrls redirectUrls = new RedirectUrls();
+    redirectUrls.setCancelUrl(cancelUrl);
+    redirectUrls.setReturnUrl(successUrl);
+    payment.setRedirectUrls(redirectUrls);
 
-      RedirectUrls redirectUrls = new RedirectUrls();
-      redirectUrls.setCancelUrl(cancelUrl);
-      redirectUrls.setReturnUrl(successUrl);
-      payment.setRedirectUrls(redirectUrls);
+    Payment createdPayment = payment.create(apiContext);
 
-      Payment createdPayment = payment.create(apiContext);
-
-      return createdPayment.getLinks().stream()
-          .filter(link -> "approval_url".equals(link.getRel()))
-          .findFirst()
-          .map(link -> link.getHref())
-          .orElseThrow(() -> new PayPalRESTException("Something Went Wrong..."));
+    return createdPayment.getLinks().stream()
+        .filter(link -> "approval_url".equals(link.getRel()))
+        .findFirst()
+        .map(link -> link.getHref())
+        .orElseThrow(() -> new PayPalRESTException("Something Went Wrong..."));
 }
 
 
@@ -105,8 +104,8 @@ public class PaypalService {
         if ("approved".equals(executedPayment.getState())) {
             Amount amount = executedPayment.getTransactions().get(0).getAmount();
             String totalStr = amount.getTotal();
-            Long totalAmount = Long.valueOf(totalStr.split("\\.")[0]); 
-
+            Long totalAmount = Long.valueOf(totalStr) / 100;
+            
             adminOrdersService.placeOrder(totalAmount, paymentId, "PayPal"); 
             return "¡Thanks For Your Purchase!";
         } else {
