@@ -50,6 +50,8 @@ export class ResetPasswordButtonComponent {
       token: this.token,
       password: this.form.value.password
     };
+    
+    console.log("final request data", requestData)
 
     this.authService.sendResetPassword(requestData).pipe(
       finalize(() => {

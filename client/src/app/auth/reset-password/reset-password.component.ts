@@ -16,7 +16,6 @@ export class ResetPasswordComponent {
   ) {
       this.resetPasswordForm = this.fb.group({
           password: ['', [Validators.required]],
-          resetPassword: ['', [Validators.required]]
       })
   }
 }
