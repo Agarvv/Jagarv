@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 import { Product } from '@models/Product'
+import { CartItem } from '@models/cart/CartItem'
+
 
 @Component({
   selector: 'app-cart-product',
@@ -8,6 +10,6 @@ import { Product } from '@models/Product'
   styleUrl: './cart-product.component.css'
 })
 export class CartProductComponent {
-  @Input() product: Product | null = null; 
+  @Input() product: CartItem | null = null; 
   
 }

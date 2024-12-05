@@ -6,7 +6,7 @@ import { AttributeOption } from './AttributeOption'
 
 export interface Product {
     category: ProductCategory
-    productId: number,
+    id: number,
     title: string,
     description: string,
     featured: boolean,
