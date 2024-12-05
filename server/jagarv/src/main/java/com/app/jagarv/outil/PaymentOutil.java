@@ -4,6 +4,7 @@ import com.app.jagarv.entity.cart.Cart;
 import com.app.jagarv.entity.cart.CartItem;
 import com.app.jagarv.entity.product.Product;
 import com.app.jagarv.exception.exceptions.products.RunOfStockException;
+import java.math.BigDecimal; 
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,8 +23,7 @@ public class PaymentOutil {
             }
             
             
-    
-            totalPrice = totalPrice.add(product.getPrice().multiply.valueOf((item.getQuantity())));
+            totalPrice = totalPrice.add(product.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
         }
     
         if (totalPrice.compareTo(BigDecimal.ZERO) <= 0) {
