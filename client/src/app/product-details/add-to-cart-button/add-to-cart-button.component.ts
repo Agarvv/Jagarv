@@ -71,7 +71,7 @@ export class AddToCartButtonComponent {
     console.log('value', this.addProductForm.value);
     // if product is in cart that means or user wants to delete it
     if (this.inCart || this.addProductForm.valid) {  
-      this.cartService.addOrRemoveToCart(this.addProductForm.value).subscribe(
+      this.cartService.addOrRemoveToCart('add', this.addProductForm.value).subscribe(
         (data) => {
           console.log("Added to cart");  // debug
           this.router.navigate(['/cart'])

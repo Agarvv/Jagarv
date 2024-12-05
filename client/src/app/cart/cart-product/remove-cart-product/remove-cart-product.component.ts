@@ -17,7 +17,7 @@ export class RemoveCartProductComponent {
   removeProductFromCart(): void {
       this.store.dispatch(clearMessages()); 
      if(this.productId) {
-         this.cartService.addOrRemoveToCart(this.productId)
+         this.cartService.addOrRemoveToCart('remove', this.productId)
          .subscribe((data) => {
              console.log('Data from cart', data);
              window.location.reload(); // simple

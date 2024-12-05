@@ -22,12 +22,15 @@ export class CartService {
       })
   }
   
-  addOrRemoveToCart(data: any): Observable<any> 
-  {
-      return this.http.post(`${this.apiUrl}/addOrRemove`, { data }, {
-          withCredentials: true
-      });
-  }
+  addOrRemoveToCart(action: 'add' | 'remove', data: any): Observable<any> {
+    const payload = action === 'add' 
+        ? { productId: data.productId, options: data.options, quantity: data.quantity }
+        : { productId: data };
+
+    return this.http.post(`${this.apiUrl}/addOrRemove`, payload, {
+        withCredentials: true
+    });
+ }
   
   calculateCartFinalPrice(cart: Cart): number {
   const finalPrice = cart.items.reduce((total, product) => {
