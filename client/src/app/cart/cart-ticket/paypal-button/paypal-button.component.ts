@@ -15,7 +15,7 @@ export class PaypalButtonComponent {
   constructor(private paypalService: PaypalService, private store: Store) {}
   
   payWithPayPal(): void {
-    console.log('reduction form', this.reductionForm)
+    console.log('reduction form', this.reductionForm?.value)
     this.store.dispatch(clearMessages())
     this.store.dispatch(setLoading({ isLoading: true }))
      this.paypalService.payWithPaypal(this.reductionForm?.value)
