@@ -23,7 +23,7 @@ export class CartTicketComponent implements OnInit {
   ) {
     this.cart$ = this.store.pipe(select(state => state.cart.cart));
     this.reductionForm = this.fb.group({
-      reduction: [''] 
+      discountCode: [''] 
     });
   }
 
