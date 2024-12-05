@@ -23,7 +23,7 @@ public class PaymentOutil {
             
             
     
-            totalPrice = totalPrice.add(product.getPrice() * item.getQuantity());
+            totalPrice = totalPrice.add(product.getPrice().multiply.valueOf((item.getQuantity())));
         }
     
         if (totalPrice.compareTo(BigDecimal.ZERO) <= 0) {
