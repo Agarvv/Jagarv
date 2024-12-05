@@ -36,7 +36,7 @@ public class ResetPasswordDTO {
         return password;
     }
 
-    public void setPassword(String newPassword) {
-        this.password = newPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

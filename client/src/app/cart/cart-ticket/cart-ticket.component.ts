@@ -22,7 +22,6 @@ export class CartTicketComponent implements OnInit {
     private store: Store<{ cart: CartState }>
   ) {
     this.cart$ = this.store.pipe(select(state => state.cart.cart));
-    // Inicializar el formulario de reducción
     this.reductionForm = this.fb.group({
       reduction: [''] 
     });

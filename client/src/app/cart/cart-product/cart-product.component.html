@@ -12,11 +12,10 @@
         </div>
       </div>
     </div>
-    <div class="cp-remove">
-      <app-remove-cart-product
-      [productId]="product?.id ?? null"
-      >
-        <!-- component for product removal of the cart -->
-      </app-remove-cart-product>
-    </div>
+     <div class="cp-remove">
+  <app-remove-cart-product *ngIf="product?.id" 
+                            [productId]="product.id">
+    <!-- component for product removal of the cart -->
+  </app-remove-cart-product>
+</div>
   </div>
