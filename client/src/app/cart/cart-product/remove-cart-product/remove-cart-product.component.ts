@@ -31,4 +31,8 @@ export class RemoveCartProductComponent {
          console.error('Product id not provided')
      }
   }
+  
+  ngOnChanges() {
+  console.log('product id rec:', this.productId);
+}
 }
