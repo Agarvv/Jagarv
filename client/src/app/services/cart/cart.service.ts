@@ -25,7 +25,7 @@ export class CartService {
   addOrRemoveToCart(action: 'add' | 'remove', data: any): Observable<any> {
     const payload = action === 'add' 
         ? { productId: data.productId, options: data.options, quantity: data.quantity }
-        : { productId: data };
+        : { productId: data, quantity: 1, options: [] };
 
     return this.http.post(`${this.apiUrl}/addOrRemove`, payload, {
         withCredentials: true
