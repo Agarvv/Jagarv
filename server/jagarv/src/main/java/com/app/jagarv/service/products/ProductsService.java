@@ -95,7 +95,7 @@ public class ProductsService {
     
     // verify if a product is purchased by a user
     public Boolean isPurchasedByUser(Long userId, Long productId) {
-        return orderRepository.existsByUserIdAndProducts_Id(userId, productId);
+        return orderRepository.existsByUserIdAndProductId(userId, productId);
     }
     
     // get best sellers

@@ -20,8 +20,10 @@ public class PaymentOutil {
             if (product.getStock() == 0) {
                 throw new RunOfStockException("Please check the stock of our products before buying.");
             }
+            
+            
     
-            totalPrice = totalPrice.add(product.getPrice());
+            totalPrice = totalPrice.add(product.getPrice() * item.getQuantity());
         }
     
         if (totalPrice.compareTo(BigDecimal.ZERO) <= 0) {

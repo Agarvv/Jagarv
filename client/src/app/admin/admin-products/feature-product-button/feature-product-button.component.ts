@@ -11,6 +11,7 @@ import { setError, clearMessages } from '@store/admin/admin.actions'
 // this component just features, or unfeatures a product by his ID.
 export class FeatureProductButtonComponent {
  @Input() productId!: number; 
+ @Input() 
  constructor(private productsService: ProductsService, private store: Store) {}
  
  featureProduct() {
