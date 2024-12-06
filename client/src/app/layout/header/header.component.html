@@ -8,11 +8,11 @@
   <div class="h-grow">
     <div class="h-grow-links">
       <div>
-        <a routerLink="/best-sellers">Best Sellers</a>
+        <a routerLink="/bestSellers">Best Sellers</a>
       </div>
       
       <div>
-        <a routerLink="/my-wishlist">My Wishlist</a>
+        <a routerLink="/wishlist">My Wishlist</a>
       </div>
       
       <div class="h-admin-l">
@@ -23,14 +23,13 @@
 
   <div class="h-user">
     <div class="h-cart">
-      <i class="fa fa-shopping-cart"></i>
-      <div class="h-cart-len">
-        <p>0</p>
-      </div>
+      <a href="/cart">
+        <i class="fa fa-shopping-cart"></i>
+      </a>
     </div>
     <div>
       <div class="not-logged-in">
-        <a routerLink="/account">
+        <a routerLink="/profile">
           <i class="fa fa-user"></i>
         </a>
       </div>
@@ -41,6 +40,8 @@
 <div class="rs-sub-header">
   <div class="rs-sub-search">
     <input [(ngModel)]="searchQ" type="search" placeholder="Search Products...">
-    <i class="fa fa-search"></i>
+    <a [href]="'/search/' + searchQ">
+      <i class="fa fa-search"></i>
+    </a>
   </div>
 </div>

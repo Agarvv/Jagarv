@@ -1,4 +1,4 @@
-package com.app.jagarv.exceptions.handlers.users;
+package com.app.jagarv.exception.handlers.users;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
