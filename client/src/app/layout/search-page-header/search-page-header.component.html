@@ -9,9 +9,8 @@
       </div>
     </div>
     <div class="h-user">
-      <a [routerLink]="['/search', searchQ]" class="h-search" role="button">
-        <i class="fa fa-search"></i>
-      </a>
+        <!-- Reloads page with the new search quert -->
+        <i (click)="reloadPage()" class="fa fa-search"></i>
       <div (click)="showFiltersAside()" class="h-filters">
         <i class="fa fa-filter"></i>
       </div>
