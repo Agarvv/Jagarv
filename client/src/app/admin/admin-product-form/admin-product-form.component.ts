@@ -56,17 +56,18 @@ export class AdminProductFormComponent implements OnInit {
   
   // calls our public (not for admins, public.) product service to find a product by his id
   loadProductData(id: number): void {
-    this.publicProductsService.getProductById(id).subscribe(product => {
-      this.productForm.patchValue(product);
-      if (product.pictures) {
-        // if the product has pictures, adds the image to our service state.
-        // and our product-form-images component takes them, and shows them.
-        this.productStateService.resetImages(); 
-        product.pictures.forEach((image: string) => this.productStateService.addImage(image));  
-      }
-    });
-  }
+  this.publicProductsService.getProductById(id).subscribe(product => {
+    const formData = { ...product, category: 1 }; 
+    this.productForm.patchValue(formData);
 
+    if (product.pictures) {
+      this.productStateService.resetImages();
+      product.pictures.forEach((image: string) => this.productStateService.addImage(image));
+    }
+  });
+}
+  
+  
   submitProduct(): void {
       console.log(this.productForm.value)
     // checks if the form is valid. If not, marks all fields as touched and returns
