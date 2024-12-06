@@ -1,4 +1,5 @@
-<div class="cart-product">
+<a [href]="'/product/' + product?.id">
+  <div class="cart-product">
     <div class="cp-details">
       <div class="cp-image">
          <img [src]="product?.pictures?.[0] ?? 'other path'">
@@ -18,3 +19,4 @@
   </app-remove-cart-product>
 </div>
   </div>
+</a>
