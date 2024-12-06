@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Order } from '@models/orders/Orders'; 
+import { AdminOrders } from '@models/admin/orders/AdminOrders';
 
 @Component({
   selector: 'app-admin-order',
@@ -7,5 +7,5 @@ import { Order } from '@models/orders/Orders';
   styleUrl: './admin-order.component.css'
 })
 export class AdminOrderComponent {
-  @Input() order: Order | null = null;
+  @Input() order: AdminOrders | null = null;
 }

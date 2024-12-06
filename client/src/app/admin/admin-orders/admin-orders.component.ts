@@ -1,8 +1,8 @@
+import { AdminOrders } from '@models/admin/orders/AdminOrders';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '@services/admin/orders/orders.service';
 import { Store } from '@ngrx/store';
 import { setError, clearMessages } from '@store/admin/admin.actions';
-import { Order } from '@models/orders/Orders';
 
 @Component({
   selector: 'app-admin-orders',
@@ -10,7 +10,7 @@ import { Order } from '@models/orders/Orders';
   styleUrl: './admin-orders.component.css'
 })
 export class AdminOrdersComponent implements OnInit {
-  orders: Order[] = [];
+  orders: AdminOrders[] = [];
 
   constructor(private ordersService: OrdersService, private store: Store) {}
   
@@ -22,7 +22,7 @@ export class AdminOrdersComponent implements OnInit {
     this.store.dispatch(clearMessages());
     this.ordersService.getOrders().pipe(
       // will be aded here something in the future if necesary
-    ).subscribe((data: Order[]) => {
+    ).subscribe((data: AdminOrders[]) => {
       console.log("Orders fetched successfully", data);
         this.orders = data;
     }, (error) => {

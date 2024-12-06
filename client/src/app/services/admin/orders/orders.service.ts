@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Order } from '@models/orders/Orders';
+import { AdminOrders } from '@models/admin/orders/AdminOrders';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 
@@ -13,8 +13,8 @@ export class OrdersService {
   constructor(private http: HttpClient) { }
   
   // gets the orders from the server
-  getOrders(): Observable<Order[]> {
-     return this.http.get<Order[]>(this.apiUrl);
+  getOrders(): Observable<AdminOrders[]> {
+     return this.http.get<AdminOrders[]>(this.apiUrl);
   }
   
   // set order status as arrivdd
