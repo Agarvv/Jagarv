@@ -1,5 +1,6 @@
 package com.app.jagarv.dto.product.read;
 
+
 public class AttributeOptionDTO {
     private Long id;
     private String value;

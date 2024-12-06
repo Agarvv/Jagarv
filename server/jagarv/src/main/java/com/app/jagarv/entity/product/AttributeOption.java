@@ -3,6 +3,7 @@ package com.app.jagarv.entity.product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "attribute_option")
@@ -17,7 +18,8 @@ public class AttributeOption {
 
     @ManyToOne
     @JoinColumn(name = "attribute_id")
- //  @JsonBackReference
+   //  @JsonBackReference
+    @JsonIgnoreProperties("options")
     private Attribute attribute;
 
 
