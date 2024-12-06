@@ -4,3 +4,10 @@
   [ngClass]="{'on': inCart}">
   {{ inCart ? 'Remove From Cart' : 'Add To Cart' }}
 </button>
+
+<div *ngIf="addProductForm.invalid && (addProductForm.dirty || addProductForm.touched)" class="val error">
+  <ul>
+    <li *ngIf="quantity.invalid && quantity.touched">Quantity is required.</li>
+    <li *ngIf="options.invalid && options.touched">You must select at least one option.</li>
+  </ul>
+</div> 
