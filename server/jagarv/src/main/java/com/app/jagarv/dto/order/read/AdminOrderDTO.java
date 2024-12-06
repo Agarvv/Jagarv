@@ -2,7 +2,10 @@ package com.app.jagarv.dto.order.read;
 
 import com.app.jagarv.dto.user.UserDTO; 
 import com.app.jagarv.entity.cart.CartItem; 
+import com.app.jagarv.dto.cart.read.CartItemDTO;
 import java.util.List; 
+
+
 
 public class AdminOrderDTO {
     private Long id;
@@ -10,7 +13,7 @@ public class AdminOrderDTO {
     private Long amount;
     private String adress;
     private UserDTO user; 
-    private List<CartItem> products; 
+    private List<CartItemDTO> products; 
 
     public Long getId() {
         return id;
@@ -52,11 +55,11 @@ public class AdminOrderDTO {
         this.user = user; 
     }
     
-    public List<CartItem> getProducts() {
+    public List<CartItemDTO> getProducts() {
         return products; 
     }
     
-    public void setProducts(List<CartItem> products) {
+    public void setProducts(List<CartItemDTO> products) {
         this.products = products; 
     }
 }

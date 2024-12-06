@@ -61,7 +61,7 @@ protected void doFilterInternal(HttpServletRequest request, HttpServletResponse 
                 if(banService.isBanned(userId)) {
                     // banned for legal reasons
                     response.setStatus(451);  
-                    response.getWriter().write("BANNED: You are banned for legal reasons.");
+                    response.getWriter().write("BANNED");
                     return; 
                  }
                 
