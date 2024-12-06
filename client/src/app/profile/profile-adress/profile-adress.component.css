@@ -1,7 +1,7 @@
 .editable-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  gap: 5px;
+  align-items: center;
   margin: 20px;
 }
 

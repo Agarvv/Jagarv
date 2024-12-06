@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserService } from '@services/user/user.service'; 
 import { Store } from '@ngrx/store'; 
 import { clearMessages, setLoading, setError } from '@store/admin/admin.actions';
@@ -10,7 +10,7 @@ import { finalize } from 'rxjs'
   styleUrls: ['./profile-adress.component.css']
 })
 export class ProfileAdressComponent {
-  address: string = 'Your Address';  
+  @Input() address: string = 'Your Address';  
   isEditable: boolean = false;  
   
   constructor
