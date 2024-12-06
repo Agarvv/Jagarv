@@ -8,6 +8,7 @@ import com.app.jagarv.dto.ApiResponse;
 import com.app.jagarv.exception.exceptions.payments.PaymentException; 
 import com.app.jagarv.dto.payments.ProductPaymentDTO;
 
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/jagarv/pay/paypal")
@@ -35,19 +36,16 @@ public class PaypalController
     
     // success paypal payment endpoint 
     @GetMapping("/success")
-    public String
-    handleSuccess
-    (
-     @RequestParam("paymentId") String paymentId,
-     @RequestParam("PayerID") String payerId
-    ) 
-    {
-        try 
-        {
-            paypalService.completePayment(paymentId, payerId);
-            return "redirect:https://jagarv.vercel.app/paymentSuccess";
-        } catch (PayPalRESTException e) {
-            return "redirect:https://jagarv.vercel.app/paymentFailure"; 
-        }
+      public void handleSuccess(@RequestParam("paymentId") String paymentId, 
+                          @RequestParam("PayerID") String payerId, 
+                          HttpServletResponse response) throws IOException {
+    try {
+        paypalService.completePayment(paymentId, payerId);
+        response.sendRedirect("https://jagarv.vercel.app/paymentSuccess");
+    } catch (PayPalRESTException e) {
+        response.sendRedirect("https://jagarv.vercel.app/paymentFailure");
     }
+}
+
+
 }

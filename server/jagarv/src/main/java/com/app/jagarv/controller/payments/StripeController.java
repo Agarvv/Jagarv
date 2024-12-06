@@ -10,6 +10,8 @@ import com.app.jagarv.service.payments.StripeService;
 import com.app.jagarv.outil.SendMail;
 import com.app.jagarv.dto.ApiResponse; 
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping("/api/jagarv/pay/stripe")
 public class StripeController {
@@ -33,14 +35,15 @@ public class StripeController {
         }
     }
 
-    @GetMapping("/success")
-    public String handleSuccess(@RequestParam String session_id) {
-        try {
-            stripeService.verifyPaymentStatus(session_id);
-            return "redirect:https://jagarv.vercel.app/paymentSuccess";
-        } catch (StripeException e) {
-            return "redirect:https://jagarv.vercel.app/paymentFailure"; 
-        }
+
+   @GetMapping("/success")
+   public void handleSuccess(@RequestParam String session_id, HttpServletResponse response) throws IOException {
+    try {
+        stripeService.verifyPaymentStatus(session_id);
+        response.sendRedirect("https://jagarv.vercel.app/paymentSuccess");
+    } catch (StripeException e) {
+        response.sendRedirect("https://jagarv.vercel.app/paymentFailure");
     }
+}
     
 }
