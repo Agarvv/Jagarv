@@ -19,7 +19,7 @@ export const authGuard: CanActivateFn = (route, state) => {
       }
     }),
     catchError(error => {
-      if (error.status === 403 && error.error === "BANNED") {
+      if (error.status === 403) {
         router.navigate(['/banned']);
       } else {
         router.navigate(['/register']);
