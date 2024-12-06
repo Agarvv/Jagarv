@@ -1,13 +1,14 @@
 .product-card {
   padding: 10px;
-  height: 250px;
+  height: auto;
   width: 220px; 
-  max-width: 100%; 
+ /* max-width: 100%;  */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 10px;
+  margin: 0;
 }
 
 .product-image img {

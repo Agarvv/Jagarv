@@ -3,15 +3,18 @@
   <div class="header">
      <app-header></app-header>
   </div>
+  
+  <!-- Shows on small display -->
+  <div class="rs-wrn">
+    <app-responsive-warning> </app-responsive-warning>
+  </div>
+
   <div class="aside">
      <app-admin-aside></app-admin-aside>
   </div> 
 
   <div class="main">
-    <!-- Shows on small display -->
-    <div class="rs-wrn">
-      <app-responsive-warning> </app-responsive-warning>
-    </div>
+
 
     <router-outlet></router-outlet>
   </div>
