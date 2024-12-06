@@ -1,4 +1,4 @@
-.status-btn .arrived {
+.status-btn.arrived {
   display: flex;
   align-items: center;
   padding: 8px 15px;
@@ -10,5 +10,3 @@
   font-size: 14px;
   transition: background-color 0.3s, transform 0.3s;
 }
-
-

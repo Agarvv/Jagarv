@@ -1,4 +1,4 @@
- .status-btn .in-progress {
+ .status-btn.in-progress {
   display: flex;
   align-items: center;
   padding: 8px 15px;
