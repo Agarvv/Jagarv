@@ -59,10 +59,11 @@ protected void doFilterInternal(HttpServletRequest request, HttpServletResponse 
             {
                 Long userId = jwtOutil.extractUserId(jwtToken);
                 if(banService.isBanned(userId)) {
-                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                    response.getWriter().write("BANNED");
+                    // banned for legal reasons
+                    response.setStatus(451);  
+                    response.getWriter().write("BANNED: You are banned for legal reasons.");
                     return; 
-                }
+                 }
                 
                 String role = jwtOutil.extractRole(jwtToken);
 
