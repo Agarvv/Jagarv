@@ -39,7 +39,7 @@ export class AdminProductFormComponent implements OnInit {
       title: ['', Validators.required], // title is required
       description: ['', Validators.required], // description is required
       price: [0, [Validators.required, PriceValidator.isValidPrice]], // price is required and should be bigger than 0.
-      category: [null, Validators.required], // the category is required
+      category: [1, Validators.required], // the category is required
       stock: [0, [Validators.required, Validators.min(0)]], // stock should be a non-negative number
       featured: [false], // the featured is not required
       pictures: [[], [NonEmptyArrayValidator.nonEmptyArray]] // the pictures [] should have at least one url.
