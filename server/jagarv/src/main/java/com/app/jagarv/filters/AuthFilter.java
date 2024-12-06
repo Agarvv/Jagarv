@@ -35,33 +35,34 @@ public class AuthFilter extends OncePerRequestFilter
     }
     
     @Override 
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
         FilterChain filterChain) throws ServletException, IOException 
+{
+    Cookie[] cookies = request.getCookies();
+    String jwtToken = null; 
+    
+    if (cookies != null) 
     {
-        Cookie[] cookies = request.getCookies();
-        String jwtToken = null; 
-        
-        if (cookies != null) 
+        for (Cookie cookie : cookies) 
         {
-            for (Cookie cookie : cookies) 
+            if (cookie.getName().equals("jwt")) 
             {
-                if (cookie.getName().equals("jwt")) 
-                {
-                    jwtToken = cookie.getValue();
-                }
+                jwtToken = cookie.getValue();
             }
         }
-        
-        if (jwtToken != null) 
-        {
+    }
+    
+    if (jwtToken != null) 
+    {
+        try {
             if (jwtOutil.validateToken(jwtToken)) 
             {
-                
                 Long userId = jwtOutil.extractUserId(jwtToken);
                 if(banService.isBanned(userId)) {
-                    throw new UserBannedException("Yout Account is Banned, Please Come back on 1 Month.");
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                    response.getWriter().write("BANNED");
+                    return; 
                 }
-                
                 
                 String role = jwtOutil.extractRole(jwtToken);
 
@@ -71,8 +72,14 @@ public class AuthFilter extends OncePerRequestFilter
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
+        } catch (UserBannedException e) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.getWriter().write("User is banned");
+            return;
         }
-
-        filterChain.doFilter(request, response); 
     }
-} 
+
+    filterChain.doFilter(request, response); 
+}
+    
+}

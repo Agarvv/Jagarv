@@ -95,7 +95,8 @@ import { AdminOrderComponent } from './admin/admin-orders/admin-order/admin-orde
 import { OrderComponent } from './orders/order/order.component';
 import { AdminOrderInTransitButtonComponent } from './admin/admin-orders/admin-order/admin-order-in-transit-button/admin-order-in-transit-button.component';
 import { AdminOrderArrivedButtonComponent } from './admin/admin-orders/admin-order/admin-order-arrived-button/admin-order-arrived-button.component';
-import { ResponsiveWarningComponent } from './admin/responsive-warning/responsive-warning.component'
+import { ResponsiveWarningComponent } from './admin/responsive-warning/responsive-warning.component';
+import { BannedPageComponent } from './banned-page/banned-page.component'
 
 
 @NgModule({
@@ -178,7 +179,8 @@ import { ResponsiveWarningComponent } from './admin/responsive-warning/responsiv
     OrderComponent,
     AdminOrderInTransitButtonComponent,
     AdminOrderArrivedButtonComponent,
-    ResponsiveWarningComponent
+    ResponsiveWarningComponent,
+    BannedPageComponent
   ],
   imports: [
     BrowserModule,

@@ -29,6 +29,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { OrdersComponent } from './orders/orders.component'; 
 import { BestSellersComponent } from './best-sellers/best-sellers.component'
+import { BannedPageComponent } from './banned-page/banned-page.component'
 
 // LayoutComponent 
 
@@ -64,15 +65,22 @@ const routes: Routes = [
       path: 'search/:query',
       component: SearchComponent
   },
-  // succes payment
+  // succes payment page
   {
     path: 'paymentSuccess',
     component: PaymentSuccessComponent
   },
 
+  // payment failure page
   {
     path: 'paymentFailure',
     component: PaymentFailureComponent
+  },
+  
+  // user banned page
+  {
+      path: 'banned',
+      component: BannedPageComponent
   },
   
   {   // the main layout
