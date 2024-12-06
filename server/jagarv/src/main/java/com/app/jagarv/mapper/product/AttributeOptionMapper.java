@@ -6,5 +6,11 @@ import com.app.jagarv.dto.product.read.AttributeOptionDTO;
 
 @Mapper(componentModel = "spring")
 public interface AttributeOptionMapper {
-    AttributeOptionDTO toDTO(AttributeOption attributeOption);
+    default AttributeOptionDTO toDTO(AttributeOption attributeOption) {
+        return new AttributeOptionDTO(
+            attributeOption.getId(),
+            attributeOption.getValue(),
+            attributeOption.getAttribute() != null ? attributeOption.getAttribute().getName() : null
+        );
+    }
 }
