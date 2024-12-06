@@ -2,30 +2,62 @@ main .users-table {
     width: 100%;
     table-layout: auto;
     border-collapse: collapse;
-   
-  }
-  
-  
-  main .users-table th, td {
+    border: 1px solid #e0e0e0;
+    background: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+main .users-table th, 
+main .users-table td {
     text-align: center;
-   
-    padding: 10px;
-  }
-  
-  
-  main .users-table td.actions button {
-    padding: 5px;
+    padding: 12px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+main .users-table th {
+    background-color: #4caf50;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+main .users-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+main .users-table tr:hover {
+    background-color: #e0f7fa;
+    cursor: pointer;
+}
+
+main .users-table td.actions button {
+    padding: 6px 10px;
     border: none;
     border-radius: 5px;
-  }
-  
-  main .users-table td.actions .actions-profile {
-    background: #DBDCE5;
-  }
-  
-  /* main .users-table td.actions .actions-ban {
-    background: #B41D1D;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+main .users-table td.actions .actions-profile {
+    background: #03a9f4;
     color: white;
-  } */
-  
-  
+}
+
+main .users-table td.actions .actions-profile:hover {
+    background: #0288d1;
+}
+
+main .users-table td.actions .actions-ban {
+    background: #f44336;
+    color: white;
+}
+
+main .users-table td.actions .actions-ban:hover {
+    background: #d32f2f;
+}
