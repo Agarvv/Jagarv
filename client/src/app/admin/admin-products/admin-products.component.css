@@ -77,7 +77,4 @@ main table .p-actions button:hover {
     height: 20px;
   }
 
-  main table .p-actions {
-    flex-direction: column;
-  }
 }
