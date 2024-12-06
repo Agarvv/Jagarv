@@ -105,6 +105,7 @@ public class AdminOrdersService {
       orderRepository.save(order);
 
       cart.clearCart();
+      cartRepository.save(cart); 
     }
     
     // sets a order status as in proccess
