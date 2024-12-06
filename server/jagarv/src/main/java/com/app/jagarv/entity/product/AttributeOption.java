@@ -17,7 +17,7 @@ public class AttributeOption {
 
     @ManyToOne
     @JoinColumn(name = "attribute_id")
-   // @JsonBackReference
+   @JsonBackReference
     private Attribute attribute;
 
 
