@@ -94,7 +94,8 @@ import { PaymentFailureComponent } from './payment-failure/payment-failure.compo
 import { AdminOrderComponent } from './admin/admin-orders/admin-order/admin-order.component';
 import { OrderComponent } from './orders/order/order.component';
 import { AdminOrderInTransitButtonComponent } from './admin/admin-orders/admin-order/admin-order-in-transit-button/admin-order-in-transit-button.component';
-import { AdminOrderArrivedButtonComponent } from './admin/admin-orders/admin-order/admin-order-arrived-button/admin-order-arrived-button.component'
+import { AdminOrderArrivedButtonComponent } from './admin/admin-orders/admin-order/admin-order-arrived-button/admin-order-arrived-button.component';
+import { ResponsiveWarningComponent } from './admin/responsive-warning/responsive-warning.component'
 
 
 @NgModule({
@@ -176,7 +177,8 @@ import { AdminOrderArrivedButtonComponent } from './admin/admin-orders/admin-ord
     AdminOrderComponent,
     OrderComponent,
     AdminOrderInTransitButtonComponent,
-    AdminOrderArrivedButtonComponent
+    AdminOrderArrivedButtonComponent,
+    ResponsiveWarningComponent
   ],
   imports: [
     BrowserModule,

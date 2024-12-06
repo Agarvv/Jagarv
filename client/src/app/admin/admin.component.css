@@ -9,6 +9,10 @@
     min-height: 100vh; 
   } 
   
+ .rs-wrn {
+  display: none;
+ }
+
   .header {
     grid-area: header;
   }
@@ -24,3 +28,11 @@
   .footer {
       grid-area: footer
   } 
+
+  @media(max-width: 600px) {
+    .rs-wrn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }

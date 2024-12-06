@@ -1,0 +1,8 @@
+.rs-warn {
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c4c706;
+}
