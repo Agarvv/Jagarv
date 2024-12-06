@@ -68,6 +68,7 @@ export class AdminProductFormComponent implements OnInit {
   }
 
   submitProduct(): void {
+      console.log(this.productForm.value)
     // checks if the form is valid. If not, marks all fields as touched and returns
     if (this.productForm.invalid) {
       console.log("Form invalid..", this.productForm.errors) // debug
