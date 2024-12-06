@@ -5,6 +5,8 @@ import com.app.jagarv.entity.product.Attribute;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+
+
 @Mapper(componentModel = "spring")
 public interface AttributeMapper {
 

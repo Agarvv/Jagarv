@@ -13,7 +13,7 @@ public class AdminOrderDTO {
     private Long amount;
     private String adress;
     private UserDTO user; 
-    private List<CartItemDTO> products; 
+    private List<CartItem> products; 
 
     public Long getId() {
         return id;
@@ -55,11 +55,11 @@ public class AdminOrderDTO {
         this.user = user; 
     }
     
-    public List<CartItemDTO> getProducts() {
+    public List<CartItem> getProducts() {
         return products; 
     }
     
-    public void setProducts(List<CartItemDTO> products) {
+    public void setProducts(List<CartItem> products) {
         this.products = products; 
     }
 }
