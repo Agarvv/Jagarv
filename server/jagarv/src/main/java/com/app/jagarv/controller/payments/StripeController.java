@@ -9,6 +9,7 @@ import com.stripe.exception.StripeException;
 import com.app.jagarv.service.payments.StripeService;
 import com.app.jagarv.outil.SendMail;
 import com.app.jagarv.dto.ApiResponse; 
+import java.io.IOException;
 
 import jakarta.servlet.http.HttpServletResponse;
 
