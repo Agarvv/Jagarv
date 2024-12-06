@@ -35,7 +35,7 @@ export class CartService {
   calculateCartFinalPrice(cart: Cart): number {
   const finalPrice = cart.items.reduce((total, product) => {
       
-    return total + product.price;  
+    return total + product.price * product.quantity;  
     
   }, 0);  
   

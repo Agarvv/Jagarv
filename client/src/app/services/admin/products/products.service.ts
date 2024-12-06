@@ -35,7 +35,7 @@ export class ProductsService {
   
   // features a product 
   featureProduct(productId: number): Observable<number> {
-      return this.http.post<number>(`${this.apiUrl}/feature`, { productd: productId });
+      return this.http.post<number>(`${this.apiUrl}/feature`, { productId: productId });
   }
   
   // adds product variant, will be typed soon.
