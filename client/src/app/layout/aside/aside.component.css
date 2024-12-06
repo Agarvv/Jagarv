@@ -71,7 +71,7 @@ body {
   display: inline-flex; 
   align-items: center; 
   justify-content: flex-start; 
-  gap: 10px; /* Espacio entre el icono y el texto */
+  gap: 10px;
   width: auto; 
 }
 
