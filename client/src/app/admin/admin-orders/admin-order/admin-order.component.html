@@ -5,7 +5,7 @@
       <div class="order-detail" *ngFor="let orderProduct of order!.products!">
         <p>Product ID: {{ orderProduct!.product!.id ?? 'NULL' }}</p>
         <p>Quantity: {{ orderProduct!.quantity ?? 'NULL' }}</p>
-        <div class="order-detail-attribute" *ngFor="let option of orderProduct!.product!.options!">
+        <div class="order-detail-attribute" *ngFor="let option of orderProduct!.options!">
           <p>{{ option!.attributeName }}: {{ option!.value }}</p>
         </div>
       </div>
