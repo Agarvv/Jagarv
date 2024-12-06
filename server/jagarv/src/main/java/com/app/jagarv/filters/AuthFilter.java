@@ -34,53 +34,50 @@ public class AuthFilter extends OncePerRequestFilter
         this.banService = banService; 
     }
     
-    @Override 
-protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-        FilterChain filterChain) throws ServletException, IOException 
-{
-    Cookie[] cookies = request.getCookies();
-    String jwtToken = null; 
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+        String jwtToken = null;
     
-    if (cookies != null) 
-    {
-        for (Cookie cookie : cookies) 
-        {
-            if (cookie.getName().equals("jwt")) 
-            {
-                jwtToken = cookie.getValue();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("jwt".equals(cookie.getName())) {
+                    jwtToken = cookie.getValue();
+                    break; 
+                }
             }
         }
-    }
     
-    if (jwtToken != null) 
-    {
-        try {
-            if (jwtOutil.validateToken(jwtToken)) 
-            {
-                Long userId = jwtOutil.extractUserId(jwtToken);
-                if(banService.isBanned(userId)) {
-                    // banned for legal reasons
-                    response.setStatus(451);  
-                    response.getWriter().write("BANNED");
-                    return; 
-                 }
-                
-                String role = jwtOutil.extractRole(jwtToken);
-
-                UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(userId, null, 
-                        Collections.singletonList(new SimpleGrantedAuthority(role)));
-
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (jwtToken != null) {
+            try {
+                if (jwtOutil.validateToken(jwtToken)) {
+                    Long userId = jwtOutil.extractUserId(jwtToken);
+    
+                    if (banService.isBanned(userId)) {
+                        response.setStatus(451); 
+                        response.getWriter().write("BANNED");
+                        return;
+                    }
+    
+                    String role = jwtOutil.extractRole(jwtToken);
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(userId, null,
+                                    Collections.singletonList(new SimpleGrantedAuthority(role)));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    response.setStatus(451);
+                    response.getWriter().write("Invalid token");
+                    return;
+                }
+            } catch (Exception e) {
+                response.setStatus(451);
+                response.getWriter().write("Error processing token");
+                return;
             }
-        } catch (UserBannedException e) {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            response.getWriter().write("User is banned");
-            return;
         }
-    }
-
-    filterChain.doFilter(request, response); 
-}
     
-}
+        filterChain.doFilter(request, response); 
+    } 
+
+}   
