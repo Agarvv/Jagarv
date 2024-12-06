@@ -55,7 +55,7 @@ public class StripeService {
         User user = userService.findAuthenticatedUser();
         
         if(user.getAdress() == "" || user.getAdress() == null) {
-            throw new UserMustHaveAdressException("Please set your adress before checkout.")
+            throw new UserMustHaveAdressException("Please set your adress before checkout.");
         }
         
         
