@@ -16,16 +16,22 @@ import java.io.IOException;
 import java.util.Collections;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import com.app.jagarv.service.admin.ban.BanService;
+import com.app.jagarv.exception.exceptions.users.UserBannedException; 
 
+
+// auth and banned filter
 @Component 
 @WebFilter("/*")
 public class AuthFilter extends OncePerRequestFilter 
 {
-    private final JwtOutil jwtOutil; 
+    private final JwtOutil jwtOutil;
+    private final BanService banService; 
     
-    public AuthFilter(JwtOutil jwtOutil) 
+    public AuthFilter(JwtOutil jwtOutil, BanService banService) 
     {
         this.jwtOutil = jwtOutil;
+        this.banService = banService; 
     }
     
     @Override 
@@ -52,6 +58,11 @@ public class AuthFilter extends OncePerRequestFilter
             {
                 
                 Long userId = jwtOutil.extractUserId(jwtToken);
+                if(banService.isBanned(userId)) {
+                    throw new UserBannedException("Yout Account is Banned, Please Come back on 1 Month.");
+                }
+                
+                
                 String role = jwtOutil.extractRole(jwtToken);
 
                 UsernamePasswordAuthenticationToken authentication =
