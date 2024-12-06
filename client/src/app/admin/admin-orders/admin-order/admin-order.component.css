@@ -148,3 +148,9 @@
 .order .order-actions .in-progress {
   background-color: #BFBFBF;
 }
+
+@media(max-width: 600px) {
+    .order-f {
+        flex-direction: column;
+    }
+}
