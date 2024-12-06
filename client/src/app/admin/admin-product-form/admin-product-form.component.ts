@@ -50,7 +50,7 @@ export class AdminProductFormComponent implements OnInit {
     if (this.productId) {
       this.isEditing = true; // if the 'productId' prop is passed, isEditing turns to true
       this.loadProductData(this.productId); // and gets the product to edit by his ID
-      this.productForm.get('category').setValue(1)
+      this.productForm?.get('category')?.setValue(1)
     }
   }
   
