@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import com.app.jagarv.service.cart.CartService;
+import com.app.jagarv.entity.user.User;
 import com.app.jagarv.entity.cart.Cart;
 import com.app.jagarv.outil.PaymentOutil;
 import com.app.jagarv.service.admin.order.AdminOrdersService;
@@ -18,6 +19,9 @@ import com.app.jagarv.exception.exceptions.discount.DiscountCodeNotFoundExceptio
 import com.app.jagarv.exception.exceptions.payments.PaymentException;
 import com.app.jagarv.entity.discount.DiscountCode;
 import com.app.jagarv.repository.discount.DiscountCodeRepository;
+import com.app.jagarv.service.user.UserService;
+import com.app.jagarv.exception.exceptions.users.UserMustHaveAdressException;
+
 
 @Service
 public class PaypalService {
@@ -25,15 +29,25 @@ public class PaypalService {
     private final CartService cartService;
     private final AdminOrdersService adminOrdersService;
     private final DiscountCodeRepository discountCodeRepository;
+    private final UserService userService; 
 
-    public PaypalService(APIContext apiContext, CartService cartService, AdminOrdersService adminOrdersService, DiscountCodeRepository discountCodeRepository) {
+    public PaypalService(APIContext apiContext, CartService cartService, AdminOrdersService adminOrdersService, DiscountCodeRepository discountCodeRepository, UserService userService) {
         this.apiContext = apiContext;
         this.cartService = cartService;
         this.adminOrdersService = adminOrdersService;
         this.discountCodeRepository = discountCodeRepository;
+        this.userService = userService; 
     }
 
     public String createPayment(String discountCode) throws PayPalRESTException {
+    User user = userService.findAuthenticatedUser();
+    
+       
+        if(user.getAdress() == "" || user.getAdress() == null) {
+            throw new UserMustHaveAdressException("Please set your adress before checkout.")
+        }
+        
+    
     BigDecimal finalPrice;
     Cart cart = cartService.getUserRawCart();
     BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);

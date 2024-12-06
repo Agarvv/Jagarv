@@ -19,6 +19,10 @@ import com.app.jagarv.exception.exceptions.payments.PaymentException;
 import com.app.jagarv.entity.discount.DiscountCode;
 import com.app.jagarv.repository.discount.DiscountCodeRepository;
 
+import com.app.jagarv.exception.exceptions.users.UserMustHaveAdressException;
+
+
+
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -50,7 +54,11 @@ public class StripeService {
     public String createCheckoutSession(String reductionCode) throws StripeException {
         User user = userService.findAuthenticatedUser();
         
-     
+        if(user.getAdress() == "" || user.getAdress() == null) {
+            throw new UserMustHaveAdressException("Please set your adress before checkout.")
+        }
+        
+        
         Cart cart = cartService.getUserRawCart();
         BigDecimal totalPrice = PaymentOutil.calculateCartTotalPrice(cart);
 
