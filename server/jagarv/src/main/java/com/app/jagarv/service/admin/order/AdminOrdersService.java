@@ -104,7 +104,6 @@ public class AdminOrdersService {
       
       orderRepository.save(order);
 
-      cart.clearCart();
       cartRepository.save(cart); 
     }
     

@@ -90,7 +90,6 @@ public class AuthService {
         // Save the user in the repository
         userRepository.save(user);
 
-        // create a cart for the user that registers 
         Cart cart = new Cart();
         cart.setUser(user);
         cartRepository.save(cart);
